@@ -1,85 +1,76 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <el-menu
+    :default-active="activeIndex"
+    class="el-menu-demo"
+    mode="horizontal"
+    :ellipsis="false"
+    @select="handleSelect"
+  >
+    <el-menu-item index="0" @click="FirP">
+      <img
+        style="width: 100px;height: 50px;"
+        src="../public/favicon.ico"
+        alt="SarMioe logo"
+      />
+    </el-menu-item>
+    <el-menu-item index="0" @click="FirP">Home</el-menu-item>
+    <el-menu-item index="1" @click="Github">My Github</el-menu-item>
+    <el-sub-menu index="2">
+      <template #title>My Projects</template>
+      <el-menu-item index="2-1" @click="xes">XES</el-menu-item>
+      <el-menu-item index="2-2" @click="tkkhs">tkkhs</el-menu-item>
+      <el-menu-item index="2-3" @click="cfs">Code of this site</el-menu-item>
+      <el-sub-menu index="2-4">
+        <template #title>Golang Projects</template>
+        <el-menu-item index="2-4-1" @click="MoSIUTER">MoSIUTER</el-menu-item>
+        <el-menu-item index="2-4-2" @click="ezgo">ezgo</el-menu-item>
+      </el-sub-menu>
+    </el-sub-menu>
+    <el-sub-menu index="3">
+      <template #title>Social medias</template>
+      <el-menu-item index="3-1" @click="GoGithub">Github</el-menu-item>
+    </el-sub-menu>
+  </el-menu>
+  <router-view></router-view>
 </template>
 
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const activeIndex = ref('1')
+const handleSelect = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+const Github = () => {
+  router.push('/github')
+}
+const tkkhs = () => {
+  router.push('/tkkhs')
+}
+const FirP = () => {
+  router.push('/')
+}
+const GoGithub = () => {
+  window.open('https://github.com/sarmioe', '_blank');
+}
+const xes = () => {
+  window.open('https://github.com/sarmioe/xes?tab=readme-ov-file#the-xes-operating-system', '_blank');
+}
+const cfs = () => {
+  window.open('https://github.com/sarmioe/867678.xyz', '_blank');
+}
+const MoSIUTER = () => {
+  window.open('https://github.com/sarmioe/mosiuter', '_blank');
+}
+const ezgo = () => {
+  window.open('https://github.com/sarmioe/ezgo', '_blank');
+}
+</script>
+
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.el-menu--horizontal > .el-menu-item:nth-child(1) {
+  margin-right: auto;
 }
 </style>
