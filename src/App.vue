@@ -39,7 +39,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const activeIndex = ref('1')
+const activeIndex = ref('0')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
