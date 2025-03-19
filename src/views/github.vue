@@ -8,4 +8,5 @@
         frameborder="0">
       </iframe>
     </div>
+    <nobr><p>Link for Privacidad Mo Kanove's Github:<a href="https://github.com/sarmioe" style="color:blue" target="_blank">Here</a></p></nobr>
   </template>

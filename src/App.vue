@@ -27,8 +27,9 @@
       </el-sub-menu>
     </el-sub-menu>
     <el-sub-menu index="3">
-      <template #title>Social medias</template>
-      <el-menu-item index="3-1" @click="GoGithub">Github</el-menu-item>
+      <template #title>Speedtest</template>
+      <el-menu-item index="3-1" @click="tyo">Tokyo , Japan</el-menu-item>
+      <el-menu-item index="3-2" @click="lacus">Los Angeles , California , US</el-menu-item>
     </el-sub-menu>
   </el-menu>
   <router-view></router-view>
@@ -52,9 +53,6 @@ const tkkhs = () => {
 const FirP = () => {
   router.push('/')
 }
-const GoGithub = () => {
-  window.open('https://github.com/sarmioe', '_blank');
-}
 const xes = () => {
   window.open('https://github.com/sarmioe/xes?tab=readme-ov-file#the-xes-operating-system', '_blank');
 }
@@ -66,6 +64,12 @@ const MoSIUTER = () => {
 }
 const ezgo = () => {
   window.open('https://github.com/sarmioe/ezgo', '_blank');
+}
+const tyo = () => {
+  window.open('https://jp.867678.xyz:82/', '_blank');
+}
+const lacus = () => {
+  window.open('https://us.867678.xyz:82/', '_blank');
 }
 </script>
 
