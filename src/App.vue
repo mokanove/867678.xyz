@@ -30,6 +30,7 @@
       <template #title>Speedtest</template>
       <el-menu-item index="3-1" @click="tyo">Tokyo , Japan</el-menu-item>
       <el-menu-item index="3-2" @click="lacus">Los Angeles , California , US</el-menu-item>
+      <el-menu-item index="3-3" @click="cf">Globle , Cloudflare CDN</el-menu-item>
     </el-sub-menu>
   </el-menu>
   <router-view></router-view>
@@ -70,6 +71,10 @@ const tyo = () => {
 }
 const lacus = () => {
   window.open('https://us.867678.xyz:82/', '_blank');
+}
+const cf = () => {
+  window.open('https://s.867678.xyz/speedtest', '_blank');
+  router.push('/spt')
 }
 </script>
 
