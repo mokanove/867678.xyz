@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import Github from '../views/github.vue'
 import tkkhs from '../views/tkkhs.vue'
 import spt from '../views/spt.vue'
 
@@ -21,11 +20,6 @@ const router = createRouter({
       path: '/spt',
       name: 'spt',
       component: spt,
-    },
-    {
-      path: '/github',
-      name: 'Github',
-      component: Github,
     },
   ],
 })
