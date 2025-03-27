@@ -3,6 +3,7 @@
     <div class="input-container">
         <textarea id="textInput" placeholder="Say At Here..." rows="5" wrap="soft"></textarea>
     </div>
+    <p>From github, some changes to let it adapt to this page.</p>
 </template>
 <style>
     .input-container {
