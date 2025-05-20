@@ -1,4 +1,5 @@
 <template>
+    <h1>TKKHS project.</h1>
     <h1>Say what you want, it won't record it.</h1>
     <div class="input-container">
         <textarea id="textInput" placeholder="Say At Here..." rows="5" wrap="soft"></textarea>

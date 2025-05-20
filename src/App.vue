@@ -15,7 +15,7 @@
       <el-menu-item index="1-2" @click="Github">Github</el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="2">
-      <template #title>My Projects</template>
+      <template #title>Projects</template>
       <el-menu-item index="2-1" @click="xes">XES</el-menu-item>
       <el-menu-item index="2-2" @click="tkkhs">tkkhs</el-menu-item>
       <el-sub-menu index="2-3">

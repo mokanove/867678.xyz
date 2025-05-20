@@ -1,7 +1,7 @@
 <template>
   <div id="hola">
     <center>
-      <h1>Hello! Welcome to Privacidad Mo Kanove's website</h1>
+      <h1>Hello! Welcome to Mo Kanove's website</h1>
       <p>Uh... ago called sarmioe</p>
     </center>
     <el-divider />
@@ -9,14 +9,68 @@
       <center>
       <el-button type="warning" @click="Donate">Donate</el-button>
       <el-button @click="USDT">USDT</el-button>
-      <el-button @click="PP">PayPal</el-button>
-      <el-divider direction="vertical" />
-      <el-button type="danger" @click="cfsp">Speedtest</el-button>
-      <el-button @click="tyo">Tokyo , Japan</el-button>
-      <el-button @click="lacus">Los Angeles , California , US</el-button>
-      <el-button @click="cf">Global , Cloudflare CDN</el-button>
     </center>
     </el-card>
+    <el-divider />
+    <h1>Free highspeed speedtest servers.</h1>
+    <p @click="cfsp">Support Iperf3 NOW! Cleck here to how to using iperf3 speedtest you upload and download speed.</p>
+    <el-row :gutter="20" class="project-section">
+      <el-col :span="8" :xs="24" :sm="12">
+        <el-card class="project-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              <span>Tokyo , Japan</span>
+            </div>
+          </template>
+          <p>
+Domain of the IPV4:jp.867678.xyz<br>
+Domain of the IPV4 with CloudflareCDN:jp2.867678.xyz<br>
+IPv4:<br>
+45.192.248.248<br>
+IPv6:<br>
+2a13:e2c4:fefb:8b4a:72b7:bec5:9a3f:a2f<br></p>
+          <template #footer>
+            <el-button @click="tyo">Download a 300MB speedtest file</el-button>
+          </template>
+        </el-card>
+      </el-col>
+
+      <el-col :span="8" :xs="24" :sm="12">
+        <el-card class="project-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              <span>Los Angeles , California , US</span>
+            </div>
+          </template>
+          <p>
+Domain of the IPV4:us.867678.xyz<br>
+Domain of the IPV4 with CloudflareCDN:us2.867678.xyz<br>
+IPv4:<br>
+74.48.125.113<br>
+IPv6(All the three IPs):<br>
+2607:f130:0000:0153:0000:0000:ae12:43b5<br>
+2607:f130:0000:0153:0000:0000:d7fa:9ca5<br>
+2607:f130:0000:0153:0000:0000:f239:9af0<br>
+</p>
+          <template #footer>
+            <el-button @click="lacus">Download a 300MB speedtest file</el-button>
+          </template>
+        </el-card>
+      </el-col>
+      <el-col :span="8" :xs="24" :sm="12">
+        <el-card class="project-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              <span>Global , CloudflareCDN</span>
+            </div>
+          </template>
+          <p>Domain:s.867678.xyz/speedtest</p>
+          <template #footer>
+            <el-button @click="cf">Download a 300MB speedtest file</el-button>
+          </template>
+        </el-card>
+      </el-col>
+    </el-row>
     <el-divider />
     <h1>Github Projects</h1>
     <p>Maybe can't be running.</p>
@@ -31,7 +85,7 @@
           <p>
             It's an operating system in development.<br>
             <img
-              src="https://raw.githubusercontent.com/sarmioe/xes/main/icon/xes%20logo.png"
+              src="../assets/xes logo.png"
               alt="XES Logo"
               class="project-img"
             />
@@ -99,9 +153,8 @@
       </el-col>
     </el-row>
   <el-divider />
-
-    <el-divider />
-    <p>So just this , no more.</p>
+    <p>Copyleft sarmioe 2025 some rights resolved.</p>
+    <p>I support free hardware and software.</p>
   </div>
 </template>
 <script lang="ts" setup>
@@ -162,9 +215,6 @@ const USDT = () => {
       type: 'warning',
     })
   }, 10)
-}
-const PP = () => {
-  window.open('https://www.paypal.com/paypalme/mpjysk?country.x=C2&locale.x=zh_XC', '_blank')
 }
 </script>
 <style>
