@@ -5,13 +5,6 @@
       <p>Uh... ago called sarmioe</p>
     </center>
     <el-divider />
-    <el-card style="width: 98%" shandow="hover">
-      <center>
-      <el-button type="warning" @click="Donate">Donate</el-button>
-      <el-button @click="USDT">USDT</el-button>
-    </center>
-    </el-card>
-    <el-divider />
     <h1>Free highspeed speedtest servers.</h1>
     <p @click="cfsp">Support Iperf3 NOW! Cleck here to how to using iperf3 speedtest you upload and download speed.</p>
     <el-row :gutter="20" class="project-section">
@@ -26,9 +19,9 @@
 Domain of the IPV4:jp.867678.xyz<br>
 Domain of the IPV4 with CloudflareCDN:jp2.867678.xyz<br>
 IPv4:<br>
-45.192.248.248<br>
+23.27.52.65<br>
 IPv6:<br>
-2a13:e2c4:fefb:8b4a:72b7:bec5:9a3f:a2f<br></p>
+2400:8d60:10:0000:0000:0000:7298:04c2<br></p>
           <template #footer>
             <el-button @click="tyo">Download a 300MB speedtest file</el-button>
           </template>
@@ -153,13 +146,11 @@ IPv6(All the three IPs):<br>
       </el-col>
     </el-row>
   <el-divider />
-    <p>Copyleft sarmioe 2025 some rights resolved.</p>
-    <p>I support free hardware and software.</p>
+    <p>Copyright 2025 sarmioe.</p>
   </div>
 </template>
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-import { ElNotification } from 'element-plus'
 
 const router = useRouter()
 const xes = () => {
@@ -192,29 +183,6 @@ const lacus = () => {
 const cf = () => {
   window.open('https://s.867678.xyz/speedtest', '_blank')
   router.push('/spt')
-}
-const Donate = () => {
-  ElNotification({
-    title: 'Thanks!',
-    message: "But this button can't be donate for me , please click USDT or Paypal button to donate.",
-    type: 'info',
-  })
-}
-const USDT = () => {
-  ElNotification({
-    title: 'Thank you for choosing to donate',
-    message:
-      'We currently only support the TRC20 network, the address is:TBrZFA4NstpHTzQ5XNh6ocvidSin9C1Yc1',
-    type: 'success',
-  })
-  setTimeout(() => {
-    ElNotification({
-      title: 'WARNING',
-      message:
-        '1USDT will be deducted as a handling fee, please be aware. And donations cannot be refunded',
-      type: 'warning',
-    })
-  }, 10)
 }
 </script>
 <style>
