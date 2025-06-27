@@ -21,7 +21,8 @@ Domain of the IPV4 with CloudflareCDN:jp2.867678.xyz<br>
 IPv4:<br>
 166.88.100.243<br>
 IPv6:<br>
-2400:8d60:8:0000:0000:0000:0c0b:1ea8<br></p>
+2400:8d60:8:0000:0000:0000:0c0b:1ea8<br>
+</p>
           <template #footer>
             <el-button @click="osa">Download a 300MB speedtest file</el-button>
           </template>
