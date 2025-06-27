@@ -12,18 +12,18 @@
         <el-card class="project-card" shadow="hover">
           <template #header>
             <div class="card-header">
-              <span>Tokyo , Japan</span>
+              <span>Osaka , Japan</span>
             </div>
           </template>
           <p>
 Domain of the IPV4:jp.867678.xyz<br>
 Domain of the IPV4 with CloudflareCDN:jp2.867678.xyz<br>
 IPv4:<br>
-23.27.52.65<br>
+166.88.100.243<br>
 IPv6:<br>
-2400:8d60:10:0000:0000:0000:7298:04c2<br></p>
+2400:8d60:8:0000:0000:0000:0c0b:1ea8<br></p>
           <template #footer>
-            <el-button @click="tyo">Download a 300MB speedtest file</el-button>
+            <el-button @click="osa">Download a 300MB speedtest file</el-button>
           </template>
         </el-card>
       </el-col>
@@ -146,7 +146,7 @@ IPv6(All the three IPs):<br>
       </el-col>
     </el-row>
   <el-divider />
-    <p>Copyright 2025 sarmioe.</p>
+    <p>Copyright 2025 mokanove.</p>
   </div>
 </template>
 <script lang="ts" setup>
@@ -155,26 +155,26 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const xes = () => {
   window.open(
-    'https://github.com/sarmioe/xes?tab=readme-ov-file#the-xes-operating-system',
+    'https://github.com/mokanove/xes?tab=readme-ov-file#the-xes-operating-system',
     '_blank',
   )
 }
 const MoSIUTER = () => {
-  window.open('https://github.com/sarmioe/mosiuter', '_blank')
+  window.open('https://github.com/mokanove/mosiuter', '_blank')
 }
 const ezgo = () => {
-  window.open('https://github.com/sarmioe/ezgo', '_blank')
+  window.open('https://github.com/mokanove/ezgo', '_blank')
 }
 const tkkhs = () => {
   router.push('/tkkhs')
 }
 const tkkhsp = () => {
-  window.open('https://github.com/sarmioe/tkkhs', '_blank')
+  window.open('https://github.com/mokanove/tkkhs', '_blank')
 }
 const cfsp = () => {
-  window.open('https://github.com/sarmioe/servers', '_blank')
+  window.open('https://github.com/mokanove/servers', '_blank')
 }
-const tyo = () => {
+const osa = () => {
   window.open('https://jp.867678.xyz:82/', '_blank')
 }
 const lacus = () => {

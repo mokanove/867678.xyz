@@ -7,7 +7,7 @@
     @select="handleSelect"
   >
     <el-menu-item index="0" @click="FirP">
-      <img style="width: 100px; height: 50px" src="/favicon.ico" alt="SarMioe logo" />
+      <img style="width: 100px; height: 50px" src="/favicon.ico" alt="mokanove logo" />
     </el-menu-item>
     <el-menu-item index="0" @click="FirP">Home</el-menu-item>
     <el-sub-menu index="1">
@@ -49,10 +49,10 @@ const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
 const Github = () => {
-  window.open('https://github.com/sarmioe', '_blank')
+  window.open('https://github.com/mokanove', '_blank')
 }
 const tkkhsp = () => {
-  window.open('https://github.com/sarmioe/tkkhs', '_blank')
+  window.open('https://github.com/mokanove/tkkhs', '_blank')
 }
 const tkkhs = () => {
   router.push('/tkkhs')
@@ -62,21 +62,21 @@ const FirP = () => {
 }
 const xes = () => {
   window.open(
-    'https://github.com/sarmioe/xes?tab=readme-ov-file#the-xes-operating-system',
+    'https://github.com/mokanove/xes?tab=readme-ov-file#the-xes-operating-system',
     '_blank',
   )
 }
 const cfs = () => {
-  window.open('https://github.com/sarmioe/867678.xyz', '_blank')
+  window.open('https://github.com/mokanove/867678.xyz', '_blank')
 }
 const cfsp = () => {
-  window.open('https://github.com/sarmioe/servers', '_blank')
+  window.open('https://github.com/mokanove/servers', '_blank')
 }
 const MoSIUTER = () => {
-  window.open('https://github.com/sarmioe/mosiuter', '_blank')
+  window.open('https://github.com/mokanove/mosiuter', '_blank')
 }
 const ezgo = () => {
-  window.open('https://github.com/sarmioe/ezgo', '_blank')
+  window.open('https://github.com/mokanove/ezgo', '_blank')
 }
 const USDT = () => {
   ElNotification({
