@@ -21,17 +21,17 @@
     <el-sub-menu index="3">
       <template #title>Projects</template>
       <el-menu-item index="3-1" @click="xes">XES</el-menu-item>
-      <el-menu-item index="3-2" @click="tkkhs">tkkhs(test now)</el-menu-item>
-      <el-sub-menu index="3-3">
-        <template #title>Code of</template>
-        <el-menu-item index="3-3-1" @click="cfs">this site</el-menu-item>
-        <el-menu-item index="3-3-2" @click="cfsp">speedtest site</el-menu-item>
-        <el-menu-item index="3-3-3" @click="tkkhsp">tkkhs</el-menu-item>
-      </el-sub-menu>
+      <el-menu-item index="3-2" @click="MoSIUTER">MoSIUTER</el-menu-item>
+      <el-menu-item index="3-3" @click="ezgo">ezgo</el-menu-item>
       <el-sub-menu index="3-4">
-        <template #title>Golang Projects</template>
-        <el-menu-item index="3-4-1" @click="MoSIUTER">MoSIUTER</el-menu-item>
-        <el-menu-item index="3-4-2" @click="ezgo">ezgo</el-menu-item>
+        <template #title>tkkhs</template>
+        <el-menu-item index="3-4-1" @click="tkkhs">Run demo in this site</el-menu-item>
+        <el-menu-item index="3-4-2" @click="tkkhsp">View its source code</el-menu-item>
+      </el-sub-menu>
+      <el-sub-menu index="3-5">
+        <template #title>Code of</template>
+        <el-menu-item index="3-5-1" @click="cfs">this site</el-menu-item>
+        <el-menu-item index="3-5-2" @click="cfsp">speedtest site</el-menu-item>
       </el-sub-menu>
     </el-sub-menu>
   </el-menu>

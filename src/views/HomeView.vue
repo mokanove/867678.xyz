@@ -2,70 +2,8 @@
   <div id="hola">
     <center>
       <h1>Hello! Welcome to Mo Kanove's website</h1>
-      <p>Uh... ago called sarmioe</p>
     </center>
-    <el-divider />
-    <h1>Free highspeed speedtest servers.</h1>
-    <p @click="cfsp">Support Iperf3 NOW! Cleck here to how to using iperf3 speedtest you upload and download speed.</p>
-    <el-row :gutter="20" class="project-section">
-      <el-col :span="8" :xs="24" :sm="12">
-        <el-card class="project-card" shadow="hover">
-          <template #header>
-            <div class="card-header">
-              <span>Osaka , Japan</span>
-            </div>
-          </template>
-          <p>
-Domain of the IPV4:jp.867678.xyz<br>
-Domain of the IPV4 with CloudflareCDN:jp2.867678.xyz<br>
-IPv4:<br>
-166.88.100.243<br>
-IPv6:<br>
-2400:8d60:8:0000:0000:0000:0c0b:1ea8<br>
-</p>
-          <template #footer>
-            <el-button @click="osa">Download a 300MB speedtest file</el-button>
-          </template>
-        </el-card>
-      </el-col>
-
-      <el-col :span="8" :xs="24" :sm="12">
-        <el-card class="project-card" shadow="hover">
-          <template #header>
-            <div class="card-header">
-              <span>Los Angeles , California , US</span>
-            </div>
-          </template>
-          <p>
-Domain of the IPV4:us.867678.xyz<br>
-Domain of the IPV4 with CloudflareCDN:us2.867678.xyz<br>
-IPv4:<br>
-74.48.125.113<br>
-IPv6(All the three IPs):<br>
-2607:f130:0000:0153:0000:0000:ae12:43b5<br>
-2607:f130:0000:0153:0000:0000:d7fa:9ca5<br>
-2607:f130:0000:0153:0000:0000:f239:9af0<br>
-</p>
-          <template #footer>
-            <el-button @click="lacus">Download a 300MB speedtest file</el-button>
-          </template>
-        </el-card>
-      </el-col>
-      <el-col :span="8" :xs="24" :sm="12">
-        <el-card class="project-card" shadow="hover">
-          <template #header>
-            <div class="card-header">
-              <span>Global , CloudflareCDN</span>
-            </div>
-          </template>
-          <p>Domain:s.867678.xyz/speedtest</p>
-          <template #footer>
-            <el-button @click="cf">Download a 300MB speedtest file</el-button>
-          </template>
-        </el-card>
-      </el-col>
-    </el-row>
-    <el-divider />
+<el-divider />
     <h1>Github Projects</h1>
     <p>Maybe can't be running.</p>
     <el-row :gutter="20" class="project-section">
@@ -81,7 +19,7 @@ IPv6(All the three IPs):<br>
             <img
               src="../assets/xes logo.png"
               alt="XES Logo"
-              class="project-img"
+              class="XES Logo"
             />
           </p>
           <template #footer>
@@ -147,7 +85,101 @@ IPv6(All the three IPs):<br>
       </el-col>
     </el-row>
   <el-divider />
-    <p>Copyright 2025 mokanove.</p>
+  <!--BR-->
+    <h1>Free speedtest servers.</h1>
+    <p @click="cfsp">Support Iperf3 NOW! Cleck here to how to using iperf3 speedtest you upload and download speed.</p>
+    <el-row :gutter="20" class="project-section">
+      <el-col :span="8" :xs="24" :sm="12">
+        <el-card class="project-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              <span>Osaka , Japan(OSA)</span>
+            </div>
+          </template>
+          <p>Domain auto select IP version:jp.867678.xyz</p>
+          <p>Domain with CloudflareCDN:jp2.867678.xyz</p>
+          <p>Speedtest (by speedtest ookla):</p>
+          <img
+              src="https://raw.githubusercontent.com/mokanove/servers/refs/heads/main/OSA.png"
+            />
+          <p>IPv4:</p>
+          <p>166.88.100.243</p>
+          <p>IPv6:</p>
+          <p>2400:8d60:8:0000:0000:0000:0c0b:1ea8</p>
+          <template #footer>
+            <el-button @click="osa">DOWNLOAD TEST NOW!</el-button>
+            <el-button @click="osam">MORE INFORMATION</el-button>
+          </template>
+        </el-card>
+      </el-col>
+      <el-col :span="8" :xs="24" :sm="12">
+        <el-card class="project-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              <span>Los Angeles , California , US(LAX)</span>
+            </div>
+          </template>
+          <p>Domain auto select IP version:us.867678.xyz</p>
+          <p>Domain with CloudflareCDN:us2.867678.xyz</p>
+          <p>Speedtest (by speedtest ookla):</p>
+          <img
+              src="https://raw.githubusercontent.com/mokanove/servers/refs/heads/main/LAX.png"
+            />
+          <p>IPv4:</p>
+          <p>74.48.125.113</p>
+          <p>IPv6:</p>
+          <p>2607:f130:0000:0153:0000:0000:ae12:43b5</p>
+          <p>2607:f130:0000:0153:0000:0000:d7fa:9ca5</p>
+          <p>2607:f130:0000:0153:0000:0000:f239:9af0</p>
+          <template #footer>
+            <el-button @click="lax">DOWNLOAD TEST NOW!</el-button>
+            <el-button @click="laxm">MORE INFORMATION</el-button>
+          </template>
+        </el-card>
+      </el-col>
+      <el-col :span="8" :xs="24" :sm="12">
+        <el-card class="project-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              <span>Global , CloudflareCDN</span>
+            </div>
+          </template>
+          <p>Domain:https://s.867678.xyz/speedtest</p>
+          <p>Bucket using Cloudflare R2(EU) and Cloudflare CDN.</p>
+          <img
+              src="https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/456430b7-1c8f-42b0-71c0-586ad9172700/public"
+              height="300px"
+            />
+          <template #footer>
+            <el-button @click="cf">DOWNLOAD TEST NOW!</el-button>
+            <el-button @click="cfm">MORE INFORMATION</el-button>
+          </template>
+        </el-card>
+      </el-col>
+      <el-col :span="8" :xs="24" :sm="12">
+        <el-card class="project-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              <span>HOW TO USING IPERF3?</span>
+            </div>
+          </template>
+          <h2>Normal</h2>
+          <h3>Test Download : iperf3 -c [IP/Domain] -R -L 4</h3>
+          <p>It means run iperf3 as client mode and test source to you and line 4.</p>
+          <h3>Test Upload : iperf3 -c [IP/Domain] -L 4</h3>
+          <p>It means run iperf3 as client mode and test you to source and line 4.</p>
+          <h2>Self build in debian,ubuntu or more.</h2>
+          <p>sudo apt update && sudo apt upgrade -y && sudo apt install iperf3 -y</p>
+          <p>INFO:It will be ask you need start iperf3 as a deamon , if you as iperf3 as a server , advantage YES , or no.</p>
+          <p>iperf3 -s</p>
+          <p>INFO:Start iperf3 and as server mode.</p>
+          <template #footer>
+            <el-button @click="iperf3">IPERF3 WIKI</el-button>
+          </template>
+        </el-card>
+      </el-col>
+    </el-row>
+    <p>Copyright 2025 Mo Kanove.</p>
   </div>
 </template>
 <script lang="ts" setup>
@@ -176,20 +208,32 @@ const cfsp = () => {
   window.open('https://github.com/mokanove/servers', '_blank')
 }
 const osa = () => {
-  window.open('https://jp.867678.xyz:82/', '_blank')
+  window.open('https://jp.867678.xyz:81/', '_blank')
 }
-const lacus = () => {
-  window.open('https://us.867678.xyz:82/', '_blank')
+const osam = () => {
+  window.open('https://github.com/mokanove/servers/tree/main?tab=readme-ov-file#osaka--japan-', '_blank')
+}
+const lax = () => {
+  window.open('https://us.867678.xyz:81/', '_blank')
+}
+const laxm = () => {
+  window.open('https://github.com/mokanove/servers/tree/main?tab=readme-ov-file#los-angeles--california--usa-', '_blank')
 }
 const cf = () => {
   window.open('https://s.867678.xyz/speedtest', '_blank')
   router.push('/spt')
 }
+const cfm = () => {
+  window.open('https://github.com/mokanove/servers/tree/main?tab=readme-ov-file#cloudflare-free-services', '_blank')
+}
+const iperf3 = () => {
+  window.open('https://en.wikipedia.org/wiki/Iperf', '_blank')
+}
 </script>
 <style>
 .container {
   padding: 20px;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 .welcome-section {
