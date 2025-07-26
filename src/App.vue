@@ -70,7 +70,7 @@ const cfs = () => {
   window.open('https://github.com/mokanove/867678.xyz', '_blank')
 }
 const cfsp = () => {
-  window.open('https://github.com/mokanove/servers', '_blank')
+  window.open('https://github.com/mokanove/867678.xyz/tree/dn', '_blank')
 }
 const MoSIUTER = () => {
   window.open('https://github.com/mokanove/mosiuter', '_blank')
