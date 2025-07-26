@@ -23,7 +23,7 @@
             />
           </p>
           <template #footer>
-            <el-button @click="xes">Link to Github</el-button>
+            <el-button @click="xes">Github Repositorie</el-button>
           </template>
         </el-card>
       </el-col>
@@ -42,7 +42,7 @@
             First, your data will be optimized, then encrypted with snowflake or obfs4 to remove features, and then encrypted with TLS, so that the data packet looks like normal Internet encrypted data.
           </p>
           <template #footer>
-            <el-button @click="MoSIUTER">Link to Github</el-button>
+            <el-button @click="MoSIUTER">Github Repositorie</el-button>
           </template>
         </el-card>
       </el-col>
@@ -61,7 +61,7 @@
             Open source tool, conditionally open source based on GPLv3 license.
           </p>
           <template #footer>
-            <el-button @click="ezgo">Link to Github</el-button>
+            <el-button @click="ezgo">Github Repositorie</el-button>
           </template>
         </el-card>
       </el-col>
@@ -78,8 +78,8 @@
             Only you know that , Right?<br>
           </p>
           <template #footer>
-            <el-button @click="tkkhsp">Link to Github</el-button>
-            <el-button @click="tkkhs">Test at this page</el-button>
+            <el-button @click="tkkhsp">Github Repositorie</el-button>
+            <el-button @click="tkkhs">Test Now</el-button>
           </template>
         </el-card>
       </el-col>
@@ -163,23 +163,35 @@
               <span>HOW TO USING IPERF3?</span>
             </div>
           </template>
-          <h2>Normal</h2>
+          <h2>Client</h2>
           <h3>Test Download : iperf3 -c [IP/Domain] -R -L 4</h3>
           <p>It means run iperf3 as client mode and test source to you and line 4.</p>
           <h3>Test Upload : iperf3 -c [IP/Domain] -L 4</h3>
           <p>It means run iperf3 as client mode and test you to source and line 4.</p>
-          <h2>Self build in debian,ubuntu or more.</h2>
+          <h2>Server(In ubuntu or debian)</h2>
           <p>sudo apt update && sudo apt upgrade -y && sudo apt install iperf3 -y</p>
-          <p>INFO:It will be ask you need start iperf3 as a deamon , if you as iperf3 as a server , advantage YES , or no.</p>
+          <p>It will be ask you need start iperf3 as a deamon , if you as iperf3 as a server , press YES , or no.</p>
           <p>iperf3 -s</p>
-          <p>INFO:Start iperf3 and as server mode.</p>
+          <p>Start iperf3 and as server mode.</p>
           <template #footer>
-            <el-button @click="iperf3">IPERF3 WIKI</el-button>
+            <el-button @click="iperf3">Iperf Wikipedia</el-button>
           </template>
         </el-card>
       </el-col>
     </el-row>
-    <p>Copyright 2025 Mo Kanove.</p>
+    <el-divider />
+    <el-card style="max-width: 100%">
+    <template #header>
+      <div class="card-header">
+        <span>Copyright</span>
+        <br>
+        <p></p>
+      </div>
+    </template>
+    <p>All projects are open source, and you can view the source code on GitHub.</p>
+    <p>License usullay use GPLv3.</p>
+    <p>2025 MoKanove All rights reserved.</p>
+  </el-card>
   </div>
 </template>
 <script lang="ts" setup>
