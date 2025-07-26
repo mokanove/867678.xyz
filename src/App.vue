@@ -30,8 +30,8 @@
       </el-sub-menu>
       <el-sub-menu index="3-5">
         <template #title>Code of</template>
-        <el-menu-item index="3-5-1" @click="cfs">this site</el-menu-item>
-        <el-menu-item index="3-5-2" @click="cfsp">speedtest site</el-menu-item>
+        <el-menu-item index="3-5-1" @click="cfs">This Site</el-menu-item>
+        <el-menu-item index="3-5-2" @click="cfsp">Speedtest Site</el-menu-item>
       </el-sub-menu>
     </el-sub-menu>
   </el-menu>
