@@ -29,12 +29,7 @@
   <el-divider />
   <el-card style="width: 100%" shadow="hover">
     <template #header>Server information</template>
-    <p>Domain:https://s.867678.xyz/speedtest</p>
-    <p>Bucket using Cloudflare R2(EU) and Cloudflare CDN.</p>
-    <img
-        src="https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/456430b7-1c8f-42b0-71c0-586ad9172700/public"
-        height="300px"
-    />
+    <p>Temporarily unavailable...</p>
   </el-card>
 </div>
 <div>
