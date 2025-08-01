@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import tkkhs from '../views/tkkhs.vue'
-import spt from '../views/spt.vue'
+import speedtest from '../views/speedtest.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,9 +17,9 @@ const router = createRouter({
       component: tkkhs,
     },
     {
-      path: '/spt',
-      name: 'spt',
-      component: spt,
+      path: '/speedtest',
+      name: 'speedtest',
+      component: speedtest,
     },
   ],
 })

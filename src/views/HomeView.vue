@@ -164,10 +164,10 @@
             </div>
           </template>
           <h2>Client</h2>
-          <h3>Test Download : iperf3 -c [IP/Domain] -R -L 4</h3>
-          <p>It means run iperf3 as client mode and test source to you and line 4.</p>
-          <h3>Test Upload : iperf3 -c [IP/Domain] -L 4</h3>
-          <p>It means run iperf3 as client mode and test you to source and line 4.</p>
+          <h3>Test Download : iperf3 -c [IP/Domain] -R</h3>
+          <p>It means run iperf3 as client mode and test source server to you.</p>
+          <h3>Test Upload : iperf3 -c [IP/Domain]</h3>
+          <p>It means run iperf3 as client mode and test you to source server.</p>
           <h2>Server(In ubuntu or debian)</h2>
           <p>sudo apt update && sudo apt upgrade -y && sudo apt install iperf3 -y</p>
           <p>It will be ask you need start iperf3 as a deamon , if you as iperf3 as a server , press YES , or no.</p>
@@ -180,14 +180,8 @@
       </el-col>
     </el-row>
     <el-divider />
-    <el-card style="max-width: 100%">
-    <template #header>
-      <div class="card-header">
-        <span>Copyright</span>
-        <br>
-        <p></p>
-      </div>
-    </template>
+    <el-card style="width: 100%" shadow="hover">
+    <template #header>Copyright</template>
     <p>All projects are open source, and you can view the source code on GitHub.</p>
     <p>License usullay use GPLv3.</p>
     <p>2025 MoKanove All rights reserved.</p>
@@ -233,7 +227,7 @@ const laxm = () => {
 }
 const cf = () => {
   window.open('https://s.867678.xyz/speedtest', '_blank')
-  router.push('/spt')
+  router.push('/speedtest')
 }
 const cfm = () => {
   window.open('https://github.com/mokanove/servers/tree/main?tab=readme-ov-file#cloudflare-free-services', '_blank')
