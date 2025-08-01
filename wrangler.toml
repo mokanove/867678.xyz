@@ -1,0 +1,6 @@
+name = "867678xyz"
+main = "worker.js"
+compatibility_date = "2025-08-01"
+
+[site]
+bucket = "./dist"
