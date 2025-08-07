@@ -96,8 +96,7 @@
               <span>Osaka , Japan(OSA)</span>
             </div>
           </template>
-          <p>Domain auto select IP version:jp.867678.xyz</p>
-          <p>Domain with CloudflareCDN:jp2.867678.xyz</p>
+          <p>Domain auto select IP version:jp-osa.867678.xyz</p>
           <p>Speedtest (by speedtest ookla):</p>
           <img
               src="https://raw.githubusercontent.com/mokanove/servers/refs/heads/main/OSA.png"
@@ -119,8 +118,7 @@
               <span>Los Angeles , California , US(LAX)</span>
             </div>
           </template>
-          <p>Domain auto select IP version:us.867678.xyz</p>
-          <p>Domain with CloudflareCDN:us2.867678.xyz</p>
+          <p>Domain auto select IP version:us-lax.867678.xyz</p>
           <p>Speedtest (by speedtest ookla):</p>
           <img
               src="https://raw.githubusercontent.com/mokanove/servers/refs/heads/main/LAX.png"
@@ -141,6 +139,28 @@
         <el-card class="project-card" shadow="hover">
           <template #header>
             <div class="card-header">
+              <span> Mumbai, Maharashtra, IN (BOM)</span>
+            </div>
+          </template>
+          <p>Domain auto select IP version:in-bom.867678.xyz</p>
+          <p>Speedtest (by speedtest ookla):</p>
+          <img
+              src="https://raw.githubusercontent.com/mokanove/servers/refs/heads/main/BOM.png"
+            />
+          <p>IPv4:</p>
+          <p>74.48.125.113</p>
+          <p>IPv6:</p>
+          <p>2607:f130:0000:0153:0000:0000:ae12:43b5</p>
+          <template #footer>
+            <el-button @click="bom">DOWNLOAD TEST NOW!</el-button>
+            <el-button @click="bomm">MORE INFORMATION</el-button>
+          </template>
+        </el-card>
+      </el-col>
+      <el-col :span="8" :xs="24" :sm="12">
+        <el-card class="project-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
               <span>Global , CloudflareCDN</span>
             </div>
           </template>
@@ -153,28 +173,6 @@
           <template #footer>
             <el-button @click="cf">DOWNLOAD TEST NOW!</el-button>
             <el-button @click="cfm">MORE INFORMATION</el-button>
-          </template>
-        </el-card>
-      </el-col>
-      <el-col :span="8" :xs="24" :sm="12">
-        <el-card class="project-card" shadow="hover">
-          <template #header>
-            <div class="card-header">
-              <span>HOW TO USING IPERF3?</span>
-            </div>
-          </template>
-          <h2>Client</h2>
-          <h3>Test Download : iperf3 -c [IP/Domain] -R</h3>
-          <p>It means run iperf3 as client mode and test source server to you.</p>
-          <h3>Test Upload : iperf3 -c [IP/Domain]</h3>
-          <p>It means run iperf3 as client mode and test you to source server.</p>
-          <h2>Server(In ubuntu or debian)</h2>
-          <p>sudo apt update && sudo apt upgrade -y && sudo apt install iperf3 -y</p>
-          <p>It will be ask you need start iperf3 as a deamon , if you as iperf3 as a server , press YES , or no.</p>
-          <p>iperf3 -s</p>
-          <p>Start iperf3 and as server mode.</p>
-          <template #footer>
-            <el-button @click="iperf3">Iperf Wikipedia</el-button>
           </template>
         </el-card>
       </el-col>
@@ -214,16 +212,22 @@ const cfsp = () => {
   window.open('https://github.com/mokanove/servers', '_blank')
 }
 const osa = () => {
-  window.open('https://jp.867678.xyz:81/', '_blank')
+  window.open('https://jp-osa.867678.xyz:81/', '_blank')
 }
 const osam = () => {
   window.open('https://github.com/mokanove/servers/tree/main?tab=readme-ov-file#osaka--japan-', '_blank')
 }
 const lax = () => {
-  window.open('https://us.867678.xyz:81/', '_blank')
+  window.open('https://us-lax.867678.xyz:81/', '_blank')
 }
 const laxm = () => {
   window.open('https://github.com/mokanove/servers/tree/main?tab=readme-ov-file#los-angeles--california--usa-', '_blank')
+}
+const bom = () => {
+  window.open('https://in-bom.867678.xyz:81/', '_blank')
+}
+const bomm = () => {
+  window.open('https://github.com/mokanove/servers/tree/main?tab=readme-ov-file#mumbai-maharashtra-in-bom', '_blank')
 }
 const cf = () => {
   window.open('https://s.867678.xyz/speedtest', '_blank')
@@ -231,9 +235,6 @@ const cf = () => {
 }
 const cfm = () => {
   window.open('https://github.com/mokanove/servers/tree/main?tab=readme-ov-file#cloudflare-free-services', '_blank')
-}
-const iperf3 = () => {
-  window.open('https://en.wikipedia.org/wiki/Iperf', '_blank')
 }
 </script>
 <style>
