@@ -139,7 +139,7 @@
         <el-card class="project-card" shadow="hover">
           <template #header>
             <div class="card-header">
-              <span> Mumbai, Maharashtra, IN (BOM)</span>
+              <span>stopped and waiting change reigon.</span>
             </div>
           </template>
           <p>Domain auto select IP version:in-bom.867678.xyz</p>
