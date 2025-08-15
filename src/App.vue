@@ -1,19 +1,15 @@
 <template>
-  <el-menu
-    :default-active="activeIndex"
-    class="el-menu-demo"
-    mode="horizontal"
-    :ellipsis="false"
-    @select="handleSelect"
-  >
-    <el-menu-item index="0" @click="FirP">
-      <img style="width: 100px; height: 50px" src="/favicon.ico" alt="mokanove logo" />
+   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false" @select="handleSelect">
+    <el-menu-item index="0">
+      <img style="width: 100px;height: 50px;" src="/favicon.ico"/>
     </el-menu-item>
-    <el-menu-item index="0" @click="FirP">Home</el-menu-item>
-    <el-menu-item index="1" @click="hp">867678.xyz</el-menu-item>
+    <el-sub-menu index="1">
+      <template #title>Home</template>
+      <el-menu-item index="1-1" @click="th">This site</el-menu-item>
+      <el-menu-item index="1-2" @click="pa">867678.xyz</el-menu-item>
+    </el-sub-menu>
   </el-menu>
-<div>
-    <h1>Thank You!</h1>
+  <h1>Thank You!</h1>
     <p>
       If you browser no anwser ,<a href="./speedtest" style="color: blue">click here</a>
     </p>
@@ -31,24 +27,19 @@
     <template #header>Server information</template>
     <p>Temporarily unavailable...</p>
   </el-card>
-</div>
-<div>
-
-</div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-
-const activeIndex = ref('0')
+const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-const FirP = () => {
-  window.open('')
+const th = () => {
+  window.open('./')
 }
-const hp = () => {
-  window.open('https://867678.xyz', '_blank')
+const pa = () => {
+  window.open('https://867678.xyz')
 }
 </script>
 
