@@ -1,8 +1,7 @@
-* {
+*{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-body {
-  width: 99%;
-  margin: 1;
-  padding: 1;
+}
+body{
+    margin: 1;
+    padding: 1;
 }
