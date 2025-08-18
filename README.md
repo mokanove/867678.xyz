@@ -1,5 +1,4 @@
-# 867678.xyz
-[VISIT NOW](https://867678.xyz)
+# iso3166-airport.867678.xyz
 
 This template should help get you started developing with Vue 3 in Vite.
 
