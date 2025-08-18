@@ -57,7 +57,7 @@
               <span>Global , CloudflareCDN</span>
             </div>
           </template>
-          <p>Domain:https://s.867678.xyz/speedtest</p>
+          <p>Domain:https://867678.xyz/speed</p>
           <p>Bucket using Cloudflare R2(EU) and Cloudflare CDN.</p>
           <img src="https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/456430b7-1c8f-42b0-71c0-586ad9172700/public" width="60%" height="300px" />
           <template #footer>
@@ -69,13 +69,14 @@
     </el-row>
     <el-divider />
     <el-card style="width: 100%" shadow="hover">
-    <template #header>Copyright</template>
-    <p>All projects are open source, and you can view the source code on GitHub.</p>
-    <p>License usullay use GPLv3.</p>
-    <p>2025 MoKanove All rights reserved.</p>
+    <template #header>About</template>
+    <p>You can't see my projects because they will be undergoing major changes, and the description documents will be changed but I'm too lazy to do it so I'll delete them first and do it later.</p>
+    <p>Copyright 2025 MoKanove All rights reserved.</p>
     </el-card>
 </template>
 <script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const cfsp = () => {
   window.open('https://github.com/mokanove/servers', '_blank')
 }
@@ -92,8 +93,7 @@ const laxm = () => {
   window.open('https://github.com/mokanove/servers/tree/main?tab=readme-ov-file#los-angeles--california--usa-', '_blank')
 }
 const cf = () => {
-  window.open('https://s.867678.xyz/speedtest', '_blank')
-  router.push('/speedtest')
+  router.push('/speed')
 }
 const cfm = () => {
   window.open('https://github.com/mokanove/servers/tree/main?tab=readme-ov-file#cloudflare-free-services', '_blank')
