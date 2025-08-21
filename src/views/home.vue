@@ -12,11 +12,22 @@
     </el-card>
     <el-divider />
     <h2>Projects</h2>
-    <el-card style="width: 100%" shadow="hover">
-    <template #header>tkkhs</template>
-    <el-button @click="tkkhs">TEST NOW!</el-button>
-    <p style="color:red">The page will be optimized and noticeable changes should be visible within a few hours.</p>
-    </el-card>
+    <p>I haven’t thought of any descriptions for the other parts yet.</p>
+    <el-row :gutter="20" class="project-section">
+      <el-col :span="8" :xs="24" :sm="12">
+        <el-card class="project-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              <span>tkkhs</span>
+            </div>
+          </template>
+          <img src="https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/tkkhs/preview.png"/>
+          <template #footer>
+            <el-button @click="tkkhs">TEST NOW!</el-button>
+          </template>
+        </el-card>
+      </el-col>
+    </el-row>
     <el-divider />
     <h2>Servers</h2>
     <p>You can use them to test your network speed.</p>

@@ -6,7 +6,7 @@
     <el-sub-menu index="1">
       <template #title @click="FirP">Home</template>
       <el-menu-item index="1-1" @click="Github">Github</el-menu-item>
-      <el-menu-item index="1-2">Donate</el-menu-item>
+      <el-menu-item index="1-2" @click="donate">Donate</el-menu-item>
       <el-menu-item index="1-3" @click="FirP">Real Home</el-menu-item>
     </el-sub-menu>
   </el-menu>
@@ -23,6 +23,9 @@ const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
 const FirP = () => {
+  router.push('/')
+}
+const donate = () => {
   router.push('/')
 }
 const Github = () => {
