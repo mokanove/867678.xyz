@@ -3,6 +3,21 @@
         <h1>Hello! Welcome to Mo Kanove website</h1>
     </center>
     <el-divider />
+    <h2>News</h2>
+    <el-card style="width: 100%" shadow="hover">
+    <template #header>Update</template>
+    <p style="color:red">Please note that the Osaka node will expire on August 24th, and I will replace it with a new machine with a new IP.</p>
+    <p>Move the servers project and tkkhs project to the branch of the 867678.xyz project.</p>
+    <p>TBA: Improve other projects' READMEs.</p>
+    </el-card>
+    <el-divider />
+    <h2>Projects</h2>
+    <el-card style="width: 100%" shadow="hover">
+    <template #header>tkkhs</template>
+    <el-button @click="tkkhs">TEST NOW!</el-button>
+    <p style="color:red">The page will be optimized and noticeable changes should be visible within a few hours.</p>
+    </el-card>
+    <el-divider />
     <h2>Servers</h2>
     <p>You can use them to test your network speed.</p>
     <p>They are equipped with a bandwidth of at least 1Gbps.</p>
@@ -17,7 +32,7 @@
           </template>
           <p>Domain auto select IP version:jp-osa.867678.xyz</p>
           <p>Speedtest (by speedtest ookla):</p>
-          <img src="https://raw.githubusercontent.com/mokanove/servers/refs/heads/main/OSA.png" width="90%"/>
+          <img src="https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/servers/OSA.png" width="90%"/>
           <p>IPv4:</p>
           <p>166.88.100.243</p>
           <p>IPv6:</p>
@@ -37,7 +52,7 @@
           </template>
           <p>Domain auto select IP version:us-lax.867678.xyz</p>
           <p>Speedtest (by speedtest ookla):</p>
-          <img src="https://raw.githubusercontent.com/mokanove/servers/refs/heads/main/LAX.png" width="90%"/>
+          <img src="https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/servers/LAX.png" width="90%"/>
           <p>IPv4:</p>
           <p>74.48.125.113</p>
           <p>IPv6:</p>
@@ -97,6 +112,9 @@ const cf = () => {
 }
 const cfm = () => {
   window.open('https://github.com/mokanove/servers/tree/main?tab=readme-ov-file#cloudflare-free-services', '_blank')
+}
+const tkkhs = () => {
+  router.push('/tkkhs')
 }
 </script>
 

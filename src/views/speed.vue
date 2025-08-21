@@ -45,6 +45,6 @@ const three = () => {
   })
 }
 const dn = () => {
-   window.open('https://github.com/mokanove/867678.xyz ','_blank')
+   window.open('https://github.com/mokanove/867678.xyz/blob/main/src/views/speed.vue ','_blank')
 }
 </script>
