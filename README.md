@@ -1,5 +1,7 @@
 # Tkkhs
->This is no longer maintained and has been moved to:[]()
+>This is no longer maintained and has been moved to:[here](https://github.com/mokanove/867678.xyz/blob/main/src/views/tkkhs.vue)
+
+
 This page will not record anything. If you have something you want to say but are afraid others will know, feel free to say it. 
 
 If you too afraid , Please [download the index.html file](https://github.com/Kilumkothn/Tkkhs/raw/refs/heads/main/index.html) and run in your computer.
