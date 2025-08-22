@@ -19,12 +19,10 @@ read -p "To proxy CloudflareCDN enter:enter to next , or ctrl+c to exit" a
 echo 1 > /proc/sys/net/ipv4/ip_forward
 iptables -t nat -F
 iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination $CIP:80
-iptables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination $CIP:443
 iptables -t nat -A PREROUTING -p tcp --dport 2082 -j DNAT --to-destination $CIP:2082
 iptables -t nat -A PREROUTING -p tcp --dport 2052 -j DNAT --to-destination $CIP:2052
 iptables -t nat -A PREROUTING -p tcp --dport 8080 -j DNAT --to-destination $CIP:8080
 iptables -t nat -A POSTROUTING -p tcp -d $CIP --dport 80 -j MASQUERADE
-iptables -t nat -A POSTROUTING -p tcp -d $CIP --dport 443 -j MASQUERADE
 iptables -t nat -A POSTROUTING -p tcp -d $CIP --dport 2082 -j MASQUERADE
 iptables -t nat -A POSTROUTING -p tcp -d $CIP --dport 2052 -j MASQUERADE
 iptables -t nat -A POSTROUTING -p tcp -d $CIP --dport 8080 -j MASQUERADE
