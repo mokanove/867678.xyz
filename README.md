@@ -143,7 +143,7 @@ IPv6:
   "bandwidth": "1Gbps",
   "price": "USD$3.60/mo",
   "region": "osa",
-  "maturity": "2025-08-25",
+  "maturity": "2026-02-23",
   "os": "ubuntuserver 24.04 lts"
 }
 ```
@@ -194,4 +194,5 @@ https://s.867678.xyz/speedtest
 # We don't collect any logs , If you worry we collect it , You can Self make a server(Code at "Deploy codes" Floder).
 
 # IP info from ipinfo.io.
+
 
