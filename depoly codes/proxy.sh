@@ -2,7 +2,7 @@
 echo "Do you want do this? It will you 80 443 2082 2052 8080 port be proxied."
 echo "The author is not responsible for any consequences of using this code."
 echo "The project with XIU2:https://github.com/XIU2/CloudflareSpeedTest"
-echo "And it not support IPV6 or you need change iptable to ip6tables."
+echo "And it not support IPV6"
 read -p "Please press enter start install , or using ctrl+c to exit." a
 sudo apt update && sudo apt install iptables-persistent netfilter-persistent -y
 wget https://github.com/XIU2/CloudflareSpeedTest/releases/download/v2.3.4/cfst_linux_amd64.tar.gz
