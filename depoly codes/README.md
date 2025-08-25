@@ -12,10 +12,10 @@
 wget https://github.com/mokanove/867678.xyz/raw/refs/heads/servers/depoly%20codes/proxy.sh &&sudo sh proxy.sh
 ```
 
-Delete:
+Clear iptables rules:
 
 ```
-rm proxy.sh && iptables -t nat -F
+iptables -t nat -F
 ```
 
 ------
@@ -40,4 +40,5 @@ It will be autoremove so you don't do anything
 
 
 # The author is not responsible for any consequences of using this code.
+
 
