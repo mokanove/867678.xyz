@@ -34,7 +34,7 @@ read -p "Will proxy CloudflareCDNv6 enter:enter to next , or ctrl+c to exit and 
 wget -O ipv6.txt https://www.cloudflare.com/ips-v6/
 echo 1 > /proc/sys/net/ipv6/ip6_forward
 ./cfst -f ipv6.txt
-CIP6=$(awk -F',' 'NR==2 {print $1}' result.csv)
+CIP6=$(awk -F',' 'NR==2 {print $1}' result.csv | sed 's/::/:0:/')
 echo "Your best Cloudflare IPv6 is "$CIP6
 read -p "To proxy CloudflareCDNv6 enter:enter to next , or ctrl+c to exit" a
 ip6tables -t nat -F
