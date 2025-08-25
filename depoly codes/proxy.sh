@@ -38,16 +38,16 @@ CIP6=$(awk -F',' 'NR==2 {print $1}' result.csv | sed 's/::/:0:/')
 echo "Your best Cloudflare IPv6 is "$CIP6
 read -p "To proxy CloudflareCDNv6 enter:enter to next , or ctrl+c to exit" a
 ip6tables -t nat -F
-ip6tables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination $CIP6:80
-ip6tables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination $CIP6:443
-ip6tables -t nat -A PREROUTING -p tcp --dport 2082 -j DNAT --to-destination $CIP6:2082
-ip6tables -t nat -A PREROUTING -p tcp --dport 2052 -j DNAT --to-destination $CIP6:2052
-ip6tables -t nat -A PREROUTING -p tcp --dport 8080 -j DNAT --to-destination $CIP6:8080
-ip6tables -t nat -A POSTROUTING -p tcp -d $CIP6 --dport 80 -j MASQUERADE
-ip6tables -t nat -A POSTROUTING -p tcp -d $CIP6 --dport 443 -j MASQUERADE
-ip6tables -t nat -A POSTROUTING -p tcp -d $CIP6 --dport 2082 -j MASQUERADE
-ip6tables -t nat -A POSTROUTING -p tcp -d $CIP6 --dport 2052 -j MASQUERADE
-ip6tables -t nat -A POSTROUTING -p tcp -d $CIP6 --dport 8080 -j MASQUERADE
+ip6tables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination [$CIP6]:80
+ip6tables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination [$CIP6]:443
+ip6tables -t nat -A PREROUTING -p tcp --dport 2082 -j DNAT --to-destination [$CIP6]:2082
+ip6tables -t nat -A PREROUTING -p tcp --dport 2052 -j DNAT --to-destination [$CIP6]:2052
+ip6tables -t nat -A PREROUTING -p tcp --dport 8080 -j DNAT --to-destination [$CIP6]:8080
+ip6tables -t nat -A POSTROUTING -p tcp -d [$CIP6] --dport 80 -j MASQUERADE
+ip6tables -t nat -A POSTROUTING -p tcp -d [$CIP6] --dport 443 -j MASQUERADE
+ip6tables -t nat -A POSTROUTING -p tcp -d [$CIP6] --dport 2082 -j MASQUERADE
+ip6tables -t nat -A POSTROUTING -p tcp -d [$CIP6] --dport 2052 -j MASQUERADE
+ip6tables -t nat -A POSTROUTING -p tcp -d [$CIP6] --dport 8080 -j MASQUERADE
 ip6tables -t nat -L -n -v
 netfilter-persistent save
 echo "The script is finished running, and the proxy CloudflareCDNv6 has been successfully set up on port 80 443 2052 2082 8080."
