@@ -1,18 +1,14 @@
 <template>
-    <center>
-        <h1>Hello! Welcome to Mo Kanove website</h1>
-    </center>
-    <el-divider />
-    <h2>News</h2>
-    <el-card style="width: 100%" shadow="hover">
-    <template #header>Update</template>
-    <p style="color:red">Please note that the Osaka node will expire on August 24th, and I will replace it with a new machine with a new IP.</p>
-    <p>Move the servers project and tkkhs project to the branch of the 867678.xyz project.</p>
-    <p>TBA: Improve other projects' READMEs.</p>
-    </el-card>
-    <el-divider />
+        <h1>Hello! I'm Mo Kanove</h1>
+        <p>The reason I made my own software was probably because I was annoyed by other similar software.</p>
+    <el-card style="width: 100%" shadow="never">
+    <p style="color:red">A large number of projects have been renamed, so please be careful when using them.</p>
+    <p>Removed: tkkhs, backmain</p>
+    <p>Archived: ezgo, mosiuter</p>
+    <p>Changed: mosiuter changed to moixa, ezgo now end of life (EOL)</p>
+  </el-card>
+<el-divider />
     <h2>Projects</h2>
-    <p>I haven’t thought of any descriptions for the other parts yet.</p>
     <el-row :gutter="20" class="project-section">
       <el-col :span="8" :xs="24" :sm="12">
         <el-card class="project-card" shadow="hover">
@@ -21,9 +17,32 @@
               <span>tkkhs</span>
             </div>
           </template>
-          <img src="https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/tkkhs/preview.png"/>
+      <center>
+            <h1>TKKHS project.</h1>
+      </center>
+            <p>Say what you want, it won't record it.</p>
+<el-input
+    v-model="input"
+    style="width: 100%"
+    disabled
+    placeholder="Please input"
+  />
           <template #footer>
             <el-button @click="tkkhs">TEST NOW!</el-button>
+          </template>
+        </el-card>
+      </el-col>
+      <el-col :span="8" :xs="24" :sm="12">
+        <el-card class="project-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              <span>moixa</span>
+            </div>
+          </template>
+          <h2>A convenient and easy-to-use proxy tool.</h2>
+          <p>It's multi-platform and easy to use. Its configuration files use the conveniently readable toml format. It also features perhaps the smartest DNS settings you've ever seen, saying goodbye to fakeIP bugs, DNS leaks, and other bugs caused by realIP.</p>
+          <template #footer>
+            <el-button @click="moixa">Developmenting...</el-button>
           </template>
         </el-card>
       </el-col>
@@ -31,8 +50,6 @@
     <el-divider />
     <h2>Servers</h2>
     <p>You can use them to test your network speed.</p>
-    <p>They are equipped with a bandwidth of at least 1Gbps.</p>
-    <p>You can use HTTP or iperf3 to test the speed (see the server card for details).</p>
     <el-row :gutter="20" class="project-section">
       <el-col :span="8" :xs="24" :sm="12">
         <el-card class="project-card" shadow="hover">
@@ -43,11 +60,11 @@
           </template>
           <p>Domain auto select IP version:jp-osa.867678.xyz</p>
           <p>Speedtest (by speedtest ookla):</p>
-          <img src="https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/servers/OSA.png" width="90%"/>
           <p>IPv4:</p>
           <p>166.88.100.243</p>
           <p>IPv6:</p>
-          <p>2400:8d60:8:0000:0000:0000:0c0b:1ea8</p>
+          <p>[2400:8d60:8::c0b:1ea8]</p>
+          <img src="https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/servers/OSA.png" width="90%"/>
           <template #footer>
             <el-button @click="osa">DOWNLOAD TEST NOW!</el-button>
             <el-button @click="osam">MORE INFORMATION</el-button>
@@ -63,13 +80,13 @@
           </template>
           <p>Domain auto select IP version:us-lax.867678.xyz</p>
           <p>Speedtest (by speedtest ookla):</p>
-          <img src="https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/servers/LAX.png" width="90%"/>
-          <p>IPv4:</p>
+           <p>IPv4:</p>
           <p>74.48.125.113</p>
           <p>IPv6:</p>
-          <p>2607:f130:0000:0153:0000:0000:ae12:43b5</p>
-          <p>2607:f130:0000:0153:0000:0000:d7fa:9ca5</p>
-          <p>2607:f130:0000:0153:0000:0000:f239:9af0</p>
+          <p>[2607:f130:0:0153::ae12:43b5]</p>
+          <p>[2607:f130:0:0153::d7fa:9ca5]</p>
+          <p>[2607:f130:0:0153::f239:9af0]</p>
+          <img src="https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/servers/LAX.png" width="90%"/>
           <template #footer>
             <el-button @click="lax">DOWNLOAD TEST NOW!</el-button>
             <el-button @click="laxm">MORE INFORMATION</el-button>
@@ -77,7 +94,7 @@
         </el-card>
       </el-col>
       <el-col>
-        <el-card class="project-card" shadow="hover">
+        <el-card class="project-card" shadow="never">
           <template #header>
             <div class="card-header">
               <span>Global , CloudflareCDN</span>
@@ -85,7 +102,6 @@
           </template>
           <p>Domain:https://867678.xyz/speed</p>
           <p>Bucket using Cloudflare R2(EU) and Cloudflare CDN.</p>
-          <img src="https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/456430b7-1c8f-42b0-71c0-586ad9172700/public" width="60%" height="300px" />
           <template #footer>
             <el-button @click="cf">DOWNLOAD TEST NOW!</el-button>
             <el-button @click="cfm">MORE INFORMATION</el-button>
@@ -93,10 +109,9 @@
         </el-card>
       </el-col>
     </el-row>
-    <el-divider />
-    <el-card style="width: 100%" shadow="hover">
+<br>
+    <el-card style="width: 100%" shadow="never">
     <template #header>About</template>
-    <p>You can't see my projects because they will be undergoing major changes, and the description documents will be changed but I'm too lazy to do it so I'll delete them first and do it later.</p>
     <p>Copyright 2025 MoKanove All rights reserved.</p>
     </el-card>
 </template>
@@ -126,6 +141,9 @@ const cfm = () => {
 }
 const tkkhs = () => {
   router.push('/tkkhs')
+}
+const moixa = () => {
+  window.open('https://github.com/mokanove/moixa', '_blank')
 }
 </script>
 

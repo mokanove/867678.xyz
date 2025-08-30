@@ -3,7 +3,6 @@
     <h1>TKKHS project.</h1>
     </center>
     <p>Say what you want, it won't record it.</p>
-    <div style="margin: 20px 0" />
   <el-input
     v-model="textarea"
     style="width: 100%"
@@ -11,22 +10,16 @@
     type="textarea"
     placeholder="Please input"
   />
-   <el-divider />
-   <el-card style="width: 100%" shadow="hover">
+   <br>
+   <el-card style="width: 100%">
     <template #header>About</template>
    <el-text class="mx-1" size="large">He won't record it, you can say whatever you want.</el-text><br>
    <el-text class="mx-1" size="large">At the same time, it is also an open source work, GPLv3 agreement.</el-text><br>
    <el-text class="mx-1" size="large">I made it because I have no one to talk to. If I tell others, they will tell others, and they will scold me in return.</el-text><br>
-    </el-card>
-    <el-divider />
-   <el-card style="width: 100%" shadow="hover">
-    <template #header>Worry?</template>
+   <h3>Worry?</h3><br>
     <el-text class="mx-1" size="large" @click="sc">If you are still worried? Take a look at the source code. Technology will not lie.</el-text><br>
-    <el-text class="mx-1" size="large" @click="sc">How to read it? As usual, just click on these paragraphs.</el-text>
-    </el-card>
-    <el-divider />
-    <el-card style="width: 100%" shadow="hover">
-    <template #header>Back?</template>
+    <el-text class="mx-1" size="large" @click="sc">How to read it? As usual, just click on these paragraphs.</el-text><br>
+    <h3>Back?</h3><br>
     <el-text class="mx-1" size="large" @click="bak">As usual, just click on these paragraphs.</el-text>
     </el-card>
 </template>

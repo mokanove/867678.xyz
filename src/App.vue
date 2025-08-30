@@ -16,6 +16,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { ElMessage, ElMessageBox } from 'element-plus'
 
 const router = useRouter()
 const activeIndex = ref('1')
@@ -26,7 +27,15 @@ const FirP = () => {
   router.push('/')
 }
 const donate = () => {
-  router.push('/')
+  ElMessageBox.alert('USDT Tron:TBrZFA4NstpHTzQ5XNh6ocvidSin9C1Yc1', 'Donate', {
+    confirmButtonText: 'OK',
+    callback: () => {
+      ElMessage({
+        type: 'success',
+        message: `Have a good day!`,
+      })
+    },
+  })
 }
 const Github = () => {
   window.open('https://github.com/mokanove', '_blank')
