@@ -176,12 +176,9 @@ IPv6:
 >
 > ![](https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/456430b7-1c8f-42b0-71c0-586ad9172700/public)
 >
-> File size : 300MB(286MiB(300,000,000Bytes))
->
-> Sha256: e8671610daa5dc152578d9bfe8e25346aa73fa600f908b235f55bf51d0eb5a05 
 
 ```
-https://s.867678.xyz/speedtest
+https://867678.xyz
 ```
 
 ------
@@ -189,10 +186,8 @@ https://s.867678.xyz/speedtest
 
 # More servers is building.
 
-# The author does not assume any responsibility.
-
-# We don't collect any logs , If you worry we collect it , You can Self make a server(Code at "Deploy codes" Floder).
 
 # IP info from ipinfo.io.
+
 
 
