@@ -1,13 +1,6 @@
 <template>
         <h1>Hello! I'm Mo Kanove</h1>
-        <p>The reason I made my own software was probably because I was annoyed by other similar software.</p>
-    <el-card style="width: 100%" shadow="never">
-    <p style="color:red">A large number of projects have been renamed, so please be careful when using them.</p>
-    <p style="color:red">The server page has been cancelled. Now it is just a redirect of this page. If you need to test the speed, please click the button of below the server card.</p>
-    <p>Removed: tkkhs, backmain</p>
-    <p>Archived: ezgo, mosiuter</p>
-    <p>Changed: mosiuter changed to moixa, ezgo now end of life (EOL)</p>
-  </el-card>
+       <el-text class="mx-1">The reason I made my own software was probably because I was annoyed by other similar software.</el-text>
 <el-divider />
     <h2>Projects</h2>
     <el-row :gutter="20" class="project-section">
@@ -59,12 +52,12 @@
               <span>Osaka , Japan(OSA)</span>
             </div>
           </template>
-          <p>Domain auto select IP version:jp-osa.867678.xyz</p>
-          <p>Speedtest (by speedtest ookla):</p>
+          <p>Domain:jp-osa.867678.xyz</p>
           <p>IPv4:</p>
           <p>166.88.100.243</p>
           <p>IPv6:</p>
           <p>[2400:8d60:8::c0b:1ea8]</p>
+          <p>Speedtest (by speedtest ookla):</p>
           <img src="https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/servers/OSA.png" width="90%"/>
           <template #footer>
             <el-button type="primary" plain @click="tenj">10MB</el-button>
@@ -81,14 +74,14 @@
               <span>Los Angeles , California , US(LAX)</span>
             </div>
           </template>
-          <p>Domain auto select IP version:us-lax.867678.xyz</p>
-          <p>Speedtest (by speedtest ookla):</p>
+          <p>Domain:us-lax.867678.xyz</p>
            <p>IPv4:</p>
           <p>74.48.125.113</p>
           <p>IPv6:</p>
           <p>[2607:f130:0:0153::ae12:43b5]</p>
           <p>[2607:f130:0:0153::d7fa:9ca5]</p>
           <p>[2607:f130:0:0153::f239:9af0]</p>
+          <p>Speedtest (by speedtest ookla):</p>
           <img src="https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/servers/LAX.png" width="90%"/>
           <template #footer>
             <el-button type="primary" plain @click="tenu">10MB</el-button>
@@ -105,20 +98,33 @@
               <span>Global , CloudflareCDN</span>
             </div>
           </template>
-          <p>Domain:https://867678.xyz/speed</p>
           <p>Bucket using Cloudflare R2(EU) and Cloudflare CDN.</p>
           <template #footer>
             <el-button type="primary" plain @click="ten">10MB</el-button>
             <el-button type="success" plain @click="one">100MB</el-button>
             <el-button type="danger" plain @click="three">300MB</el-button>
-            <el-button @click="cfm">MORE INFORMATION</el-button>
           </template>
         </el-card>
       </el-col>
     </el-row>
-<br>
+    <el-divider />
+    <el-timeline style="max-width: 600px">
+    <el-timeline-item timestamp="2025/09/03" placement="top">
+      <el-card>
+        <h4>Renovated the homepage, changed the font style, now it is more user-friendly.</h4>
+        <p>Mo committed 2025/09/03</p>
+      </el-card>
+    </el-timeline-item>
+    <el-timeline-item timestamp="2025/08/31" placement="top">
+      <el-card>
+        <h4>Renovation home and tkkhs.</h4>
+        <p>Mo committed 2025/08/31</p>
+      </el-card>
+    </el-timeline-item>
+  </el-timeline>
     <el-card style="width: 100%" shadow="never">
     <template #header>About</template>
+    <p>To clone this site , using : git clone https://github.com/mokanove/867678.xyz.git</p>
     <p>Copyright 2025 MoKanove All rights reserved.</p>
     </el-card>
 </template>

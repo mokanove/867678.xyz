@@ -1,7 +1,9 @@
 <template>
    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false" @select="handleSelect">
     <el-menu-item index="0" @click="FirP">
-      <img style="width: 100px;height: 50px;" src="/favicon.ico"/>
+      <el-avatar :size="60" src="https://empty" @error="errorHandler">
+      <img src="/favicon.ico" />
+    </el-avatar>
     </el-menu-item>
     <el-sub-menu index="1">
       <template #title @click="FirP">Home</template>
@@ -18,6 +20,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
 
+const errorHandler = () => true
 const router = useRouter()
 const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {

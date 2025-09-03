@@ -12,14 +12,14 @@
   />
    <br>
    <el-card style="width: 100%">
-    <template #header>About</template>
+    <template #header><h3>About</h3></template>
    <el-text class="mx-1" size="large">He won't record it, you can say whatever you want.</el-text><br>
    <el-text class="mx-1" size="large">At the same time, it is also an open source work, GPLv3 agreement.</el-text><br>
    <el-text class="mx-1" size="large">I made it because I have no one to talk to. If I tell others, they will tell others, and they will scold me in return.</el-text><br>
-   <h3>Worry?</h3><br>
+   <h4>Worry?</h4><br>
     <el-text class="mx-1" size="large" @click="sc">If you are still worried? Take a look at the source code. Technology will not lie.</el-text><br>
     <el-text class="mx-1" size="large" @click="sc">How to read it? As usual, just click on these paragraphs.</el-text><br>
-    <h3>Back?</h3><br>
+    <h4>Back?</h4><br>
     <el-text class="mx-1" size="large" @click="bak">As usual, just click on these paragraphs.</el-text>
     </el-card>
 </template>
