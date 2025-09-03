@@ -37,8 +37,6 @@ to speedtest your upload speed
 
 > Full IPV6 support.
 >
-> Netflix: Unlocks original series and can be used in full (region is the US)
->
 > Speed test:
 >
 > [Download file from this server with ssl.](https://us-lax.867678.xyz:81)
@@ -106,8 +104,6 @@ IPv6:
 ## Osaka , Japan (OSA):
 
 > Full IPV6 support.
->
-> Netflix: Unlocks non-original series and can be used in full (region is the Japan)
 >
 > Speed test:
 >
@@ -188,6 +184,7 @@ https://867678.xyz
 
 
 # IP info from ipinfo.io.
+
 
 
 
