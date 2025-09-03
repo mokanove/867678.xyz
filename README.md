@@ -44,7 +44,7 @@ to speedtest your upload speed
 > ![](LAX.png)
 >
 
->ISP info(from ipinfo.io and its ipv4 addr):
+>Info:
 ```
 {
   "ip": "74.48.125.113",
@@ -56,12 +56,6 @@ to speedtest your upload speed
   "postal": "90009",
   "timezone": "America/Los_Angeles",
   "readme": "https://ipinfo.io/missingauth"
-}
-```
-
->Server info:
-```
-{
   "provider": "cloudcone",
   "core": "2",
   "threads": "2",
@@ -111,9 +105,7 @@ IPv6:
 >
 > ![](OSA.png)
 >
-
-
->ISP info(from ipinfo.io and its ipv4 addr):
+>Info:
 ```
 {
   "ip": "166.88.100.243",
@@ -125,13 +117,6 @@ IPv6:
   "postal": "530-0003",
   "timezone": "Asia/Tokyo",
   "readme": "https://ipinfo.io/missingauth"
-}
-```
-
-
->Server info:
-```
-{
   "provider": "evoxt",
   "core": "1",
   "threads": "1",
@@ -184,6 +169,7 @@ https://867678.xyz
 
 
 # IP info from ipinfo.io.
+
 
 
 
