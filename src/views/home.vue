@@ -108,7 +108,13 @@
       </el-col>
     </el-row>
     <el-divider />
-    <el-timeline style="max-width: 600px">
+    <el-timeline style="max-width: 100%">
+      <el-timeline-item timestamp="2025/09/05" placement="top">
+      <el-card>
+        <h4>Fixed an issue where the More Info button was not working.</h4>
+        <p>Mo committed 2025/09/05</p>
+      </el-card>
+    </el-timeline-item>
     <el-timeline-item timestamp="2025/09/03" placement="top">
       <el-card>
         <h4>Renovated the homepage, changed the font style, now it is more user-friendly.</h4>
@@ -132,7 +138,7 @@
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const cfsp = () => {
-  window.open('https://github.com/mokanove/servers', '_blank')
+  window.open('https://github.com/mokanove/867678.xyz/tree/servers', '_blank')
 }
 const tenj = () => {
   window.location.href = 'https://jp-osa.867678.xyz:81/10.bin';
@@ -186,7 +192,7 @@ const threeu = () => {
   })
 }
 const laxm = () => {
-  window.open('https://github.com/mokanove/servers/tree/main?tab=readme-ov-file#los-angeles--california--usa-', '_blank')
+  window.open('https://github.com/mokanove/867678.xyz/tree/servers?tab=readme-ov-file#los-angeles--california--usa-', '_blank')
 }
 const ten = () => {
   window.location.href = 'https://s.867678.xyz/10.bin';
