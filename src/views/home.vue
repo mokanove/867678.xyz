@@ -1,7 +1,7 @@
 <template>
         <h1>Hello! I'm Mo Kanove</h1>
        <el-text class="mx-1">The reason I made my own software was probably because I was annoyed by other similar software.</el-text>
-<p><br></p>
+<p></p>
     <h2>Projects</h2>
     <el-row :gutter="20" class="project-section">
       <el-col :span="8" :xs="24" :sm="12">
@@ -39,7 +39,7 @@
         </el-card>
       </el-col>
     </el-row>
-<el-divider />
+<p></p>
     <h2>SpeedTest</h2>
     <el-text class="mx-1" type="danger">Your ISP may charge fees, so please be aware of data usage.</el-text>
     <p>You can use them to test your network speed with https or iperf3.However, I do not guarantee 100% availability, and the test data is for reference only.</p>
@@ -85,7 +85,7 @@
         </el-card>
       </el-col>
       <el-col>
-        <p><br></p>
+<p></p>
         <el-card shadow="never">
           <template #header>
             <div class="card-header">
@@ -101,12 +101,14 @@
         </el-card>
       </el-col>
     </el-row>
-<p><br></p>
+<p></p>
     <h2>Updates and Fixeds</h2>
     <el-timeline style="max-width: 100%">
        <el-timeline-item timestamp="2025/09/06" placement="top">
       <el-card>
         <p>tkkhs has been revised again and added a dark mode, as well as a return function to the old version of the web page.</p>
+        <p>The cloud-side changes are automatic compilation by Cloudflare Pages instead of the previous local manual compilation, which allows new features to be synchronized faster.</p>
+        <p>The warehouse structure has been re-optimized and now uses the latest vite and element-plus.</p>
       </el-card>
     </el-timeline-item>
       <el-timeline-item timestamp="2025/09/05" placement="top">

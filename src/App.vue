@@ -1,9 +1,7 @@
 <template>
-   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false" @select="handleSelect">
+   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false">
     <el-menu-item index="0" @click="FirP">
-      <el-avatar :size="60" src="https://empty" @error="errorHandler">
-      <img src="/favicon.ico" />
-    </el-avatar>
+      <el-avatar :size="60" src="/favicon.ico" @error="errorHandler"></el-avatar>
     </el-menu-item>
     <el-sub-menu index="1">
       <template #title>Home</template>
@@ -38,9 +36,6 @@ const setLight = () => {
 const errorHandler = () => true
 const router = useRouter()
 const activeIndex = ref('1')
-const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
 const FirP = () => {
   router.push('/')
 }
