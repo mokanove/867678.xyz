@@ -25,9 +25,7 @@
               <span>tkkhs</span>
             </div>
           </template>
-      <center>
-            <h1>TKKHS project.</h1>
-      </center>
+            <h1>tkkhs project.</h1>
             <p>Say what you want, it won't record it.</p>
 <el-input
     v-model="input"
@@ -37,21 +35,20 @@
   />
           <template #footer>
             <el-button type="primary"  @click="tkkhs">TEST NOW!</el-button>
-            <el-button type="success" @click="tkkhsc">View source code</el-button>
           </template>
         </el-card>
       </el-col>
     </el-row>
 <el-divider />
-    <h2>Servers</h2>
+    <h2>SpeedTest</h2>
     <el-text class="mx-1" type="danger">Your ISP may charge fees, so please be aware of data usage.</el-text>
-    <p>You can use them to test your network speed with https or iperf3.</p>
+    <p>You can use them to test your network speed with https or iperf3.However, I do not guarantee 100% availability, and the test data is for reference only.</p>
     <el-row :gutter="20" class="project-section">
       <el-col :span="8" :xs="24" :sm="12">
         <el-card class="project-card"  shadow="hover">
           <template #header>
             <div class="card-header">
-              <span>Osaka , Kansi , Japan(OSA)</span>
+              <span>Osaka , Kansai , Japan(OSA)</span>
             </div>
           </template>
           <p>Domain:jp-osa.867678.xyz</p>
@@ -105,6 +102,11 @@
 <p><br></p>
     <h2>Updates and Fixeds</h2>
     <el-timeline style="max-width: 100%">
+       <el-timeline-item timestamp="2025/09/06" placement="top">
+      <el-card>
+        <p>tkkhs has been revised again and added a dark mode, as well as a return function to the old version of the web page.</p>
+      </el-card>
+    </el-timeline-item>
       <el-timeline-item timestamp="2025/09/05" placement="top">
       <el-card>
         <p>Changed the layout so that clicking the download button now pops up a prompt.</p>
@@ -126,6 +128,7 @@
     <template #header>About</template>
     <p>To clone this site , using : git clone https://github.com/mokanove/867678.xyz.git</p>
     <p>Also note that I uploaded a stripped-down version that doesn't include the module directory (otherwise Github will report that the repository is too large). You need to use npm install to install the missing parts.</p>
+    <p @click="donate">If you like my project , don't forget donate , it will be let me do much good.</p>
     <p>Copyright 2025 MoKanove All rights reserved.</p>
     </el-card>
 </template>
@@ -145,9 +148,6 @@ const moixa = () => {
 }
 const tkkhs = () => {
   router.push('/tkkhs')
-}
-const tkkhsc = () => {
-  window.open('https://github.com/mokanove/867678.xyz/blob/main/src/views/tkkhs.vue', '_blank')
 }
 //servers
 //osa
@@ -197,6 +197,18 @@ const three = () => {
 }
 const cfm = () => {
   window.open('https://github.com/mokanove/867678.xyz/tree/servers?tab=readme-ov-file#cloudflare-free-services', '_blank')
+}
+
+const donate = () => {
+  ElMessageBox.alert('USDT Tron:TBrZFA4NstpHTzQ5XNh6ocvidSin9C1Yc1', 'Donate', {
+    confirmButtonText: 'OK',
+    callback: () => {
+      ElMessage({
+        type: 'success',
+        message: `Have a good day!`,
+      })
+    },
+  })
 }
 </script>
 

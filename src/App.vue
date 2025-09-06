@@ -6,10 +6,15 @@
     </el-avatar>
     </el-menu-item>
     <el-sub-menu index="1">
-      <template #title @click="FirP">Home</template>
+      <template #title>Home</template>
       <el-menu-item index="1-1" @click="Github">Github</el-menu-item>
       <el-menu-item index="1-2" @click="donate">Donate</el-menu-item>
       <el-menu-item index="1-3" @click="FirP">Real Home</el-menu-item>
+    </el-sub-menu>
+    <el-sub-menu index="2">
+      <template #title >Mode(Test)</template>
+      <el-menu-item index="2-1" @click="setDark">Dark Mode</el-menu-item>
+      <el-menu-item index="2-2" @click="setLight">Light Mode</el-menu-item>
     </el-sub-menu>
   </el-menu>
   <router-view></router-view>
@@ -19,7 +24,17 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { useDark } from '@vueuse/core'
 
+const isDark = useDark()
+//const toggleDark = useToggle(isDark) it only just be dark mode , no light mode.
+const setDark = () => {
+  isDark.value = true
+}
+
+const setLight = () => {
+  isDark.value = false
+}
 const errorHandler = () => true
 const router = useRouter()
 const activeIndex = ref('1')
