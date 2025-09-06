@@ -54,7 +54,7 @@
           <p>Domain:jp-osa.867678.xyz:81</p>
           <p>IPv4:166.88.100.243</p>
           <p>IPv6:[2400:8d60:8::c0b:1ea8]</p>
-          <img src="/OSA.png"/>
+          <img src="https://s.867678.xyz/n//OSA.png"/>
           <template #footer>
             <el-button type="primary" @click="tenj">10MB</el-button>
             <el-button type="success" @click="onej">100MB</el-button>
@@ -74,7 +74,7 @@
           <p>Domain:us-lax.867678.xyz:81</p>
            <p>IPv4:74.48.125.113</p>
           <p>IPv6:[2607:f130:0:0153::f239:9af0]</p>
-          <img src="/LAX.png" />
+          <img src="https://s.867678.xyz/n//LAX.png" />
           <template #footer>
             <el-button type="primary" @click="tenu">10MB</el-button>
             <el-button type="success" @click="oneu">100MB</el-button>
