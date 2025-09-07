@@ -27,14 +27,35 @@
           </template>
             <h2>tkkhs project.</h2>
             <p>Say what you want, it won't record it.</p>
-<el-input
-    v-model="input"
-    style="width: 100%"
-    disabled
-    placeholder="Please input"
-  />
+            <el-input v-model="input" style="width: 100%" disabled placeholder="Please input"  />
           <template #footer>
             <el-button type="primary"  @click="tkkhs">TEST NOW!</el-button>
+          </template>
+        </el-card>
+      </el-col>
+      <el-col :span="8" :xs="24" :sm="12">
+        <el-card class="project-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              <span>FuestaOS</span>
+            </div>
+          </template>
+          <h2>An operating system</h2>
+          <template #footer>
+            <el-button type="primary" @click="fos">Developmenting...</el-button>
+          </template>
+        </el-card>
+      </el-col>
+      <el-col :span="8" :xs="24" :sm="12">
+        <el-card class="project-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              <span>ghit</span>
+            </div>
+          </template>
+          <h2>A version controller, similar to Git, but better.</h2>
+          <template #footer>
+            <el-button type="primary" @click="ghit">Developmenting...</el-button>
           </template>
         </el-card>
       </el-col>
@@ -104,6 +125,14 @@
 <p></p>
     <h2>Updates and Fixeds</h2>
     <el-timeline style="max-width: 100%">
+      <el-timeline-item timestamp="2025/09/07" placement="top">
+      <el-card>
+        <p>Optimize the operation logic of the menu at the top of the page.</p>
+        <p>Changed a high-definition avatar, download? I chose the simplest trigger method, please guess it yourself.</p>
+        <p>Optimize the input box of tkkhs project.</p>
+        <p>Now, the black and white themes will automatically switch with the operating system!</p>
+      </el-card>
+      </el-timeline-item>
        <el-timeline-item timestamp="2025/09/06" placement="top">
       <el-card>
         <p>tkkhs has been revised again and added a dark mode, as well as a return function to the old version of the web page.</p>
@@ -111,19 +140,19 @@
         <p>The warehouse structure has been re-optimized and now uses the latest vite and element-plus.</p>
         <p>Now, server speed test images will no longer be hosted by Github (which would increase loading time) but will be hosted by Cloudflare instead.</p>
       </el-card>
-    </el-timeline-item>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/09/05" placement="top">
       <el-card>
         <p>Changed the layout so that clicking the download button now pops up a prompt.</p>
         <p>Fixed an issue where the More Info button was not working.</p>
       </el-card>
-    </el-timeline-item>
-    <el-timeline-item timestamp="2025/09/03" placement="top">
+       </el-timeline-item>
+       <el-timeline-item timestamp="2025/09/03" placement="top">
       <el-card>
         <p>Renovated the homepage, changed the font style, now it is more user-friendly.</p>
       </el-card>
-    </el-timeline-item>
-    <el-timeline-item timestamp="2025/08/31" placement="top">
+       </el-timeline-item>
+       <el-timeline-item timestamp="2025/08/31" placement="top">
       <el-card>
         <p>Renovation home and tkkhs.</p>
       </el-card>
@@ -133,7 +162,7 @@
     <template #header>About</template>
     <p>To clone this site , using : git clone https://github.com/mokanove/867678.xyz.git</p>
     <p>Also note that I uploaded a stripped-down version that doesn't include the module directory (otherwise Github will report that the repository is too large). You need to use npm install to install the missing parts.</p>
-    <p @click="donate">If you like my project , don't forget donate , it will be let me do much good.</p>
+    <p >If you like my project , don't forget donate , it will be let me do much good.</p>
     <p>Copyright 2025 MoKanove All rights reserved.</p>
     </el-card>
 </template>
@@ -150,11 +179,18 @@ function Message(message, type = 'info', plain = false) {
     plain: true,
   })
 }
+//link
 const moixa = () => {
   window.open('https://github.com/mokanove/moixa', '_blank')
 }
 const tkkhs = () => {
   router.push('/tkkhs')
+}
+const fos = () => {
+  window.open('https://github.com/mokanove/FuestaOS', '_blank')
+}
+const ghit = () => {
+  window.open('https://github.com/mokanove/ghit', '_blank')
 }
 //servers
 //osa
@@ -219,18 +255,6 @@ const iperf3 = async () => {
       ElMessage({
         type: 'success',
         message: `Copied to clipboard.`,
-      })
-    },
-  })
-}
-
-const donate = () => {
-  ElMessageBox.alert('USDT Tron:TBrZFA4NstpHTzQ5XNh6ocvidSin9C1Yc1', 'Donate', {
-    confirmButtonText: 'OK',
-    callback: () => {
-      ElMessage({
-        type: 'success',
-        message: `Have a good day!`,
       })
     },
   })
