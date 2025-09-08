@@ -45,7 +45,7 @@ to speedtest your upload speed
 > ![](https://s.867678.xyz/n/LAX.png)
 >
 
->Info:
+Info:
 ```
 {
   "ip": "74.48.125.113",
@@ -105,8 +105,8 @@ IPv6:
 > [Download file from this server with ssl.](https://jp-osa.867678.xyz:81)
 >
 > ![](https://s.867678.xyz/n/OSA.png)
->
->Info:
+
+Info:
 ```
 {
   "ip": "166.88.100.243",
@@ -170,6 +170,7 @@ https://867678.xyz
 
 
 # IP info from ipinfo.io.
+
 
 
 
