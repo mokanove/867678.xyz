@@ -95,7 +95,7 @@ IPv6:
 
 ------
 
-## Osaka , Japan (OSA):
+## Osaka , Kansai , Japan (OSA):
 
 > Full IPV6 support.
 >
@@ -169,6 +169,7 @@ https://867678.xyz
 
 
 # IP info from ipinfo.io.
+
 
 
 
