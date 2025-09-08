@@ -1,9 +1,6 @@
 # These are some servers with special features.
 # What can them do?
 
-### Cloudflare proxy IP
-
-> On these servers, ports 80, 443, 2052, 2082, and 8080 are reverse proxied to Cloudflare CDN. If your Cloudflare speed is very slow, you can try to configure IP force pointing to get high speed from these servers.
 ### Speedtest
 #### Iperf3
 
@@ -32,6 +29,10 @@ to speedtest your upload speed
 > You will need proxy IP , Without them, you won't be able to open your Cloudflare website.
 >
 > You can fill in the server domain name, just like "const proxyIPs = ["us-lax.867678.xyz"];"
+
+### Cloudflare proxy IP
+
+> On these servers, ports 80, 443, 2052, 2082, and 8080 are reverse proxied to Cloudflare CDN. If your Cloudflare speed is very slow, you can try to configure IP force pointing to get high speed from these servers.
 
 ## Los Angeles , California , USA (LAX) :
 
@@ -169,6 +170,7 @@ https://867678.xyz
 
 
 # IP info from ipinfo.io.
+
 
 
 
