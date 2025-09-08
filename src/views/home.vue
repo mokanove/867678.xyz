@@ -2,6 +2,20 @@
         <h1>Hello! I'm Mo Kanove</h1>
        <el-text class="mx-1">The reason I made my own software was probably because I was annoyed by other similar software.</el-text>
 <p></p>
+    <el-card style="width: 100%" shadow="hover">
+    <template #header>Updates & Fixeds</template>
+    <el-timeline style="max-width: 100%">
+       <el-timeline-item timestamp="2025/09/06" placement="top">
+      <el-card>
+        <p>tkkhs has been revised again and added a dark mode, as well as a return function to the old version of the web page.</p>
+        <p>The cloud-side changes are automatic compilation by Cloudflare Pages instead of the previous local manual compilation, which allows new features to be synchronized faster.</p>
+        <p>The warehouse structure has been re-optimized and now uses the latest vite and element-plus.</p>
+        <p>Now, server speed test images will no longer be hosted by Github (which would increase loading time) but will be hosted by Cloudflare instead.</p>
+      </el-card>
+      </el-timeline-item>
+    </el-timeline>
+    <el-button type="primary"  @click="updates">More</el-button>
+    </el-card>
     <h2>Projects</h2>
     <el-row :gutter="20" class="project-section">
       <el-col :span="8" :xs="24" :sm="12">
@@ -14,7 +28,7 @@
           <h2>A convenient and easy-to-use proxy tool.</h2>
           <p>It's multi-platform and easy to use. Its configuration files use the conveniently readable toml format. It also features perhaps the smartest DNS settings you've ever seen, saying goodbye to fakeIP bugs, DNS leaks, and other bugs caused by realIP.</p>
           <template #footer>
-            <el-button type="primary" @click="moixa">Developmenting...</el-button>
+            <el-button @click="moixa">Developmenting...</el-button>
           </template>
         </el-card>
       </el-col>
@@ -42,7 +56,7 @@
           </template>
           <h2>An operating system</h2>
           <template #footer>
-            <el-button type="primary" @click="fos">Developmenting...</el-button>
+            <el-button @click="fos">Developmenting...</el-button>
           </template>
         </el-card>
       </el-col>
@@ -55,7 +69,7 @@
           </template>
           <h2>A version controller, similar to Git, but better.</h2>
           <template #footer>
-            <el-button type="primary" @click="ghit">Developmenting...</el-button>
+            <el-button @click="ghit">Developmenting...</el-button>
           </template>
         </el-card>
       </el-col>
@@ -123,123 +137,26 @@
       </el-col>
     </el-row>
 <p></p>
-    <h2>Updates and Fixeds</h2>
-    <el-timeline style="max-width: 100%">
-      <el-timeline-item timestamp="2025/09/07" placement="top">
-      <el-card>
-        <p>Optimize the operation logic of the menu at the top of the page.</p>
-        <p>Changed a high-definition avatar, download? I chose the simplest trigger method, please guess it yourself.</p>
-        <p>Optimize the input box of tkkhs project.</p>
-        <p>Now, the black and white themes will automatically switch with the operating system!</p>
-      </el-card>
-      </el-timeline-item>
-       <el-timeline-item timestamp="2025/09/06" placement="top">
-      <el-card>
-        <p>tkkhs has been revised again and added a dark mode, as well as a return function to the old version of the web page.</p>
-        <p>The cloud-side changes are automatic compilation by Cloudflare Pages instead of the previous local manual compilation, which allows new features to be synchronized faster.</p>
-        <p>The warehouse structure has been re-optimized and now uses the latest vite and element-plus.</p>
-        <p>Now, server speed test images will no longer be hosted by Github (which would increase loading time) but will be hosted by Cloudflare instead.</p>
-      </el-card>
-      </el-timeline-item>
-      <el-timeline-item timestamp="2025/09/05" placement="top">
-      <el-card>
-        <p>Changed the layout so that clicking the download button now pops up a prompt.</p>
-        <p>Fixed an issue where the More Info button was not working.</p>
-      </el-card>
-       </el-timeline-item>
-       <el-timeline-item timestamp="2025/09/03" placement="top">
-      <el-card>
-        <p>Renovated the homepage, changed the font style, now it is more user-friendly.</p>
-      </el-card>
-       </el-timeline-item>
-       <el-timeline-item timestamp="2025/08/31" placement="top">
-      <el-card>
-        <p>Renovation home and tkkhs.</p>
-      </el-card>
-    </el-timeline-item>
-  </el-timeline>
-    <el-card style="width: 100%" shadow="never">
+    <el-card style="width: 100%" shadow="hover">
     <template #header>About</template>
     <p>To clone this site , using : git clone https://github.com/mokanove/867678.xyz.git</p>
     <p>Also note that I uploaded a stripped-down version that doesn't include the module directory (otherwise Github will report that the repository is too large). You need to use npm install to install the missing parts.</p>
     <p >If you like my project , don't forget donate , it will be let me do much good.</p>
-    <p>Copyright 2025 MoKanove All rights reserved.</p>
+    <p>Copyright 2025 MoKanove All rights reserved. e-mail:me@867678.xyz</p>
     </el-card>
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useClipboard } from '@vueuse/core'
-
+import '../assets/home.css';
 const router = useRouter()
-function Message(message, type = 'info', plain = false) {
+function Message() {
  ElMessage({
     message: 'Downloading...',
     type: 'primary',
     plain: true,
   })
-}
-//link
-const moixa = () => {
-  window.open('https://github.com/mokanove/moixa', '_blank')
-}
-const tkkhs = () => {
-  router.push('/tkkhs')
-}
-const fos = () => {
-  window.open('https://github.com/mokanove/FuestaOS', '_blank')
-}
-const ghit = () => {
-  window.open('https://github.com/mokanove/ghit', '_blank')
-}
-//servers
-//osa
-const tenj = () => {
-  window.location.href = 'https://jp-osa.867678.xyz:81/10.bin';
-  Message()
-}
-const onej = () => {
-  window.location.href = 'https://jp-osa.867678.xyz:81/100.bin';
-  Message()
-}
-const threej = () => {
-  window.location.href = 'https://jp-osa.867678.xyz:81/300.bin';
- Message()
-}
-const osam = () => {
-  window.open('https://github.com/mokanove/867678.xyz/tree/servers?tab=readme-ov-file#osaka--japan-', '_blank')
-}
-//lax
-const tenu = () => {
-  window.location.href = 'https://us-lax.867678.xyz:81/10.bin';
- Message()
-}
-const oneu = () => {
-  window.location.href = 'https://us-lax.867678.xyz:81/100.bin';
- Message()
-}
-const threeu = () => {
-  window.location.href = 'https://us-lax.867678.xyz:81/300.bin';
- Message()
-}
-const laxm = () => {
-  window.open('https://github.com/mokanove/867678.xyz/tree/servers?tab=readme-ov-file#los-angeles--california--usa-', '_blank')
-}
-//cf
-const ten = () => {
-  window.location.href = 'https://s.867678.xyz/10.bin';
- Message()
-}
-const one = () => {
-  window.location.href = 'https://s.867678.xyz/100.bin';
- Message()
-}
-const three = () => {
-  window.location.href = 'https://s.867678.xyz/300.bin';
- Message()
-}
-const cfm = () => {
-  window.open('https://github.com/mokanove/867678.xyz/tree/servers?tab=readme-ov-file#cloudflare-free-services', '_blank')
 }
 const { copy, isSupported } = useClipboard()
 
@@ -259,34 +176,70 @@ const iperf3 = async () => {
     },
   })
 }
+//link
+const moixa = () => {
+  window.open('https://github.com/mokanove/moixa', '_blank')
+}
+const tkkhs = () => {
+  router.push('/tkkhs')
+}
+const updates = () => {
+  router.push('/updates')
+}
+const fos = () => {
+  window.open('https://github.com/mokanove/FuestaOS', '_blank')
+}
+const ghit = () => {
+  window.open('https://github.com/mokanove/ghit', '_blank')
+}
+//servers
+//osa
+const tenj = () => {
+  window.location.href = 'https://jp-osa.867678.xyz:81/10.bin';
+  Message()
+}
+const onej = () => {
+  window.location.href = 'https://jp-osa.867678.xyz:81/100.bin';
+  Message()
+}
+const threej = () => {
+  window.location.href = 'https://jp-osa.867678.xyz:81/300.bin';
+  Message()
+}
+const osam = () => {
+  window.open('https://github.com/mokanove/867678.xyz/blob/servers/README.md#osaka--kansai--japan-osa', '_blank')
+}
+//lax
+const tenu = () => {
+  window.location.href = 'https://us-lax.867678.xyz:81/10.bin';
+ Message()
+}
+const oneu = () => {
+  window.location.href = 'https://us-lax.867678.xyz:81/100.bin';
+ Message()
+}
+const threeu = () => {
+  window.location.href = 'https://us-lax.867678.xyz:81/300.bin';
+ Message()
+}
+const laxm = () => {
+  window.open('https://github.com/mokanove/867678.xyz/blob/servers/README.md#los-angeles--california--usa-lax-', '_blank')
+}
+//cf
+const ten = () => {
+  window.location.href = 'https://s.867678.xyz/10.bin';
+ Message()
+}
+const one = () => {
+  window.location.href = 'https://s.867678.xyz/100.bin';
+ Message()
+}
+const three = () => {
+  window.location.href = 'https://s.867678.xyz/300.bin';
+ Message()
+}
+const cfm = () => {
+  window.open('https://github.com/mokanove/867678.xyz/tree/servers?tab=readme-ov-file#cloudflare-free-services', '_blank')
+}
 </script>
 
-<style>
-.container {
-  padding: 20px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.welcome-section {
-  margin-bottom: 40px;
-}
-.welcome-card {
-  text-align: center;
-}
-.project-section {
-  margin-bottom: 40px;
-}
-.project-card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s;
-}
-.project-card:hover {
-  transform: translateY(-15px);
-}
-.card-header {
-   font-size: 18px;
-   font-weight: bolder;
-}
-</style>

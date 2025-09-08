@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/home.vue'
-import tkkhs from '../views/tkkhs.vue'
-import moixa from '../views/moixa.vue'
+import tkkhs from '../views/projects/tkkhs.vue'
+import updates from '../views/updates.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,11 +15,17 @@ const router = createRouter({
       path: '/tkkhs',
       name: 'tkkhs',
       component: tkkhs,
+      meta: {
+        title: 'tkkhs'
+      }
     },
     {
-      path: '/moixa',
-      name: 'moixa',
-      component: moixa,
+      path: '/updates',
+      name: 'updates',
+      component: updates,
+      meta: {
+        title: 'Updates & Fixeds'
+      }
     },
   ],
 })
