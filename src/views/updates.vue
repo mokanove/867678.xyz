@@ -6,6 +6,15 @@
   </el-page-header>
 <h2>Updates and Fixeds</h2>
     <el-timeline style="max-width: 100%">
+      <el-timeline-item timestamp="2025/09/10 3.0.6 to 3.0.7" placement="top">
+      <el-card>
+        <p>Change image hosting provider.</p>
+        <p>Retake the server speed test picture.</p>
+        <p>Added separator line to browse old update button.</p>
+        <h3>View old page:</h3>
+        <p>not support</p>
+      </el-card>
+      </el-timeline-item>
      <el-timeline-item timestamp="2025/09/08 3.0.4 to 3.0.6" placement="top">
       <el-card>
         <p>Split page jump logic & css code into a single file.</p>
@@ -14,7 +23,8 @@
         <p>Added this website license.</p>
         <p>Added View old page.</p>
         <h3>View old page:</h3>
-        <el-link href="https://e339ffeb.867678.pages.dev/" target="_blank">v3.0.4 to 3.0.5</el-link>
+        <el-link href="https://e339ffeb.867678.pages.dev/" target="_blank">v3.0.4 to 3.0.5</el-link><el-divider direction="vertical" />
+        <el-link href="https://e339ffeb.867678.pages.dev/" target="_blank">v3.0.5 to 3.0.6</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/09/07 3.0.3 to 3.0.4" placement="top">
@@ -35,10 +45,10 @@
         <p>The warehouse structure has been re-optimized and now uses the latest vite and element-plus.</p>
         <p>Now, server speed test images will no longer be hosted by Github (which would increase loading time) but will be hosted by Cloudflare instead.</p>
         <h3>View old page:</h3>
-        <el-link href="https://fa1b2e38.867678.pages.dev/" target="_blank">2.0.6 to 2.0.7</el-link>
-        <el-link href="https://e6bbd64b.867678.pages.dev/" target="_blank">The warehouse structure has been re-optimized and now uses(2.0.8)</el-link>
-        <el-link href="https://1c461238.867678.pages.dev/" target="_blank">3.0.0 to 3.0.1</el-link>
-        <el-link href="https://75036423.867678.pages.dev/" target="_blank">change img url(3.0.2)</el-link>
+        <el-link href="https://fa1b2e38.867678.pages.dev/" target="_blank">2.0.6 to 2.0.7</el-link><el-divider direction="vertical" />
+        <el-link href="https://e6bbd64b.867678.pages.dev/" target="_blank">The warehouse structure has been re-optimized and now uses(2.0.8)</el-link><el-divider direction="vertical" />
+        <el-link href="https://1c461238.867678.pages.dev/" target="_blank">3.0.0 to 3.0.1</el-link><el-divider direction="vertical" />
+        <el-link href="https://75036423.867678.pages.dev/" target="_blank">change img url(3.0.2)</el-link><el-divider direction="vertical" />
         <el-link href="https://1b9b163f.867678.pages.dev/" target="_blank">3.0.2 to 3.0.3</el-link>
       </el-card>
       </el-timeline-item>
