@@ -102,9 +102,9 @@ IPv6:
 >
 > Speed test:
 >
-> [Download file from this server with ssl.](https://jp-osa.867678.xyz:81)
+> [Download file from this server with ssl.](https://in-bom.867678.xyz:81)
 >
-> ![](OSA.png)
+> ![](BOM.png)
 
 Info:
 ```
@@ -132,19 +132,19 @@ Info:
 
 Domain:
 ```
-jp-osa.867678.xyz
+in-bom.867678.xyz
 ```
 
 IPv4:
 
 ```
-166.88.100.243
+65.20.89.131
 ```
 
 IPv6:
 
 ```
-2400:8d60:8:0000:0000:0000:0c0b:1ea8
+2401:c080:2400:1705:5400:05ff:fea0:41dd
 ```
 
 ------
@@ -170,6 +170,7 @@ https://867678.xyz
 
 
 # IP info from ipinfo.io.
+
 
 
 
