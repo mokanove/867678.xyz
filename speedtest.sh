@@ -6,6 +6,5 @@ sudo apt-get install wget -y
 wget https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-linux-x86_64.tgz
 tar -zxvf ookla-speedtest-1.2.0-linux-x86_64.tgz
 rm speedtest.md ookla-speedtest-1.2.0-linux-x86_64.tgz
-read -p "please press enter to start speedtest and you need agree policy." a
 ./speedtest
 rm speedtest speedtest.sh speedtest.5
