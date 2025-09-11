@@ -45,29 +45,6 @@ to speedtest your upload speed
 > ![](LAX.png)
 >
 
-Info:
-```
-{
-  "ip": "74.48.125.113",
-  "city": "Los Angeles",
-  "region": "California",
-  "country": "US",
-  "loc": "34.0522,-118.2437",
-  "org": "AS35916 MULTACOM CORPORATION",
-  "postal": "90009",
-  "timezone": "America/Los_Angeles",
-  "readme": "https://ipinfo.io/missingauth"
-  "provider": "cloudcone",
-  "core": "2",
-  "threads": "2",
-  "ram": "1G",
-  "bandwidth": "1Gbps",
-  "price": "USD$12.99/yr",
-  "region": "lax",
-  "maturity": "2025-12-26",
-  "os": "ubuntuserver 24.04 lts"
-}
-```
 
 
 Domain:
@@ -96,7 +73,7 @@ IPv6:
 
 ------
 
-## Osaka , Kansai , Japan (OSA):
+## Mumbai, Maharashtra, India (BOM):
 
 > Full IPV6 support.
 >
@@ -105,30 +82,6 @@ IPv6:
 > [Download file from this server with ssl.](https://in-bom.867678.xyz:81)
 >
 > ![](BOM.png)
-
-Info:
-```
-{
-  "ip": "166.88.100.243",
-  "city": "Osaka",
-  "region": "Osaka",
-  "country": "JP",
-  "loc": "34.6962,135.4945",
-  "org": "AS149440 Evoxt Enterprise",
-  "postal": "530-0003",
-  "timezone": "Asia/Tokyo",
-  "readme": "https://ipinfo.io/missingauth"
-  "provider": "evoxt",
-  "core": "1",
-  "threads": "1",
-  "ram": "0.5G",
-  "bandwidth": "1Gbps",
-  "price": "USD$3.60/mo",
-  "region": "osa",
-  "maturity": "2026-02-23",
-  "os": "ubuntuserver 24.04 lts"
-}
-```
 
 Domain:
 ```
@@ -170,6 +123,7 @@ https://867678.xyz
 
 
 # IP info from ipinfo.io.
+
 
 
 
