@@ -109,7 +109,7 @@
           <p>Domain:us-lax.867678.xyz:81</p>
            <p>IPv4:74.48.125.113</p>
           <p>IPv6:[2607:f130:0:0153::f239:9af0]</p>
-          <img src="https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/servers/LAX.png" width="100%" />
+          <img src="https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/servers/LAX.png"  />
           <template #footer>
             <el-button type="primary" @click="tenu">10MB</el-button>
             <el-button type="success" @click="oneu">100MB</el-button>
