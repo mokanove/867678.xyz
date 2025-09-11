@@ -6,13 +6,21 @@
   </el-page-header>
 <h2>Updates and Fixeds</h2>
     <el-timeline style="max-width: 100%">
+      <el-timeline-item timestamp="2025/09/11 3.0.7 to 3.0.8" placement="top">
+      <el-card>
+        <p>Changed the Osaka node to Mumbai.</p>
+        <p>Retake the server speed test picture.</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">v3.0.7 to 3.0.8</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/09/10 3.0.6 to 3.0.7" placement="top">
       <el-card>
         <p>Change image hosting provider.</p>
         <p>Retake the server speed test picture.</p>
         <p>Added separator line to browse old update button.</p>
         <h3>View old page:</h3>
-        <p>not support</p>
+        <el-link href="https://c362a2b7.867678.pages.dev/" target="_blank">v3.0.6 to 3.0.7</el-link>
       </el-card>
       </el-timeline-item>
      <el-timeline-item timestamp="2025/09/08 3.0.4 to 3.0.6" placement="top">
