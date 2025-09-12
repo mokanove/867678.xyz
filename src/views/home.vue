@@ -86,9 +86,9 @@
               <span>Mumbai, Maharashtra, India (BOM) </span>
             </div>
           </template>
-          <p>Domain:in-bom.867678.xyz:81</p>
-          <p>IPv4:65.20.89.131</p>
-          <p>IPv6:[2401:c080:2400:1705:5400:05ff:fea0:41dd]</p>
+          <p>Domain:kr-icn.867678.xyz:81</p>
+          <p>IPv4:158.247.195.252</p>
+          <p>IPv6:[2401:c080:1c02:0bd8:5400:05ff:fea0:9fe8]</p>
           <img src="https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/servers/BOM.png"/>
           <template #footer>
             <el-button type="primary" @click="tenj">10MB</el-button>
@@ -195,15 +195,15 @@ const ghit = () => {
 //servers
 //osa
 const tenj = () => {
-  window.location.href = 'https://in-bom.867678.xyz:81/10.bin';
+  window.location.href = 'https://kr-icn.867678.xyz:81/10.bin';
   Message()
 }
 const onej = () => {
-  window.location.href = 'https://in-bom.867678.xyz:81/100.bin';
+  window.location.href = 'https://kr-icn.867678.xyz:81/100.bin';
   Message()
 }
 const threej = () => {
-  window.location.href = 'https://in-bom.867678.xyz:81/300.bin';
+  window.location.href = 'https://kr-icn.867678.xyz:81/300.bin';
   Message()
 }
 const osam = () => {
