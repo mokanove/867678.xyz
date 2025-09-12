@@ -83,7 +83,7 @@
         <el-card class="project-card"  shadow="hover">
           <template #header>
             <div class="card-header">
-              <span>Mumbai, Maharashtra, India (BOM) </span>
+              <span> Paripark, Seoul, South Korea (ICN) </span>
             </div>
           </template>
           <p>Domain:kr-icn.867678.xyz:81</p>
