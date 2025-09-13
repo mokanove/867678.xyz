@@ -9,9 +9,9 @@
 > Proxy Cloudflare IP.
 
 ```
-wget https://github.com/mokanove/867678.xyz/raw/refs/heads/servers/proxy.sh && sudo sh proxy.sh
+wget https://github.com/mokanove/867678.xyz/raw/refs/heads/servers/depoly/proxy.sh && sudo sh proxy.sh
 ```
-Clear iptables&ip6tables rules:
+Clear iptables rules:
 
 ```
 iptables -t nat -F
@@ -25,7 +25,7 @@ iptables -t nat -F
 
 
 ```
-wget https://github.com/mokanove/867678.xyz/raw/refs/heads/servers/speedtest.sh &&sudo sh speedtest.sh
+wget https://github.com/mokanove/867678.xyz/raw/refs/heads/servers/depoly/speedtest.sh &&sudo sh speedtest.sh
 ```
 
 Delete:
