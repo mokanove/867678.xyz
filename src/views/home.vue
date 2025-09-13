@@ -150,7 +150,6 @@ import { useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useClipboard } from '@vueuse/core'
 import '../assets/home.css';
-const router = useRouter()
 function Message() {
  ElMessage({
     message: 'Downloading...',
@@ -158,8 +157,8 @@ function Message() {
     plain: true,
   })
 }
+const router = useRouter()
 const { copy, isSupported } = useClipboard()
-
 const iperf3 = async () => {
   ElMessageBox.alert('iperf3 -c [IP/Domain] -R', 'iperf3', {
     confirmButtonText: 'OK',
@@ -181,7 +180,7 @@ const moixa = () => {
   window.open('https://github.com/mokanove/moixa', '_blank')
 }
 const tkkhs = () => {
-  router.push('/tkkhs')
+  router.push('/projects/tkkhs')
 }
 const updates = () => {
   router.push('/updates')

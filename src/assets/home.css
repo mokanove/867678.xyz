@@ -1,27 +1,11 @@
-.container {
-  padding: 20px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.welcome-section {
-  margin-bottom: 40px;
-}
-.welcome-card {
-  text-align: center;
-}
-.project-section {
-  margin-bottom: 40px;
-}
 .project-card {
-  height: 100%;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s;
 }
 .project-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(5px);
 }
 .card-header {
-   font-size: 18px;
+   font-size: 20px;
    font-weight: bolder;
 }

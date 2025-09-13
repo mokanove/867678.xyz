@@ -1,4 +1,5 @@
 <template>
+  <p :to="{ path: '/' }">It just a test page , maybe have bug or more something. So , let's go to the home page</p>
     <br />
     <el-row :gutter="20" class="project-section">
       <el-col :span="8" :xs="24" :sm="12">

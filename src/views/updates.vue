@@ -5,13 +5,22 @@
     </template>
   </el-page-header>
 <h2>Updates and Fixeds</h2>
-    <el-timeline style="max-width: 100%">
+    <el-timeline>
+      <el-timeline-item timestamp="2025/09/13 3.1.1 to 3.1.2" placement="top">
+      <el-card>
+        <p>Optimized the views directory structure.</p>
+        <p>Multiple logic and page refactorings , and breadcrumbs refactoring</p>
+        <p>Refactoring the top navigation bar.</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">v3.1.1 to 3.1.2</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/09/11 3.0.7 to 3.0.8" placement="top">
       <el-card>
         <p>Changed the Osaka node to Mumbai.</p>
         <p>Retake the server speed test picture.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">v3.0.7 to 3.0.8</el-link>
+        <el-link href="https://5c3a275c.867678.pages.dev/" target="_blank">v3.0.7 to 3.0.8</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/09/10 3.0.6 to 3.0.7" placement="top">

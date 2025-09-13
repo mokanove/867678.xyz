@@ -1,8 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/home.vue'
-import tkkhs from '../views/projects/tkkhs.vue'
 import updates from '../views/updates.vue'
-//import projects from '../views/projects.vue'
+import tkkhs from '../views/projects/tkkhs.vue'
+import  FuestaOS from '../views/projects/fuestaos.vue'
+import  moixa from '../views/projects/moixa.vue'
+import  ghit from '../views/projects/ghit.vue'
+import projects from '../views/projects.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,29 +16,35 @@ const router = createRouter({
       component: Home,
     },
     {
-      path: '/tkkhs',
-      name: 'tkkhs',
-      component: tkkhs,
-      meta: {
-        title: 'tkkhs'
-      }
-    },
-    {
       path: '/updates',
       name: 'updates',
       component: updates,
-      meta: {
-        title: 'Updates & Fixeds'
-      }
     },
-    //{
-    //  path: '/projects',
-    //  name: 'projects',
-    //  component: projects,
-    //  meta: {
-    //    title: 'Projects all view.'
-   //}
-  //    },
+    {
+    path: '/projects',
+     name: 'projects',
+    component: projects,
+    },
+    {
+      path: '/projects/tkkhs',
+      name: 'tkkhs',
+      component: tkkhs,
+    },
+    {
+      path: '/projects/FuestaOS',
+      name: 'FuestaOS',
+      component: FuestaOS,
+    },
+    {
+      path: '/projects/moixa',
+      name: 'moixa',
+      component: moixa,
+    },
+    {
+      path: '/projects/ghit',
+      name: 'ghit',
+      component: ghit,
+    },
   ],
 })
 
