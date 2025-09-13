@@ -83,7 +83,7 @@
         <el-card class="project-card"  shadow="hover">
           <template #header>
             <div class="card-header">
-              <span> Paripark, Seoul, South Korea (BOM) </span>
+              <span> Mumbai, Maharashtra, IN  (BOM) </span>
             </div>
           </template>
           <p>Domain:in-bom.867678.xyz:81</p>

@@ -3,11 +3,11 @@
     <el-menu-item index="0">
       <el-avatar :size="55" src="/logo.png" @error="errorHandler" @click="bak"></el-avatar>
     </el-menu-item>
-    <el-menu-item index="1" @click="bak">Home</el-menu-item>
+    <el-menu-item index="1" @click="bak"> <el-icon><HomeFilled /></el-icon>Home</el-menu-item>
     <el-sub-menu index="2">
-      <template #title>Other</template>
-      <el-menu-item index="2-1" @click="Github">Github</el-menu-item>
-      <el-menu-item index="2-2" @click="donate">Donate</el-menu-item>
+      <template #title><el-icon><More /></el-icon>More</template>
+      <el-menu-item index="2-1" @click="Github"><el-icon><Link /></el-icon>Github</el-menu-item>
+      <el-menu-item index="2-2" @click="donate"><el-icon><Money /></el-icon>Donate</el-menu-item>
       <el-sub-menu index="2-3">
         <template #title>Theme</template>
         <el-menu-item index="2-3-1" @click="setDark">Dark</el-menu-item>
@@ -20,6 +20,7 @@
 
 <script lang="ts" setup>
 import { ref , watch} from 'vue'
+import { HomeFilled , More , Money , Link} from '@element-plus/icons-vue'
 import { useDark, usePreferredDark } from '@vueuse/core'
 const errorHandler = () => true
 const activeIndex = ref('1')
@@ -34,28 +35,21 @@ watch(preferredDark, (val) => {
   }
 })
 const setDark = () => {
-  isDark.value = true
   followSystem.value = false
+  isDark.value = true
 }
 const setLight = () => {
-  isDark.value = false
   followSystem.value = false
+  isDark.value = false
 }
 //Link
 import { useBak } from './assets/pro'
 const { bak } = useBak()
 import { donate } from './assets/donate'
-const Github = () => {
-  window.open('https://github.com/mokanove', '_blank')
-}
+const Github = () => {  window.open('https://github.com/mokanove', '_blank')}
 </script>
 
 <style scoped>
-.el-menu--horizontal > .el-menu-item:nth-child(1) {
-  margin-right: auto;
-}
-.el-menu-demo {
-  max-width: 99vw;
-  overflow-x: auto;
-}
+.el-menu--horizontal > .el-menu-item:nth-child(1) {  margin-right: auto;}
+.el-menu-demo { max-width: 99vw;  overflow-x: auto;}
 </style>
