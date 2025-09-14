@@ -12,7 +12,7 @@
           <h2>A convenient and easy-to-use proxy tool.</h2>
           <p>It's multi-platform and easy to use. Its configuration files use the conveniently readable toml format. It also features perhaps the smartest DNS settings you've ever seen, saying goodbye to fakeIP bugs, DNS leaks, and other bugs caused by realIP.</p>
           <template #footer>
-            <el-button @click="moixa">Developmenting...</el-button>
+            <el-button>Developmenting...</el-button>
           </template>
         </el-card>
       </el-col>
@@ -25,9 +25,9 @@
           </template>
             <h2>tkkhs project.</h2>
             <p>Say what you want, it won't record it.</p>
-            <el-input v-model="input" style="width: 100%" disabled placeholder="Please input"  />
+            <el-input style="width: 100%" disabled placeholder="Please input"  />
           <template #footer>
-            <el-button type="primary"  @click="tkkhs">TEST NOW!</el-button>
+            <el-button type="primary">TEST NOW!</el-button>
           </template>
         </el-card>
       </el-col>
@@ -40,7 +40,7 @@
           </template>
           <h2>An operating system</h2>
           <template #footer>
-            <el-button @click="fos">Developmenting...</el-button>
+            <el-button>Developmenting...</el-button>
           </template>
         </el-card>
       </el-col>
@@ -53,7 +53,7 @@
           </template>
           <h2>A version controller, similar to Git, but better.</h2>
           <template #footer>
-            <el-button @click="ghit">Developmenting...</el-button>
+            <el-button>Developmenting...</el-button>
           </template>
         </el-card>
       </el-col>
