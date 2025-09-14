@@ -1,18 +1,25 @@
 <template>
-    <el-page-header @back="bak">
-    <template #content>
-      <span class="text-large font-600 mr-3"> updates & fixeds </span>
-    </template>
-  </el-page-header>
-<h2>Updates and Fixeds</h2>
+    <el-breadcrumb :separator-icon="DArrowRight" >
+    <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
+    <el-breadcrumb-item>Updates & Fixeds</el-breadcrumb-item>
+  </el-breadcrumb>
+<h1>Updates and Fixeds</h1>
     <el-timeline>
+      <el-timeline-item timestamp="2025/09/14 3.1.2 to 3.1.3" placement="top">
+      <el-card>
+        <p>This is a brand new version. I'm too lazy to write the updated content, so you can read it yourself.</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.1.2 to 3.1.3</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/09/13 3.1.1 to 3.1.2" placement="top">
       <el-card>
         <p>Optimized the views directory structure.</p>
         <p>Multiple logic and page refactorings , and breadcrumbs refactoring</p>
         <p>Refactoring the top navigation bar.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">v3.1.1 to 3.1.2</el-link>
+        <el-link href="https://f91f965b.867678.pages.dev/" target="_blank">Fixed can't run build</el-link>
+        <p>This compilation error occurs due to a code defect.</p>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/09/11 3.0.7 to 3.0.8" placement="top">
@@ -86,14 +93,14 @@
       </el-card>
     </el-timeline-item>
   </el-timeline>
-  <el-card style="width: 100%" shadow="never">
+  <el-card shadow="hover">
    <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button>
    <el-button type="primary" @click="sc" :icon="Document">View source code</el-button>
     <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
     </el-card>
 </template>
 <script lang="ts" setup>
-import { Document , Back , Money } from '@element-plus/icons-vue'
+import { Document , Back , Money , DArrowRight} from '@element-plus/icons-vue'
 import { useBak } from '../assets/pro'
 const { bak } = useBak()
 import { donate } from '../assets/donate'

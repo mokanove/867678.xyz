@@ -1,61 +1,66 @@
 <template>
-  <p :to="{ path: '/' }">It just a test page , maybe have bug or more something. So , let's go to the home page</p>
-    <br />
-    <el-row :gutter="20" class="project-section">
-      <el-col :span="8" :xs="24" :sm="12">
-        <el-card class="project-card" shadow="hover">
-          <template #header>
-            <div class="card-header">
-              <span>moixa</span>
-            </div>
-          </template>
-          <h2>A convenient and easy-to-use proxy tool.</h2>
-          <p>It's multi-platform and easy to use. Its configuration files use the conveniently readable toml format. It also features perhaps the smartest DNS settings you've ever seen, saying goodbye to fakeIP bugs, DNS leaks, and other bugs caused by realIP.</p>
-          <template #footer>
-            <el-button>Developmenting...</el-button>
-          </template>
-        </el-card>
-      </el-col>
-       <el-col :span="8" :xs="24" :sm="12">
-        <el-card class="project-card" shadow="hover">
-          <template #header>
-            <div class="card-header">
-              <span>tkkhs</span>
-            </div>
-          </template>
-            <h2>tkkhs project.</h2>
-            <p>Say what you want, it won't record it.</p>
-            <el-input style="width: 100%" disabled placeholder="Please input"  />
-          <template #footer>
-            <el-button type="primary">TEST NOW!</el-button>
-          </template>
-        </el-card>
-      </el-col>
-      <el-col :span="8" :xs="24" :sm="12">
-        <el-card class="project-card" shadow="hover">
-          <template #header>
-            <div class="card-header">
-              <span>FuestaOS</span>
-            </div>
-          </template>
-          <h2>An operating system</h2>
-          <template #footer>
-            <el-button>Developmenting...</el-button>
-          </template>
-        </el-card>
-      </el-col>
-      <el-col :span="8" :xs="24" :sm="12">
-        <el-card class="project-card" shadow="hover">
-          <template #header>
-            <div class="card-header">
-              <span>ghit</span>
-            </div>
-          </template>
-          <h2>A version controller, similar to Git, but better.</h2>
-          <template #footer>
-            <el-button>Developmenting...</el-button>
-          </template>
-        </el-card>
-      </el-col>
-    </el-row>
+    <el-breadcrumb :separator-icon="DArrowRight" >
+    <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
+    <el-breadcrumb-item>Projects</el-breadcrumb-item>
+  </el-breadcrumb>
+  <h1>Projects</h1>
+  <el-text class="mx-1">The reason I made my own software was probably because I was annoyed by other similar software.</el-text>
+  <el-card shadow="hover">
+    <template #header><div class="card-header"><span>FuestaOS</span></div></template>
+    <p>A general-purpose open source operating system with high performance, high security, and high usability.</p>
+    <template #footer><el-button @click="fos">Developmenting...</el-button></template>
+  </el-card>
+  <br />
+ <el-card shadow="hover">
+    <template #header><div class="card-header"><span>Ghit</span></div></template>
+    <p>A convenient open source and easy-to-use version controller.</p>
+    <template #footer><el-button @click="ghit">Developmenting...</el-button></template>
+  </el-card>
+   <br />
+   <el-card shadow="hover">
+    <template #header><div class="card-header"><span>moixa</span></div></template>
+    <p>High security and high speed network proxy tool.</p>
+    <template #footer><el-button @click="moixa">Developmenting...</el-button></template>
+  </el-card>
+   <br />
+  <el-card shadow="hover">
+    <template #header><div class="card-header"><span>SpeedTest</span></div></template>
+    <p>A peer to peer SpeedTest tool , Support iperf3 & https.</p>
+    <template #footer><el-button type="primary" @click="speedtest">Go to test</el-button></template>
+  </el-card>
+  <br />
+  <el-card shadow="hover">
+    <template #header><div class="card-header"><span>TKKHS</span></div></template>
+    <p>A monologue listener.</p>
+    <template #footer><el-button type="primary" @click="tkkhs">Go to test</el-button></template>
+  </el-card>
+  <br />
+  <el-card shadow="hover">
+   <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button>
+    <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
+    </el-card>
 </template>
+<script setup>
+import { Back , Money , DArrowRight} from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
+import { useBak } from '../assets/pro'
+const { bak } = useBak()
+import { donate } from '../assets/donate'
+//link
+const router = useRouter()
+const fos = () => {
+  window.open('https://github.com/mokanove/FuestaOS', '_blank')
+}
+const moixa = () => {
+  window.open('https://github.com/mokanove/moixa', '_blank')
+}
+const ghit = () => {
+  window.open('https://github.com/mokanove/ghit', '_blank')
+}
+const speedtest = () => {
+  router.push('/projects/speedtest')
+}
+const tkkhs = () => {
+  router.push('/projects/tkkhs')
+}
+</script>

@@ -5,6 +5,7 @@ import tkkhs from '../views/projects/tkkhs.vue'
 import  FuestaOS from '../views/projects/fuestaos.vue'
 import  moixa from '../views/projects/moixa.vue'
 import  ghit from '../views/projects/ghit.vue'
+import  speedtest from '../views/projects/speedtest.vue'
 import projects from '../views/projects.vue'
 
 const router = createRouter({
@@ -44,6 +45,11 @@ const router = createRouter({
       path: '/projects/ghit',
       name: 'ghit',
       component: ghit,
+    },
+    {
+      path: '/projects/speedtest',
+      name: 'speedtest',
+      component: speedtest,
     },
   ],
 })
