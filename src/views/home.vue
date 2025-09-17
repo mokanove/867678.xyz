@@ -1,6 +1,5 @@
 <template>
-        <h1>Hello! I'm Mo Kanove</h1>
-
+        <h1>Website | Mo Kanove</h1>
 <p></p>
     <el-card shadow="hover">
     <template #header><div class="card-header"><span>Updates & Fixeds</span></div></template>
@@ -26,12 +25,11 @@
     <br />
     <el-card shadow="hover">
     <template #header><div class="card-header"><span>About</span></div></template>
-    <p>Copyright 2025 MoKanove All rights reserved ; E-mail:me@867678.xyz ; Version : 3.1.3</p>
+    <p>Copyright 2025 MoKanove All rights reserved<el-divider direction="vertical" />E-mail:me@867678.xyz<el-divider direction="vertical" /> Version : 3.1.4</p>
     </el-card>
 </template>
 <script setup>
 import { useRouter } from 'vue-router'
-import '../assets/home.css';
 //link
 const router = useRouter()
 const updates = () => {

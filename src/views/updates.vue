@@ -5,11 +5,20 @@
   </el-breadcrumb>
 <h1>Updates and Fixeds</h1>
     <el-timeline>
+       <el-timeline-item timestamp="2025/09/17 3.1.3 to 3.1.4" placement="top">
+      <el-card>
+        <p>Updated server status</p>
+        <p>Optimized the theme switching function</p>
+        <p>Fixed an issue where the buttons below the items might be misaligned</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.1.3 to 3.1.4</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/09/14 3.1.2 to 3.1.3" placement="top">
       <el-card>
         <p>This is a brand new version. I'm too lazy to write the updated content, so you can read it yourself.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.1.2 to 3.1.3</el-link>
+        <el-link href="https://297ca48c.867678.pages.dev/" target="_blank">3.1.2 to 3.1.3</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/09/13 3.1.1 to 3.1.2" placement="top">
@@ -94,8 +103,8 @@
     </el-timeline-item>
   </el-timeline>
   <el-card shadow="hover">
-   <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button>
-   <el-button type="primary" @click="sc" :icon="Document">View source code</el-button>
+   <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button><el-divider direction="vertical" />
+   <el-button type="primary" @click="sc" :icon="Document">View source code</el-button><el-divider direction="vertical" />
     <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
     </el-card>
 </template>

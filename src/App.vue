@@ -9,9 +9,10 @@
       <el-menu-item index="2-1" @click="Github"><el-icon><Link /></el-icon>Github</el-menu-item>
       <el-menu-item index="2-2" @click="donate"><el-icon><Money /></el-icon>Donate</el-menu-item>
       <el-sub-menu index="2-3">
-        <template #title>Theme</template>
-        <el-menu-item index="2-3-1" @click="setDark">Dark</el-menu-item>
-        <el-menu-item index="2-3-2" @click="setLight">Light</el-menu-item>
+        <template #title><el-icon><SwitchFilled /></el-icon>Theme</template>
+        <el-menu-item index="2-3-1" @click="setLight"><el-icon><Sunny /></el-icon>Light</el-menu-item>
+        <el-menu-item index="2-3-2" @click="setDark"><el-icon><Moon /></el-icon>Dark</el-menu-item>
+        <el-menu-item index="2-3-2" @click="AutoSwitchy"><el-icon><SwitchFilled /></el-icon>AutoSwitchy</el-menu-item>
       </el-sub-menu>
     </el-sub-menu>
   </el-menu>
@@ -20,15 +21,15 @@
 
 <script lang="ts" setup>
 import { ref , watch} from 'vue'
-import { HomeFilled , More , Money , Link} from '@element-plus/icons-vue'
+import { HomeFilled , More , Money , Link , SwitchFilled , Moon , Sunny} from '@element-plus/icons-vue'
 import { useDark, usePreferredDark } from '@vueuse/core'
+import { ElNotification } from 'element-plus'
 const errorHandler = () => true
 const activeIndex = ref('1')
 //Theme
 const isDark = useDark()
 const preferredDark = usePreferredDark()
 const followSystem = ref(true)
-
 watch(preferredDark, (val) => {
   if (followSystem.value) {
     isDark.value = val
@@ -41,6 +42,13 @@ const setDark = () => {
 const setLight = () => {
   followSystem.value = false
   isDark.value = false
+}
+const AutoSwitchy = () => {
+  ElNotification({
+    title: 'Theme',
+    message: 'The theme defaults to the operating system settings. If you need to switch automatically, you generally do not need to do it manually.',
+    type: 'primary',
+  })
 }
 //Link
 import { useBak } from './assets/pro'

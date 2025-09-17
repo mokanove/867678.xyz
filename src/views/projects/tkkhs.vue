@@ -9,8 +9,8 @@
     <textarea id="textInput" placeholder="Say At Here..." rows="5" wrap="soft"></textarea>
     <p></p>
    <el-card shadow="hover">
-   <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button>
-   <el-button type="primary" @click="sc" :icon="Document">View source code</el-button>
+   <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button><el-divider direction="vertical" />
+   <el-button type="primary" @click="sc" :icon="Document">View source code</el-button><el-divider direction="vertical" />
     <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
     </el-card>
 </template>

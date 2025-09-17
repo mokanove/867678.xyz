@@ -36,12 +36,13 @@
   </el-card>
   <br />
   <el-card shadow="hover">
-   <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button>
-    <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
+   <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button><el-divider direction="vertical" />
+   <el-button type="primary" @click="cs" :icon="Document">Code of this site</el-button><el-divider direction="vertical" />
+   <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
     </el-card>
 </template>
 <script setup>
-import { Back , Money , DArrowRight} from '@element-plus/icons-vue'
+import { Back , Money , DArrowRight , Document} from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import { useBak } from '../assets/pro'
 const { bak } = useBak()
@@ -56,6 +57,9 @@ const moixa = () => {
 }
 const ghit = () => {
   window.open('https://github.com/mokanove/ghit', '_blank')
+}
+const cs = () => {
+  window.open('https://github.com/mokanove/867678.xyz', '_blank')
 }
 const speedtest = () => {
   router.push('/projects/speedtest')

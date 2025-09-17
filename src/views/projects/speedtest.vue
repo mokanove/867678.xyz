@@ -17,16 +17,15 @@
           <p>Domain:</p>
           <p>IPv4:</p>
           <p>IPv6:</p>
-          <p>Speed of server:</p>
-          <img src="https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/servers/BOM.png"/>
+          <p>here is developmenting and can't be running.</p>
   </el-card>
   <p></p>
   <el-card shadow="hover">
-   <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button>
-   <el-button type="primary" @click="sc" :icon="Document">View depoly code</el-button>
-   <el-button type="primary" @click="sd" :icon="Document">View page code</el-button>
-   <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
-   <el-button @click="iperf3" :icon="Document">iperf3</el-button>
+   <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button><el-divider direction="vertical" />
+   <el-button type="primary" @click="sc" :icon="Document">View depoly code</el-button><el-divider direction="vertical" />
+   <el-button type="primary" @click="sd" :icon="Document">View page code</el-button><el-divider direction="vertical" />
+   <el-button type="success" @click="donate" :icon="Money">Donate</el-button><el-divider direction="vertical" />
+   <el-button @click="iperf3" :icon="Document">iperf3 command</el-button>
   </el-card>
 </template>
 
@@ -48,7 +47,7 @@ const iperf3 = async () => {
       if (!isSupported) {
         ElMessage({
         type: 'error',
-        message: `Copied failed.`,
+        message: `Copied failed.(Maybe your browser not support)`,
         })
         return
       }
@@ -84,7 +83,7 @@ const options = [
       },
       {
         value: 'osa',
-        label: 'Evoxt 1.0Gbps : Osaka , Kansai , Japan(The data is about to run out and will be reset on the 23rd of this month.)',
+        label: 'Evoxt 1.0Gbps : Osaka , Kansai , Japan(The data is run out and will be reset on the 23rd of this month.)',
       },
     ],
   },
