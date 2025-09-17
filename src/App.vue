@@ -12,7 +12,7 @@
         <template #title><el-icon><SwitchFilled /></el-icon>Theme</template>
         <el-menu-item index="2-3-1" @click="setLight"><el-icon><Sunny /></el-icon>Light</el-menu-item>
         <el-menu-item index="2-3-2" @click="setDark"><el-icon><Moon /></el-icon>Dark</el-menu-item>
-        <el-menu-item index="2-3-2" @click="AutoSwitchy"><el-icon><SwitchFilled /></el-icon>AutoSwitchy</el-menu-item>
+        <el-menu-item index="2-3-3" @click="AutoSwitchy"><el-icon><SwitchFilled /></el-icon>AutoSwitchy</el-menu-item>
       </el-sub-menu>
     </el-sub-menu>
   </el-menu>
