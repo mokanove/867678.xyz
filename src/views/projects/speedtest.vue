@@ -106,11 +106,5 @@ const options = [
     ],
   },
 ]
-const files = {
-  cloudflare: { address: 's.867678.xyz', sizes: ['10MB', '100MB', '300MB'] },
-  lax: { address: 'us-lax.867678.xyz:81', sizes: ['10MB', '100MB', '300MB'] },
-  tyo: { address: 'jp-tyo.867678.xyz:81', sizes: ['10MB', '100MB', '300MB'] },
-  osa: { address: 'jp-osa.867678.xyz:81', sizes: ['10MB', '100MB', '300MB'] }
-};
 
 </script>
