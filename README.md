@@ -4,17 +4,15 @@
 ### Speedtest
 #### Iperf3
 
-> These servers has iperf3 service , you can using :
+> These servers has iperf3 service , you can using : test download
 ```
 iperf3 -c [IP/Domain] -R
 ```
-to speedtest your download speed
 
->OR using :
+>OR using : test upload
 ```
 iperf3 -c [IP/Domain]
 ```
-to speedtest your upload speed
 
 #### HTTP Download
 
@@ -27,16 +25,14 @@ to speedtest your upload speed
 > You will need proxy IP , Without them, you won't be able to open your Cloudflare website.
 >
 > You can fill in the server domain name, just like "const proxyIPs = ["us-lax.867678.xyz"];"
-
-### Cloudflare proxy IP
-
+>
 > On these servers, ports 80, 443, 2052, 2082, and 8080 are reverse proxied to Cloudflare CDN. If your Cloudflare speed is very slow, you can try to configure IP force pointing to get high speed from these servers.
 
 ## Los Angeles , California , USA (LAX) :
 
 > Full IPV6 support.
 >
-> Speed test:
+> Speedtest:
 >
 > [Download file from this server.](https://867678.xyz/projects/speedtest)
 >
@@ -79,7 +75,7 @@ IPv6:
 >
 > [Download file from this server](https://867678.xyz/projects/speedtest)
 >
-> ![](BOM.png)
+> ![](TYO.png)
 
 Domain:
 ```
@@ -121,6 +117,7 @@ https://867678.xyz/projects/speedtest
 
 
 # IP info from ipinfo.io.
+
 
 
 
