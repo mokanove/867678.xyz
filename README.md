@@ -18,9 +18,7 @@ to speedtest your upload speed
 
 #### HTTP Download
 
-> Cleck [Download file from this server with ssl.] to using http download a 300MiB file.
->
-> (Ago it support unssl but now not support it , Because now most services are all using ssl.)
+> Cleck [Download file from this server with ssl.] to download file.
 
 ### Proxy IP(SNI IP)
 
@@ -40,7 +38,7 @@ to speedtest your upload speed
 >
 > Speed test:
 >
-> [Download file from this server with ssl.](https://us-lax.867678.xyz:81)
+> [Download file from this server.](https://867678.xyz/projects/speedtest)
 >
 > ![](LAX.png)
 >
@@ -49,7 +47,7 @@ to speedtest your upload speed
 
 Domain:
 ```
-us.867678.xyz
+us-lax.867678.xyz
 ```
 
 
@@ -73,31 +71,31 @@ IPv6:
 
 ------
 
-## Mumbai, Maharashtra, India (BOM):
+## Tokyo , Japan (TYO):
 
 > Full IPV6 support.
 >
-> Speed test:
+> Speedtest:
 >
-> [Download file from this server with ssl.](https://in-bom.867678.xyz:81)
+> [Download file from this server](https://867678.xyz/projects/speedtest)
 >
 > ![](BOM.png)
 
 Domain:
 ```
-in-bom.867678.xyz
+jp-tyo.867678.xyz
 ```
 
 IPv4:
 
 ```
-65.20.89.131
+139.180.204.132
 ```
 
 IPv6:
 
 ```
-2401:c080:2400:1705:5400:05ff:fea0:41dd
+2001:19f0:7002:0a5a:5400:05ff:fea3:3cd2
 ```
 
 ------
@@ -113,7 +111,7 @@ IPv6:
 >
 
 ```
-https://867678.xyz
+https://867678.xyz/projects/speedtest
 ```
 
 ------
@@ -123,6 +121,7 @@ https://867678.xyz
 
 
 # IP info from ipinfo.io.
+
 
 
 
