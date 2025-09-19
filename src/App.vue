@@ -20,13 +20,14 @@
 </template>
 
 <script lang="ts" setup>
+//Header
 import { ref , watch} from 'vue'
 import { HomeFilled , More , Money , Link , SwitchFilled , Moon , Sunny} from '@element-plus/icons-vue'
-import { useDark, usePreferredDark } from '@vueuse/core'
 import { ElNotification } from 'element-plus'
 const errorHandler = () => true
 const activeIndex = ref('1')
 //Theme
+import { useDark, usePreferredDark } from '@vueuse/core'
 const isDark = useDark()
 const preferredDark = usePreferredDark()
 const followSystem = ref(true)

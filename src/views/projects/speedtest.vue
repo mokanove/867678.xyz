@@ -7,17 +7,14 @@
     <h1>SpeedTest</h1>
     <el-text class="mx-1" type="danger">Your ISP may charge fees, so please be aware of data usage.</el-text>
     <p>You can use them to test your network speed with https or iperf3.However, I do not guarantee 100% availability, and the test data is for reference only.</p>
-  <el-select v-model="value" placeholder="Server">
+  <el-select v-model="value" placeholder="Chooice a server">
     <el-option-group v-for="group in options" :key="group.label" :label="group.label">
     <el-option v-for="item in group.options"  :key="item.value" :label="item.label"  :value="item.value"/>
     </el-option-group>
   </el-select>
-  <p></p>
-   <el-card shadow="hover">
-          <p>Domain:</p>
-          <p>IPv4:</p>
-          <p>IPv6:</p>
-          <p>here is developmenting and can't be running.</p>
+  <p><br /></p>
+  <el-card shadow="hover">
+          <p id="sip">Getting your IP... If this field does not respond for an extended period of time, please refresh the page.</p>
   </el-card>
   <p></p>
   <el-card shadow="hover">
@@ -30,6 +27,7 @@
 </template>
 
 <script lang="ts" setup>
+//normal
 import { Document , Back , Money , DArrowRight } from '@element-plus/icons-vue'
 import { useBak } from '../../assets/pro'
 const { bak } = useBak()
@@ -57,8 +55,28 @@ const iperf3 = async () => {
         message: `Copied to clipboard.`,
       })
 }
+//get user ip
+import { onMounted } from 'vue'
+async function fetchIpAddress() {
+  const ipElement = document.getElementById('sip')
+  if (ipElement) {
+    try {
+      const response = await fetch('https://api.867678.xyz/ip-json') 
+      if (!response.ok) {
+        throw new Error('Network error')
+      }
+      const data = await response.json()
+      ipElement.textContent = `Your IP is: ${data.ip}`
+    } catch (error) {
+      ipElement.textContent = 'Get IP addr failed', error
+    }
+  }
+}
+onMounted(() => {
+  fetchIpAddress()
+})
+//select
 import { ref } from 'vue'
-
 const value = ref('')
 const options = [
   {
@@ -75,17 +93,24 @@ const options = [
     options: [
       {
         value: 'lax',
-        label: 'CloudCone 1.0Gbps : Los Angeles , California , United States',
+        label: 'CloudCone 1Gbps : Los Angeles , California , US',
       },
       {
-        value: 'bom',
-        label: 'Vultr 5.0Gbps : Mumbai, Maharashtra, India',
+        value: 'tyo',
+        label: 'Vultr 10Gbps : Tokyo , Kanto , Japan',
       },
       {
         value: 'osa',
-        label: 'Evoxt 1.0Gbps : Osaka , Kansai , Japan(The data is run out and will be reset on the 23rd of this month.)',
+        label: 'Evoxt 1Gbps : Osaka , Kansai , Japan(The data is run out and will be reset on the 23rd of this month.)',
       },
     ],
   },
 ]
+const files = {
+  cloudflare: { address: 's.867678.xyz', sizes: ['10MB', '100MB', '300MB'] },
+  lax: { address: 'us-lax.867678.xyz:81', sizes: ['10MB', '100MB', '300MB'] },
+  tyo: { address: 'jp-tyo.867678.xyz:81', sizes: ['10MB', '100MB', '300MB'] },
+  osa: { address: 'jp-osa.867678.xyz:81', sizes: ['10MB', '100MB', '300MB'] }
+};
+
 </script>
