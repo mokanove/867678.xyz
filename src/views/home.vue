@@ -24,7 +24,7 @@
     <br />
     <el-card shadow="hover">
     <template #header><div class="card-header"><span>About</span></div></template>
-    <p>Copyright 2025 MoKanove All rights reserved<el-divider direction="vertical" />E-mail:me@867678.xyz<el-divider direction="vertical" /> Version : 3.1.5</p>
+    <p>Copyright 2025 MoKanove All rights reserved<el-divider direction="vertical" />E-mail:me@867678.xyz<el-divider direction="vertical" /> Version : 3.1.6</p>
     </el-card>
 </template>
 <script setup>

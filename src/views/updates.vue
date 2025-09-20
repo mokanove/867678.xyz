@@ -5,13 +5,20 @@
   </el-breadcrumb>
 <h1>Updates and Fixeds</h1>
     <el-timeline>
+      <el-timeline-item timestamp="2025/09/20 3.1.5 to 3.1.6" placement="top">
+      <el-card>
+        <p>The download page is finally available for downloading!</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.1.5 to 3.1.6</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/09/19 3.1.4 to 3.1.5" placement="top">
       <el-card>
         <p>Renovation Server Page</p>
         <p>Optimize homepage logic</p>
         <p>Add an API to get your IP, but please rest assured that I take your privacy very seriously. You can view the source code at: https://github.com/mokanove/867678.xyz/tree/api</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.1.3 to 3.1.4</el-link>
+        <el-link href="https://10b9e470.867678.pages.dev/" target="_blank">3.1.4 to 3.1.5</el-link>
       </el-card>
       </el-timeline-item>
        <el-timeline-item timestamp="2025/09/17 3.1.3 to 3.1.4" placement="top">
