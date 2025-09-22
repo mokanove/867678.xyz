@@ -125,6 +125,6 @@ const dd = (size: number) => {
 <style scoped>
 #sip{
   color: #000000;
-  font-size: 10px;
+  font-size: 15px;
 }
 </style>

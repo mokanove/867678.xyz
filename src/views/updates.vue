@@ -5,13 +5,15 @@
   </el-breadcrumb>
 <h1>Updates and Fixeds</h1>
     <el-timeline>
-      <el-timeline-item timestamp="2025/09/22 3.1.6 to 3.1.7" placement="top">
+      <el-timeline-item timestamp="2025/09/22 3.1.6 to 3.1.8" placement="top">
       <el-card>
         <p>The osaka server available in tomorrow!</p>
         <p>Domain format changed from : iso3166.three-letter.867678.xyz to: numbercity.iso3166.867678.xyz</p>
         <p>For example:1osaka.jp.867678.xyz</p>
+        <p>Download page style rebuild.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.1.6 to 3.1.7</el-link>
+        <el-link href="https://867678.xyz/" target="_blank">3.1.7 to 3.1.8</el-link>
+        <el-link href="https://a9f14063.867678.pages.dev/" target="_blank">3.1.6 to 3.1.7</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/09/20 3.1.5 to 3.1.6" placement="top">

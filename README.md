@@ -1,23 +1,29 @@
 # 867678.xyz
 
 [Visit now](https://867678.xyz)
-
+## Clone
+```
+git clone https://github.com/mokanove/867678.xyz.git
+```
+> OR
+```
+wget -O 867678.xyz.zip https://codeload.github.com/mokanove/867678.xyz/zip/refs/heads/main
+```
 ## init
-> You first need install npm.
-
 ```
 npm install
 ```
-
-## run test
-> If no modules , please first init
+```
+npm audit fix
+```
+## Run test
 ```
 npm run dev
 ```
 
-## run build
+## Build
 ```
 npm run build
 ```
 
-This site made MoKanove & Vite & Element-Plus , LICENSE:GnuPL v3
+# This site made MoKanove & Vite & Element-Plus , LICENSE:GPL v3
