@@ -7,25 +7,23 @@
     <h1>SpeedTest</h1>
     <el-text class="mx-1" type="danger">Your ISP may charge fees, so please be aware of data usage.</el-text>
     <p>You can use them to test your network speed with https or iperf3.However, I do not guarantee 100% availability, and the test data is for reference only.</p>
-  <el-select v-model="value" placeholder="Chooice a server">
+  <el-card shadow="hover">
+    <el-select v-model="value" placeholder="Chooice a server">
     <el-option-group v-for="group in servers" :key="group.label" :label="group.label">
     <el-option v-for="item in group.options"  :key="item.value" :label="item.label"  :value="item.value"/>
     </el-option-group>
-  </el-select><p></p>
-  <el-card shadow="hover">
+    </el-select><p></p>
           <el-button type="success" @click="dd(10)" plain>10MiB</el-button><el-divider direction="vertical" />
           <el-button type="primary" @click="dd(100)" plain>100MiB</el-button><el-divider direction="vertical" />
-          <el-button type="danger" @click="dd(300)" plain>300MiB</el-button><el-divider direction="vertical" />
-          <el-link href="http://api.867678.xyz/ip" type="primary" target="_blank">Recheck my IP</el-link>
-          <p id="sip">Getting your IP... If this field does not respond for an extended period of time, please refresh the page.</p>
-  </el-card>
-<p></p>
+          <el-button type="danger" @click="dd(300)" plain>300MiB</el-button><p></p>
+          <el-text id="sip">Getting your IP... If this field does not respond for an extended period of time, please refresh the page.</el-text><el-divider direction="vertical" /><el-link href="http://api.867678.xyz/ip" type="primary" target="_blank">Recheck my IP</el-link>
+  </el-card><p></p>
   <el-card shadow="hover">
    <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button><el-divider direction="vertical" />
    <el-button type="primary" @click="sc" :icon="Document">View depoly code</el-button><el-divider direction="vertical" />
    <el-button type="primary" @click="sd" :icon="Document">View page code</el-button><el-divider direction="vertical" />
    <el-button type="success" @click="donate" :icon="Money">Donate</el-button><el-divider direction="vertical" />
-   <el-button @click="iperf3" :icon="Document">iperf3 command</el-button>
+   <el-button @click="iperf3" :icon="Document">Copy iperf3 command</el-button>
   </el-card>
 </template>
 
@@ -88,7 +86,7 @@ const servers = [
     options: [
       {
         value: 'cloudflare',
-        label: 'Cloudflare R2 CDN (Not support iperf3)',
+        label: 'Cloudflare R2',
       },
     ],
   },
@@ -97,24 +95,19 @@ const servers = [
     options: [
       {
         value: 'lax',
-        label: 'CloudCone 1Gbps : Los Angeles , California , US',
-      },
-      {
-        value: 'tyo',
-        label: 'Vultr 10Gbps : Tokyo , Kanto , Japan',
+        label: 'Los Angeles , California , United States : CloudCone 1Gbps',
       },
       {
         value: 'osa',
-        label: 'Evoxt 1Gbps : Osaka , Kansai , Japan(The server data cap has been reached. It will reset on the 23rd of this month.)',
+        label: 'Osaka , Kansai , Japan : Evoxt 1Gbps',
       },
     ],
   },
 ]
 const urls = {
   cloudflare: 'https://s.867678.xyz',
-  lax: 'https://us-lax.867678.xyz:81',
-  tyo: 'https://jp-tyo.867678.xyz:81',
-  osa: 'https://jp-osa.867678.xyz:81',
+  lax: 'https://1los-angeles.us.867678.xyz:81',
+  osa: 'https://1osaka.jp.867678.xyz:81',
 }
 const dd = (size: number) => {
   const selectedUrl = urls[value.value as keyof typeof urls]
@@ -129,3 +122,9 @@ const dd = (size: number) => {
   window.open(url)
 }
 </script>
+<style scoped>
+#sip{
+  color: #000000;
+  font-size: 10px;
+}
+</style>
