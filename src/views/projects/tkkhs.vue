@@ -4,8 +4,7 @@
     <el-breadcrumb-item :to="{ path: '/projects' }">Projects</el-breadcrumb-item>
     <el-breadcrumb-item>TKKHS</el-breadcrumb-item>
   </el-breadcrumb>
-    <h1>TKKHS PROJECT</h1>
-    <p>Say what you want, it won't record it.</p>
+    <h1>TKKHS</h1>
     <textarea id="textInput" placeholder="Say At Here..." rows="5" wrap="soft"></textarea>
     <p></p>
    <el-card shadow="hover">
@@ -13,6 +12,7 @@
    <el-button type="primary" @click="sc" :icon="Document">View source code</el-button><el-divider direction="vertical" />
     <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
     </el-card>
+    <p>Say what you want, it won't record it.</p>
 </template>
 
 <script lang="ts" setup>

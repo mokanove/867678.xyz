@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/home.vue'
 import updates from '../views/updates.vue'
+import projects from '../views/projects.vue'
 import tkkhs from '../views/projects/tkkhs.vue'
 import  FuestaOS from '../views/projects/fuestaos.vue'
 import  moixa from '../views/projects/moixa.vue'
 import  ghit from '../views/projects/ghit.vue'
 import  speedtest from '../views/projects/speedtest.vue'
-import projects from '../views/projects.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

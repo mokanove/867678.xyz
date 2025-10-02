@@ -4,7 +4,18 @@
     <el-breadcrumb-item>Projects</el-breadcrumb-item>
   </el-breadcrumb>
   <h1>Projects</h1>
-  <el-text class="mx-1">The reason I made my own software was probably because I was annoyed by other similar software.</el-text>
+  <el-card shadow="hover">
+    <template #header><div class="card-header"><span>SpeedTest</span></div></template>
+    <p>A peer to peer SpeedTest tool , Support iperf3 & https.</p>
+    <template #footer><el-button type="primary" @click="speedtest">Go to test</el-button></template>
+  </el-card>
+  <br />
+  <el-card shadow="hover">
+    <template #header><div class="card-header"><span>TKKHS</span></div></template>
+    <p>A monologue listener.</p>
+    <template #footer><el-button type="primary" @click="tkkhs">Go to test</el-button></template>
+  </el-card>
+  <br />
   <el-card shadow="hover">
     <template #header><div class="card-header"><span>FuestaOS</span></div></template>
     <p>A general-purpose open source operating system with high performance, high security, and high usability.</p>
@@ -24,22 +35,10 @@
   </el-card>
    <br />
   <el-card shadow="hover">
-    <template #header><div class="card-header"><span>SpeedTest</span></div></template>
-    <p>A peer to peer SpeedTest tool , Support iperf3 & https.</p>
-    <template #footer><el-button type="primary" @click="speedtest">Go to test</el-button></template>
-  </el-card>
-  <br />
-  <el-card shadow="hover">
-    <template #header><div class="card-header"><span>TKKHS</span></div></template>
-    <p>A monologue listener.</p>
-    <template #footer><el-button type="primary" @click="tkkhs">Go to test</el-button></template>
-  </el-card>
-  <br />
-  <el-card shadow="hover">
    <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button><el-divider direction="vertical" />
-   <el-button type="primary" @click="cs" :icon="Document">Code of this site</el-button><el-divider direction="vertical" />
    <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
-    </el-card>
+  </el-card>
+ <p>The reason I made my own software was probably because I was annoyed by other similar software.</p>
 </template>
 <script setup>
 import { Back , Money , DArrowRight , Document} from '@element-plus/icons-vue'
@@ -57,9 +56,6 @@ const moixa = () => {
 }
 const ghit = () => {
   window.open('https://github.com/mokanove/ghit', '_blank')
-}
-const cs = () => {
-  window.open('https://github.com/mokanove/867678.xyz', '_blank')
 }
 const speedtest = () => {
   router.push('/projects/speedtest')

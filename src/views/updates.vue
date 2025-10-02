@@ -5,6 +5,16 @@
   </el-breadcrumb>
 <h1>Updates and Fixeds</h1>
     <el-timeline>
+      <el-timeline-item timestamp="2025/10/02 3.1.8 to 3.1.9" placement="top">
+      <el-card>
+        <p>Interface logic changes</p>
+        <p>Added hyperlinks at the bottom of the homepage</p>
+        <p>Changed R2 domain name</p>
+        <p>Changed IP query API to ipinfo and deprecated api.867678.xyz</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.1.8 to 3.1.9</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/09/22 3.1.6 to 3.1.8" placement="top">
       <el-card>
         <p>The osaka server available in tomorrow!</p>
@@ -12,7 +22,7 @@
         <p>For example:1osaka.jp.867678.xyz</p>
         <p>Download page style rebuild.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.1.7 to 3.1.8</el-link>
+        <el-link href="https://b93f56cf.867678.pages.dev/" target="_blank">3.1.7 to 3.1.8</el-link><el-divider direction="vertical" />
         <el-link href="https://a9f14063.867678.pages.dev/" target="_blank">3.1.6 to 3.1.7</el-link>
       </el-card>
       </el-timeline-item>
@@ -131,16 +141,12 @@
   </el-timeline>
   <el-card shadow="hover">
    <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button><el-divider direction="vertical" />
-   <el-button type="primary" @click="sc" :icon="Document">View source code</el-button><el-divider direction="vertical" />
     <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
     </el-card>
 </template>
 <script lang="ts" setup>
-import { Document , Back , Money , DArrowRight} from '@element-plus/icons-vue'
+import { Back , Money , DArrowRight} from '@element-plus/icons-vue'
 import { useBak } from '../assets/pro'
 const { bak } = useBak()
 import { donate } from '../assets/donate'
-const sc = () => {
- window.open('https://github.com/mokanove/867678.xyz/blob/main/src/views/updates.vue', '_blank')
-}
 </script>
