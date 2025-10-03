@@ -9,7 +9,7 @@
 > Proxy Cloudflare IP.
 
 ```
-wget https://github.com/mokanove/867678.xyz/raw/refs/heads/servers/depoly/proxy.sh && sudo sh proxy.sh
+wget https://github.com/mokanove/867678.xyz/raw/refs/heads/main/servers/depoly/proxy.sh && sudo sh proxy.sh
 ```
 Clear iptables rules:
 
@@ -25,7 +25,7 @@ iptables -t nat -F
 
 
 ```
-wget https://github.com/mokanove/867678.xyz/raw/refs/heads/servers/depoly/speedtest.sh &&sudo sh speedtest.sh
+wget https://github.com/mokanove/867678.xyz/raw/refs/heads/main/servers/depoly/speedtest.sh &&sudo sh speedtest.sh
 ```
 
 Delete:
@@ -39,6 +39,7 @@ It will be autoremove so you don't do anything
 
 
 # The author is not responsible for any consequences of using this code.
+
 
 
 
