@@ -15,7 +15,7 @@
           <el-button type="success" @click="dd(10)" plain>10MiB</el-button><el-divider direction="vertical" />
           <el-button type="primary" @click="dd(100)" plain>100MiB</el-button><el-divider direction="vertical" />
           <el-button type="danger" @click="dd(300)" plain>300MiB</el-button><p></p>
-          <el-text id="sip">Getting your IP...</el-text><el-divider direction="vertical" /><el-text>Get ip using ipify.org</el-text>
+          <el-text id="sip">Getting your IP...</el-text><el-divider direction="vertical" /><el-text>Get ip using ipinfo.io</el-text>
   </el-card><p></p>
   <el-card shadow="hover">
    <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button><el-divider direction="vertical" />
@@ -51,24 +51,40 @@ const iperf3 = async () => {
 }
 //speedtest
 //get user ip
-import { ref , onMounted } from 'vue'
-async function fetchIpAddress() {
+import { ref, onMounted } from 'vue'
+async function fetchIpAddresses() {
   const ipElement = document.getElementById('sip')
-  if (ipElement) {
+  if (!ipElement) {
+    return
+  }
+ const getIp = async (url: string, type: string) => {
     try {
-      const response = await fetch('https://ipinfo.io/json') 
+      const response = await fetch(url)
       if (!response.ok) {
-        throw new Error('Network error')
+        throw new Error(`Network error for ${type}`)
       }
       const data = await response.json()
-      ipElement.textContent = `Your IP is: ${data.ip}`
+      return { type, ip: data.ip }
     } catch (error) {
-      ipElement.textContent = 'Get IP addr failed', error
+      return { type, ip: `Get ${type} failed` }
     }
   }
+  const results = await Promise.allSettled([
+    getIp('https://ipinfo.io/json', 'IPv4'),
+    getIp('https://v6.ipinfo.io/json', 'IPv6')
+  ])
+  let output = ''
+  results.forEach(result => {
+    if (result.status === 'fulfilled') {
+      output += `${result.value.type} is: ${result.value.ip}\n`
+    } else {
+      output += `${result.reason.type} is: ${result.reason.ip}\n`
+    }
+  })
+  ipElement.innerHTML = output.replace(/\n/g, '<br>')
 }
 onMounted(() => {
-  fetchIpAddress()
+  fetchIpAddresses()
 })
 //select
 const value = ref('')
@@ -98,8 +114,8 @@ const servers = [
 ]
 const urls = {
   cloudflare: 'https://r2.867678.xyz',
-  lax: 'https://1los-angeles.us.867678.xyz:81',
-  osa: 'https://1osaka.jp.867678.xyz:81',
+  lax: 'https://1us-lax.867678.xyz:81',
+  osa: 'https://1jp-osa.867678.xyz:81',
 }
 const dd = (size: number) => {
   const selectedUrl = urls[value.value as keyof typeof urls]
