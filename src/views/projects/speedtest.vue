@@ -21,9 +21,11 @@
    <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button><el-divider direction="vertical" />
    <el-button type="success" @click="donate" :icon="Money">Donate</el-button><el-divider direction="vertical" />
    <el-button @click="iperf3" :icon="Document">Copy iperf3 command</el-button>
-  </el-card>
-    <p>You can use them to test your network speed with https or iperf3.However, I do not guarantee 100% availability, and the test data is for reference only.</p>
+  </el-card><p></p>
+   <el-card shadow="hover">
+     <p>You can use them to test your network speed with https or iperf3.However, I do not guarantee 100% availability, and the test data is for reference only.</p>
      <el-text class="mx-1" type="danger">Your ISP may charge fees, so please be aware of data usage.</el-text>
+  </el-card>
 </template>
 <script lang="ts" setup>
 //normal
@@ -96,6 +98,10 @@ const servers = [
         value: 'cloudflare',
         label: 'Cloudflare R2',
       },
+       {
+        value: 'gcore',
+        label: 'Cloudflare R2 with Gcore CDN',
+      },
     ],
   },
   {
@@ -114,6 +120,7 @@ const servers = [
 ]
 const urls = {
   cloudflare: 'https://r2.867678.xyz',
+  gcore: 'https://gcore-r2.867678.xyz',
   lax: 'https://1us-lax.867678.xyz:81',
   osa: 'https://1jp-osa.867678.xyz:81',
 }

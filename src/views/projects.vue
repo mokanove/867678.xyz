@@ -37,8 +37,10 @@
   <el-card shadow="hover">
    <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button><el-divider direction="vertical" />
    <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
+  </el-card><p></p>
+  <el-card shadow="hover">
+  <p>The reason I made my own software was probably because I was annoyed by other similar software.</p>
   </el-card>
- <p>The reason I made my own software was probably because I was annoyed by other similar software.</p>
 </template>
 <script setup>
 import { Back , Money , DArrowRight , Document} from '@element-plus/icons-vue'

@@ -11,8 +11,10 @@
    <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button><el-divider direction="vertical" />
    <el-button type="primary" @click="sc" :icon="Document">View source code</el-button><el-divider direction="vertical" />
     <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
-    </el-card>
+    </el-card><p></p>
+    <el-card shadow="hover">
     <p>Say what you want, it won't record it.</p>
+    </el-card>
 </template>
 
 <script lang="ts" setup>

@@ -12,7 +12,6 @@
         <template #title><el-icon><SwitchFilled /></el-icon>Theme</template>
         <el-menu-item index="2-3-1" @click="setLight"><el-icon><Sunny /></el-icon>Light</el-menu-item>
         <el-menu-item index="2-3-2" @click="setDark"><el-icon><Moon /></el-icon>Dark</el-menu-item>
-        <el-menu-item index="2-3-3" @click="AutoSwitchy"><el-icon><SwitchFilled /></el-icon>AutoSwitchy</el-menu-item>
       </el-sub-menu>
     </el-sub-menu>
   </el-menu>
@@ -23,7 +22,6 @@
 //Header
 import { ref , watch} from 'vue'
 import { HomeFilled , More , Money , Link , SwitchFilled , Moon , Sunny} from '@element-plus/icons-vue'
-import { ElNotification } from 'element-plus'
 const errorHandler = () => true
 const activeIndex = ref('1')
 //Theme
@@ -43,13 +41,6 @@ const setDark = () => {
 const setLight = () => {
   followSystem.value = false
   isDark.value = false
-}
-const AutoSwitchy = () => {
-  ElNotification({
-    title: 'Theme',
-    message: 'The theme defaults to the operating system settings. If you need to switch automatically, you generally do not need to do it manually.',
-    type: 'primary',
-  })
 }
 //Link
 import { useBak } from './assets/pro'
