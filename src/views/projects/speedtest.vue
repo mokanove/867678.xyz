@@ -4,7 +4,7 @@
     <el-breadcrumb-item :to="{ path: '/projects' }">Projects</el-breadcrumb-item>
     <el-breadcrumb-item>SpeedTest</el-breadcrumb-item>
   </el-breadcrumb>
-    <h1>SpeedTest</h1>
+    <h1>SpeedTest  | Mo Kanove</h1>
   <el-card shadow="hover">
     <el-select v-model="value" placeholder="Chooice a server">
     <el-option-group v-for="group in servers" :key="group.label" :label="group.label">
@@ -45,7 +45,7 @@ const iperf3 = async () => {
         })
         return
       }
-      await copy('iperf3 -c [IP/Domain] -R')
+      await copy('iperf3 -c  -R')
       ElMessage({
         type: 'success',
         message: `Copied to clipboard.`,
@@ -96,11 +96,7 @@ const servers = [
     options: [
       {
         value: 'cloudflare',
-        label: 'Cloudflare R2',
-      },
-       {
-        value: 'gcore',
-        label: 'Cloudflare R2 with Gcore CDN',
+        label: 'Cloudflare R2 + CDN',
       },
     ],
   },
@@ -120,7 +116,6 @@ const servers = [
 ]
 const urls = {
   cloudflare: 'https://r2.867678.xyz',
-  gcore: 'https://gcore-r2.867678.xyz',
   lax: 'https://1us-lax.867678.xyz:81',
   osa: 'https://1jp-osa.867678.xyz:81',
 }

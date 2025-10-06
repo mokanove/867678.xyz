@@ -4,7 +4,7 @@
     <el-breadcrumb-item :to="{ path: '/projects' }">Projects</el-breadcrumb-item>
     <el-breadcrumb-item>TKKHS</el-breadcrumb-item>
   </el-breadcrumb>
-    <h1>TKKHS</h1>
+    <h1>TKKHS | Mo Kanove</h1>
     <textarea id="textInput" placeholder="Say At Here..." rows="5" wrap="soft"></textarea>
     <p></p>
    <el-card shadow="hover">
@@ -37,7 +37,7 @@ const sc = () => {
     }
 
     textarea {
-      width: 99%;
+      width: 98%;
       height: 500px;
       border: 1px solid #ccc;
       border-radius: 4px;

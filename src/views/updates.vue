@@ -5,14 +5,23 @@
   </el-breadcrumb>
 <h1>Updates and Fixeds</h1>
     <el-timeline>
-      <el-timeline-item timestamp="2025/10/02 3.2.0 to 3.2.1" placement="top">
+      <el-timeline-item timestamp="2025/10/02 3.2.1 to 3.2.2" placement="top">
+      <el-card>
+        <p>Remove the project page and move it to the homepage.</p>
+        <p>Move the first few updated pages to the homepage.</p>
+        <p>Removed gcore-r2.867678.xyz</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.2.1 to 3.2.2</el-link>
+      </el-card>
+      </el-timeline-item>
+      <el-timeline-item timestamp="2025/10/05 3.2.0 to 3.2.1" placement="top">
       <el-card>
         <p>Add GcoreCDN</p>
         <p>Support downloading kra files of web page logos</p>
         <p>Domain format from numbercity.iso3166.867678.xyz to numcity-iso3166.867678.xyz</p>
         <p>Added gcore-r2.867678.xyz</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.2.0 to 3.2.1</el-link><el-divider direction="vertical" />
+        <el-link href="https://1a34d3af.867678.pages.dev/" target="_blank">3.2.0 to 3.2.1</el-link><el-divider direction="vertical" />
         <el-link href="https://989c3866.867678.pages.dev/" target="_blank">3.1.9 to 3.2.0</el-link>
       </el-card>
       </el-timeline-item>

@@ -5,18 +5,6 @@
   </el-breadcrumb>
   <h1>Projects</h1>
   <el-card shadow="hover">
-    <template #header><div class="card-header"><span>SpeedTest</span></div></template>
-    <p>A peer to peer SpeedTest tool , Support iperf3 & https.</p>
-    <template #footer><el-button type="primary" @click="speedtest">Go to test</el-button></template>
-  </el-card>
-  <br />
-  <el-card shadow="hover">
-    <template #header><div class="card-header"><span>TKKHS</span></div></template>
-    <p>A monologue listener.</p>
-    <template #footer><el-button type="primary" @click="tkkhs">Go to test</el-button></template>
-  </el-card>
-  <br />
-  <el-card shadow="hover">
     <template #header><div class="card-header"><span>FuestaOS</span></div></template>
     <p>A general-purpose open source operating system with high performance, high security, and high usability.</p>
     <template #footer><el-button @click="fos">Developmenting...</el-button></template>
@@ -58,11 +46,5 @@ const moixa = () => {
 }
 const ghit = () => {
   window.open('https://github.com/mokanove/ghit', '_blank')
-}
-const speedtest = () => {
-  router.push('/projects/speedtest')
-}
-const tkkhs = () => {
-  router.push('/projects/tkkhs')
 }
 </script>
