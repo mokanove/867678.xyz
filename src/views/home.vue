@@ -25,11 +25,11 @@
     <el-card shadow="never">
     <template #header><div class="card-header"><span>Updates & Fixeds</span></div></template>
     <el-timeline>
-      <el-timeline-item timestamp="2025/10/02 3.2.1 to 3.2.2" placement="top">
+      <el-timeline-item timestamp="2025/10/07 3.2.2 to 3.2.3" placement="top">
       <el-card>
-        <p>Remove the project page and move it to the homepage.</p>
         <p>Move the first few updated pages to the homepage.</p>
-        <p>Removed gcore-r2.867678.xyz</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.2.2 to 3.2.3</el-link>
       </el-card>
       </el-timeline-item>
     </el-timeline>
