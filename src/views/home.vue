@@ -3,13 +3,16 @@
 <p></p>
    <el-card shadow="hover">
     <template #header><div class="card-header"><span>SpeedTest</span></div></template>
-    <img src="/2025-10-06_22-46.png" width="99%"/>
+    <el-select v-model="value" disabled placeholder="Select a server to speedtest"></el-select><p></p>
+          <el-button type="success" plain disabled>10MiB</el-button><el-divider direction="vertical" />
+          <el-button type="primary" plain disabled>100MiB</el-button><el-divider direction="vertical" />
+          <el-button type="danger" plain disabled>300MiB</el-button>
     <template #footer><el-button type="primary" @click="speedtest">Take me to</el-button></template>
   </el-card>
   <br />
   <el-card shadow="hover">
     <template #header><div class="card-header"><span>TKKHS</span></div></template>
-    <img src="/2025-10-06_22-47.png" width="99%"/>
+    <el-input v-model="input" disabled placeholder="Please input"/>
     <template #footer><el-button type="primary" @click="tkkhs">Take me to</el-button></template>
   </el-card>
   <br />
@@ -34,7 +37,7 @@
   </el-card>
     <br />
     <el-card shadow="never">
-    <p>Copyright 2025 MoKanove All rights reserved<el-divider direction="vertical" />E-mail:<el-link href="mailto:me@867678.xyz" type="primary" target="_blank">me@867678.xyz</el-link><el-divider direction="vertical" /> Version : 3.2.2 10/06/2025</p>
+    <p>Copyright 2025 MoKanove All rights reserved<el-divider direction="vertical" />E-mail:<el-link href="mailto:me@867678.xyz" type="primary" target="_blank">me@867678.xyz</el-link><el-divider direction="vertical" /> Version : 3.2.3 10/06/2025</p>
     <p>Clone this page & build :<el-link href="https://github.com/mokanove/867678.xyz?tab=readme-ov-file#867678xyz" type="primary" target="_blank">https://github.com/mokanove/867678.xyz?tab=readme-ov-file#867678xyz</el-link></p>
   KRA:
   <el-link href="https://r2.867678.xyz/source/fac.kra" target="_blank">basic logo</el-link><el-divider direction="vertical" />
