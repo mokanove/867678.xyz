@@ -24,7 +24,7 @@ iperf3 -c [IP/Domain]
 >
 > You will need proxy IP , Without them, you won't be able to open your Cloudflare website.
 >
-> You can fill in the server domain name, just like "const proxyIPs = ["us-lax.867678.xyz"];"
+> You can fill in the server domain name, just like "const proxyIPs = ["1us-lax.867678.xyz"];"
 >
 > On these servers, ports 80, 443, 2052, 2082, and 8080 are reverse proxied to Cloudflare CDN. If your Cloudflare speed is very slow, you can try to configure IP force pointing to get high speed from these servers.
 
@@ -75,7 +75,7 @@ IPv6:
 >
 > [Download file from this server](https://867678.xyz/projects/speedtest)
 >
-> ![](TYO.png)
+>Speedtest failed!
 
 Domain:
 ```

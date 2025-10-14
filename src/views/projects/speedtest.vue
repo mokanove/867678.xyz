@@ -108,8 +108,8 @@ const servers = [
         label: 'Los Angeles , California , United States : CloudCone 1Gbps',
       },
       {
-        value: 'osa',
-        label: 'Osaka , Kansai , Japan : Evoxt 1Gbps',
+        value: 'tyo',
+        label: 'Tokyo , Kanto , Japan : Vultr 10Gbps',
       },
     ],
   },
@@ -117,7 +117,7 @@ const servers = [
 const urls = {
   cloudflare: 'https://r2.867678.xyz',
   lax: 'https://1us-lax.867678.xyz:81',
-  osa: 'https://1jp-osa.867678.xyz:81',
+  tyo: 'https://1jp-tyo.867678.xyz:81',
 }
 const dd = (size: number) => {
   const selectedUrl = urls[value.value as keyof typeof urls]

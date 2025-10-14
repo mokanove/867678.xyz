@@ -5,11 +5,18 @@
   </el-breadcrumb>
 <h1>Updates and Fixeds</h1>
     <el-timeline>
+       <el-timeline-item timestamp="2025/10/14 3.2.3 to 3.2.4" placement="top">
+      <el-card>
+        <p>We are very sorry that the Osaka server has exceeded the traffic limit again, so we purchased a Tokyo machine, and the Osaka machine will not provide speed tests in the future.</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.2.3 to 3.2.4</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/10/07 3.2.2 to 3.2.3" placement="top">
       <el-card>
         <p>Move the first few updated pages to the homepage.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.2.2 to 3.2.3</el-link>
+        <el-link href="https://f8874326.867678.pages.dev/" target="_blank">3.2.2 to 3.2.3</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/10/06 3.2.1 to 3.2.2" placement="top">
