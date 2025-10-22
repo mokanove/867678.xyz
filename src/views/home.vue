@@ -1,28 +1,35 @@
 <template>
-        <h1>Mo Kanove</h1>
+        <h1>Welcome to my aera , I'm Mo Kanove</h1>
+        <el-text class="mx-1" type="success" >NVIDIA </el-text>has been one of that <el-text class="mx-1" type="danger">single worst company </el-text>in we're dealt with.<br />
+        <el-text class="mx-1" type="danger">So NVIDIA , Fuck you!</el-text><el-text class="mx-1" type="info"> --Linus Torvalds</el-text>
 <p></p>
-   <el-card shadow="hover">
-    <template #header><div class="card-header"><span>SpeedTest</span></div></template>
-    <el-select v-model="value" disabled placeholder="Select a server to speedtest"></el-select><p></p>
-          <el-button type="success" plain disabled>10MiB</el-button><el-divider direction="vertical" />
-          <el-button type="primary" plain disabled>100MiB</el-button><el-divider direction="vertical" />
-          <el-button type="danger" plain disabled>300MiB</el-button>
-    <template #footer><el-button type="primary" @click="speedtest">Take me to</el-button></template>
-  </el-card>
+   <el-button type="info" plain @click="Github"><el-icon><Link /></el-icon>Github</el-button>
+   <el-button type="primary" plain @click="EMail"><el-icon><ChatLineSquare /></el-icon>E-Mail</el-button>
+   <el-button type="success" plain @click="donate"><el-icon><Money /></el-icon>Donate</el-button>
+<p></p>
+<el-row :gutter="10">
+    <el-col :xs="24" :sm="12" :md="12" :lg="12">
+        <el-card shadow="hover" @click="link('speedtest')">
+            <h2>Speedtest by MoKanove</h2>
+            <p>Quickly test your internet speed using high-speed servers located around the world.</p>
+            <img src="https://skillicons.dev/icons?i=nginx,linux,ubuntu,vite,workers"/>
+        </el-card>
+    </el-col>
+    <el-col :xs="24" :sm="12" :md="12" :lg="12">
+        <el-card shadow="hover" @click="link('tkkhs')">
+            <h2>TKKHS</h2>
+            <p>A good thing to vent your emotions, Ai function will be introduced in the future.</p>
+            <img src="https://skillicons.dev/icons?i=vite,html,css"/>
+        </el-card>
+    </el-col>
+</el-row>
   <br />
-  <el-card shadow="hover">
-    <template #header><div class="card-header"><span>TKKHS</span></div></template>
-    <el-input v-model="input" disabled placeholder="Please input"/>
-    <template #footer><el-button type="primary" @click="tkkhs">Take me to</el-button></template>
-  </el-card>
-  <br />
-   <el-card shadow="never">
-    <template #header><div class="card-header"><span>More Projects</span></div></template>
+   <el-card shadow="hover" @click="link()">
+    <h2>More Projects</h2>
     <p>More interesting , bigger , and developmenting .</p>
-    <template #footer><el-button type="primary"  @click="projects">View all</el-button></template>
     </el-card>
      <br />
-    <el-card shadow="never">
+    <el-card shadow="hover" @click="updates">
     <template #header><div class="card-header"><span>Updates & Fixeds</span></div></template>
     <el-timeline>
       <el-timeline-item timestamp="2025/10/07 3.2.2 to 3.2.3" placement="top">
@@ -33,31 +40,27 @@
       </el-card>
       </el-timeline-item>
     </el-timeline>
-    <template #footer><el-button type="primary"  @click="updates">All</el-button></template>
   </el-card>
     <br />
     <el-card shadow="never">
-    <p>Copyright 2025 MoKanove All rights reserved<el-divider direction="vertical" />E-mail:<el-link href="mailto:me@867678.xyz" type="primary" target="_blank">me@867678.xyz</el-link><el-divider direction="vertical" /> Version : 3.2.4 10/14/2025</p>
-    <p>Clone this page & build :<el-link href="https://github.com/mokanove/867678.xyz?tab=readme-ov-file#867678xyz" type="primary" target="_blank">https://github.com/mokanove/867678.xyz?tab=readme-ov-file#867678xyz</el-link></p>
-  KRA:
-  <el-link href="https://r2.867678.xyz/source/fac.kra" target="_blank">basic logo</el-link><el-divider direction="vertical" />
-  <el-link href="https://r2.867678.xyz/source/fac5.kra" target="_blank">big logo</el-link>
+    <p>Copyright 2025 MoKanove All rights reserved<el-divider direction="vertical" />Version : 3.2.5 10/22/2025</p>
+    <el-link href="https://github.com/mokanove/867678.xyz?tab=readme-ov-file#867678xyz" type="primary" target="_blank">Clone this page & build</el-link><el-divider direction="vertical" />
+    <el-link href="https://r2.867678.xyz/source/fac.kra" target="_blank">basic logo</el-link><el-divider direction="vertical" />
+    <el-link href="https://r2.867678.xyz/source/fac5.kra" target="_blank">big logo</el-link>
     </el-card>
 </template>
 <script setup>
+import {  Link , ChatLineSquare , Money  } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
+import { donate } from '../assets/donate'
 //link
+const Github = () => {window.open('https://github.com/mokanove', '_blank')}
+const EMail = () => {window.open('mailto:me@867678.xyz', '_blank')}
 const router = useRouter()
+const link = (projectName) => {
+    router.push(`/projects/${projectName}`); 
+}
 const updates = () => {
-  router.push('/updates')
-}
-const projects = () => {
-  router.push('/projects')
-}
-const speedtest = () => {
-  router.push('/projects/speedtest')
-}
-const tkkhs = () => {
-  router.push('/projects/tkkhs')
+    router.push(`/updates`); 
 }
 </script>

@@ -25,4 +25,4 @@ npm run dev
 npm run build
 ```
 
-# This site made MoKanove & Vite & Element-Plus , LICENSE:GPL v3
+# This site made by MoKanove & Vite & Element-Plus , LICENSE:GPL v3

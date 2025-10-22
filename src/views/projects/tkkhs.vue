@@ -7,21 +7,15 @@
     <h1>TKKHS | Mo Kanove</h1>
     <textarea id="textInput" placeholder="Say At Here..." rows="5" wrap="soft"></textarea>
     <p></p>
-   <el-card shadow="hover">
-   <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button><el-divider direction="vertical" />
-   <el-button type="primary" @click="sc" :icon="Document">View source code</el-button><el-divider direction="vertical" />
-    <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
-    </el-card><p></p>
     <el-card shadow="hover">
-    <p>Say what you want, it won't record it.</p>
+    <img src="https://skillicons.dev/icons?i=vite,html,css" height="25px"/><el-divider direction="vertical" />
+    <el-button type="primary" @click="sc" :icon="Document">View source code</el-button>
+    <p>Say what you want, it won't record it. Open Source with GPLv3</p>
     </el-card>
 </template>
 
 <script lang="ts" setup>
-import { Document , Back , Money , DArrowRight } from '@element-plus/icons-vue'
-import { useBak } from '../../assets/pro'
-const { bak } = useBak()
-import { donate } from '../../assets/donate'
+import { Document , DArrowRight } from '@element-plus/icons-vue'
 const sc = () => {
  window.open('https://github.com/mokanove/867678.xyz/blob/main/src/views/projects/tkkhs.vue', '_blank')
 }

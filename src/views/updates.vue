@@ -5,11 +5,20 @@
   </el-breadcrumb>
 <h1>Updates and Fixeds</h1>
     <el-timeline>
+      <el-timeline-item timestamp="2025/10/22 3.2.4 to 3.2.5" placement="top">
+      <el-card>
+        <p>Changed homepage logic.</p>
+        <p>Numerous page logic changes.</p>
+        <p>The theme now supports device-specific or manual switching.</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.2.4 to 3.2.5</el-link>
+      </el-card>
+      </el-timeline-item>
        <el-timeline-item timestamp="2025/10/14 3.2.3 to 3.2.4" placement="top">
       <el-card>
         <p>We are very sorry that the Osaka server has exceeded the traffic limit again, so we purchased a Tokyo machine, and the Osaka machine will not provide speed tests in the future.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.2.3 to 3.2.4</el-link>
+        <el-link href="https://5cf12555.867678.pages.dev/" target="_blank">3.2.3 to 3.2.4</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/10/07 3.2.2 to 3.2.3" placement="top">
@@ -174,13 +183,9 @@
     </el-timeline-item>
   </el-timeline>
   <el-card shadow="hover">
-   <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button><el-divider direction="vertical" />
-    <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
-    </el-card>
+   <p>Projects update log please visit project release.</p>
+  </el-card>
 </template>
 <script lang="ts" setup>
-import { Back , Money , DArrowRight} from '@element-plus/icons-vue'
-import { useBak } from '../assets/pro'
-const { bak } = useBak()
-import { donate } from '../assets/donate'
+import {DArrowRight} from '@element-plus/icons-vue'
 </script>

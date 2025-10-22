@@ -1,37 +1,7 @@
 # These are some servers with special features.
-# What can them do?
-
-### Speedtest
-#### Iperf3
-
-> These servers has iperf3 service , you can using : test download
-```
-iperf3 -c [IP/Domain] -R
-```
-
->OR using : test upload
-```
-iperf3 -c [IP/Domain]
-```
-
-#### HTTP Download
-
-> Cleck [Download file from this server with ssl.] to download file.
-
-### Proxy IP(SNI IP)
-
-> If you using cloudflare workers build vless proxy
->
-> You will need proxy IP , Without them, you won't be able to open your Cloudflare website.
->
-> You can fill in the server domain name, just like "const proxyIPs = ["1us-lax.867678.xyz"];"
->
-> On these servers, ports 80, 443, 2052, 2082, and 8080 are reverse proxied to Cloudflare CDN. If your Cloudflare speed is very slow, you can try to configure IP force pointing to get high speed from these servers.
 
 ## Los Angeles , California , USA (LAX) :
 
-> Full IPV6 support.
->
 > Speedtest:
 >
 > [Download file from this server.](https://867678.xyz/projects/speedtest)
@@ -40,10 +10,9 @@ iperf3 -c [IP/Domain]
 >
 
 
-
 Domain:
 ```
-us-lax.867678.xyz
+us-lax1.867678.xyz
 ```
 
 
@@ -67,31 +36,29 @@ IPv6:
 
 ------
 
-## Tokyo , Japan (TYO):
+## Osaka , Kansai , Japan (OSA2):
 
-> Full IPV6 support.
->
 > Speedtest:
 >
 > [Download file from this server](https://867678.xyz/projects/speedtest)
 >
->Speedtest failed!
+>![](OSA2.png)
 
 Domain:
 ```
-jp-tyo.867678.xyz
+jp-osa2.867678.xyz
 ```
 
 IPv4:
 
 ```
-139.180.204.132
+64.176.62.7
 ```
 
 IPv6:
 
 ```
-2001:19f0:7002:0a5a:5400:05ff:fea3:3cd2
+2401:c080:3800:2342:5400:05ff:feb7:2e27
 ```
 
 ------
@@ -112,11 +79,31 @@ https://867678.xyz/projects/speedtest
 
 ------
 
+# What can them do?
+### Speedtest
+#### Iperf3
 
-# More servers is building.
+> These servers has iperf3 service , you can using : test download
+```
+iperf3 -c [IP/Domain] -R
+```
 
+>OR using : test upload
+```
+iperf3 -c [IP/Domain]
+```
 
-# IP info from ipinfo.io.
+#### HTTP Download
+
+#### Proxy IP(SNI IP)
+
+> If you using cloudflare workers build vless proxy
+>
+> You will need proxy IP , Without them, you won't be able to open your Cloudflare website.
+>
+> You can fill in the server domain name, just like "const proxyIPs = ["us-lax1.867678.xyz:8443"];"
+>
+> On these servers, ports 80, 443, 2052, 2082, and 8080 are reverse proxied to Cloudflare CDN. If your Cloudflare speed is very slow, you can try to configure IP force pointing to get high speed from these servers.
 
 
 

@@ -4,18 +4,10 @@
       <el-avatar :size="55" src="/logo.png" @error="errorHandler" @click="bak"></el-avatar>
     </el-menu-item>
     <el-sub-menu index="1">
-      <template #title><el-icon><HomeFilled /></el-icon>Home</template>
-      <el-menu-item index="1-1" @click="bak"><el-icon><HomeFilled /></el-icon>Real Home</el-menu-item>
-      <el-menu-item index="1-2" @click="Github"><el-icon><Link /></el-icon>Github Home</el-menu-item>
-      </el-sub-menu>
-    <el-sub-menu index="2">
-      <template #title><el-icon><More /></el-icon>More</template>
-      <el-sub-menu index="2-1">
-        <template #title><el-icon><SwitchFilled /></el-icon>Theme</template>
-        <el-menu-item index="2-1-1" @click="setLight"><el-icon><Sunny /></el-icon>Light</el-menu-item>
-        <el-menu-item index="2-1-2" @click="setDark"><el-icon><Moon /></el-icon>Dark</el-menu-item>
-      </el-sub-menu>
-       <el-menu-item index="2-2" @click="donate"><el-icon><Money /></el-icon>Donate</el-menu-item>
+      <template #title><el-icon><Menu /></el-icon>Menu</template>
+      <el-menu-item index="1-1" @click="AutoTheme"><el-icon><SwitchFilled /></el-icon>Follow System(Default)</el-menu-item>
+      <el-menu-item index="1-2" @click="setLight"><el-icon><Sunny /></el-icon>Light</el-menu-item>
+      <el-menu-item index="1-3" @click="setDark"><el-icon><Moon /></el-icon>Dark</el-menu-item>
     </el-sub-menu>
   </el-menu>
   <router-view></router-view>
@@ -24,7 +16,7 @@
 <script lang="ts" setup>
 //Header
 import { ref , watch} from 'vue'
-import { HomeFilled , More , Money , Link , SwitchFilled , Moon , Sunny} from '@element-plus/icons-vue'
+import { Menu  , SwitchFilled , Moon , Sunny} from '@element-plus/icons-vue'
 const errorHandler = () => true
 const activeIndex = ref('1')
 //Theme
@@ -37,6 +29,10 @@ watch(preferredDark, (val) => {
     isDark.value = val
   }
 })
+const AutoTheme = () => {
+  followSystem.value = true
+  isDark.value = preferredDark.value
+}
 const setDark = () => {
   followSystem.value = false
   isDark.value = true
@@ -48,8 +44,6 @@ const setLight = () => {
 //Link
 import { useBak } from './assets/pro'
 const { bak } = useBak()
-import { donate } from './assets/donate'
-const Github = () => {  window.open('https://github.com/mokanove', '_blank')}
 </script>
 
 <style scoped>

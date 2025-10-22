@@ -6,12 +6,11 @@
 
 ## proxy.sh:
 
-> Proxy Cloudflare IP.
-
+> Speedtest & Proxy Cloudflare IP.
 ```
 wget https://github.com/mokanove/867678.xyz/raw/refs/heads/main/servers/proxy.sh && sudo sh proxy.sh
 ```
-Clear iptables rules:
+>Clear iptables rules:
 
 ```
 iptables -t nat -F
