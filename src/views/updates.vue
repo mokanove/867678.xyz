@@ -8,6 +8,7 @@
       <el-timeline-item timestamp="2025/10/23 3.2.5 to 3.2.6" placement="top">
       <el-card>
         <p>Changed speedtest server</p>
+        <p>Fixed can't link to projects page</p>
         <h3>View old page:</h3>
         <el-link href="https://867678.xyz/" target="_blank">3.2.5 to 3.2.6</el-link>
       </el-card>

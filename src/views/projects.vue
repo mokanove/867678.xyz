@@ -23,10 +23,6 @@
   </el-card>
    <br />
   <el-card shadow="hover">
-   <el-button type="info" @click="bak" :icon="Back">Back to homepage</el-button><el-divider direction="vertical" />
-   <el-button type="success" @click="donate" :icon="Money">Donate</el-button>
-  </el-card><p></p>
-  <el-card shadow="hover">
   <p>The reason I made my own software was probably because I was annoyed by other similar software.</p>
   </el-card>
 </template>

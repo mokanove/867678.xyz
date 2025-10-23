@@ -24,7 +24,7 @@
     </el-col>
 </el-row>
   <br />
-   <el-card shadow="hover" @click="link()">
+   <el-card shadow="hover" @click="link('#')">
     <h2>More Projects</h2>
     <p>More interesting , bigger , and developmenting .</p>
     </el-card>
