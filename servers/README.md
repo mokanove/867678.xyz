@@ -42,11 +42,11 @@ IPv6:
 >
 > [Download file from this server](https://867678.xyz/projects/speedtest)
 >
->![](OSA2.png)
+>![](OSA.png)
 
 Domain:
 ```
-jp-osa2.867678.xyz
+jp-osa1.867678.xyz
 ```
 
 IPv4:
@@ -81,40 +81,16 @@ https://867678.xyz/projects/speedtest
 
 # What can them do?
 ### Speedtest
+#### HTTPS Download
+>[HTTPS Test](https://867678.xyz/projects/speedtest)
 #### Iperf3
 
-> These servers has iperf3 service , you can using : test download
+> Test Download
 ```
 iperf3 -c [IP/Domain] -R
 ```
 
->OR using : test upload
+>Test Upload
 ```
 iperf3 -c [IP/Domain]
 ```
-
-#### HTTP Download
-
-#### Proxy IP(SNI IP)
-
-> If you using cloudflare workers build vless proxy
->
-> You will need proxy IP , Without them, you won't be able to open your Cloudflare website.
->
-> You can fill in the server domain name, just like "const proxyIPs = ["us-lax1.867678.xyz:8443"];"
->
-> On these servers, ports 80, 443, 2052, 2082, and 8080 are reverse proxied to Cloudflare CDN. If your Cloudflare speed is very slow, you can try to configure IP force pointing to get high speed from these servers.
-
-
-
-
-
-
-
-
-
-
-
-
-
-

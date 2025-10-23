@@ -6,7 +6,7 @@ git clone https://github.com/mokanove/867678.xyz.git
 ```
 > OR
 ```
-wget https://github.com/mokanove/867678.xyz/archive/refs/heads/main.zip && unzip main.zip && rm main.zip
+wget https://github.com/mokanove/867678.xyz/archive/refs/heads/main.zip && unzip main.zip && rm -rf main.zip servers/
 ```
 ## init
 ```

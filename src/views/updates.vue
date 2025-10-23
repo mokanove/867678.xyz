@@ -4,13 +4,17 @@
     <el-breadcrumb-item>Updates & Fixeds</el-breadcrumb-item>
   </el-breadcrumb>
 <h1>Updates and Fixeds</h1>
+<p>For other project update logs, please go to the project Github. Here is only the website update log.</p>
     <el-timeline>
-      <el-timeline-item timestamp="2025/10/23 3.2.5 to 3.2.6" placement="top">
+      <el-timeline-item timestamp="2025/10/23 3.2.5 to 3.2.7" placement="top">
       <el-card>
-        <p>Changed speedtest server</p>
-        <p>Fixed can't link to projects page</p>
+        <p>Removed a server in Osaka, Japan, and celebrated the resurrection of that old friend.</p>
+        <p>This time I installed a firewall for my old friend, so the traffic shouldn't be excessive.</p>
+        <p>Fixed the issue of not being able to jump to the project page.</p>
+        <p>Corrected the personal signature.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.2.5 to 3.2.6</el-link>
+        <el-link href="https://867678.xyz/" target="_blank">3.2.6 to 3.2.7</el-link><el-divider direction="vertical" />
+        <el-link href="https://692caca7.867678.pages.dev/" target="_blank">3.2.5 to 3.2.6</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/10/22 3.2.4 to 3.2.5" placement="top">
@@ -19,7 +23,7 @@
         <p>Numerous page logic changes.</p>
         <p>The theme now supports device-specific or manual switching.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.2.4 to 3.2.5</el-link>
+        <el-link href="https://ad41a936.867678.pages.dev/" target="_blank">3.2.4 to 3.2.5</el-link>
       </el-card>
       </el-timeline-item>
        <el-timeline-item timestamp="2025/10/14 3.2.3 to 3.2.4" placement="top">
@@ -190,9 +194,6 @@
       </el-card>
     </el-timeline-item>
   </el-timeline>
-  <el-card shadow="hover">
-   <p>Projects update log please visit project release.</p>
-  </el-card>
 </template>
 <script lang="ts" setup>
 import {DArrowRight} from '@element-plus/icons-vue'

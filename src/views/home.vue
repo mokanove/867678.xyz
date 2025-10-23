@@ -1,6 +1,6 @@
 <template>
         <h1>Welcome to my aera , I'm Mo Kanove</h1>
-        <el-text class="mx-1" type="success" >NVIDIA </el-text>has been one of that <el-text class="mx-1" type="danger">single worst company </el-text>in we're dealt with.<br />
+        <el-text class="mx-1" type="success" >NVIDIA </el-text>has been one of the <el-text class="mx-1" type="danger">single worst company </el-text>we've ever dealt with.<br />
         <el-text class="mx-1" type="danger">So NVIDIA , Fuck you!</el-text><el-text class="mx-1" type="info"> --Linus Torvalds</el-text>
 <p></p>
    <el-button type="info" plain @click="Github"><el-icon><Link /></el-icon>Github</el-button>
@@ -43,10 +43,7 @@
   </el-card>
     <br />
     <el-card shadow="never">
-    <p>Copyright 2025 MoKanove All rights reserved<el-divider direction="vertical" />Version : 3.2.6 10/23/2025 UTC+8</p>
-    <el-link href="https://github.com/mokanove/867678.xyz?tab=readme-ov-file#867678xyz" type="primary" target="_blank">Clone this page & build</el-link><el-divider direction="vertical" />
-    <el-link href="https://r2.867678.xyz/source/fac.kra" target="_blank">basic logo</el-link><el-divider direction="vertical" />
-    <el-link href="https://r2.867678.xyz/source/fac5.kra" target="_blank">big logo</el-link>
+    <p>Website Version : 3.2.7 10/23/2025<el-divider direction="vertical" />Build time : UTC+0800 2025-10-23<el-divider direction="vertical" />© 2025 MoKanove</p>
     </el-card>
 </template>
 <script setup>

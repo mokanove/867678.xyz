@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
+//home
 import Home from '../views/home.vue'
 import updates from '../views/updates.vue'
 import projects from '../views/projects.vue'
+//projects
+import  speedtest from '../views/projects/speedtest.vue'
 import tkkhs from '../views/projects/tkkhs.vue'
 import  FuestaOS from '../views/projects/fuestaos.vue'
 import  moixa from '../views/projects/moixa.vue'
 import  ghit from '../views/projects/ghit.vue'
-import  speedtest from '../views/projects/speedtest.vue'
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -32,7 +33,7 @@ const router = createRouter({
       component: tkkhs,
     },
     {
-      path: '/projects/FuestaOS',
+      path: '/projects/fuestaos',
       name: 'FuestaOS',
       component: FuestaOS,
     },
@@ -53,5 +54,4 @@ const router = createRouter({
     },
   ],
 })
-
 export default router
