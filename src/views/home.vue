@@ -43,7 +43,7 @@
   </el-card>
     <br />
     <el-card shadow="never">
-    <p>Copyright 2025 MoKanove All rights reserved<el-divider direction="vertical" />Version : 3.2.5 10/22/2025</p>
+    <p>Copyright 2025 MoKanove All rights reserved<el-divider direction="vertical" />Version : 3.2.6 10/23/2025 UTC+8</p>
     <el-link href="https://github.com/mokanove/867678.xyz?tab=readme-ov-file#867678xyz" type="primary" target="_blank">Clone this page & build</el-link><el-divider direction="vertical" />
     <el-link href="https://r2.867678.xyz/source/fac.kra" target="_blank">basic logo</el-link><el-divider direction="vertical" />
     <el-link href="https://r2.867678.xyz/source/fac5.kra" target="_blank">big logo</el-link>

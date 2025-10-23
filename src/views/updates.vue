@@ -5,6 +5,13 @@
   </el-breadcrumb>
 <h1>Updates and Fixeds</h1>
     <el-timeline>
+      <el-timeline-item timestamp="2025/10/23 3.2.5 to 3.2.6" placement="top">
+      <el-card>
+        <p>Changed speedtest server</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.2.5 to 3.2.6</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/10/22 3.2.4 to 3.2.5" placement="top">
       <el-card>
         <p>Changed homepage logic.</p>

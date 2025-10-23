@@ -78,10 +78,6 @@ const servers = [
         value: 'cloudflare',
         label: 'Cloudflare R2',
       },
-      {
-        value: 'cfcdn',
-        label: 'Cloudflare CDN(Not avaliable)',
-      },
     ],
   },
   {
@@ -93,21 +89,15 @@ const servers = [
       },
       {
         value: 'osa',
-        label: 'Osaka , Kansai , Japan : Evoxt 1Gbps (Data exhausted)',
-      },
-      {
-        value: 'osa2',
-        label: 'Osaka , Kansai , Japan : Vultr 5Gbps',
+        label: 'Osaka , Kansai , Japan : Evoxt 1Gbps',
       },
     ],
   },
 ]
 const urls = {
   cloudflare: 'https://r2.867678.xyz',
-  cfcdn: 'https://speed.cloudflare.com/__down?during=download&bytes=',
   lax: 'https://us-lax1.867678.xyz',
   osa: 'https://jp-osa1.867678.xyz',
-  osa2: 'https://jp-osa2.867678.xyz',
 }
 const dd = (size: number) => {
   const selectedUrl = urls[value.value as keyof typeof urls]
