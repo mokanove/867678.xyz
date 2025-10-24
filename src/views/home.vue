@@ -43,16 +43,16 @@
   </el-card>
     <br />
     <el-card shadow="never">
-    <p>Website Version : 3.2.7 10/23/2025<el-divider direction="vertical" />Build time : UTC+0800 2025-10-23<el-divider direction="vertical" />© 2025 MoKanove</p>
+    <p>Website Version : 3.2.8 10/24/2025<el-divider direction="vertical" />Build time : 2025-10-24<el-divider direction="vertical" />© 2025 MoKanove</p>
     </el-card>
 </template>
 <script setup>
 import {  Link , ChatLineSquare , Money  } from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router'
 import { donate } from '../assets/donate'
 //link
 const Github = () => {window.open('https://github.com/mokanove', '_blank')}
 const EMail = () => {window.open('mailto:me@867678.xyz', '_blank')}
+import { useRouter } from 'vue-router'
 const router = useRouter()
 const link = (projectName) => {
     router.push(`/projects/${projectName}`); 

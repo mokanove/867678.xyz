@@ -5,19 +5,17 @@
     <el-breadcrumb-item>TKKHS</el-breadcrumb-item>
   </el-breadcrumb>
     <h1>TKKHS | Mo Kanove</h1>
-    <textarea id="textInput" placeholder="Say At Here..." rows="5" wrap="soft"></textarea>
+    <textarea id="textInput" placeholder="Say Anything At Here..."></textarea>
     <p></p>
     <el-card shadow="hover">
     <img src="https://skillicons.dev/icons?i=vite,html,css" height="25px"/><el-divider direction="vertical" />
-    <el-link href="https://github.com/mokanove/867678.xyz/blob/main/src/views/projects/tkkhs.vue" targer="_blank" type="primary">View Source Code</el-link><el-divider direction="vertical" />
+    <el-link href="https://github.com/mokanove/867678.xyz/blob/main/src/views/projects/tkkhs.vue" target="_blank" type="primary">View Source Code</el-link><el-divider direction="vertical" />
     <el-text>Say what you want, it won't record it. Open Source with GPLv3</el-text>
     </el-card>
 </template>
-
 <script lang="ts" setup>
 import  {DArrowRight} from '@element-plus/icons-vue'
 </script>
-
 <style lang="css">
 .input-container {
       background-color: #ffffff;
@@ -28,7 +26,7 @@ import  {DArrowRight} from '@element-plus/icons-vue'
     }
 
     textarea {
-      width: 98%;
+      width: 99%;
       height: 500px;
       border: 1px solid #ccc;
       border-radius: 4px;

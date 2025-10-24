@@ -1,10 +1,10 @@
 <template>
-  <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false"  >
+  <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false" >
     <el-menu-item index="0">
       <el-avatar :size="55" src="/logo.png" @error="errorHandler" @click="bak"></el-avatar>
     </el-menu-item>
     <el-sub-menu index="1">
-      <template #title><el-icon><Menu /></el-icon>Menu</template>
+      <template #title><el-icon><Menu /></el-icon>Theme</template>
       <el-menu-item index="1-1" @click="AutoTheme"><el-icon><SwitchFilled /></el-icon>Follow System(Default)</el-menu-item>
       <el-menu-item index="1-2" @click="setLight"><el-icon><Sunny /></el-icon>Light</el-menu-item>
       <el-menu-item index="1-3" @click="setDark"><el-icon><Moon /></el-icon>Dark</el-menu-item>
@@ -19,6 +19,9 @@ import {ref,watch} from 'vue'
 import {Menu,SwitchFilled ,Moon,Sunny} from '@element-plus/icons-vue'
 const errorHandler = () => true
 const activeIndex = ref('1')
+//Link
+import { useBak } from './assets/pro'
+const { bak } = useBak()
 //Theme
 import { useDark, usePreferredDark } from '@vueuse/core'
 const isDark = useDark()
@@ -41,9 +44,6 @@ const setLight = () => {
   followSystem.value = false
   isDark.value = false
 }
-//Link
-import { useBak } from './assets/pro'
-const { bak } = useBak()
 </script>
 
 <style scoped>

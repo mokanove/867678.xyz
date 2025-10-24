@@ -6,6 +6,14 @@
 <h1>Updates and Fixeds</h1>
 <p>For other project update logs, please go to the project Github. Here is only the website update log.</p>
     <el-timeline>
+      <el-timeline-item timestamp="2025/10/24 3.2.7 to 3.2.8" placement="top">
+      <el-card>
+        <p>The speed test interface has been significantly optimized.</p>
+        <p>Fixed an issue where clicking certain hyperlinks wouldn't redirect to a new tab.</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.2.7 to 3.2.8</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/10/23 3.2.5 to 3.2.7" placement="top">
       <el-card>
         <p>Removed a server in Osaka, Japan, and celebrated the resurrection of that old friend.</p>
@@ -13,7 +21,7 @@
         <p>Fixed the issue of not being able to jump to the project page.</p>
         <p>Corrected the personal signature.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.2.6 to 3.2.7</el-link><el-divider direction="vertical" />
+        <el-link href="https://66d18145.867678.pages.dev/" target="_blank">3.2.6 to 3.2.7</el-link><el-divider direction="vertical" />
         <el-link href="https://692caca7.867678.pages.dev/" target="_blank">3.2.5 to 3.2.6</el-link>
       </el-card>
       </el-timeline-item>
