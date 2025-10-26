@@ -1,56 +1,46 @@
 import { createRouter, createWebHistory } from 'vue-router'
-//home
-import Home from '../views/home.vue'
-import updates from '../views/updates.vue'
-import projects from '../views/projects.vue'
-//projects
-import  speedtest from '../views/projects/speedtest.vue'
-import tkkhs from '../views/projects/tkkhs.vue'
-import  FuestaOS from '../views/projects/fuestaos.vue'
-import  moixa from '../views/projects/moixa.vue'
-import  ghit from '../views/projects/ghit.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'home',
-      component: Home,
+      component: () => import('../views/home.vue'),
     },
     {
       path: '/updates',
       name: 'updates',
-      component: updates,
+     component: () => import('../views/updates.vue'),
     },
     {
     path: '/projects',
      name: 'projects',
-    component: projects,
-    },
-    {
-      path: '/projects/tkkhs',
-      name: 'tkkhs',
-      component: tkkhs,
-    },
-    {
-      path: '/projects/fuestaos',
-      name: 'FuestaOS',
-      component: FuestaOS,
-    },
-    {
-      path: '/projects/moixa',
-      name: 'moixa',
-      component: moixa,
-    },
-    {
-      path: '/projects/ghit',
-      name: 'ghit',
-      component: ghit,
+    component: () => import('../views/projects.vue'),
     },
     {
       path: '/projects/speedtest',
       name: 'speedtest',
-      component: speedtest,
+      component: () => import('../views/projects/speedtest.vue'),
+    },
+    {
+      path: '/projects/tkkhs',
+      name: 'tkkhs',
+      component: () => import('../views/projects/tkkhs.vue'),
+    },
+    {
+      path: '/projects/fuestaos',
+      name: 'FuestaOS',
+      component: () => import('../views/projects/fuestaos.vue'),
+    },
+    {
+      path: '/projects/moixa',
+      name: 'moixa',
+      component: () => import('../views/projects/moixa.vue'),
+    },
+    {
+      path: '/projects/ghit',
+      name: 'ghit',
+      component: () => import('../views/projects/ghit.vue'),
     },
   ],
 })

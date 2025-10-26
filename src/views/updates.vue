@@ -6,12 +6,24 @@
 <h1>Updates and Fixeds</h1>
 <p>For other project update logs, please go to the project Github. Here is only the website update log.</p>
     <el-timeline>
+      <el-timeline-item timestamp="2025/10/26 3.2.8 to 3.2.9" placement="top">
+      <el-card>
+        <p>Optimized the homepage layout and added the My Skills card.(However, the icons are currently misplaced.)</p>
+        <p>Redesigned the speed test page.</p>
+        <p>Fixed an error that caused the package size to be too large when running npm run build.</p>
+        <p>(Optimizing the package size may also optimize the website loading speed)</p>
+        <p>Rearranged the project list.</p>
+        <p>Re-optimize the project display page.</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.2.8 to 3.2.9</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/10/24 3.2.7 to 3.2.8" placement="top">
       <el-card>
         <p>The speed test interface has been significantly optimized.</p>
         <p>Fixed an issue where clicking certain hyperlinks wouldn't redirect to a new tab.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.2.7 to 3.2.8</el-link>
+        <el-link href="https://aa602d62.867678.pages.dev/" target="_blank">3.2.7 to 3.2.8</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/10/23 3.2.5 to 3.2.7" placement="top">

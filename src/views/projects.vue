@@ -1,44 +1,45 @@
 <template>
-    <el-breadcrumb :separator-icon="DArrowRight" >
-    <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
-    <el-breadcrumb-item>Projects</el-breadcrumb-item>
-  </el-breadcrumb>
+<el-breadcrumb :separator-icon="DArrowRight" >
+<el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
+<el-breadcrumb-item>Projects</el-breadcrumb-item>
+</el-breadcrumb>
   <h1>Projects</h1>
   <p>The reason I made my own software was probably because I was annoyed by other similar software.</p>
-  <el-card shadow="hover">
-    <template #header><div class="card-header"><span>FuestaOS</span></div></template>
-    <p>A general-purpose open source operating system with high performance, high security, and high usability.</p>
-    <template #footer><el-button @click="fos">Developmenting...</el-button></template>
+<el-card shadow="hover" @click="link('speedtest')">
+    <h2>Speedtest by MoKanove</h2>
+    <p>Quickly test your internet speed using high-speed servers located around the world.</p>
+    <img src="https://skillicons.dev/icons?i=nginx,linux,ubuntu,vite,workers" height="30px"/>
   </el-card>
   <br />
- <el-card shadow="hover">
-    <template #header><div class="card-header"><span>Ghit</span></div></template>
+  <el-card shadow="hover" @click="link('tkkhs')">
+    <h2>TKKHS</h2>
+    <p>A good thing to vent your emotions, Ai function will be introduced in the future.</p>
+    <img src="https://skillicons.dev/icons?i=vite,html,css" height="30px"/>
+  </el-card>
+  <br />
+ <el-card shadow="hover" @click="link('ghit')">
+    <h2>Ghit</h2>
     <p>A convenient open source and easy-to-use version controller.</p>
-    <template #footer><el-button @click="ghit">Developmenting...</el-button></template>
   </el-card>
    <br />
-   <el-card shadow="hover">
-    <template #header><div class="card-header"><span>moixa</span></div></template>
+   <el-card shadow="hover" @click="link('moixa')">
+    <h2>moixa</h2>
     <p>High security and high speed network proxy tool.</p>
-    <template #footer><el-button @click="moixa">Developmenting...</el-button></template>
   </el-card>
    <br />
+   <el-card shadow="hover" @click="link('FuestaOS')">
+    <h2>FuestaOS</h2>
+    <p>A general-purpose open source operating system with high performance, high security, and high usability.</p>
+  </el-card>
 </template>
 <script setup>
 import { Back , Money , DArrowRight , Document} from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router'
 import { useBak } from '../assets/pro'
 const { bak } = useBak()
-import { donate } from '../assets/donate'
 //link
+import { useRouter } from 'vue-router'
 const router = useRouter()
-const fos = () => {
-  window.open('https://github.com/mokanove/fuestaos', '_blank')
-}
-const moixa = () => {
-  window.open('https://github.com/mokanove/moixa', '_blank')
-}
-const ghit = () => {
-  window.open('https://github.com/mokanove/ghit', '_blank')
+const link = (projectName) => {
+    router.push(`/projects/${projectName}`); 
 }
 </script>
