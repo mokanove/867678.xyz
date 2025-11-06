@@ -6,15 +6,13 @@
   <h1>Projects</h1>
   <p>The reason I made my own software was probably because I was annoyed by other similar software.</p>
 <el-card shadow="hover" @click="link('speedtest')">
-    <h2>Speedtest by MoKanove</h2>
+    <h2>Speedtest by Mo</h2>
     <p>Quickly test your internet speed using high-speed servers located around the world.</p>
-    <img src="https://skillicons.dev/icons?i=nginx,linux,ubuntu,vite,workers" height="30px"/>
   </el-card>
   <br />
   <el-card shadow="hover" @click="link('tkkhs')">
     <h2>TKKHS</h2>
     <p>A good thing to vent your emotions, Ai function will be introduced in the future.</p>
-    <img src="https://skillicons.dev/icons?i=vite,html,css" height="30px"/>
   </el-card>
   <br />
  <el-card shadow="hover" @click="link('ghit')">

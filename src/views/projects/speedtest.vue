@@ -4,29 +4,8 @@
   <el-breadcrumb-item :to="{ path: '/projects' }">Projects</el-breadcrumb-item>
   <el-breadcrumb-item>SpeedTest</el-breadcrumb-item>
   </el-breadcrumb>
-    <h1>SpeedTest  | Mo Kanove</h1>
-   <el-card shadow="hover">
-    <template #header><div class="card-header"><span>Your internet</span></div></template>
-    <p id="sip">Getting your IP...</p>
-    <el-text>Get IP using ipinfo.io</el-text><el-divider direction="vertical" />
-    <el-link href="https://ipinfo.io/what-is-my-ip" target="_black" type="primary">More info about your IPv4</el-link><el-divider direction="vertical" />
-    <el-link href="https://v6.ipinfo.io/what-is-my-ip" target="_black" type="primary">v6</el-link>
-  </el-card><p></p>
-<el-row :gutter="10">
- <el-col :xs="24" :sm="12" :md="12" :lg="12">
-   <el-card shadow="hover">
-    <template #header><div class="card-header"><span>iPerf3 (Only TCP)</span></div></template>
-    <el-table :data="iperfserv">
-    <el-table-column prop="domain" label="domain(auto ipv4/v6)" />
-    <el-table-column prop="location" label="serverlocation" />
-    <el-table-column prop="bandwidth" label="bandwidth" />
-  </el-table>
-    <p>Upload: iperf3 -c domain <el-divider direction="vertical" />  Download iperf3 -c domian -R</p>
-    <el-text>You need to install iperf3 on your device first, the address is </el-text><el-link href="https://iperf.fr/iperf-download.php#windows" target="_blank" type="primary">here</el-link><el-divider direction="vertical" />
-    <el-text>Need more servers?</el-text><el-link href="https://iperf.fr/iperf-servers.php" target="_blank" type="primary">Here are some public iperf3 servers</el-link><p></p>
-  </el-card>
-  </el-col>
-  <el-col :xs="24" :sm="12" :md="12" :lg="12">
+  <h1>SpeedTest  | Mo</h1>
+  <p>It will become a web service, similar to speedtest.net</p>
   <el-card shadow="hover">
     <template #header><div class="card-header"><span>HTTPS Download File</span></div></template>
     <el-select v-model="value" placeholder="Chooice a server">
@@ -37,24 +16,12 @@
           <el-button type="success" @click="dd(10)" plain>10MiB</el-button><el-divider direction="vertical" />
           <el-button type="primary" @click="dd(100)" plain>100MiB</el-button><el-divider direction="vertical" />
           <el-button type="danger" @click="dd(300)" plain>300MiB</el-button><p></p>
-          <el-text>It supports automatic server selection.</el-text><el-divider direction="vertical" />
-          <el-text>HTTPS requests are limited to 32 concurrent requests, which is a good way to prevent traffic from being overloaded.</el-text>
-   </el-card>
-   </el-col>
-  </el-row><p></p>
+   </el-card><p></p>
    <el-card shadow="hover">
+    <p id="sip">Getting your IP...</p>
     <img src="https://skillicons.dev/icons?i=nginx,linux,ubuntu,vite,workers" height="25px"/><el-divider direction="vertical" />
     <el-link href="https://github.com/mokanove/867678.xyz/blob/main/src/views/projects/speedtest.vue" target="_blank" type="primary">View Source Code</el-link><el-divider direction="vertical" />
     <el-link href="https://github.com/mokanove/867678.xyz/tree/main/servers#these-are-some-servers-with-special-features" target="_blank" type="primary">More information about those servers</el-link>
-    <p></p>
-    <el-text>Them 100% Support IPV6</el-text><el-divider direction="vertical" />
-    <el-text>These servers were purchased by me at my own expense, there is no privacy issue, and I have turned off nginx logs.</el-text><el-divider direction="vertical" />
-    <el-text type="danger">Your ISP may charge fees, so please be aware of data usage.</el-text><p></p>
-    <el-text>This location detects your IP address for automatic server selection. We will not record it. The API comes from ipinfo.io</el-text><br />
-    <el-text>The test data does not provide any form of guarantee and is for reference only.</el-text><el-divider direction="vertical" />
-    <el-text>The server has limited traffic. If you cannot use it, it is probably because you have exceeded the traffic limit, but it is difficult to exceed the traffic limit.</el-text><br />
-    <el-link href="https://ipinfo.io/terms-of-service" target="_blank" type="primary">ipinfo's Terms</el-link><el-divider direction="vertical" />
-    <el-link href="https://ipinfo.io/privacy-policy" target="_blank" type="primary">I will not collect any of your privacy, but ipinfo's policy is here.</el-link>
   </el-card>
 </template>
 <script lang="ts" setup>
@@ -150,19 +117,4 @@ const dd = (size: number) => {
   }
   window.open(`${selectedUrl}/${size}.bin`)
 }
-//iperf
-const iperfserv = [
-  {
-    domain: 'jp-osa1.867678.xyz',
-    location: 'Osaka , Kansai , Japan',
-    bandwidth: '1Gbps',
-    ISP: 'Evoxt',
-  },
-  {
-    domain: 'us-lax1.867678.xyz',
-    location: 'Los Angeles , California , United States',
-    bandwidth: '1Gbps',
-    ISP: 'MULETACOM',
-  },
-]
 </script>
