@@ -1,6 +1,6 @@
 <template>
         <h1>Welcome to my website , I'm Mo Kanove</h1>
-        <p>A developer, perhaps.</p>
+        <p>Maybe is a developer , coder </p>
 <p></p>
    <el-button type="info" plain @click="Github"><el-icon><Link /></el-icon>Github</el-button>
    <el-button type="primary" plain @click="EMail"><el-icon><ChatLineSquare /></el-icon>E-Mail</el-button>
@@ -37,7 +37,7 @@
     <p align="center"><img src="https://skillicons.dev/icons?i=html,css,javascript,cpp,golang,php,docker,nginx,mysql,github,cloudflare,workers,git,unity,vim,gmail,npm,linux,ubuntu,debian,arch,windows&perline=23"/></p>
   </el-card><br />
     <el-card shadow="never">
-    <el-text>© 2025 MoKanove<el-divider direction="vertical" />Website Version : 3.3.0<el-divider direction="vertical" />Built time : 2025-11-06</el-text>
+    <el-text>© 2025 MoKanove<el-divider direction="vertical" />Website Version : 3.3.1<el-divider direction="vertical" />Built time : 2025-11-18</el-text>
     <el-divider direction="vertical" /><el-link href="https://github.com/mokanove/867678.xyz" target="_black">Open Source Files of this site</el-link>
     </el-card>
 </template>

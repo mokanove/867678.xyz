@@ -5,7 +5,7 @@
   <el-breadcrumb-item>SpeedTest</el-breadcrumb-item>
   </el-breadcrumb>
   <h1>SpeedTest  | Mo</h1>
-  <p>It will become a web service, similar to speedtest.net</p>
+  <p>He will soon switch to asynchronous download, so stay tuned.</p>
   <el-card shadow="hover">
     <template #header><div class="card-header"><span>HTTPS Download File</span></div></template>
     <el-select v-model="value" placeholder="Chooice a server">
@@ -13,9 +13,9 @@
     <el-option v-for="item in group.options"  :key="item.value" :label="item.label"  :value="item.value"/>
     </el-option-group>
     </el-select><p></p>
-          <el-button type="success" @click="dd(10)" plain>10MiB</el-button><el-divider direction="vertical" />
-          <el-button type="primary" @click="dd(100)" plain>100MiB</el-button><el-divider direction="vertical" />
-          <el-button type="danger" @click="dd(300)" plain>300MiB</el-button><p></p>
+          <el-button type="success" @click="dd(10240000)" plain>10MiB</el-button><el-divider direction="vertical" />
+          <el-button type="primary" @click="dd(102400000)" plain>100MiB</el-button><el-divider direction="vertical" />
+          <el-button type="danger" @click="dd(314572000)" plain>300MiB</el-button><p></p>
    </el-card><p></p>
    <el-card shadow="hover">
     <p id="sip">Getting your IP...</p>
@@ -34,7 +34,12 @@ import { ElMessage } from 'element-plus'
 const userGeo = ref({ city: null as string | null, country: null as string | null }) 
 const value = ref('cloudflare')
 const servers = [
-  { label: 'High Speed CDN', options: [{ value: 'cloudflare', label: 'Cloudflare', city: 'GLOBAL' }] },
+  { 
+    label: 'High Speed CDN', 
+    options: [
+      { value: 'cloudflare', label: 'Cloudflare', city: 'GLOBAL' },
+    ]
+  },
   {
     label: 'Normal server',
     options: [
@@ -44,9 +49,9 @@ const servers = [
   },
 ]
 const urls = {
-  cloudflare: 'https://r2.867678.xyz',
-  lax: 'https://us-lax1.867678.xyz',
-  osa: 'https://jp-osa1.867678.xyz',
+  cloudflare: 'https://speed.cloudflare.com/__down?during=download&bytes=',
+  lax: 'https://us-lax1.867678.xyz/',
+  osa: 'https://jp-osa1.867678.xyz/',
 }
 async function fetchIpAddresses() {
   const ipElement = document.getElementById('sip')
@@ -115,6 +120,6 @@ const dd = (size: number) => {
     ElMessage({ type: 'error', message: 'Please select a server first.' })
     return
   }
-  window.open(`${selectedUrl}/${size}.bin`)
+  window.open(`${selectedUrl}${size}`)
 }
 </script>

@@ -6,13 +6,23 @@
 <h1>Updates and Fixeds</h1>
 <p>For other project update logs, please go to the project Github. Here is only the website update log.</p>
     <el-timeline>
+      <el-timeline-item timestamp="2025/11/18 3.3.0 to 3.3.1" placement="top">
+      <el-card>
+        <p>Changed logo.</p>
+        <p>The unit for speed test files is now supported down to the bit.(MAX:314572000B = 300MB )</p>
+        <p>Fix some minor issues.</p>
+        <p>Remove the servers area; I will host any scripts I have there afterward.</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.3.0 to 3.3.1</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/11/06 3.2.9 to 3.3.0" placement="top">
       <el-card>
         <p>The myskills area now supports single-row chart display.</p>
         <p>IPERF3 support has been removed from the speedtest section; it will be redesigned to look like speedtest.net in the future.</p>
         <p>The icon positions have been adjusted to create a more consistent visual style.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.2.9 to 3.3.0</el-link>
+        <el-link href="https://e4f8b91c.867678.pages.dev/" target="_blank">3.2.9 to 3.3.0</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/10/26 3.2.8 to 3.2.9" placement="top">
@@ -24,7 +34,7 @@
         <p>Rearranged the project list.</p>
         <p>Re-optimize the project display page.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.2.8 to 3.2.9</el-link>
+        <el-link href="https://2cf9b03d.867678.pages.dev/" target="_blank">3.2.8 to 3.2.9</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/10/24 3.2.7 to 3.2.8" placement="top">
