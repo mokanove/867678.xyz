@@ -42,6 +42,11 @@ const router = createRouter({
       name: 'ghit',
       component: () => import('../views/projects/ghit.vue'),
     },
+    {
+      path: '/:pathMatch(.*)*',
+      name: '404 Not Found',
+      component: () => import('../views/error/404.vue')
+    },
   ],
 })
 export default router

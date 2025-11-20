@@ -5,28 +5,61 @@
   <el-breadcrumb-item>SpeedTest</el-breadcrumb-item>
   </el-breadcrumb>
   <h1>SpeedTest  | Mo</h1>
-  <p>He will soon switch to asynchronous download, so stay tuned.</p>
+  <el-row :gutter="10">
+  <el-col :xs="24" :sm="12" :md="12" :lg="12">
   <el-card shadow="hover">
-    <template #header><div class="card-header"><span>HTTPS Download File</span></div></template>
+    <h1>Download Speed</h1>
+    <h2>0Mbps</h2>
+  </el-card>
+  </el-col>
+  <el-col :xs="24" :sm="12" :md="12" :lg="12">
+  <el-card shadow="hover">
+    <h1>Upload Speed</h1>
+    <h2>0Mbps</h2>
+  </el-card>
+ </el-col>
+</el-row><p></p>
+  <el-row :gutter="10">
+  <el-col :xs="24" :sm="12" :md="12" :lg="12">
+  <el-card shadow="hover">
+    <h2>Client info</h2>
+    <h3 id="sip">Getting your IP...</h3>
+  </el-card>
+  </el-col>
+  <el-col :xs="24" :sm="12" :md="12" :lg="12">
+  <el-card shadow="hover">
+    <h2>Server info</h2>
+    <h3>Searching server...</h3>
+  </el-card>
+ </el-col>
+</el-row><p></p>
+  <el-card shadow="hover">
+    <template #header><div class="card-header"><span style="font-size: 20px;">HTTPS Download File</span></div></template>
     <el-select v-model="value" placeholder="Chooice a server">
     <el-option-group v-for="group in servers" :key="group.label" :label="group.label">
     <el-option v-for="item in group.options"  :key="item.value" :label="item.label"  :value="item.value"/>
     </el-option-group>
     </el-select><p></p>
-          <el-button type="success" @click="dd(10240000)" plain>10MiB</el-button><el-divider direction="vertical" />
-          <el-button type="primary" @click="dd(102400000)" plain>100MiB</el-button><el-divider direction="vertical" />
-          <el-button type="danger" @click="dd(314572000)" plain>300MiB</el-button><p></p>
+      <el-button @click="dd(10240)" plain>1MiB</el-button><el-divider direction="vertical" />
+      <el-button type="info" @click="dd(10240000)" plain>10MiB</el-button><el-divider direction="vertical" />
+      <el-button type="primary" @click="dd(10240000)" plain>50MiB</el-button><el-divider direction="vertical" />
+      <el-button type="success" @click="dd(10240000)" plain>100MiB</el-button><el-divider direction="vertical" />
+      <el-button type="warning" @click="dd(10240000)" plain>200MiB</el-button><el-divider direction="vertical" />
+      <el-button type="danger" @click="dd(314572000)" plain>300MiB</el-button><el-divider direction="vertical" />
+      <el-text>Download using your browser</el-text>
    </el-card><p></p>
    <el-card shadow="hover">
-    <p id="sip">Getting your IP...</p>
-    <img src="https://skillicons.dev/icons?i=nginx,linux,ubuntu,vite,workers" height="25px"/><el-divider direction="vertical" />
-    <el-link href="https://github.com/mokanove/867678.xyz/blob/main/src/views/projects/speedtest.vue" target="_blank" type="primary">View Source Code</el-link><el-divider direction="vertical" />
-    <el-link href="https://github.com/mokanove/867678.xyz/tree/main/servers#these-are-some-servers-with-special-features" target="_blank" type="primary">More information about those servers</el-link>
+    <img src="https://skillicons.dev/icons?i=nginx,linux,ubuntu,vite,workers" height="30px"/><el-divider direction="vertical" />
+    <el-button @click="sc()">Source Code</el-button>
   </el-card>
 </template>
 <script lang="ts" setup>
 //icons
 import { DArrowRight } from '@element-plus/icons-vue'
+//link
+const sc = () =>{
+  window.open("https://github.com/mokanove/867678.xyz/blob/main/src/views/projects/speedtest.vue" , "_blank")
+}
 //speedtest
 //get user ip
 import { ref, onMounted } from 'vue'
