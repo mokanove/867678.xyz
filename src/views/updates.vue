@@ -6,12 +6,19 @@
 <h1>Updates and Fixeds</h1>
 <p>For other project update logs, please go to the project Github. Here is only the website update log.</p>
     <el-timeline>
+       <el-timeline-item timestamp="2025/12/02 3.3.2 to 3.3.3" placement="top">
+      <el-card>
+        <p>Fixed the issue of incorrect downloaded file size.</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.3.2 to 3.3.3</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/11/20 3.3.1 to 3.3.2" placement="top">
       <el-card>
         <p>The speed test page has been redesigned, but it is not yet available.</p>
         <p>Add a 404 page.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.3.1 to 3.3.2</el-link>
+        <el-link href="https://586a1502.867678.pages.dev/" target="_blank">3.3.1 to 3.3.2</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/11/18 3.3.0 to 3.3.1" placement="top">

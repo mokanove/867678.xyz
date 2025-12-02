@@ -42,10 +42,10 @@
     </el-select><p></p>
       <el-button @click="dd(10240)" plain>1MiB</el-button><el-divider direction="vertical" />
       <el-button type="info" @click="dd(10240000)" plain>10MiB</el-button><el-divider direction="vertical" />
-      <el-button type="primary" @click="dd(10240000)" plain>50MiB</el-button><el-divider direction="vertical" />
-      <el-button type="success" @click="dd(10240000)" plain>100MiB</el-button><el-divider direction="vertical" />
-      <el-button type="warning" @click="dd(10240000)" plain>200MiB</el-button><el-divider direction="vertical" />
-      <el-button type="danger" @click="dd(314572000)" plain>300MiB</el-button><el-divider direction="vertical" />
+      <el-button type="primary" @click="dd(51200000)" plain>50MiB</el-button><el-divider direction="vertical" />
+      <el-button type="success" @click="dd(102400000)" plain>100MiB</el-button><el-divider direction="vertical" />
+      <el-button type="warning" @click="dd(204800000)" plain>200MiB</el-button><el-divider direction="vertical" />
+      <el-button type="danger" @click="dd(300000000)" plain>300MiB</el-button><el-divider direction="vertical" />
       <el-text>Download using your browser</el-text>
    </el-card><p></p>
    <el-card shadow="hover">

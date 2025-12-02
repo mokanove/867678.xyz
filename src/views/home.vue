@@ -37,7 +37,7 @@
     <p align="center"><img src="https://skillicons.dev/icons?i=html,css,javascript,cpp,golang,php,docker,nginx,mysql,github,cloudflare,workers,git,unity,vim,gmail,npm,linux,ubuntu,debian,arch,windows&perline=23"/></p>
   </el-card><br />
     <el-card shadow="never">
-    <el-text>© 2025 MoKanove<el-divider direction="vertical" />Website Version : 3.3.2<el-divider direction="vertical" />Built time : 2025-11-20</el-text>
+    <el-text>© 2025 MoKanove<el-divider direction="vertical" />Website Version : 3.3.3<el-divider direction="vertical" />Built time : 2025-12-02</el-text>
     <el-divider direction="vertical" /><el-link href="https://github.com/mokanove/867678.xyz" target="_black">Open Source Files of this site</el-link>
     </el-card>
 </template>
