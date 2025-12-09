@@ -5,6 +5,10 @@
   <el-breadcrumb-item>SpeedTest</el-breadcrumb-item>
   </el-breadcrumb>
   <h1>SpeedTest  | Mo</h1>
+   <el-card shadow="hover">
+    <img src="https://skillicons.dev/icons?i=nginx,linux,ubuntu,vite,workers" height="30px"/><el-divider direction="vertical" />
+    <el-button @click="sc()">Source Code</el-button>
+  </el-card>  <p></p>
   <el-row :gutter="10">
   <el-col :xs="24" :sm="12" :md="12" :lg="12">
   <el-card shadow="hover">
@@ -34,7 +38,7 @@
  </el-col>
 </el-row><p></p>
   <el-card shadow="hover">
-    <template #header><div class="card-header"><span style="font-size: 20px;">HTTPS Download File</span></div></template>
+    <el-text>Manual:</el-text>
     <el-select v-model="value" placeholder="Chooice a server">
     <el-option-group v-for="group in servers" :key="group.label" :label="group.label">
     <el-option v-for="item in group.options"  :key="item.value" :label="item.label"  :value="item.value"/>
@@ -45,13 +49,8 @@
       <el-button type="primary" @click="dd(51200000)" plain>50MiB</el-button><el-divider direction="vertical" />
       <el-button type="success" @click="dd(102400000)" plain>100MiB</el-button><el-divider direction="vertical" />
       <el-button type="warning" @click="dd(204800000)" plain>200MiB</el-button><el-divider direction="vertical" />
-      <el-button type="danger" @click="dd(300000000)" plain>300MiB</el-button><el-divider direction="vertical" />
-      <el-text>Download using your browser</el-text>
-   </el-card><p></p>
-   <el-card shadow="hover">
-    <img src="https://skillicons.dev/icons?i=nginx,linux,ubuntu,vite,workers" height="30px"/><el-divider direction="vertical" />
-    <el-button @click="sc()">Source Code</el-button>
-  </el-card>
+      <el-button type="danger" @click="dd(300000000)" plain>300MiB</el-button>
+   </el-card>
 </template>
 <script lang="ts" setup>
 //icons

@@ -5,9 +5,9 @@
     </el-menu-item>
     <el-sub-menu index="1">
       <template #title><el-icon><Menu /></el-icon>Theme</template>
-      <el-menu-item index="1-1" @click="AutoTheme"><el-icon><SwitchFilled /></el-icon>Follow System(Default)</el-menu-item>
-      <el-menu-item index="1-2" @click="setLight"><el-icon><Sunny /></el-icon>Light</el-menu-item>
-      <el-menu-item index="1-3" @click="setDark"><el-icon><Moon /></el-icon>Dark</el-menu-item>
+      <el-menu-item index="1-1" @click="setTheme('system')"><el-icon><SwitchFilled /></el-icon>Follow System(Default)</el-menu-item>
+      <el-menu-item index="1-2" @click="setTheme('light')"><el-icon><Sunny /></el-icon>Light</el-menu-item>
+      <el-menu-item index="1-3" @click="setTheme('dark')"><el-icon><Moon /></el-icon>Dark</el-menu-item>
     </el-sub-menu>
   </el-menu>
   <router-view></router-view>
@@ -32,18 +32,26 @@ watch(preferredDark, (val) => {
     isDark.value = val
   }
 })
-const AutoTheme = () => {
-  followSystem.value = true
-  isDark.value = preferredDark.value
-}
-const setDark = () => {
-  followSystem.value = false
-  isDark.value = true
-}
-const setLight = () => {
-  followSystem.value = false
-  isDark.value = false
-}
+type ThemeMode = 'system' | 'dark' | 'light';
+const mapThemeState = (mode: ThemeMode) => {
+  switch (mode) {
+    case 'system':
+      return { follow: true, dark: undefined };
+    case 'dark':
+      return { follow: false, dark: true };
+    case 'light':
+      return { follow: false, dark: false };
+  }
+};
+const setTheme = (mode: ThemeMode) => {
+  const state = mapThemeState(mode);
+  followSystem.value = state.follow; 
+  if (mode === 'system') {
+    isDark.value = preferredDark.value; 
+  } else if (state.dark !== undefined) {
+    isDark.value = state.dark;
+  }
+};
 </script>
 
 <style scoped>

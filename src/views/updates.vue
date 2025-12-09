@@ -3,14 +3,21 @@
     <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
     <el-breadcrumb-item>Updates & Fixeds</el-breadcrumb-item>
   </el-breadcrumb>
-<h1>Updates and Fixeds</h1>
+<h1>Updates and Fixeds of this site</h1>
 <p>For other project update logs, please go to the project Github. Here is only the website update log.</p>
     <el-timeline>
+      <el-timeline-item timestamp="2025/12/09 3.3.3 to 3.3.4" placement="top">
+      <el-card>
+        <p>Interface layout and code optimization.</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.3.3 to 3.3.4</el-link>
+      </el-card>
+      </el-timeline-item>
        <el-timeline-item timestamp="2025/12/02 3.3.2 to 3.3.3" placement="top">
       <el-card>
         <p>Fixed the issue of incorrect downloaded file size.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.3.2 to 3.3.3</el-link>
+        <el-link href="https://fd8a099f.867678.pages.dev/" target="_blank">3.3.2 to 3.3.3</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/11/20 3.3.1 to 3.3.2" placement="top">
