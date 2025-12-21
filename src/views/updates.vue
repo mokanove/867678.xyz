@@ -6,11 +6,21 @@
 <h1>Updates and Fixeds of this site</h1>
 <p>For other project update logs, please go to the project Github. Here is only the website update log.</p>
     <el-timeline>
+      <el-timeline-item timestamp="2025/12/21 3.3.5 to 3.3.6" placement="top">
+      <el-card>
+        <p>The test latency issue has been fixed (maybe).</p>
+        <p>Fixed the issue where the download speed differed too much from the actual speed.</p>
+        <p>The upload might still be a little inaccurate.</p>
+        <p>Reconstruct the speed test page.</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.3.5 to 3.3.6</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/12/17 3.3.4 to 3.3.5" placement="top">
       <el-card>
         <p>Good news for obsessive-compulsive disorder sufferers: No more manually selecting servers!</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.3.4 to 3.3.5</el-link>
+        <el-link href="https://35489bbe.867678.pages.dev/" target="_blank">3.3.4 to 3.3.5</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/12/09 3.3.3 to 3.3.4" placement="top">

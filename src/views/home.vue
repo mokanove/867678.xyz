@@ -33,11 +33,11 @@
   </el-col>
 </el-row><p></p>
   <el-card shadow="hover">
-    <template #header><span style="font-size: 20px;">skills</span></template>
+    <template #header><span style="font-size: 20px;">My skills</span></template>
     <p align="center"><img src="https://skillicons.dev/icons?i=html,css,javascript,cpp,golang,php,docker,nginx,mysql,github,cloudflare,workers,git,unity,vim,gmail,npm,linux,ubuntu,debian,arch,windows&perline=23"/></p>
   </el-card><br />
     <el-card shadow="never">
-    <el-text>© 2025 MoKanove<el-divider direction="vertical" />Website Version : 3.3.5<el-divider direction="vertical" />Built time : 2025-12-17</el-text>
+    <el-text>© 2025 MoKanove<el-divider direction="vertical" />Website Version : 3.3.6<el-divider direction="vertical" />Built time : 2025-12-21</el-text>
     <el-divider direction="vertical" /><el-link href="https://github.com/mokanove/867678.xyz" target="_black">Open Source Files of this site</el-link>
     <el-divider direction="vertical" /><el-text>100% Support IPV6</el-text>
     </el-card>
