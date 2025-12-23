@@ -3,7 +3,7 @@
     <p></p>
   <div class="demo-collapse">
     <el-collapse v-model="activeNames">
-      <el-collapse-item title="Why" name="1">
+      <el-collapse-item title="What's the happend?" name="1">
         <div>
           You may have entered the wrong path.
         </div>

@@ -72,119 +72,115 @@ const fetchIps = async () => {
 };
 onMounted(fetchIps)
 //Latency
-const latency = ref('Not started')
+const latency = ref('Not started');
 const Latency = async () => {
   latency.value = 'Testing...';
-  const samples: number[] = [];
-  const url = 'https://www.gstatic.com/generate_204';
-  for (let i = 0; i < 5; i++) {
+  const samples: number[] = [], url = 'https://www.gstatic.com/generate_204';
+  for (let i = 0; i < 10; i++) {
     const start = performance.now();
     try {
       await fetch(url, { mode: 'no-cors', cache: 'no-store' });
       samples.push(performance.now() - start);
-    } catch (e) {
-      console.error('Latency test failed', e);
-    }
+    } catch { }
+    await new Promise(r => setTimeout(r, 50));
   }
-  if (samples.length > 0) {
+  if (samples.length) {
     samples.sort((a, b) => a - b);
-    const validSamples = samples.length > 2 ? samples.slice(1, -1) : samples;
-    const avg = validSamples.reduce((a, b) => a + b, 0) / validSamples.length;
-    latency.value = `${Math.round(avg)} ms`;
+    const mid = samples.slice(Math.floor(samples.length * 0.2), Math.ceil(samples.length * 0.8));
+    const avg = mid.reduce((a, b) => a + b, 0) / mid.length;
+    latency.value = `${avg.toFixed(1)} ms`;
   } else {
     latency.value = 'Error';
   }
 };
 //test
 //down
-const downloadSpeed = ref('Not started')
-const isDownloading = ref(false)
+const downloadSpeed = ref('Not started'), isDownloading = ref(false);
 const Download = async () => {
   if (isDownloading.value) return;
   isDownloading.value = true;
   downloadSpeed.value = 'Connecting...';
-  const controller = new AbortController();
-  const TEST_DURATION_MS = 5000; 
-  const timeoutId = setTimeout(() => controller.abort(), TEST_DURATION_MS);
-  const fs = 1024 * 1024 * 1024; 
-  const CON = 8;
+  const ctrl = new AbortController(), DURATION = 5000, CON = 6;
   const startTime = performance.now();
   let totalBytes = 0;
-  const downloadTask = async () => {
+  const timer = setInterval(() => {
+    const sec = (performance.now() - startTime) / 1000;
+    if (sec > 0.5) {
+      downloadSpeed.value = `${((totalBytes * 8) / 1e6 / sec).toFixed(2)} Mbps`;
+    }
+  }, 150);
+  const task = async () => {
     try {
-      const response = await fetch(
-        `https://speed.cloudflare.com/__down?bytes=${fs}`, 
-        { signal: controller.signal }
-      );
-      if (!response.body) return;
-      const reader = response.body.getReader();
+      const res = await fetch(`https://speed.cloudflare.com/__down?bytes=${1e9}`, { signal: ctrl.signal });
+      const reader = res.body?.getReader();
+      if (!reader) return;
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
         totalBytes += value.length;
-        const now = performance.now();
-        const duration = (now - startTime) / 1000;
-        if (duration > 0.5) {
-          const mbps = (totalBytes * 8) / (1024 * 1024) / duration;
-          downloadSpeed.value = `${mbps.toFixed(2)} Mbps`;
-        }
       }
-    } catch (e) {
-      if (e instanceof Error && e.name !== 'AbortError') {
-        console.error('Test error:', e);
-      }
-    }
+    } catch {}
   };
-  await Promise.all(Array(CON).fill(null).map(downloadTask));
-  clearTimeout(timeoutId);
-  isDownloading.value = false;
-  if (totalBytes === 0) downloadSpeed.value = 'Failed';
+  setTimeout(() => ctrl.abort(), DURATION);
+  try {
+    await Promise.all(Array.from({ length: CON }, task));
+  } finally {
+    clearInterval(timer);
+    isDownloading.value = false;
+    const finalSec = (performance.now() - startTime) / 1000;
+    downloadSpeed.value = totalBytes > 0 ? `${((totalBytes * 8) / 1e6 / finalSec).toFixed(2)} Mbps` : 'Failed';
+  }
 };
 //up
-const uploadSpeed = ref('Not started')
-const isUploading = ref(false)
+const uploadSpeed = ref('Not started'), isUploading = ref(false);
 const Upload = async () => {
   if (isUploading.value) return;
   isUploading.value = true;
-  uploadSpeed.value = 'Preparing...';
-  const controller = new AbortController();
-  const TEST_DURATION_MS = 10000;
-  setTimeout(() => controller.abort(), TEST_DURATION_MS);
-  const CHUNK_SIZE = 5 * 1024;
-  const CONCURRENCY = 4;
-  const startTime = performance.now();
-  let totalUploadedBytes = 0;
-  const randomData = new Uint8Array(CHUNK_SIZE);
-  crypto.getRandomValues(randomData);
-  const uiInterval = setInterval(() => {
-    const duration = (performance.now() - startTime) / 1000;
-    if (duration > 0.1 && totalUploadedBytes > 0) {
-      const mbps = (totalUploadedBytes * 8) / (1024 * 1024) / duration;
-      uploadSpeed.value = `${mbps.toFixed(2)} Mbps`;
-    }
-  }, 200);
-  const uploadTask = async () => {
-    try {
-      while (!controller.signal.aborted) {
-        await fetch('https://httpbin.org/post', {
-          method: 'POST',
-          body: randomData,
-          signal: controller.signal,
-          mode: 'cors',
-        });
-        totalUploadedBytes += CHUNK_SIZE;
-      }
-    } catch (e) {
-      if (e instanceof Error && e.name !== 'AbortError') console.error(e);
-    }
-  };
+  uploadSpeed.value = 'Connecting...';
+  const ctrl = new AbortController();
+  const DURATION = 3000, CHUNK = 10 * 1024 * 1024, CONCURRENCY = 4;
+  const startTime = performance.now(), activeBytes = new Array(CONCURRENCY).fill(0);
+  let totalBytes = 0;
+  const data = new Uint8Array(CHUNK), seed = new Uint8Array(65536);
+  crypto.getRandomValues(seed);
+  for (let i = 0; i < CHUNK; i += seed.length) data.set(seed, i);
+  const timer = setInterval(() => {
+    const sec = (performance.now() - startTime) / 1000;
+    if (sec <= 0.5) return;
+    const cur = totalBytes + activeBytes.reduce((a: number, b: number) => a + b, 0);
+    uploadSpeed.value = `${((cur * 8) / 1048576 / sec).toFixed(2)} Mbps`;
+  }, 100);
+  const task = (i: number) => new Promise<void>(res => {
+    const run = () => {
+      if (ctrl.signal.aborted) return res();
+      const x = new XMLHttpRequest();
+      x.open('POST', 'https://j.867678.xyz/upload');
+      x.setRequestHeader('Content-Type', 'application/octet-stream');
+      x.upload.onprogress = e => e.lengthComputable && (activeBytes[i] = e.loaded);
+      x.onload = () => {
+        totalBytes += CHUNK;
+        activeBytes[i] = 0;
+        if (!ctrl.signal.aborted) run(); else res();
+      };
+      x.onerror = () => {
+        activeBytes[i] = 0;
+        if (!ctrl.signal.aborted) setTimeout(run, 500); else res();
+      };
+      ctrl.signal.addEventListener('abort', () => { x.abort(); res(); }, { once: true });
+      x.send(data);
+    };
+    run();
+  });
+  const timeoutId = setTimeout(() => ctrl.abort(), DURATION);
   try {
-    await Promise.all(Array(CONCURRENCY).fill(null).map(uploadTask));
+    await Promise.all(Array.from({ length: CONCURRENCY }, (_, i) => task(i)));
   } catch (e) {
   } finally {
-    clearInterval(uiInterval);
+    clearTimeout(timeoutId);
+    clearInterval(timer);
     isUploading.value = false;
-    if (totalUploadedBytes === 0) uploadSpeed.value = 'Failed or Blocked';
+    const finalSec = (performance.now() - startTime) / 1000;
+    uploadSpeed.value = totalBytes > 0 ? `${((totalBytes * 8) / 1048576 / finalSec).toFixed(2)} Mbps` : 'Stopped';
   }
 };
 //all

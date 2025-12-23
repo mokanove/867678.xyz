@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import pkg from './package.json';
 export default defineConfig({
   plugins: [
     vue(),
@@ -30,5 +31,8 @@ export default defineConfig({
         },
       },
     },
+  },
+  define: {
+    __APP_VERSION__: JSON.stringify(pkg.version),
   },
 })

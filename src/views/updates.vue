@@ -6,6 +6,15 @@
 <h1>Updates and Fixeds of this site</h1>
 <p>For other project update logs, please go to the project Github. Here is only the website update log.</p>
     <el-timeline>
+      <el-timeline-item timestamp="2025/12/23 3.3.6 to 3.3.7" placement="top">
+      <el-card>
+        <p>The issue of low upload speed during testing has been fixed.</p>
+        <p>Initial addition of the Moixa project page.</p>
+        <p>The version number at the bottom of the homepage is now displayed automatically.</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.3.6 to 3.3.7</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/12/21 3.3.5 to 3.3.6" placement="top">
       <el-card>
         <p>The test latency issue has been fixed (maybe).</p>
@@ -13,7 +22,7 @@
         <p>The upload might still be a little inaccurate.</p>
         <p>Reconstruct the speed test page.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.3.5 to 3.3.6</el-link>
+        <el-link href="https://cb02485d.867678.pages.dev/" target="_blank">3.3.5 to 3.3.6</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/12/17 3.3.4 to 3.3.5" placement="top">
