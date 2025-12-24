@@ -138,17 +138,22 @@ const Upload = async () => {
   isUploading.value = true;
   uploadSpeed.value = 'Connecting...';
   const ctrl = new AbortController();
-  const DURATION = 3000, CHUNK = 10 * 1024 * 1024, CONCURRENCY = 4;
-  const startTime = performance.now(), activeBytes = new Array(CONCURRENCY).fill(0);
+  const DURATION = 3000, CHUNK = 2 * 1024 * 1024, CONCURRENCY = 4;
+  const startTime = performance.now();
+  const activeBytes = new Array(CONCURRENCY).fill(0);
   let totalBytes = 0;
-  const data = new Uint8Array(CHUNK), seed = new Uint8Array(65536);
+  const data = new Uint8Array(CHUNK);
+  const seed = new Uint8Array(65536);
   crypto.getRandomValues(seed);
   for (let i = 0; i < CHUNK; i += seed.length) data.set(seed, i);
+  const calculateMbps = (bytes: number, ms: number) => {
+    return ((bytes * 8) / 1048576 / (ms / 1000)).toFixed(2);
+  };
   const timer = setInterval(() => {
-    const sec = (performance.now() - startTime) / 1000;
-    if (sec <= 0.5) return;
-    const cur = totalBytes + activeBytes.reduce((a: number, b: number) => a + b, 0);
-    uploadSpeed.value = `${((cur * 8) / 1048576 / sec).toFixed(2)} Mbps`;
+    const elapsed = performance.now() - startTime;
+    if (elapsed <= 500) return;
+    const currentBytes = totalBytes + activeBytes.reduce((a, b) => a + b, 0);
+    uploadSpeed.value = `${calculateMbps(currentBytes, elapsed)} Mbps`;
   }, 100);
   const task = (i: number) => new Promise<void>(res => {
     const run = () => {
@@ -156,7 +161,9 @@ const Upload = async () => {
       const x = new XMLHttpRequest();
       x.open('POST', 'https://j.867678.xyz/upload');
       x.setRequestHeader('Content-Type', 'application/octet-stream');
-      x.upload.onprogress = e => e.lengthComputable && (activeBytes[i] = e.loaded);
+      x.upload.onprogress = e => {
+        if (e.lengthComputable) activeBytes[i] = e.loaded;
+      };
       x.onload = () => {
         totalBytes += CHUNK;
         activeBytes[i] = 0;
@@ -166,7 +173,11 @@ const Upload = async () => {
         activeBytes[i] = 0;
         if (!ctrl.signal.aborted) setTimeout(run, 500); else res();
       };
-      ctrl.signal.addEventListener('abort', () => { x.abort(); res(); }, { once: true });
+      ctrl.signal.addEventListener('abort', () => {
+        x.abort();
+        res();
+      }, { once: true });
+
       x.send(data);
     };
     run();
@@ -179,8 +190,11 @@ const Upload = async () => {
     clearTimeout(timeoutId);
     clearInterval(timer);
     isUploading.value = false;
-    const finalSec = (performance.now() - startTime) / 1000;
-    uploadSpeed.value = totalBytes > 0 ? `${((totalBytes * 8) / 1048576 / finalSec).toFixed(2)} Mbps` : 'Stopped';
+    const finalElapsed = performance.now() - startTime;
+    const finalBytes = totalBytes + activeBytes.reduce((a, b) => a + b, 0);
+    uploadSpeed.value = finalBytes > 0 
+      ? `${calculateMbps(finalBytes, finalElapsed)} Mbps` 
+      : 'Error';
   }
 };
 //all
