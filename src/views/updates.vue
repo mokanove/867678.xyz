@@ -6,11 +6,18 @@
 <h1>Updates and Fixeds of this site</h1>
 <p>For other project update logs, please go to the project Github. Here is only the website update log.</p>
     <el-timeline>
+      <el-timeline-item timestamp="2025/12/25 3.3.8 to 3.3.9" placement="top">
+      <el-card>
+        <p>The speed test server was replaced with one with a larger bandwidth.</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.3.6 to 3.3.7</el-link>
+      </el-card>
+      </el-timeline-item>
        <el-timeline-item timestamp="2025/12/24 3.3.7 to 3.3.8" placement="top">
       <el-card>
         <p>Fixed the issue where the upload speed test would always show "stopped" regardless of the conditions.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.3.6 to 3.3.7</el-link>
+        <el-link href="https://e830cb4f.867678.pages.dev/" target="_blank">3.3.7 to 3.3.8</el-link>
       </el-card>
       </el-timeline-item>
       <el-timeline-item timestamp="2025/12/23 3.3.6 to 3.3.7" placement="top">

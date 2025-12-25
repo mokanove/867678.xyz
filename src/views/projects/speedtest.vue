@@ -159,7 +159,7 @@ const Upload = async () => {
     const run = () => {
       if (ctrl.signal.aborted) return res();
       const x = new XMLHttpRequest();
-      x.open('POST', 'https://j.867678.xyz/upload');
+      x.open('POST', 'https://u.867678.xyz/upload');
       x.setRequestHeader('Content-Type', 'application/octet-stream');
       x.upload.onprogress = e => {
         if (e.lengthComputable) activeBytes[i] = e.loaded;

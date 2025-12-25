@@ -11,6 +11,9 @@ wget https://github.com/mokanove/867678.xyz/archive/refs/heads/main.zip && unzip
 ## init
 In project floder
 ```
+cd 867678.xyz
+```
+```
 npm install
 ```
 ```
