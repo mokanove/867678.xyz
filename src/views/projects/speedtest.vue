@@ -15,7 +15,7 @@
   <el-col :xs="24" :sm="12" :md="12" :lg="12">
   <el-card shadow="hover">
     <h2>Server</h2>
-    <h3>Download:{{ downloadSpeed }} Upload:{{ uploadSpeed }} Latency:{{ latency }}</h3>
+    <h3>Download:{{ downloadSpeed }} Latency:{{ latency }}</h3>
   </el-card>
  </el-col>
 </el-row><p></p>
@@ -132,71 +132,72 @@ const Download = async () => {
   }
 };
 //up
-const uploadSpeed = ref('Not started'), isUploading = ref(false);
-const Upload = async () => {
-  if (isUploading.value) return;
-  isUploading.value = true;
-  uploadSpeed.value = 'Connecting...';
-  const ctrl = new AbortController();
-  const DURATION = 3000, CHUNK = 2 * 1024 * 1024, CONCURRENCY = 4;
-  const startTime = performance.now();
-  const activeBytes = new Array(CONCURRENCY).fill(0);
-  let totalBytes = 0;
-  const data = new Uint8Array(CHUNK);
-  const seed = new Uint8Array(65536);
-  crypto.getRandomValues(seed);
-  for (let i = 0; i < CHUNK; i += seed.length) data.set(seed, i);
-  const calculateMbps = (bytes: number, ms: number) => {
-    return ((bytes * 8) / 1048576 / (ms / 1000)).toFixed(2);
-  };
-  const timer = setInterval(() => {
-    const elapsed = performance.now() - startTime;
-    if (elapsed <= 500) return;
-    const currentBytes = totalBytes + activeBytes.reduce((a, b) => a + b, 0);
-    uploadSpeed.value = `${calculateMbps(currentBytes, elapsed)} Mbps`;
-  }, 100);
-  const task = (i: number) => new Promise<void>(res => {
-    const run = () => {
-      if (ctrl.signal.aborted) return res();
-      const x = new XMLHttpRequest();
-      x.open('POST', 'https://u.867678.xyz/upload');
-      x.setRequestHeader('Content-Type', 'application/octet-stream');
-      x.upload.onprogress = e => {
-        if (e.lengthComputable) activeBytes[i] = e.loaded;
-      };
-      x.onload = () => {
-        totalBytes += CHUNK;
-        activeBytes[i] = 0;
-        if (!ctrl.signal.aborted) run(); else res();
-      };
-      x.onerror = () => {
-        activeBytes[i] = 0;
-        if (!ctrl.signal.aborted) setTimeout(run, 500); else res();
-      };
-      ctrl.signal.addEventListener('abort', () => {
-        x.abort();
-        res();
-      }, { once: true });
+// const uploadSpeed = ref('Not started'), isUploading = ref(false);
 
-      x.send(data);
-    };
-    run();
-  });
-  const timeoutId = setTimeout(() => ctrl.abort(), DURATION);
-  try {
-    await Promise.all(Array.from({ length: CONCURRENCY }, (_, i) => task(i)));
-  } catch (e) {
-  } finally {
-    clearTimeout(timeoutId);
-    clearInterval(timer);
-    isUploading.value = false;
-    const finalElapsed = performance.now() - startTime;
-    const finalBytes = totalBytes + activeBytes.reduce((a, b) => a + b, 0);
-    uploadSpeed.value = finalBytes > 0 
-      ? `${calculateMbps(finalBytes, finalElapsed)} Mbps` 
-      : 'Error';
-  }
-};
+// const Upload = async () => {
+//   if (isUploading.value) return;
+//   isUploading.value = true;
+//   uploadSpeed.value = 'Connecting...';
+//   const ctrl = new AbortController();
+//   const DURATION = 5000; 
+//   const CHUNK_SIZE = 2 * 1024 * 1024; 
+//   const CONCURRENCY = 4;
+//   const startTime = performance.now();
+//   const activeBytes = new Array(CONCURRENCY).fill(0);
+//   let totalBytes = 0;
+//   const data = new Uint8Array(CHUNK_SIZE);
+//   crypto.getRandomValues(data);
+//   const calculateMbps = (bytes: number, ms: number) => {
+//     if (ms <= 0) return '0.00';
+//     return ((bytes * 8) / 1048576 / (ms / 1000)).toFixed(2);
+//   };
+//   const timer = setInterval(() => {
+//     const elapsed = performance.now() - startTime;
+//     if (elapsed <= 500) return;
+//     const currentBytes = totalBytes + activeBytes.reduce((a, b) => a + b, 0);
+//     uploadSpeed.value = `${calculateMbps(currentBytes, elapsed)} Mbps`;
+//   }, 100);
+//   const task = (i: number) => new Promise<void>(resolve => {
+//     const run = () => {
+//       if (ctrl.signal.aborted) return resolve();
+//       const x = new XMLHttpRequest();
+//       x.open('POST', `https://speed.cloudflare.com/__up?measId=${Math.random()}`);
+//       x.upload.onprogress = e => {
+//         if (e.lengthComputable) activeBytes[i] = e.loaded;
+//       };
+//       x.onload = () => {
+//         totalBytes += CHUNK_SIZE;
+//         activeBytes[i] = 0;
+//         if (!ctrl.signal.aborted) run(); else resolve();
+//       };
+//       x.onerror = () => {
+//         activeBytes[i] = 0;
+//         if (!ctrl.signal.aborted) setTimeout(run, 500); else resolve();
+//       };
+//       ctrl.signal.addEventListener('abort', () => {
+//         x.abort();
+//         resolve();
+//       }, { once: true });
+//       x.send(data);
+//     };
+//     run();
+//   });
+//   const timeoutId = setTimeout(() => ctrl.abort(), DURATION);
+//   try {
+//     await Promise.all(Array.from({ length: CONCURRENCY }, (_, i) => task(i)));
+//   } catch (e) {
+//     console.error(e);
+//   } finally {
+//     clearTimeout(timeoutId);
+//     clearInterval(timer);
+//     const finalElapsed = performance.now() - startTime;
+//     const finalBytes = totalBytes + activeBytes.reduce((a, b) => a + b, 0);
+//     uploadSpeed.value = finalBytes > 0 
+//       ? `${calculateMbps(finalBytes, finalElapsed)} Mbps` 
+//       : 'Error';
+//     isUploading.value = false;
+//   }
+// };
 //all
 const isTesting = ref(false);
 const Go = async () => {
@@ -205,7 +206,6 @@ const Go = async () => {
   try {
     await Latency(); 
     await Download(); 
-    await Upload();
   } catch (e) {
     console.error("Something when't wrong:", e);
   } finally {

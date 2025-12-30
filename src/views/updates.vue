@@ -6,11 +6,18 @@
 <h1>Updates and Fixeds of this site</h1>
 <p>For other project update logs, please go to the project Github. Here is only the website update log.</p>
     <el-timeline>
+      <el-timeline-item timestamp="2025/12/30 3.3.9 to 3.4.0" placement="top">
+      <el-card>
+        <p>The speed test page no longer offers the function of uploading speed tests. Goodbye, Los Angeles node.</p>
+        <h3>View old page:</h3>
+        <el-link href="https://867678.xyz/" target="_blank">3.3.9 to 3.4.0</el-link>
+      </el-card>
+      </el-timeline-item>
       <el-timeline-item timestamp="2025/12/25 3.3.8 to 3.3.9" placement="top">
       <el-card>
         <p>The speed test server was replaced with one with a larger bandwidth.</p>
         <h3>View old page:</h3>
-        <el-link href="https://867678.xyz/" target="_blank">3.3.6 to 3.3.7</el-link>
+        <el-link href="https://5bae7d36.867678.pages.dev/" target="_blank">3.3.8 to 3.3.9</el-link>
       </el-card>
       </el-timeline-item>
        <el-timeline-item timestamp="2025/12/24 3.3.7 to 3.3.8" placement="top">
