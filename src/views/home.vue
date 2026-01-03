@@ -1,6 +1,6 @@
 <template>
         <h1>Welcome to my website , I'm Mo Kanove</h1>
-        <p>Maybe is a developer , coder </p>
+        <p>A slowly developer , coder </p>
 <p></p>
    <el-button type="info" plain @click="Github"><el-icon><Link /></el-icon>Github</el-button>
    <el-button type="primary" plain @click="EMail"><el-icon><ChatLineSquare /></el-icon>E-Mail</el-button>
@@ -36,10 +36,17 @@
     <template #header><span style="font-size: 20px;">My skills</span></template>
     <p align="center"><img src="https://skillicons.dev/icons?i=html,css,javascript,cpp,golang,php,docker,nginx,mysql,github,cloudflare,workers,git,unity,vim,gmail,npm,linux,ubuntu,debian,arch,windows&perline=23"/></p>
   </el-card><br />
+  <el-card shadow="hover">
+    <template #header><span style="font-size: 20px;">Tips</span></template>
+    <p>Did you know that the domain name of the website you are visiting is an experiment?Don't panic, he can actually solve many of your network problems.</p>
+    <p>First of all, don't assume that accessing 867678.xyz or www.867678.xyz directly is all the functionality of this website.</p>
+    <p>In fact, if you use dig or nslookup to resolve (random).867678.xyz, you'll find that this is still a good way to bypass the ISP's DNS cache and get the real speed of accessing my website.</p>
+    <p>You'll find that even if you configure a very fast DNS, it will still be slow after you bypass it.</p>
+  </el-card><br />
     <el-card shadow="never">
-    <el-text>© 2025 MoKanove<el-divider direction="vertical" />Website Version : {{ websiteVersion }}<el-divider direction="vertical" />Built time : 2025-12-30</el-text>
+    <el-text>© 2026 MoKanove<el-divider direction="vertical" />Website Version : {{ websiteVersion }}<el-divider direction="vertical" />Built time : 2026-01-03</el-text>
     <el-divider direction="vertical" /><el-link href="https://github.com/mokanove/867678.xyz" target="_black">Open Source Files of this site</el-link>
-    <el-divider direction="vertical" /><el-text>100% Support IPV6</el-text>
+    <el-divider direction="vertical" /><el-text>Full support IPV6</el-text>
     </el-card>
 </template>
 <script setup>

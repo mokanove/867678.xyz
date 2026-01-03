@@ -6,7 +6,7 @@
   </el-breadcrumb>
     <h1>TKKHS | Mo Kanove</h1>
     <el-card shadow="hover">
-    <img src="https://skillicons.dev/icons?i=vite,html,css" height="25px"/><el-divider direction="vertical" />
+    <img src="https://skillicons.dev/icons?i=vite,html,css,ts" height="25px"/><el-divider direction="vertical" />
     <el-text>Say what you want, it won't record it. Open Source with GPLv3</el-text><el-divider direction="vertical" />
     <el-link href="https://github.com/mokanove/867678.xyz/blob/main/src/views/projects/tkkhs.vue" target="_blank" type="primary">View Source Code</el-link>
     </el-card><p></p>

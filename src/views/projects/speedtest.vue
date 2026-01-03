@@ -22,7 +22,7 @@
   <el-card shadow="hover">
        <div class="test"><el-button type="primary" @click="Go" :disabled="isTesting" plain class="speed-btn">Start test</el-button></div>
         <p></p>
-       <img src="https://skillicons.dev/icons?i=nginx,linux,ubuntu,vite,workers" height="30px"/><el-divider direction="vertical" />
+       <img src="https://skillicons.dev/icons?i=ts,vite,cloudflare" height="30px"/><el-divider direction="vertical" />
        <el-link type="primary" href="https://github.com/mokanove/867678.xyz/blob/main/src/views/projects/speedtest.vue" target="_blank">Source Code</el-link><el-divider direction="vertical" />
        <el-text>Please note the data consumption during speed testing.</el-text><el-divider direction="vertical" />
        <el-text>Test data is for reference only and no guarantee is provided.</el-text>
