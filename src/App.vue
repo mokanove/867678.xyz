@@ -5,7 +5,7 @@
     </el-menu-item>
     <el-sub-menu index="1">
       <template #title><el-icon><Menu /></el-icon>Theme</template>
-      <el-menu-item index="1-1" @click="setTheme('system')"><el-icon><SwitchFilled /></el-icon>Follow System(Default)</el-menu-item>
+      <el-menu-item index="1-1" @click="setTheme('system')"><el-icon><SwitchFilled /></el-icon>Follow System</el-menu-item>
       <el-menu-item index="1-2" @click="setTheme('light')"><el-icon><Sunny /></el-icon>Light</el-menu-item>
       <el-menu-item index="1-3" @click="setTheme('dark')"><el-icon><Moon /></el-icon>Dark</el-menu-item>
     </el-sub-menu>
@@ -55,4 +55,16 @@ const setTheme = (mode: ThemeMode) => {
 <style scoped>
 .el-menu--horizontal > .el-menu-item:nth-child(1) {  margin-right: auto;}
 .el-menu-demo { max-width: 99vw;  overflow-x: auto;}
+.el-menu.el-menu--horizontal {
+  border-bottom: none;
+  background-color: transparent;
+  padding: 0;
+}
+.el-avatar {
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+.el-avatar:hover {
+  transform: scale(1.08);
+}
 </style>

@@ -5,7 +5,7 @@
 </el-breadcrumb>
   <h1>Projects</h1>
   <p>The reason I made my own software was probably because I was annoyed by other similar software.</p>
-<el-card shadow="hover" @click="link('speedtest')">
+<el-card shadow="hover" @click="link('moitools')">
     <h2>Speedtest by Mo</h2>
     <p>Quickly test your internet speed using high-speed servers located around the world.</p>
   </el-card>

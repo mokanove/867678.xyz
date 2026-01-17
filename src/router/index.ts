@@ -13,14 +13,19 @@ const router = createRouter({
      component: () => import('../views/updates.vue'),
     },
     {
+      path: '/updates-old',
+      name: 'updates-old',
+     component: () => import('../views/updates-old.vue'),
+    },
+    {
     path: '/projects',
      name: 'projects',
     component: () => import('../views/projects.vue'),
     },
     {
-      path: '/projects/speedtest',
-      name: 'speedtest',
-      component: () => import('../views/projects/speedtest.vue'),
+      path: '/projects/moitools',
+      name: 'moitools',
+      component: () => import('../views/projects/moitools.vue'),
     },
     {
       path: '/projects/tkkhs',

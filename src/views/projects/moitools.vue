@@ -28,21 +28,6 @@
        <el-text>Test data is for reference only and no guarantee is provided.</el-text>
    </el-card>
 </template>
-<style scoped>
-.test {
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
-  width: 99%;
-  padding: 10px 0; 
-}
-.speed-btn {
-  padding: 25px 50px;
-  font-size: 1.5rem;
-  font-weight: 800;
-  width: 100%;
-}
-</style>
 <script lang="ts" setup>
 //icons
 import { DArrowRight } from '@element-plus/icons-vue'
@@ -56,7 +41,7 @@ const fetchIps = async () => {
   const [v4Res, v6Res, dualRes] = await Promise.all([
     fetchJson('https://ipinfo.io/json'),
     fetchJson('https://v6.ipinfo.io/json'),
-    fetchJson('https://api64.ipify.org?format=json')
+    fetchJson('https://api.867678.xyz/')
   ]);
   if (dualRes.ip !== 'Failed') {
     preferred.value = dualRes.ip.includes(':') ? 'IPv6' : 'IPv4';
@@ -75,7 +60,7 @@ onMounted(fetchIps)
 const latency = ref('Not started');
 const Latency = async () => {
   latency.value = 'Testing...';
-  const samples: number[] = [], url = 'https://www.gstatic.com/generate_204';
+  const samples: number[] = [], url = 'https://cp.cloudflare.com/generate_204';
   for (let i = 0; i < 10; i++) {
     const start = performance.now();
     try {
@@ -213,3 +198,18 @@ const Go = async () => {
   }
 };
 </script>
+<style scoped>
+.test {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  width: 99%;
+  padding: 10px 0; 
+}
+.speed-btn {
+  padding: 25px 50px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  width: 100%;
+}
+</style>
