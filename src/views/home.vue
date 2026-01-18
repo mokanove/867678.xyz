@@ -3,33 +3,33 @@
     <div class="content-box">
       <h1 class="title">Welcome, I'm <span class="accent">Mo Kanove</span></h1>
       <div class="button-group">
-        <el-button type="info" class="md-btn" plain @click="Github"><el-icon><Link /></el-icon>Github</el-button>
-        <el-button type="primary" class="md-btn" plain @click="EMail"><el-icon><ChatLineSquare /></el-icon>E-Mail</el-button>
-        <el-button type="success" class="md-btn"plain @click="donate"><el-icon><Money /></el-icon>Donate</el-button>
+        <el-button type="info" class="su-btn" plain @click="Github"><el-icon><Link /></el-icon>Github</el-button>
+        <el-button type="primary" class="su-btn" plain @click="EMail"><el-icon><ChatLineSquare /></el-icon>E-Mail</el-button>
+        <el-button type="success" class="su-btn"plain @click="donate"><el-icon><Money /></el-icon>Donate</el-button>
       </div>
     </div>
   </div>
 <el-row :gutter="10">
     <el-col :xs="24" :sm="12" :md="12" :lg="12">
-    <el-card shadow="hover" @click="link('moitools')" class="clickable-card">
+    <el-card su-btn @click="link('moitools')" class="clickable-card">
     <h2>Moitools</h2>
-    <p>It can perform download and upload speed tests, DNS and WebRTC leak detection, etc. on the web page.</p>
+    <p>It can perform download and upload speed tests, DNS and WebRTC leak detection.</p>
     </el-card>
     </el-col>
     <el-col :xs="24" :sm="12" :md="12" :lg="12">
-    <el-card shadow="hover" @click="link('tkkhs')" class="clickable-card">
+    <el-card su-btn @click="link('tkkhs')" class="clickable-card">
     <h2>TKKHS</h2>
     <p>A tool for venting emotions.</p>
     </el-card>
     </el-col>
     <el-col :xs="24" :sm="12" :md="12" :lg="12">
-    <el-card shadow="hover" @click="link('')" class="clickable-card">
+    <el-card su-btn @click="link('')" class="clickable-card">
     <h2>Projects</h2>
     <p>More bigger, more interesting, more fun and more promising projects to be developed.</p>
     </el-card>
     </el-col>
     <el-col :xs="24" :sm="12" :md="12" :lg="12">
-    <el-card shadow="hover" @click="updates" class="clickable-card">
+    <el-card su-btn @click="updates" class="clickable-card">
     <h2>Updates & Fixeds</h2>
     <p>This is the website's update and fix log.</p>
   </el-card>
@@ -43,12 +43,12 @@
     </el-card>
   </el-col>
 </el-row>
-<el-card shadow="never" class="footer-card">
+<el-card class="footer-card">
   <el-text>© 2026 MoKanove</el-text>
   <el-divider direction="vertical" />
   <el-text>Version: {{ websiteVersion }}</el-text>
   <el-divider direction="vertical" />
-  <el-text>Built time: 2026-01-17</el-text>
+  <el-text>Built time: 2026-01-18</el-text>
   <br /> <el-link href="https://github.com/mokanove/867678.xyz" target="_blank">Source Code</el-link>
   <el-divider direction="vertical" />
   <el-text>Full IPv6 is Ready</el-text>
@@ -63,8 +63,14 @@ const donate = () => {
   })
 }
 //link
-const Github = () => {window.open('https://github.com/mokanove', '_blank')}
-const EMail = () => {window.open('mailto:me@867678.xyz', '_blank')}
+const Github = () => {
+  window.open('https://github.com/mokanove', '_blank')
+}
+const EMail = () => {
+  ElMessageBox.alert('me@867678.xyz ', 'E-Mali', {
+    confirmButtonText: 'OK',
+  })
+}
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const link = (projectName) => {
@@ -82,15 +88,10 @@ const websiteVersion = __APP_VERSION__;
   align-items: center;
   min-height: 35vh;
   padding: 15px;
-}
-.content-box {
-  max-width: 900px;
   text-align: center;
 }
 .title {
-  font-size: clamp(2.2rem, 6vw, 4rem);
-  font-weight: 800;
-  line-height: 1.1;
+  font: 800 clamp(2.2rem, 6vw, 4rem)/1.1 sans-serif;
   letter-spacing: -0.04em;
   margin-bottom: 12px;
 }
@@ -103,51 +104,46 @@ const websiteVersion = __APP_VERSION__;
   justify-content: center;
   margin-top: 24px;
 }
-.md-btn {
-border-radius: 20px !important;
-padding: 12px 24px !important;
-height: auto !important;
+.su-btn {
+  border-radius: 20px !important;
+  padding: 12px 24px !important;
+  height: auto !important;
+  transition: transform 0.2s;
 }
-.md-btn:hover {
+.su-btn:hover {
   transform: scale(1.08);
 }
 .el-row {
-  margin: -20px -6px 0 -6px !important;
+  margin: -20px -6px 0 !important;
   gap: 12px 0;
   padding-bottom: 15px !important;
 }
 .el-col {
   padding: 0 6px !important;
-  margin-bottom: 0px;
 }
 .el-card {
   border: 2px solid #f0f0f0 !important;
   border-radius: 28px !important;
   transition: all 0.25s ease;
   box-shadow: none !important;
-  cursor: default;
 }
 :deep(.el-card__header) {
   border: none !important;
-  padding: 25px 25px 0 25px !important;
+  padding: 25px 25px 0 !important;
 }
 :deep(.el-card__body) {
-  padding: 12px 25px 25px 25px !important;
+  padding: 12px 25px 25px !important;
 }
 .el-card h2 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  margin: 0 0 6px 0;
+  font: 800 1.5rem/1.1 sans-serif;
+  margin-bottom: 6px;
   letter-spacing: -0.03em;
-  line-height: 1.1;
   display: flex;
   align-items: center;
 }
 .el-card p {
-  font-size: 0.95rem;
+  font-size: .95rem;
   line-height: 1.35;
-  color: #444;
-  margin: 0;
 }
 .clickable-card {
   cursor: pointer !important;
@@ -157,7 +153,7 @@ height: auto !important;
   margin-left: 8px;
   opacity: 0;
   transform: translateX(-10px);
-  transition: all 0.2s ease;
+  transition: .2s;
   color: var(--el-color-primary);
 }
 .clickable-card:hover {
@@ -173,17 +169,10 @@ height: auto !important;
   border: none !important;
   background: transparent !important;
   text-align: center;
-  padding: 20px 0 40px 0 !important;
+  padding: 20px 0 40px !important;
 }
 .footer-card :deep(.el-card__body) {
   padding: 0 !important;
-}
-.footer-card .el-text, 
-.footer-card .el-link {
-  letter-spacing: 0;
-}
-.footer-card .el-link:hover {
-  color: var(--el-color-primary) !important;
 }
 .footer-card .el-divider--vertical {
   border-color: #ddd !important;

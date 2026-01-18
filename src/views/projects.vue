@@ -4,31 +4,38 @@
 <el-breadcrumb-item>Projects</el-breadcrumb-item>
 </el-breadcrumb>
   <h1>Projects</h1>
-  <p>The reason I made my own software was probably because I was annoyed by other similar software.</p>
-<el-card shadow="hover" @click="link('moitools')">
-    <h2>Speedtest by Mo</h2>
-    <p>Quickly test your internet speed using high-speed servers located around the world.</p>
+<el-row :gutter="10">
+    <el-col :xs="24" :sm="12" :md="12" :lg="12">
+    <el-card @click="link('moitools')">
+    <h2>Moitools</h2>
+    <p>It can perform download and upload speed tests, DNS and WebRTC leak detection.</p>
   </el-card>
-  <br />
-  <el-card shadow="hover" @click="link('tkkhs')">
+  </el-col>
+  <el-col :xs="24" :sm="12" :md="12" :lg="12">
+  <el-card @click="link('tkkhs')">
     <h2>TKKHS</h2>
-    <p>A good thing to vent your emotions, Ai function will be introduced in the future.</p>
+    <p>A tool for venting emotions.</p>
   </el-card>
-  <br />
- <el-card shadow="hover" @click="link('ghit')">
+  </el-col>
+  <el-col :xs="24" :sm="12" :md="12" :lg="12">
+   <el-card @click="link('laoues')">
+    <h2>laoues</h2>
+    <p>High security and high speed network proxy tool.</p>
+  </el-card>
+  </el-col>
+  <el-col :xs="24" :sm="12" :md="12" :lg="12">
+ <el-card @click="link('ghit')">
     <h2>Ghit</h2>
     <p>A convenient open source and easy-to-use version controller.</p>
   </el-card>
-   <br />
-   <el-card shadow="hover" @click="link('moixa')">
-    <h2>moixa</h2>
-    <p>High security and high speed network proxy tool.</p>
-  </el-card>
-   <br />
-   <el-card shadow="hover" @click="link('FuestaOS')">
+  </el-col>
+  <el-col :xs="24" :sm="12" :md="12" :lg="12">
+   <el-card @click="link('FuestaOS')">
     <h2>FuestaOS</h2>
     <p>A general-purpose open source operating system with high performance, high security, and high usability.</p>
   </el-card>
+</el-col>
+</el-row>
 </template>
 <script setup>
 import { Back , Money , DArrowRight , Document} from '@element-plus/icons-vue'
@@ -41,3 +48,19 @@ const link = (projectName) => {
     router.push(`/projects/${projectName}`); 
 }
 </script>
+<style scoped>
+  .el-card {
+  border: 2px solid #f0f0f0 !important;
+  border-radius: 28px !important;
+  transition: all 0.25s ease;
+  box-shadow: none !important;
+}
+.el-row {
+  margin: -20px -6px 0 !important;
+  gap: 12px 0;
+  padding-bottom: 15px !important;
+}
+.el-col {
+  padding: 0 6px !important;
+}
+</style>

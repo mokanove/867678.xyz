@@ -38,9 +38,9 @@ const router = createRouter({
       component: () => import('../views/projects/fuestaos.vue'),
     },
     {
-      path: '/projects/moixa',
-      name: 'moixa',
-      component: () => import('../views/projects/moixa.vue'),
+      path: '/projects/laoues',
+      name: 'laoues',
+      component: () => import('../views/projects/laoues.vue'),
     },
     {
       path: '/projects/ghit',

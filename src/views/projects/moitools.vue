@@ -2,30 +2,28 @@
   <el-breadcrumb :separator-icon="DArrowRight" >
   <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
   <el-breadcrumb-item :to="{ path: '/projects' }">Projects</el-breadcrumb-item>
-  <el-breadcrumb-item>SpeedTest</el-breadcrumb-item>
+  <el-breadcrumb-item>Moitools</el-breadcrumb-item>
   </el-breadcrumb>
-  <h1>SpeedTest  | Mo</h1>
+  <h1>Moitools</h1>
   <el-row :gutter="10">
   <el-col :xs="24" :sm="12" :md="12" :lg="12">
-  <el-card shadow="hover">
-    <h2>Client</h2>
-    <h3 id="sip">{{ Clientinfo }}</h3>
+  <el-card>
+    <h2>You</h2>
+    <h3 id="sip">{{ clientinfo }}</h3>
+    <el-text>Test data is for reference only and no guarantee is provided.</el-text>
   </el-card>
   </el-col>
   <el-col :xs="24" :sm="12" :md="12" :lg="12">
-  <el-card shadow="hover">
-    <h2>Server</h2>
+  <el-card>
+    <h2>Speed</h2>
     <h3>Download:{{ downloadSpeed }} Latency:{{ latency }}</h3>
+    <el-text>Please note the data consumption during speed testing.</el-text>
   </el-card>
  </el-col>
-</el-row><p></p>
-  <el-card shadow="hover">
-       <div class="test"><el-button type="primary" @click="Go" :disabled="isTesting" plain class="speed-btn">Start test</el-button></div>
-        <p></p>
-       <img src="https://skillicons.dev/icons?i=ts,vite,cloudflare" height="30px"/><el-divider direction="vertical" />
-       <el-link type="primary" href="https://github.com/mokanove/867678.xyz/blob/main/src/views/projects/speedtest.vue" target="_blank">Source Code</el-link><el-divider direction="vertical" />
-       <el-text>Please note the data consumption during speed testing.</el-text><el-divider direction="vertical" />
-       <el-text>Test data is for reference only and no guarantee is provided.</el-text>
+</el-row>
+<div class="test"><el-button type="primary" @click="Go" :disabled="isTesting" plain class="speed-btn">Start speedtest</el-button></div><p></p>
+  <el-card class="footer-card">
+       <el-link type="primary" href="https://github.com/mokanove/867678.xyz/blob/main/src/views/projects/moitools.vue" target="_blank">Source Code</el-link>
    </el-card>
 </template>
 <script lang="ts" setup>
@@ -33,15 +31,15 @@
 import { DArrowRight } from '@element-plus/icons-vue'
 //get user ip
 import { ref, onMounted } from 'vue'
-const Clientinfo = ref('Getting your IP...')
+const clientinfo = ref('Getting data...')
 const preferred = ref('')
 const fetchIps = async () => {
   const fetchJson = (url: string) => 
     fetch(url).then(r => r.json()).catch(() => ({ ip: 'Failed' }));
   const [v4Res, v6Res, dualRes] = await Promise.all([
-    fetchJson('https://ipinfo.io/json'),
-    fetchJson('https://v6.ipinfo.io/json'),
-    fetchJson('https://api.867678.xyz/')
+    fetchJson('https://api4.ipify.org/?format=json'),
+    fetchJson('https://api6.ipify.org/?format=json'),
+    fetchJson('https://api64.ipify.org/?format=json')
   ]);
   if (dualRes.ip !== 'Failed') {
     preferred.value = dualRes.ip.includes(':') ? 'IPv6' : 'IPv4';
@@ -53,11 +51,11 @@ const fetchIps = async () => {
     `IPv6: ${v6Res.ip}`,
     `Preferred: ${preferred.value}`
   ];
-  Clientinfo.value = lines.join('\n');
+  clientinfo.value = lines.join('\n');
 };
 onMounted(fetchIps)
 //Latency
-const latency = ref('Not started');
+const latency = ref('');
 const Latency = async () => {
   latency.value = 'Testing...';
   const samples: number[] = [], url = 'https://cp.cloudflare.com/generate_204';
@@ -80,7 +78,7 @@ const Latency = async () => {
 };
 //test
 //down
-const downloadSpeed = ref('Not started'), isDownloading = ref(false);
+const downloadSpeed = ref(''), isDownloading = ref(false);
 const Download = async () => {
   if (isDownloading.value) return;
   isDownloading.value = true;
@@ -116,73 +114,6 @@ const Download = async () => {
     downloadSpeed.value = totalBytes > 0 ? `${((totalBytes * 8) / 1e6 / finalSec).toFixed(2)} Mbps` : 'Failed';
   }
 };
-//up
-// const uploadSpeed = ref('Not started'), isUploading = ref(false);
-
-// const Upload = async () => {
-//   if (isUploading.value) return;
-//   isUploading.value = true;
-//   uploadSpeed.value = 'Connecting...';
-//   const ctrl = new AbortController();
-//   const DURATION = 5000; 
-//   const CHUNK_SIZE = 2 * 1024 * 1024; 
-//   const CONCURRENCY = 4;
-//   const startTime = performance.now();
-//   const activeBytes = new Array(CONCURRENCY).fill(0);
-//   let totalBytes = 0;
-//   const data = new Uint8Array(CHUNK_SIZE);
-//   crypto.getRandomValues(data);
-//   const calculateMbps = (bytes: number, ms: number) => {
-//     if (ms <= 0) return '0.00';
-//     return ((bytes * 8) / 1048576 / (ms / 1000)).toFixed(2);
-//   };
-//   const timer = setInterval(() => {
-//     const elapsed = performance.now() - startTime;
-//     if (elapsed <= 500) return;
-//     const currentBytes = totalBytes + activeBytes.reduce((a, b) => a + b, 0);
-//     uploadSpeed.value = `${calculateMbps(currentBytes, elapsed)} Mbps`;
-//   }, 100);
-//   const task = (i: number) => new Promise<void>(resolve => {
-//     const run = () => {
-//       if (ctrl.signal.aborted) return resolve();
-//       const x = new XMLHttpRequest();
-//       x.open('POST', `https://speed.cloudflare.com/__up?measId=${Math.random()}`);
-//       x.upload.onprogress = e => {
-//         if (e.lengthComputable) activeBytes[i] = e.loaded;
-//       };
-//       x.onload = () => {
-//         totalBytes += CHUNK_SIZE;
-//         activeBytes[i] = 0;
-//         if (!ctrl.signal.aborted) run(); else resolve();
-//       };
-//       x.onerror = () => {
-//         activeBytes[i] = 0;
-//         if (!ctrl.signal.aborted) setTimeout(run, 500); else resolve();
-//       };
-//       ctrl.signal.addEventListener('abort', () => {
-//         x.abort();
-//         resolve();
-//       }, { once: true });
-//       x.send(data);
-//     };
-//     run();
-//   });
-//   const timeoutId = setTimeout(() => ctrl.abort(), DURATION);
-//   try {
-//     await Promise.all(Array.from({ length: CONCURRENCY }, (_, i) => task(i)));
-//   } catch (e) {
-//     console.error(e);
-//   } finally {
-//     clearTimeout(timeoutId);
-//     clearInterval(timer);
-//     const finalElapsed = performance.now() - startTime;
-//     const finalBytes = totalBytes + activeBytes.reduce((a, b) => a + b, 0);
-//     uploadSpeed.value = finalBytes > 0 
-//       ? `${calculateMbps(finalBytes, finalElapsed)} Mbps` 
-//       : 'Error';
-//     isUploading.value = false;
-//   }
-// };
 //all
 const isTesting = ref(false);
 const Go = async () => {
@@ -211,5 +142,40 @@ const Go = async () => {
   font-size: 1.5rem;
   font-weight: 800;
   width: 100%;
+  border-radius: 50px;
+}
+.el-row {
+  margin: -20px -6px 0 !important;
+  gap: 12px 0;
+  padding-bottom: 15px !important;
+}
+.el-col {
+  padding: 0 6px !important;
+}
+.el-card {
+  border: 2px solid #f0f0f0 !important;
+  border-radius: 28px !important;
+  transition: all 0.25s ease;
+  box-shadow: none !important;
+}
+:deep(.el-card__header) {
+  border: none !important;
+  padding: 25px 25px 0 !important;
+}
+:deep(.el-card__body) {
+  padding: 12px 25px 25px !important;
+}
+.footer-card {
+  border: none !important;
+  background: transparent !important;
+  text-align: center;
+  padding: 10px 0 20px !important;
+}
+.footer-card :deep(.el-card__body) {
+  padding: 0 !important;
+}
+.footer-card .el-divider--vertical {
+  border-color: #ddd !important;
+  margin: 0 12px;
 }
 </style>
