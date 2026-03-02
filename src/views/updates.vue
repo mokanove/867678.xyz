@@ -1,5 +1,10 @@
 <template>
   <el-timeline>
+    <el-timeline-item timestamp="2026/03/02 (v3.4.4)" placement="top">
+      <el-card class="log-card" shadow="never">
+        <p>A new logo now released.</p>
+      </el-card>
+    </el-timeline-item>
     <el-timeline-item timestamp="2026/01/18 (v3.4.3)" placement="top">
       <el-card class="log-card" shadow="never">
         <p>Some style change.</p>
@@ -11,19 +16,7 @@
       </el-card>
     </el-timeline-item>
     </el-timeline>
-    <el-card class="archive-entrance-card" shadow="never" @click="updatesold">
-  <span class="archive-icon">📦</span>
-  <h2 class="archive-title">View Legacy Archives</h2>
-  <p class="archive-desc">v~— v3.4.1</p>
-</el-card>
 </template>
-<script setup>
-import { useRouter } from 'vue-router'
-const router = useRouter()
-const updatesold = () => {
-    router.push(`/updates-old`); 
-}
-</script>
 <style scoped>
 :deep(.el-timeline) {
   padding-left: 10px;
