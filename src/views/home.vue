@@ -48,8 +48,9 @@
   <el-divider direction="vertical" />
   <el-text>Version: {{ websiteVersion }}</el-text>
   <el-divider direction="vertical" />
-  <el-text>Built time: 2026-03-02</el-text>
-  <br /> <el-link href="https://github.com/mokanove/867678.xyz" target="_blank">Source Code</el-link>
+  <el-text>Built time: 2026-03-17</el-text>
+  <el-divider direction="vertical" />
+  <el-link href="https://github.com/mokanove/867678.xyz" target="_blank">Source Code</el-link>
   <el-divider direction="vertical" />
   <el-text>Full IPv6 is Ready</el-text>
 </el-card>

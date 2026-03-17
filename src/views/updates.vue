@@ -1,5 +1,10 @@
 <template>
   <el-timeline>
+    <el-timeline-item timestamp="2026/03/17 (v3.4.5)" placement="top">
+      <el-card class="log-card" shadow="never">
+        <p>Minor fixes and speedtest API replacement.</p>
+      </el-card>
+    </el-timeline-item>
     <el-timeline-item timestamp="2026/03/02 (v3.4.4)" placement="top">
       <el-card class="log-card" shadow="never">
         <p>A new logo now released.</p>

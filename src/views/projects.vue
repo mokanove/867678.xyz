@@ -29,7 +29,7 @@
     <p>A convenient open source and easy-to-use version controller.</p>
   </el-card>
   </el-col>
-  <el-col :xs="24" :sm="12" :md="12" :lg="12">
+  <el-col>
    <el-card @click="link('FuestaOS')">
     <h2>FuestaOS</h2>
     <p>A general-purpose open source operating system with high performance, high security, and high usability.</p>

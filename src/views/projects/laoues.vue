@@ -2,9 +2,9 @@
 <el-breadcrumb :separator-icon="DArrowRight" >
 <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
 <el-breadcrumb-item :to="{ path: '/projects' }">Projects</el-breadcrumb-item>
-<el-breadcrumb-item>Moixa</el-breadcrumb-item>
+<el-breadcrumb-item>Laoues</el-breadcrumb-item>
 </el-breadcrumb>
-<h1>Moixa | MoKanove</h1>
+<h1>Laoues | MoKanove</h1>
 <p>High security and high speed network proxy tool.</p>
 <el-row class="tac">
     <el-col :span="3">

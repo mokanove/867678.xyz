@@ -37,8 +37,8 @@ const fetchIps = async () => {
   const fetchJson = (url: string) => 
     fetch(url).then(r => r.json()).catch(() => ({ ip: 'Failed' }));
   const [v4Res, v6Res, dualRes] = await Promise.all([
-    fetchJson('https://api4.ipify.org/?format=json'),
-    fetchJson('https://api6.ipify.org/?format=json'),
+    fetchJson('https://ipinfo.io/json'),
+    fetchJson('https://v6.ipinfo.io/json'),
     fetchJson('https://api64.ipify.org/?format=json')
   ]);
   if (dualRes.ip !== 'Failed') {
@@ -58,7 +58,7 @@ onMounted(fetchIps)
 const latency = ref('');
 const Latency = async () => {
   latency.value = 'Testing...';
-  const samples: number[] = [], url = 'https://cp.cloudflare.com/generate_204';
+  const samples: number[] = [], url = 'https://www.gstatic.com/generate_204';
   for (let i = 0; i < 10; i++) {
     const start = performance.now();
     try {
@@ -83,7 +83,7 @@ const Download = async () => {
   if (isDownloading.value) return;
   isDownloading.value = true;
   downloadSpeed.value = 'Connecting...';
-  const ctrl = new AbortController(), DURATION = 5000, CON = 6;
+  const ctrl = new AbortController(), DURATION = 8000, CON = 10;
   const startTime = performance.now();
   let totalBytes = 0;
   const timer = setInterval(() => {
