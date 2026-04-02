@@ -52,24 +52,3 @@ const setTheme = (mode: ThemeMode) => {
   }
 };
 </script>
-<style scoped>
-.el-menu--horizontal > .el-menu-item:nth-child(1) { 
-  margin-right: auto;
-}
-.el-menu-demo { 
-  max-width: 99vw;  
-  overflow-x: auto;
-}
-.el-menu.el-menu--horizontal {
-  border-bottom: none;
-  background-color: transparent;
-  padding: 0;
-}
-.el-avatar {
-  transition: transform 0.2s ease;
-  cursor: pointer;
-}
-.el-avatar:hover {
-  transform: scale(1.08);
-}
-</style>

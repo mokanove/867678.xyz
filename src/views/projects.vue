@@ -48,19 +48,3 @@ const link = (projectName) => {
     router.push(`/projects/${projectName}`); 
 }
 </script>
-<style scoped>
-  .el-card {
-  border: 2px solid #f0f0f0 !important;
-  border-radius: 28px !important;
-  transition: all 0.25s ease;
-  box-shadow: none !important;
-}
-.el-row {
-  margin: -20px -6px 0 !important;
-  gap: 12px 0;
-  padding-bottom: 15px !important;
-}
-.el-col {
-  padding: 0 6px !important;
-}
-</style>

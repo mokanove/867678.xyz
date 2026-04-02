@@ -48,7 +48,7 @@
   <el-divider direction="vertical" />
   <el-text>Version: {{ websiteVersion }}</el-text>
   <el-divider direction="vertical" />
-  <el-text>Built time: 2026-03-17</el-text>
+  <el-text>Built time: 2026-04-02</el-text>
   <el-divider direction="vertical" />
   <el-link href="https://github.com/mokanove/867678.xyz" target="_blank">Source Code</el-link>
   <el-divider direction="vertical" />
@@ -82,101 +82,3 @@ const updates = () => {
 }
 const websiteVersion = __APP_VERSION__;
 </script>
-<style scoped>
-.hero-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 35vh;
-  padding: 15px;
-  text-align: center;
-}
-.title {
-  font: 800 clamp(2.2rem, 6vw, 4rem)/1.1 sans-serif;
-  letter-spacing: -0.04em;
-  margin-bottom: 12px;
-}
-.accent {
-  color: var(--el-color-primary);
-}
-.button-group {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  margin-top: 24px;
-}
-.su-btn {
-  border-radius: 20px !important;
-  padding: 12px 24px !important;
-  height: auto !important;
-  transition: transform 0.2s;
-}
-.su-btn:hover {
-  transform: scale(1.08);
-}
-.el-row {
-  margin: -20px -6px 0 !important;
-  gap: 12px 0;
-  padding-bottom: 15px !important;
-}
-.el-col {
-  padding: 0 6px !important;
-}
-.el-card {
-  border: 2px solid #f0f0f0 !important;
-  border-radius: 28px !important;
-  transition: all 0.25s ease;
-  box-shadow: none !important;
-}
-:deep(.el-card__header) {
-  border: none !important;
-  padding: 25px 25px 0 !important;
-}
-:deep(.el-card__body) {
-  padding: 12px 25px 25px !important;
-}
-.el-card h2 {
-  font: 800 1.5rem/1.1 sans-serif;
-  margin-bottom: 6px;
-  letter-spacing: -0.03em;
-  display: flex;
-  align-items: center;
-}
-.el-card p {
-  font-size: .95rem;
-  line-height: 1.35;
-}
-.clickable-card {
-  cursor: pointer !important;
-}
-.clickable-card h2::after {
-  content: '→';
-  margin-left: 8px;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: .2s;
-  color: var(--el-color-primary);
-}
-.clickable-card:hover {
-  border-color: var(--el-color-primary) !important;
-  background: var(--el-color-primary-light-9) !important;
-  transform: translateY(-4px);
-}
-.clickable-card:hover h2::after {
-  opacity: 1;
-  transform: translateX(0);
-}
-.footer-card {
-  border: none !important;
-  background: transparent !important;
-  text-align: center;
-  padding: 20px 0 40px !important;
-}
-.footer-card :deep(.el-card__body) {
-  padding: 0 !important;
-}
-.footer-card .el-divider--vertical {
-  border-color: #ddd !important;
-  margin: 0 12px;
-}
-</style>
