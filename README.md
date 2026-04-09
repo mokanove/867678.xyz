@@ -1,21 +1,25 @@
 # 867678.xyz
 > There are source code of <https://867678.xyz>
-## 🚀 How to build?
-### ⚠️ Note the dependencies!
+## 🛠️ Build Strategy
+### ⚠️ Prerequisites
 ```
-Example for arch(pacman):
+# Example for arch(pacman):
 sudo pacman -Syu nodejs pnpm npm git
 ```
+### 📦 Deployment
 ```
 git clone git@github.com:mokanove/867678.xyz.git
+cd 867678.xyz/
 pnpm install
+# pnpm dev
 pnpm build
 ```
-
-# So this version I changed firmware from 
+### 🔄 Infrastructure Evolution
 | from | to |
-|  ----  | ----  |
+| ---- | ----  |
 | Vite | Astro |
 | npm | pnpm |
 
-## No any warranties ; open source using GPL-3.0
+### ⚖️ License
+- Open source under **GPL-3.0**.
+- This application provides **no warranties**.
