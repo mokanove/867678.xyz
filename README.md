@@ -14,6 +14,7 @@ pnpm build
 
 # So this version I changed firmware from 
 | from | to |
+|  ----  | ----  |
 | Vite | Astro |
 | npm | pnpm |
 
