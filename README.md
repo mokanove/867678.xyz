@@ -14,12 +14,7 @@ pnpm install
 # pnpm dev
 pnpm build
 ```
-### 🔄 Infrastructure Evolution
-| from | to |
-| ---- | ----  |
-| Vite | Astro |
-| npm | pnpm |
 
 ### ⚖️ License
-- Open source under **GPL-3.0**.
+- Open source under **GNU GENERAL PUBLIC LICENSE Version 3.0**.
 - This application provides **no warranties**.
