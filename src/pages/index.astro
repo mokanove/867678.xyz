@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import '../styles/index.css';
+import Sidebar from '../components/sidebar.astro';
 ---
 <html lang="en">
 	<head>
@@ -10,6 +12,13 @@ import '../styles/global.css';
 		<title>MoKanove</title>
 	</head>
 	<body>
-		
+        <div class="flex h-screen w-full">    
+            <div class="w-[15%]">
+                <Sidebar />
+            </div>
+            <main class="w-[85%] p-10">
+                <h2 class="text-2xl font-bold font-sans">index</h2>
+            </main>
+        </div>
 	</body>
 </html>

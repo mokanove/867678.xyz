@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  --bg-main: #ffffff;
+  --bg-aside: #eff6ff;
+  --text-title: #000000;
+  --text-main: #1f2937;
+  --border-color: #dbeafe;
+}
+
+html.dark {
+  --bg-main: #020617;
+  --bg-aside: #0f172a;
+  --text-title: #ffffff;
+  --text-main: #f3f4f6;
+  --border-color: #1e293b;
+}
+
+@layer base {
+  html, body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition: background-color 0.5s, color 0.5s;
+  }
+
+  aside {
+    background-color: var(--bg-aside);
+    transition: background-color 0.5s;
+  }
+}

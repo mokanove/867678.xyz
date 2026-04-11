@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
+  :root {
+    --bg-aside: #eff6ff;
+    --text-title: #000000;
+    --text-main: #000000;
+    --border-color: #dbeafe;
+  }
+  :global(html.dark) {
+    --bg-aside: #0f172a;
+    --text-title: #ffffff;
+    --text-main: #f3f4f6;
+    --border-color: #1e293b;
+  }
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition: background-color 0.5s, color 0.5s;
+    margin: 0;
+  }

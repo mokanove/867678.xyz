@@ -1,0 +1,64 @@
+---
+import '../styles/sidebar.css';
+import pkg from '../../package.json';
+const { version } = pkg;
+import dayjs from 'dayjs';
+
+const BuiltTime = dayjs().format('YYYY-MM-DD HH:mm:ss ([UTC]ZZ)');
+const ProjectOptions = "font-bold text-[var(--text-main)] hover:text-blue-300 focus:text-blue-400 transition-colors outline-none";
+---
+
+<script define:vars={{ version, BuiltTime }} is:inline>
+  if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+  }
+  console.log(`V${version} ${BuiltTime}`);
+</script>
+
+<aside class="h-full bg-[var(--bg-aside)] p-8 flex flex-col gap-10 transition-colors duration-500">
+    <div class="flex flex-col items-center">
+        <a href="/"><img src="/favicon.svg" class="w-32 h-32 rounded-3xl" /></a>
+        <h1 class="text-4xl font-black mt-4 text-[var(--text-title)]">Mo Kanove</h1>
+        <p class="text-blue-500">An open source developer</p>
+    </div>
+    <hr class="border-[var(--border-color)]" />
+    <nav class="flex flex-col gap-5 overflow-y-auto">
+        <h3 class="text-1xl font-black text-blue-400 tracking-normal border-l-4 border-blue-400 pl-3">Web Tools</h3>
+        <div class="flex flex-col gap-3">
+            <a href="#" class={ProjectOptions}>MoITools</a>
+            <a href="#" class={ProjectOptions}>TkkHs</a>
+        </div>
+        <h3 class="text-1xl font-black text-blue-400 tracking-normal border-l-4 border-blue-400 pl-3">OpenWrt Apps</h3>
+        <div class="flex flex-col gap-3">
+            <a href="#" class={ProjectOptions}>LuCI-APP-OpList</a>
+            <a href="#" class={ProjectOptions}>RDKS</a>
+            <a href="#" class={ProjectOptions}>LuCI-APP-Powermanager</a>
+        </div>
+        <h3 class="text-1xl font-black text-blue-400 tracking-normal border-l-4 border-blue-400 pl-3">Document</h3>
+        <div class="flex flex-col gap-3">
+            <a href="#" class={ProjectOptions}>Initialize ImmortalWrt development SDK</a>
+            <a href="#" class={ProjectOptions}>Install OpenWrt App</a>
+            <a href="#" class={ProjectOptions}>Make OpenWrt App</a>
+        </div>
+    </nav>
+    <div class="mt-auto flex justify-center">
+        <button 
+            id="theme-toggle" 
+            class="group relative w-16 h-8 bg-gray-300 dark:bg-slate-700 rounded-full p-1 transition-all duration-500 cursor-pointer active:scale-95 z-50"
+        >
+            <div class="w-6 h-6 bg-white dark:bg-blue-400 rounded-full shadow-md transition-all duration-300 transform dark:translate-x-8 flex items-center justify-center text-[12px] pointer-events-none">
+                <span class="dark:hidden">☀️</span>
+                <span class="hidden dark:inline">🌙</span>
+            </div>
+        </button>
+    </div>
+</aside>
+
+<script is:inline>
+  const handleToggle = () => {
+    const h = document.documentElement;
+    h.classList.toggle('dark');
+    localStorage.theme = h.classList.contains('dark') ? 'dark' : 'light';
+  };
+  document.getElementById('theme-toggle')?.addEventListener('click', handleToggle);
+</script>
