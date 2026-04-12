@@ -6,22 +6,9 @@ const ProjectOptions = "font-bold text-[var(--text-main)] hover:text-blue-300 fo
 ---
 
 <script define:vars={{ version }} is:inline>
-  const theme = (() => {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme');
-    }
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-    return 'light';
-  })();
-
-  if (theme === 'light') {
-    document.documentElement.classList.remove('dark');
-  } else {
-    document.documentElement.classList.add('dark');
-  }
-  window.localStorage.setItem('theme', theme);
+  const t = localStorage.getItem('theme') || 
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.classList.toggle('dark', t === 'dark');
 </script>
 
 <aside class="h-screen bg-[var(--bg-aside)] flex flex-col transition-colors duration-500 overflow-hidden border-r border-[var(--border-color)]">
@@ -63,23 +50,22 @@ const ProjectOptions = "font-bold text-[var(--text-main)] hover:text-blue-300 fo
     </nav>
 <div class="flex-shrink-0 w-full flex justify-center py-6">
   <div class="relative w-44 h-8 bg-gray-200 dark:bg-slate-800 rounded-lg p-1 flex items-center transition-colors duration-300">
-    
     <div id="theme-slider" class="absolute left-1 w-[calc(33.33%-2.6px)] h-[calc(100%-8px)] bg-white dark:bg-blue-600 rounded-md shadow-sm transition-transform duration-300 ease-in-out pointer-events-none"></div>
-    
-    <button data-theme-val="system" class="z-10 flex-1 h-full flex justify-center items-center text-[10px] cursor-pointer" title="跟随系统">
+    <button data-theme-val="system" class="z-10 flex-1 h-full flex justify-center items-center text-[10px] cursor-pointer">
       <span>🖥️</span>
     </button>
-    <button data-theme-val="light" class="z-10 flex-1 h-full flex justify-center items-center text-[10px] cursor-pointer" title="浅色">
+    <button data-theme-val="light" class="z-10 flex-1 h-full flex justify-center items-center text-[10px] cursor-pointer">
       <span>☀️</span>
     </button>
-    <button data-theme-val="dark" class="z-10 flex-1 h-full flex justify-center items-center text-[10px] cursor-pointer" title="深色">
+    <button data-theme-val="dark" class="z-10 flex-1 h-full flex justify-center items-center text-[10px] cursor-pointer">
       <span>🌙</span>
     </button>
   </div>
 </div>
 </aside>
+
 <script>
-  import { initTheme } from '../scripts/theme';
-  initTheme();
-  document.addEventListener('astro:after-swap', initTheme);
+import { initTheme } from '../scripts/theme';
+initTheme();
+document.addEventListener('astro:after-swap', initTheme);
 </script>
