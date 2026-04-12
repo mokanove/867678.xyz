@@ -2,7 +2,16 @@
 import '../styles/global.css';
 import '../styles/index.css';
 import Sidebar from '../components/sidebar.astro';
+
+import pkg from '../../package.json';
+import dayjs from 'dayjs';
+const { version } = pkg;
+const BuiltTime = dayjs().format('YYYY-MM-DD HH:mm:ss ([UTC]ZZ)');
 ---
+<script define:vars={{ version , BuiltTime}}>
+	console.log(`V${version} ${BuiltTime}`);
+</script>
+
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
