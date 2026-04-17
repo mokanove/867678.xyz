@@ -2,8 +2,8 @@
 > There are source code of <https://867678.xyz>
 ## 🛠️ Build Strategy
 ### ⚠️ Prerequisites
+> Example for arch(pacman):
 ```
-# Example for arch(pacman):
 sudo pacman -Syu nodejs pnpm npm git
 ```
 ### 📦 Deployment
