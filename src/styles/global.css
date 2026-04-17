@@ -2,7 +2,6 @@
 
 @theme {
     --font-sans: sans-serif;
-    --font-mono: monospace;
 }
 
 @layer base {

@@ -1,15 +1,10 @@
 ---
 import '../styles/global.css';
-
 import pkg from '../../package.json';
 import dayjs from 'dayjs';
 const { version } = pkg;
 const BuiltTime = dayjs().format('YYYY-MM-DD HH:mm:ss ([UTC]ZZ)');
 ---
-<script define:vars={{ version , BuiltTime}}>
-console.log(`V${version} ${BuiltTime}`);
-</script>
-
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -17,6 +12,9 @@ console.log(`V${version} ${BuiltTime}`);
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>MoKanove</title>
+	    <script define:vars={{ version , BuiltTime}}>
+		console.log(`V${version} ${BuiltTime}`);
+		</script>
 	</head>
 	<body>
     
