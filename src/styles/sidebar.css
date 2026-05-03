@@ -3,7 +3,7 @@
     padding: 20px;
     width: clamp(250px, 15%, 350px);
     height: 100vh;
-    background-color: #dae7fc;
+    background-color: #a3d1fe;
     flex-direction: column;
     transition: all 0.3s ease;
 }
