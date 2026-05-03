@@ -1,13 +1,12 @@
 .sidebar {
-    margin: 0;
     padding: 20px;
     width: clamp(250px, 15%, 350px);
-    height: 100vh;
+    height: auto;
+    min-width: 180px;
+    min-height: 100vh;
     background-color: #a3d1fe;
-    display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
-    box-sizing: border-box;
 }
 
 @media (max-width: 350px) {
