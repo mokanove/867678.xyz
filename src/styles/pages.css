@@ -1,0 +1,40 @@
+.pages-wrapper {
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+
+  .page-entry {
+    display: none;
+    width: 100%;
+  }
+
+  .page-entry.active {
+    display: block;
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .content-viewport {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1% 1%;
+  }
+
+  @media (min-width: 2500px) {
+    .content-viewport {
+      max-width: 1800px;
+      font-size: 1.15rem;
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .content-viewport {
+      padding: 40px 20px;
+    }
+  }

@@ -1,0 +1,28 @@
+---
+//css
+import '../styles/pages.css';
+//modules
+import { marked } from 'marked';
+import 'github-markdown-css/github-markdown.css';
+//post
+interface Post {
+  id: string;
+  text: string;
+}
+interface Props {
+  posts: Post[];
+}
+const { posts = [] } = Astro.props;
+---
+<main class="pages-wrapper">
+  {posts.map((post) => (
+    <section id={post.id} class="page-entry" data-page>
+      <div class="content-viewport">
+        <article 
+          class="markdown-body" 
+          set:html={marked.parse(post.text)} 
+        />
+      </div>
+    </section>
+  ))}
+</main>

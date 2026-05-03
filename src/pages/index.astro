@@ -1,11 +1,28 @@
 ---
 //css
 import '../styles/global.css';
+import '../styles/index.css';
 //pkg
 import pkg from '../../package.json';
 import dayjs from 'dayjs';
 //astro
 import Sidebar from '../components/sidebar.astro';
+import Pages from '../components/pages.astro';
+//MD
+const MD_SOURCES = {
+  'default': 'https://raw.githubusercontent.com/mokanove/mokanove/main/README.md',
+  'oplist': 'https://raw.githubusercontent.com/mokanove/luci-app-oplist/main/README.md',
+  'pm': 'https://raw.githubusercontent.com/mokanove/luci-app-pm/main/README.md',
+  'rdks': 'https://raw.githubusercontent.com/mokanove/rdks/main/README.md',
+   'doc-init': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/docs/init-sdk.md',
+   'doc-install': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/docs/install-openwrt-app.md'
+};
+const allPosts = await Promise.all(
+  Object.entries(MD_SOURCES).map(async ([id, url]) => {
+    const res = await fetch(url);
+    return { id, text: await res.text() };
+  })
+);
 //BuitTime
 const { version } = pkg;
 const BuiltTime = dayjs().format('YYYY-MM-DD HH:mm:ss ([UTC]ZZ)');
@@ -22,7 +39,38 @@ const BuiltTime = dayjs().format('YYYY-MM-DD HH:mm:ss ([UTC]ZZ)');
 		</script>
 	</head>
 	<body>
-		    <Sidebar />
-			
+		    <div class="container">
+            	<Sidebar />
+            	<Pages posts={allPosts} />
+            </div>
 	</body>
 </html>
+<script is:inline>
+  function initNavigation() {
+    const buttons = document.querySelectorAll('.item[data-target]');
+    const pages = document.querySelectorAll('[data-page]');
+    const firstPageId = 'default'; 
+
+    function showPage(id) {
+        pages.forEach(p => p.classList.toggle('active', p.id === id));
+        buttons.forEach(b => b.classList.toggle('active', b.getAttribute('data-target') === id));
+        
+        const container = document.querySelector('.pages-wrapper');
+        if (container) container.scrollTop = 0;
+    }
+
+    const currentActive = Array.from(pages).find(p => p.classList.contains('active'));
+    if (!currentActive) {
+        showPage(firstPageId);
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        showPage(btn.getAttribute('data-target'));
+      });
+    });
+  }
+
+  initNavigation();
+  document.addEventListener('astro:after-swap', initNavigation);
+</script>

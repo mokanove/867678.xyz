@@ -2,18 +2,17 @@
     padding: 20px;
     width: clamp(250px, 15%, 350px);
     height: auto;
-    min-width: 180px;
+    min-width: 190px;
     min-height: 100vh;
     background-color: #a3d1fe;
     flex-direction: column;
     transition: all 0.3s ease;
 }
 
-@media (max-width: 350px) {
+@media (max-width: 400px) {
     .sidebar {
         width: 100%;
         height: auto;
-        position: fixed;
         z-index: 1000;
     }
 }
