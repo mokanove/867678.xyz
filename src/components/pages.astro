@@ -18,10 +18,7 @@ const { posts = [] } = Astro.props;
   {posts.map((post) => (
     <section id={post.id} class="page-entry" data-page>
       <div class="content-viewport">
-        <article 
-          class="markdown-body" 
-          set:html={marked.parse(post.text)} 
-        />
+        <article class="markdown-body" set:html={marked.parse(post.text)} />
       </div>
     </section>
   ))}
