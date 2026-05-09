@@ -1,26 +1,27 @@
 .pages-wrapper {
-    flex: 1;
-    height: 100vh;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-  }
+  flex: 1;
+  height: 100vh; 
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
 
-  .page-entry {
-    display: none;
-    width: 100%;
-  }
+.page-entry {
+  width: 100%;
+  animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-  .page-entry.active {
-    display: block;
-    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+.content-viewport {
+  margin: 0 auto;
+  padding: 1% 1%;
+}
 
-  .content-viewport {
-    margin: 0 auto;
-    padding: 1% 1%;
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px); 
   }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
   }
+}

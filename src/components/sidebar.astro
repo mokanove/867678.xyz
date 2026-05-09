@@ -1,44 +1,46 @@
 ---
 //css
 import '../styles/sidebar.css';
+//activeid
+const { activeid } = Astro.props;
 ---
 <div class="sidebar">
     <div class="header">
         <div class="avatar-container">
-            <img src="/favicon.svg" alt="Logo" data-target="default">
+            <a href="/"><img src="/favicon.svg" alt="Logo"></a>
         </div>
             <h2>MoKanove</h2>
     </div>
   <nav class="section">
     <h3 class="section-label">Web Projects</h3>
     <div class="list">
-      <button class="item" data-target="moitools">MoITools</button>
-      <button class="item" data-target="tkkhs">TKKHS</button>
+      <a href="/" class="item">MoITools</a>
+      <a href="/" class="item">TKKHS</a>
     </div>
   </nav>
 
-  <nav class="section">
+<nav class="section">
     <h3 class="section-label">Program</h3>
     <div class="list">
-      <button class="item runnable" data-target="oplist">
+      <a href="/oplist" class={`item runnable ${activeid === 'oplist' ? 'active' : ''}`}>
         <span class="status-icon"></span>LuCI-APP-OPList
-      </button>
-      <button class="item runnable" data-target="pm">
+      </a>
+      <a href="/pm" class={`item runnable ${activeid === 'pm' ? 'active' : ''}`}>
         <span class="status-icon"></span>LuCI-APP-PM
-      </button>
-      <button class="item runnable" data-target="rdks">
+      </a>
+      <a href="/rdks" class={`item runnable ${activeid === 'rdks' ? 'active' : ''}`}>
         <span class="status-icon"></span>RDKS
-      </button>
+      </a>
     </div>
   </nav>
 
   <nav class="section">
     <h3 class="section-label">Documents</h3>
     <div class="list">
-      <button class="item doc" data-target="doc-install">Install OpenWrt App</button>
-      <button class="item doc" data-target="doc-buildop">Build OpenWrt APP</button>
-      <button class="item doc" data-target="doc-init">Init OpenWrt SDK</button>
-      <button class="item doc" data-target="doc-build">Build this site</button>
+      <a href="/doc-install" class={`item doc ${activeid === 'doc-install' ? 'active' : ''}`}>Install OpenWrt App</a>
+      <a href="/" class={`item doc ${activeid === 'doc-buildop' ? 'active' : ''}`}>Build OpenWrt APP</a>
+      <a href="/doc-init" class={`item doc ${activeid === 'doc-init' ? 'active' : ''}`}>Init OpenWrt SDK</a>
+      <a href="/doc-build" class={`item doc ${activeid === 'doc-build' ? 'active' : ''}`}>Build this site</a>
     </div>
   </nav>
 
