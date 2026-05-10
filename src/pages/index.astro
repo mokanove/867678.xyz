@@ -2,6 +2,7 @@
 //css
 import '../styles/global.css';
 import '../styles/index.css';
+import '../styles/pages.css';
 //components
 import Sidebar from '../components/sidebar.astro';
 // buildtime
@@ -16,6 +17,7 @@ const {
   isChild = false
 } = Astro.props;
 import { marked } from 'marked';
+import 'github-markdown-css/github-markdown.css';
 let content = "";
 if (!isChild) {
   const res = await fetch('https://raw.githubusercontent.com/mokanove/mokanove/main/README.md');

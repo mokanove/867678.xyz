@@ -38,9 +38,9 @@ const { activeid } = Astro.props;
     <h3 class="section-label">Documents</h3>
     <div class="list">
       <a href="/doc-install" class={`item doc ${activeid === 'doc-install' ? 'active' : ''}`}>Install OpenWrt App</a>
-      <a href="/" class={`item doc ${activeid === 'doc-buildop' ? 'active' : ''}`}>Build OpenWrt APP</a>
+      <a href="/doc-build" class={`item doc ${activeid === 'doc-build' ? 'active' : ''}`}>Build OpenWrt APP</a>
       <a href="/doc-init" class={`item doc ${activeid === 'doc-init' ? 'active' : ''}`}>Init OpenWrt SDK</a>
-      <a href="/doc-build" class={`item doc ${activeid === 'doc-build' ? 'active' : ''}`}>Build this site</a>
+      <a href="/doc-site" class={`item doc ${activeid === 'doc-site' ? 'active' : ''}`}>Build this site</a>
     </div>
   </nav>
 
