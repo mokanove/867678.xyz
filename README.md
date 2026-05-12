@@ -1,6 +1,6 @@
 # 867678.xyz
 > There are source code of <https://867678.xyz>
-## 🛠️ Build Strategy
+## 🛠️ Build Guide
 ### ⚠️ Prerequisites
 > Example for arch(pacman):
 ```
