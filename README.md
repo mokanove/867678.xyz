@@ -4,7 +4,7 @@
 ### ⚠️ Prerequisites
 > Example for arch(pacman):
 ```
-sudo pacman -Syu nodejs pnpm npm git
+sudo pacman -Syu --needed nodejs pnpm git
 ```
 ### 📦 Deployment
 ```
