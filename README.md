@@ -1,5 +1,5 @@
 # 867678.xyz
-> There are source code of <https://867678.xyz>
+> Source code of <https://867678.xyz>
 ## 🛠️ Build Guide
 ### ⚠️ Prerequisites
 > Example for arch(pacman):
