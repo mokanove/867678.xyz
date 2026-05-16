@@ -1,0 +1,131 @@
+<template>
+  <el-breadcrumb :separator-icon="DArrowRight" >
+  <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
+  <el-breadcrumb-item :to="{ path: '/projects' }">Projects</el-breadcrumb-item>
+  <el-breadcrumb-item>Moitools</el-breadcrumb-item>
+  </el-breadcrumb>
+  <h1>Moitools</h1>
+  <el-row :gutter="10">
+  <el-col :xs="24" :sm="12" :md="12" :lg="12">
+  <el-card>
+    <h2>You</h2>
+    <h3 id="sip">{{ clientinfo }}</h3>
+    <el-text>Test data is for reference only and no guarantee is provided.</el-text>
+  </el-card>
+  </el-col>
+  <el-col :xs="24" :sm="12" :md="12" :lg="12">
+  <el-card>
+    <h2>Speed</h2>
+    <h3>Download:{{ downloadSpeed }} Latency:{{ latency }}</h3>
+    <el-text>Please note the data consumption during speed testing.</el-text>
+  </el-card>
+ </el-col>
+</el-row>
+<div class="test"><el-button type="primary" @click="Go" :disabled="isTesting" plain class="speed-btn">Start speedtest</el-button></div><p></p>
+  <el-card class="footer-card">
+       <el-link type="primary" href="https://github.com/mokanove/867678.xyz/blob/main/src/views/projects/moitools.vue" target="_blank">Source Code</el-link>
+   </el-card>
+</template>
+<script lang="ts" setup>
+//icons
+import { DArrowRight } from '@element-plus/icons-vue'
+//get user ip
+import { ref, onMounted } from 'vue'
+const clientinfo = ref('Getting data...')
+const preferred = ref('')
+const fetchIps = async () => {
+  const fetchJson = (url: string) => 
+    fetch(url).then(r => r.json()).catch(() => ({ ip: 'Failed' }));
+  const [v4Res, v6Res, dualRes] = await Promise.all([
+    fetchJson('https://ipinfo.io/json'),
+    fetchJson('https://v6.ipinfo.io/json'),
+    fetchJson('https://api64.ipify.org/?format=json')
+  ]);
+  if (dualRes.ip !== 'Failed') {
+    preferred.value = dualRes.ip.includes(':') ? 'IPv6' : 'IPv4';
+  } else {
+    preferred.value = 'Unknown';
+  }
+  const lines = [
+    `IPv4: ${v4Res.ip}`,
+    `IPv6: ${v6Res.ip}`,
+    `Preferred: ${preferred.value}`
+  ];
+  clientinfo.value = lines.join('\n');
+};
+onMounted(fetchIps)
+//Latency
+const latency = ref('');
+const Latency = async () => {
+  latency.value = 'Testing...';
+  const samples: number[] = [], url = 'https://www.gstatic.com/generate_204';
+  for (let i = 0; i < 10; i++) {
+    const start = performance.now();
+    try {
+      await fetch(url, { mode: 'no-cors', cache: 'no-store' });
+      samples.push(performance.now() - start);
+    } catch { }
+    await new Promise(r => setTimeout(r, 50));
+  }
+  if (samples.length) {
+    samples.sort((a, b) => a - b);
+    const mid = samples.slice(Math.floor(samples.length * 0.2), Math.ceil(samples.length * 0.8));
+    const avg = mid.reduce((a, b) => a + b, 0) / mid.length;
+    latency.value = `${avg.toFixed(1)} ms`;
+  } else {
+    latency.value = 'Error';
+  }
+};
+//test
+//down
+const downloadSpeed = ref(''), isDownloading = ref(false);
+const Download = async () => {
+  if (isDownloading.value) return;
+  isDownloading.value = true;
+  downloadSpeed.value = 'Connecting...';
+  const ctrl = new AbortController(), DURATION = 8000, CON = 10;
+  const startTime = performance.now();
+  let totalBytes = 0;
+  const timer = setInterval(() => {
+    const sec = (performance.now() - startTime) / 1000;
+    if (sec > 0.5) {
+      downloadSpeed.value = `${((totalBytes * 8) / 1e6 / sec).toFixed(2)} Mbps`;
+    }
+  }, 150);
+  const task = async () => {
+    try {
+      const res = await fetch(`https://speed.cloudflare.com/__down?bytes=${1e9}`, { signal: ctrl.signal });
+      const reader = res.body?.getReader();
+      if (!reader) return;
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        totalBytes += value.length;
+      }
+    } catch {}
+  };
+  setTimeout(() => ctrl.abort(), DURATION);
+  try {
+    await Promise.all(Array.from({ length: CON }, task));
+  } finally {
+    clearInterval(timer);
+    isDownloading.value = false;
+    const finalSec = (performance.now() - startTime) / 1000;
+    downloadSpeed.value = totalBytes > 0 ? `${((totalBytes * 8) / 1e6 / finalSec).toFixed(2)} Mbps` : 'Failed';
+  }
+};
+//all
+const isTesting = ref(false);
+const Go = async () => {
+  if (isTesting.value) return;
+  isTesting.value = true;
+  try {
+    await Latency(); 
+    await Download(); 
+  } catch (e) {
+    console.error("Something when't wrong:", e);
+  } finally {
+    isTesting.value = false;
+  }
+};
+</script>
