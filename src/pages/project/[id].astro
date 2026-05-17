@@ -1,6 +1,6 @@
 ---
-import IndexPage from './index.astro';
-import '../styles/pages.css';
+import IndexPage from '../index.astro';
+import '../../styles/pages.css';
 import { marked } from 'marked';
 import 'github-markdown-css/github-markdown.css';
 
@@ -9,9 +9,6 @@ export async function getStaticPaths() {
   'oplist': 'https://raw.githubusercontent.com/mokanove/luci-app-oplist/main/README.md',
   'pm': 'https://raw.githubusercontent.com/mokanove/luci-app-pm/main/README.md',
   'rdks': 'https://raw.githubusercontent.com/mokanove/rdks/main/README.md',
-  'doc-init': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/docs/init-sdk.md',
-  'doc-build': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/docs/build-op.md',
-  'doc-site': 'https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/main/README.md'
   };
   return Object.entries(MD_SOURCES).map(([id, url]) => ({ params: { id }, props: { url } }));
 }

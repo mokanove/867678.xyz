@@ -14,21 +14,21 @@ const { activeid } = Astro.props;
   <nav class="section">
     <h3 class="section-label">Web Projects</h3>
     <div class="list">
-      <a href="/" class="item">MoITools</a>
-      <a href="/" class="item">TKKHS</a>
+      <a href="/project/moitools" class="item">MoITools</a>
+      <a href="/project/tkkhs" class="item">TKKHS</a>
     </div>
   </nav>
 
 <nav class="section">
     <h3 class="section-label">Program</h3>
     <div class="list">
-      <a href="/oplist" class={`item runnable ${activeid === 'oplist' ? 'active' : ''}`}>
+      <a href="/project/oplist" class={`item runnable ${activeid === 'oplist' ? 'active' : ''}`}>
         <span class="status-icon"></span>LuCI-APP-OPList
       </a>
-      <a href="/pm" class={`item runnable ${activeid === 'pm' ? 'active' : ''}`}>
+      <a href="/project/pm" class={`item runnable ${activeid === 'pm' ? 'active' : ''}`}>
         <span class="status-icon"></span>LuCI-APP-PM
       </a>
-      <a href="/rdks" class={`item runnable ${activeid === 'rdks' ? 'active' : ''}`}>
+      <a href="/project/rdks" class={`item runnable ${activeid === 'rdks' ? 'active' : ''}`}>
         <span class="status-icon"></span>RDKS
       </a>
     </div>
@@ -37,9 +37,9 @@ const { activeid } = Astro.props;
   <nav class="section">
     <h3 class="section-label">Documents</h3>
     <div class="list">
-      <a href="/doc-init" class={`item doc ${activeid === 'doc-init' ? 'active' : ''}`}>Init OpenWrt SDK</a>
-      <a href="/doc-build" class={`item doc ${activeid === 'doc-build' ? 'active' : ''}`}>Build OpenWrt APP</a>
-      <a href="/doc-site" class={`item doc ${activeid === 'doc-site' ? 'active' : ''}`}>Build this site</a>
+      <a href="/doc/init" class={`item doc ${activeid === 'doc-init' ? 'active' : ''}`}>Init OpenWrt SDK</a>
+      <a href="/doc/build" class={`item doc ${activeid === 'doc-build' ? 'active' : ''}`}>Build OpenWrt APP</a>
+      <a href="/doc/site" class={`item doc ${activeid === 'doc-site' ? 'active' : ''}`}>Build this site</a>
     </div>
   </nav>
 
@@ -57,4 +57,8 @@ const { activeid } = Astro.props;
       </button>
     </div>
   </nav>
+  <footer style="display: flex; align-items: center; gap: 4px;">
+  <span style="transform: scaleX(-1); display: inline-block;">&copy;</span>
+  <span style="font-size: 15px;">Copyleft <br> 2026 MoKanove</span>
+</footer>
 </div>
