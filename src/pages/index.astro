@@ -1,7 +1,6 @@
 ---
 //css
 import '../styles/global.css';
-import '../styles/index.css';
 import '../styles/pages.css';
 //components
 import Sidebar from '../components/sidebar.astro';
@@ -31,6 +30,12 @@ if (!isChild) {
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} | MoKanove</title>
+    <style>
+      .container {
+        display: flex;
+        min-height: 100vh;
+       }
+    </style>
     <script define:vars={{ version , BuiltTime}}>
       console.log(`V${version} ${BuiltTime}`);
     </script>

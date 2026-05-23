@@ -25,6 +25,3 @@ pnpm-debug.log*
 
 # VSCode setting floder
 .vscode/
-
-#old
-old/

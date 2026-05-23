@@ -1,5 +1,5 @@
 # 867678.xyz
-> Source code of <https://867678.xyz>
+> Source code about <https://867678.xyz>
 ## 🛠️ Build Guide
 ### ⚠️ Prerequisites
 > Example for arch(pacman):
@@ -17,4 +17,3 @@ pnpm build
 
 ### ⚖️ License
 - Open source under **GNU GENERAL PUBLIC LICENSE Version 3.0**.
-- This application provides **no warranties**.
