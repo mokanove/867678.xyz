@@ -43,6 +43,7 @@ const { activeid } = Astro.props;
       <a href="/doc/init" class={`item doc ${activeid === 'doc-init' ? 'active' : ''}`}>Init OpenWrt SDK</a>
       <a href="/doc/build" class={`item doc ${activeid === 'doc-build' ? 'active' : ''}`}>Build OpenWrt APP</a>
       <a href="/doc/site" class={`item doc ${activeid === 'doc-site' ? 'active' : ''}`}>Build this site</a>
+      <a href="/doc/license" class={`item doc ${activeid === 'doc-license' ? 'active' : ''}`}>Build this site</a>
     </div>
   </nav>
 
@@ -52,7 +53,6 @@ const { activeid } = Astro.props;
       </button>
   </nav>
   <footer style="display: flex; align-items: center; gap: 4px;">
-  <span style="transform: scaleX(-1); display: inline-block;">&copy;</span>
-  <span style="font-size: 15px;">Copyleft <br> 2026 MoKanove</span>
+  <span style="font-size: 15px;">&copy;Copyright <br> 2026 MoKanove</span>
 </footer>
 </div>
