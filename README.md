@@ -14,6 +14,3 @@ pnpm install
 # pnpm dev
 pnpm build
 ```
-
-### ⚖️ License
-- Open source under **GNU GENERAL PUBLIC LICENSE Version 3.0**.
