@@ -14,3 +14,5 @@ pnpm install
 # pnpm dev
 pnpm build
 ```
+### ⚖️ License
+> This website is licensed under the [MoPL](https://github.com/mokanove/mokanove/blob/main/docs/license.md)
