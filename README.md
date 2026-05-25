@@ -16,5 +16,7 @@ pnpm build
 ```
 ### ⚖️ License
 > This website is licensed under the [MoPL](https://github.com/mokanove/mokanove/blob/main/docs/license.md)
-> imported projects （All using MIT LICENSE AND MoPL NOT APPLICABLE）
+> imported projects （MoPL not applicable and use their own protocol）
 <https://github.com/sindresorhus/github-markdown-css>
+<https://github.com/iamkun/dayjs>
+<https://marked.js.org/license>
