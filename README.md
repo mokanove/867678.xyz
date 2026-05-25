@@ -16,3 +16,5 @@ pnpm build
 ```
 ### ⚖️ License
 > This website is licensed under the [MoPL](https://github.com/mokanove/mokanove/blob/main/docs/license.md)
+> imported projects （All using MIT LICENSE AND MoPL NOT APPLICABLE）
+<https://github.com/sindresorhus/github-markdown-css>
