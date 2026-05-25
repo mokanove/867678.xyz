@@ -7,7 +7,7 @@ export async function getStaticPaths() {
     'init': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/docs/init-sdk.md',
     'build': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/docs/build-op.md',
     'site': 'https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/main/README.md',
-    'license': 'https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/main/LICENSE.md'
+    'license': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/docs/license.md'
   };
 
   return Object.entries(DOC_SOURCES).map(([id, url]) => ({ params: { id }, props: { url } }));
