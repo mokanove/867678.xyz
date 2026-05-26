@@ -1,7 +1,7 @@
 {
   "name": "867678-xyz",
   "type": "module",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "astro": "^6.3.7",
-    "dayjs": "^1.11.20",
+    "dayjs": "^1.11.21",
     "github-markdown-css": "^5.9.0",
     "marked": "^18.0.4"
   }
