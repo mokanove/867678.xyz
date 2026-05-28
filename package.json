@@ -13,7 +13,7 @@
     "format": "prettier --write \"**/*.{js,ts,json,md,html,css}\""
   },
   "dependencies": {
-    "astro": "^6.3.8",
+    "astro": "^6.4.1",
     "dayjs": "^1.11.21",
     "github-markdown-css": "^5.9.0",
     "marked": "^18.0.4"
