@@ -12,7 +12,7 @@ const { activeid } = Astro.props;
             <h2>MoKanove</h2>
     </div>
   <nav class="section">
-    <h3 class="section-label">Web Projects</h3>
+    <h3 class="section-label">Web Project</h3>
     <div class="list">
       <a href="/project/moitools" class="item">MoITools</a>
       <a href="/project/tkkhs" class="item">TKKHS</a>
@@ -38,11 +38,10 @@ const { activeid } = Astro.props;
   </nav>
 
   <nav class="section">
-    <h3 class="section-label">Documents</h3>
+    <h3 class="section-label">Document</h3>
     <div class="list">
       <a href="/doc/init" class={`item doc ${activeid === 'doc-init' ? 'active' : ''}`}>Init OpenWrt SDK</a>
       <a href="/doc/build" class={`item doc ${activeid === 'doc-build' ? 'active' : ''}`}>Build OpenWrt APP</a>
-      <a href="/doc/site" class={`item doc ${activeid === 'doc-site' ? 'active' : ''}`}>Build this site</a>
       <a href="/doc/license" class={`item doc ${activeid === 'doc-license' ? 'active' : ''}`}>Mo Public License</a>
     </div>
   </nav>

@@ -10,16 +10,16 @@ import dayjs from 'dayjs';
 const { version } = pkg;
 const BuiltTime = dayjs().format('YYYY-MM-DD HH:mm:ss ([UTC]ZZ)');
 //MD
+import { marked } from 'marked';
+import 'github-markdown-css/github-markdown.css';
 const { 
   title = "Home", 
   activeid = "default", 
   isChild = false
 } = Astro.props;
-import { marked } from 'marked';
-import 'github-markdown-css/github-markdown.css';
 let content = "";
 if (!isChild) {
-  const res = await fetch('https://raw.githubusercontent.com/mokanove/mokanove/main/README.md');
+  const res = await fetch('https://github.com/mokanove/mokanove/raw/refs/heads/main/README.md');
   content = await marked.parse(await res.text());
 }
 ---
@@ -33,7 +33,6 @@ if (!isChild) {
     <style>
       .container {
         display: flex;
-        min-height: 100vh;
        }
     </style>
     <script define:vars={{ version , BuiltTime}}>
