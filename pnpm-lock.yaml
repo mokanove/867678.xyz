@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       astro:
-        specifier: ^6.4.1
-        version: 6.4.1(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.4)
+        specifier: ^6.4.2
+        version: 6.4.2(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.4)
       dayjs:
         specifier: ^1.11.21
         version: 1.11.21
@@ -610,8 +610,8 @@ packages:
   array-iterate@2.0.1:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
 
-  astro@6.4.1:
-    resolution: {integrity: sha512-QoNBrt6XRa4t4vPMv11BB05BekZH0NNiYzJr66+I5wGN/X2UJ4K0G1UL2oN0Ojow4mvoSdtyk8qqzmiZER1CmQ==}
+  astro@6.4.2:
+    resolution: {integrity: sha512-8H89CH2dKL5SCU99OCqdU9BGjmPkSJqaPurywj5XMo7eMFGUFD3vsNhdEKnEh4mK4LgGje3/QDTTSIIGst0G0Q==}
     engines: {node: '>=22.12.0', npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -1954,7 +1954,7 @@ snapshots:
 
   array-iterate@2.0.1: {}
 
-  astro@6.4.1(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.4):
+  astro@6.4.2(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.4):
     dependencies:
       '@astrojs/compiler': 4.0.0
       '@astrojs/internal-helpers': 0.10.0
