@@ -5,10 +5,11 @@ import { marked } from 'marked';
 
 export async function getStaticPaths() {
   const MD_SOURCES = {
-  'ezsgx': 'https://raw.githubusercontent.com/mokanove/luci-app-ezsgx/main/README.md',
-  'oplist': 'https://raw.githubusercontent.com/mokanove/luci-app-oplist/main/README.md',
-  'pm': 'https://raw.githubusercontent.com/mokanove/luci-app-pm/main/README.md',
-  'rdks': 'https://raw.githubusercontent.com/mokanove/rdks/main/README.md',
+  'go-rustdesk-server': 'https://raw.githubusercontent.com/mokanove/go-rustdesk-server/main/README.md',
+  'luci-app-ezsgx': 'https://raw.githubusercontent.com/mokanove/luci-app-ezsgx/main/README.md',
+  'luci-app-oplist': 'https://raw.githubusercontent.com/mokanove/luci-app-oplist/main/README.md',
+  'luci-app-pm': 'https://raw.githubusercontent.com/mokanove/luci-app-pm/main/README.md',
+  'rsop': 'https://raw.githubusercontent.com/mokanove/rdks/main/README.md'
   };
   return Object.entries(MD_SOURCES).map(([id, url]) => ({ params: { id }, props: { url } }));
 }

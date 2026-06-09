@@ -19,20 +19,23 @@ const { activeid } = Astro.props;
     </div>
   </nav>
 
-<nav class="section">
+  <nav class="section">
     <h3 class="section-label">Program</h3>
     <div class="list">
-      <a href="/project/ezsgx" class={`item runnable ${activeid === 'oplist' ? 'active' : ''}`}>
+      <a href="/project/go-rustdesk-server" class={`item runnable ${activeid === 'oplist' ? 'active' : ''}`}>
+        <span class="status-icon"></span>go-rustdesk-server
+      </a>
+      <a href="/project/luci-app-ezsgx" class={`item runnable ${activeid === 'oplist' ? 'active' : ''}`}>
         <span class="status-icon"></span>LuCI-APP-EZSgX
       </a>
-      <a href="/project/oplist" class={`item runnable ${activeid === 'oplist' ? 'active' : ''}`}>
+      <a href="/project/luci-app-oplist" class={`item runnable ${activeid === 'oplist' ? 'active' : ''}`}>
         <span class="status-icon"></span>LuCI-APP-OPList
       </a>
-      <a href="/project/pm" class={`item runnable ${activeid === 'pm' ? 'active' : ''}`}>
+      <a href="/project/luci-app-pm" class={`item runnable ${activeid === 'pm' ? 'active' : ''}`}>
         <span class="status-icon"></span>LuCI-APP-PM
       </a>
-      <a href="/project/rdks" class={`item runnable ${activeid === 'rdks' ? 'active' : ''}`}>
-        <span class="status-icon"></span>RDKS
+      <a href="/project/rsop" class={`item runnable ${activeid === 'rdks' ? 'active' : ''}`}>
+        <span class="status-icon"></span>RSOP
       </a>
     </div>
   </nav>
