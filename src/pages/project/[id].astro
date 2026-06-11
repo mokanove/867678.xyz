@@ -9,7 +9,6 @@ export async function getStaticPaths() {
   'luci-app-ezsgx': 'https://raw.githubusercontent.com/mokanove/luci-app-ezsgx/main/README.md',
   'luci-app-oplist': 'https://raw.githubusercontent.com/mokanove/luci-app-oplist/main/README.md',
   'luci-app-pm': 'https://raw.githubusercontent.com/mokanove/luci-app-pm/main/README.md',
-  'rsop': 'https://raw.githubusercontent.com/mokanove/rdks/main/README.md'
   };
   return Object.entries(MD_SOURCES).map(([id, url]) => ({ params: { id }, props: { url } }));
 }
