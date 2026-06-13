@@ -1,23 +1,23 @@
 ---
+//import
 import { marked } from 'marked';
 import IndexPage from '../index.astro';
-
+//const
+const { id } = Astro.params;
+const { url } = Astro.props;
+const res = await fetch(url);
+const content = await marked.parse(await res.text());
+//md
+const fullId = `doc-${id}`;
 export async function getStaticPaths() {
   const DOC_SOURCES = {
-    'init': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/docs/init-sdk.md',
-    'build': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/docs/build-op.md',
+    'mirrors': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/docs/mirrors.md',
+    'openwrt': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/docs/openwrt.md',
     'license': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/docs/license.md'
   };
 
   return Object.entries(DOC_SOURCES).map(([id, url]) => ({ params: { id }, props: { url } }));
 }
-
-const { id } = Astro.params;
-const { url } = Astro.props;
-const res = await fetch(url);
-const content = await marked.parse(await res.text());
-
-const fullId = `doc-${id}`;
 ---
 <IndexPage title={id} activeId={fullId} isChild={true}>
   <article class="markdown-body" set:html={content} />
