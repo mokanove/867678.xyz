@@ -15,7 +15,6 @@ export async function getStaticPaths() {
     'openwrt': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/doc/openwrt.md',
     'license': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/doc/license.md'
   };
-
   return Object.entries(DOC_SOURCES).map(([id, url]) => ({ params: { id }, props: { url } }));
 }
 ---

@@ -1,8 +1,10 @@
 ---
-import IndexPage from '../index.astro';
-import '../../styles/pages.css';
+//components
 import { marked } from 'marked';
-
+import IndexPage from '../index.astro';
+//css
+import '../../styles/pages.css';
+//md
 export async function getStaticPaths() {
   const MD_SOURCES = {
   'go-rustdesk-server': 'https://raw.githubusercontent.com/mokanove/go-rustdesk-server/main/README.md',
@@ -12,7 +14,7 @@ export async function getStaticPaths() {
   };
   return Object.entries(MD_SOURCES).map(([id, url]) => ({ params: { id }, props: { url } }));
 }
-
+//const
 const { id } = Astro.params;
 const { url } = Astro.props;
 const res = await fetch(url);

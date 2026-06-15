@@ -22,7 +22,7 @@ pnpm dev
 pnpm run format
 ```
 ### ⚖️ License
-This website is licensed under the [MoPL](https://github.com/mokanove/mokanove/blob/main/docs/license.md)
+> This website is licensed under the [MoPL](https://github.com/mokanove/mokanove/blob/main/docs/license.md)
 
 imported projects （MoPL not applicable and use their own protocol）
 
