@@ -1,0 +1,7 @@
+.container {
+  display: flex;
+}
+.content-viewport {
+  margin: 5px;
+  padding: 5px;
+}

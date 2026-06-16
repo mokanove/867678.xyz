@@ -2,6 +2,7 @@
 //css
 import '../styles/global.css';
 import '../styles/pages.css';
+import '../styles/home.css';
 //components
 import Sidebar from '../components/sidebar.astro';
 // buildtime
@@ -31,9 +32,7 @@ if (!isChild) {
     <meta name="generator" content={Astro.generator} />
     <title>{title} | MoKanove</title>
     <style>
-      .container {
-        display: flex;
-       }
+      
     </style>
     <script define:vars={{ version , BuiltTime}}>
       console.log(`V${version} ${BuiltTime}`);
