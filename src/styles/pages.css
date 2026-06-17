@@ -12,8 +12,6 @@
 
 .markdown-body {
   height: 100vh;
-	margin: 5px !important;
-	padding: 5px !important;
 /* The fuck github-markdown-css must be do this , else have display error */
 }
 

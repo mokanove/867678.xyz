@@ -7,17 +7,16 @@ const { id } = Astro.params;
 const { url } = Astro.props;
 const res = await fetch(url);
 const content = await marked.parse(await res.text());
-//md
-const fullId = `doc-${id}`;
+//markdown
 export async function getStaticPaths() {
-  const DOC_SOURCES = {
+  const doc_sources = {
     'mirror': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/doc/mirror.md',
     'openwrt': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/doc/openwrt.md',
     'license': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/doc/license.md'
   };
-  return Object.entries(DOC_SOURCES).map(([id, url]) => ({ params: { id }, props: { url } }));
+  return Object.entries(doc_sources).map(([id, url]) => ({ params: { id }, props: { url } }));
 }
 ---
-<IndexPage title={id} activeId={fullId} isChild={true}>
+<IndexPage title={id} childpage={true}>
   <article class="markdown-body" set:html={content} />
 </IndexPage>

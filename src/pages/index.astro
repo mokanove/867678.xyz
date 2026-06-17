@@ -1,25 +1,23 @@
 ---
-//css
+//pagecss
 import '../styles/global.css';
 import '../styles/pages.css';
-import '../styles/home.css';
 //components
 import Sidebar from '../components/sidebar.astro';
 // buildtime
 import pkg from '../../package.json';
 import dayjs from 'dayjs';
 const { version } = pkg;
-const BuiltTime = dayjs().format('YYYY-MM-DD HH:mm:ss ([UTC]ZZ)');
-//MD
+const buildtime = dayjs().format('YYYY-MM-DD HH:mm:ss ([UTC]ZZ)');
+//markdown
 import { marked } from 'marked';
 import 'github-markdown-css/github-markdown.css';
 const { 
-  title = "Home", 
-  activeid = "default", 
-  isChild = false
+  title = "Welcome",
+  childpage = false
 } = Astro.props;
 let content = "";
-if (!isChild) {
+if (!childpage) {
   const res = await fetch('https://github.com/mokanove/mokanove/raw/refs/heads/main/README.md');
   content = await marked.parse(await res.text());
 }
@@ -27,24 +25,21 @@ if (!isChild) {
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} | MoKanove</title>
-    <style>
-      
-    </style>
-    <script define:vars={{ version , BuiltTime}}>
-      console.log(`V${version} ${BuiltTime}`);
+    <script define:vars={{ version , buildtime}}>
+      console.log(`V${version} ${buildtime}`);
     </script>
   </head>
   <body>
-    <div class="container">
-      <Sidebar activeId={activeid} />
+    <div style="display: flex;">
+      <Sidebar />
       <main class="pages-wrapper">
         <section class="page-entry active">
           <div class="content-viewport">
-            {isChild ? (
+            {childpage ? (
               <slot />
             ) : (
               <article class="markdown-body" set:html={content} />

@@ -3,6 +3,8 @@
 
 ## 🛠️ Build Guide
 ### ⚠️ Prerequisites
+> Make sure you can visit GitHub, else maybe cannot compile
+>
 > Example for arch(pacman):
 ```
 sudo pacman -Syu --needed nodejs pnpm git
