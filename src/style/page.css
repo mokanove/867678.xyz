@@ -10,9 +10,11 @@
   animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.markdown-body {
-  height: 100vh;
-/* The fuck github-markdown-css must be do this , else have display error */
+.content-viewport {
+  box-sizing: border-box;
+  min-width: 200px;
+  margin: auto;
+  padding: clamp(0rem, 5vw, 1rem);
 }
 
 @keyframes fadeIn {
