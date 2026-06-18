@@ -1,12 +1,11 @@
 ---
 //css
-import '../style/global.css';
+import '../style/generate.css';
 //astro
 import IndexPage from './index.astro';
 ---
-<IndexPage title="404 Not Found" childpage={true}>
-<h1>404 Not Found</h1>
-<p>Lo siento, has llegado al Tapón del Darién.</p>
-<p>Website of MoKanove</p>
-<a href="/">GO BACK</a>
+<IndexPage title="404" childpage={true}>
+<h1 class="calor">404 Not Found</h1>
+<p class="calor">Lo siento, has llegado al Tapón del Darién.</p>
+<a href="/" class="calor">GO BACK</a>
 </IndexPage>

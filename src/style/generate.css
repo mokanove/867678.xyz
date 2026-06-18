@@ -1,0 +1,26 @@
+body {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+h1.calor {
+  font-size: 60px;
+  color: white;
+  text-align: center;
+}
+
+p.calor {
+  font-size: 18px;
+  color: white;
+  text-align: center;
+}
+
+a.calor {
+  display: block;
+  text-align: center;
+  color: skyblue;
+  background: #ffffff;
+  text-decoration: none;
+  padding: 14px 28px;
+  font-size: 18px;
+  border-radius: 25px;
+}

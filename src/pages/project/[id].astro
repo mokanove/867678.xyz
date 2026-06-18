@@ -1,6 +1,4 @@
 ---
-//css
-import '../../style/page.css';
 //components
 import { marked } from 'marked';
 import IndexPage from '../index.astro';
@@ -11,13 +9,13 @@ const res = await fetch(url);
 const content = await marked.parse(await res.text());
 //markdown
 export async function getStaticPaths() {
-  const project_markdown = {
+  const project_sources = {
   'go-rustdesk-server': 'https://raw.githubusercontent.com/mokanove/go-rustdesk-server/main/README.md',
   'luci-app-ezsgx': 'https://raw.githubusercontent.com/mokanove/luci-app-ezsgx/main/README.md',
   'luci-app-oplist': 'https://raw.githubusercontent.com/mokanove/luci-app-oplist/main/README.md',
   'luci-app-pm': 'https://raw.githubusercontent.com/mokanove/luci-app-pm/main/README.md',
   };
-  return Object.entries(project_markdown).map(([id, url]) => ({ params: { id }, props: { url } }));
+  return Object.entries(project_sources).map(([id, url]) => ({ params: { id }, props: { url } }));
 }
 ---
 <IndexPage title={id} childpage={true}>
