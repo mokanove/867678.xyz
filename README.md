@@ -24,7 +24,7 @@ pnpm dev
 pnpm run format
 ```
 ### ⚖️ License
-> This website is licensed under the [MoPL](https://867678.xyz/doc/license)
+> This website is licensed under the [MoPL](https://867678.xyz/doc/MoPL)
 
 imported projects （MoPL not applicable and use their own protocol）
 
