@@ -1,5 +1,9 @@
 body {
-  background: linear-gradient(#0078f8, #00fff7);
+  background: url(/404.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .colorado {
