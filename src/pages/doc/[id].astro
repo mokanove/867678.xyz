@@ -10,10 +10,9 @@ const content = await marked.parse(await res.text());
 //markdown
 export async function getStaticPaths() {
   const doc_sources = {
-    'Contento24': 'https://raw.githubusercontent.com/mokanove/contento24/refs/heads/main/README.md',
     'Mirror': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/doc/mirror.md',
     'OpenWrt': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/doc/openwrt.md',
-    'BuildThisSite': 'https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/main/README.md',
+    'Build-This-Site': 'https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/main/README.md',
     'MoPL': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/doc/license.md'
   };
   return Object.entries(doc_sources).map(([id, url]) => ({ params: { id }, props: { url } }));

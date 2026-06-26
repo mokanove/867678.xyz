@@ -10,6 +10,8 @@ const content = await marked.parse(await res.text());
 //markdown
 export async function getStaticPaths() {
   const project_sources = {
+  'Contento24': 'https://raw.githubusercontent.com/mokanove/contento24/refs/heads/main/README.md',
+  'fancyindex-theme': 'https://github.com/mokanove/fancyindex-theme/raw/refs/heads/main/README.md',
   'go-rustdesk-server': 'https://raw.githubusercontent.com/mokanove/go-rustdesk-server/main/README.md',
   'luci-app-ezsgx': 'https://raw.githubusercontent.com/mokanove/luci-app-ezsgx/main/README.md',
   'luci-app-oplist': 'https://raw.githubusercontent.com/mokanove/luci-app-oplist/main/README.md',

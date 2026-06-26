@@ -7,7 +7,9 @@
 >
 > Example for arch(pacman):
 ```
-sudo pacman -Syu --needed nodejs pnpm git
+sudo pacman -Syu --needed nodejs corepack git
+sudo corepack enable
+corepack use pnpm@latest
 ```
 ### 📦 Deployment
 ```
@@ -25,9 +27,8 @@ pnpm run format
 ```
 ### ⚖️ License
 > This website is licensed under the [MoPL](https://867678.xyz/doc/MoPL)
-
-imported projects （MoPL not applicable and use their own protocol）
-
+>
+> imported projects （MoPL not applicable and use their own protocol）
 <https://github.com/sindresorhus/github-markdown-css>
 
 <https://github.com/iamkun/dayjs>
