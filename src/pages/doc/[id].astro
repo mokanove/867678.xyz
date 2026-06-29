@@ -1,23 +1,24 @@
 ---
-//import
+//css
 import { marked } from 'marked';
 import IndexPage from '../index.astro';
-//const
-const { id } = Astro.params;
-const { url } = Astro.props;
+//md
+const { url, title } = Astro.props;
 const res = await fetch(url);
 const content = await marked.parse(await res.text());
-//markdown
 export async function getStaticPaths() {
-  const doc_sources = {
-    'Mirror': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/doc/mirror.md',
-    'OpenWrt': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/doc/openwrt.md',
-    'Build-This-Site': 'https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/main/README.md',
-    'MoPL': 'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/doc/license.md'
-  };
-  return Object.entries(doc_sources).map(([id, url]) => ({ params: { id }, props: { url } }));
+  const projects = [
+    {id:'Mirror',title:'Mirrors List',url:'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/doc/mirror.md'},
+    {id:'OpenWrt',title:'Anything about OpenWrt',url:'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/doc/openwrt.md'},
+    {id:'bts',title:'How to build this site',url:'https://raw.githubusercontent.com/mokanove/867678.xyz/refs/heads/main/README.md'},
+    {id:'MoPL',title:'Mo Pubilc License',url:'https://raw.githubusercontent.com/mokanove/mokanove/refs/heads/main/doc/license.md'},
+  ];
+  return projects.map(({ id, ...props }) => ({
+    params: { id },
+    props,
+  }));
 }
 ---
-<IndexPage title={id} childpage={true}>
+<IndexPage title={title} childpage={true}>
   <article class="markdown-body" set:html={content} />
 </IndexPage>

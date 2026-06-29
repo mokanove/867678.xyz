@@ -1,25 +1,25 @@
 ---
-//components
+//css
 import { marked } from 'marked';
 import IndexPage from '../index.astro';
-//const
-const { id } = Astro.params;
-const { url } = Astro.props;
+//md
+const { url, title } = Astro.props;
 const res = await fetch(url);
 const content = await marked.parse(await res.text());
-//markdown
 export async function getStaticPaths() {
-  const project_sources = {
-  'Contento24': 'https://raw.githubusercontent.com/mokanove/contento24/refs/heads/main/README.md',
-  'fancyindex-theme': 'https://github.com/mokanove/fancyindex-theme/raw/refs/heads/main/README.md',
-  'go-rustdesk-server': 'https://raw.githubusercontent.com/mokanove/go-rustdesk-server/main/README.md',
-  'luci-app-ezsgx': 'https://raw.githubusercontent.com/mokanove/luci-app-ezsgx/main/README.md',
-  'luci-app-oplist': 'https://raw.githubusercontent.com/mokanove/luci-app-oplist/main/README.md',
-  'luci-app-pm': 'https://raw.githubusercontent.com/mokanove/luci-app-pm/main/README.md',
-  };
-  return Object.entries(project_sources).map(([id, url]) => ({ params: { id }, props: { url } }));
+  const projects = [
+    {id:'Contento24',title:'Contento24',url:'https://raw.githubusercontent.com/mokanove/contento24/refs/heads/main/README.md'},
+    {id:'fancyindex-theme',title:'Fancyindex Theme',url:'https://raw.githubusercontent.com/mokanove/fancyindex-theme/refs/heads/main/README.md'},
+    {id:'luci-app-ezsgx',title:'LuCI APP EZSgX',url:'https://raw.githubusercontent.com/mokanove/luci-app-ezsgx/main/README.md'},
+    {id:'luci-app-oplist',title:'LuCI APP OPLIST',url:'https://raw.githubusercontent.com/mokanove/luci-app-oplist/main/README.md'},
+    {id:'luci-app-pm',title:'LuCI APP PM',url:'https://raw.githubusercontent.com/mokanove/luci-app-pm/main/README.md'},
+  ];
+  return projects.map(({ id, ...props }) => ({
+    params: { id },
+    props,
+  }));
 }
 ---
-<IndexPage title={id} childpage={true}>
+<IndexPage title={title} childpage={true}>
   <article class="markdown-body" set:html={content} />
 </IndexPage>
