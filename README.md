@@ -39,7 +39,8 @@ pnpm run format
 > This website is licensed under the [MoPL](https://867678.xyz/doc/MoPL)
 >
 > imported projects （MoPL not applicable and use their own protocol）
-> <https://github.com/withastro/astro>
+
+<https://github.com/withastro/astro>
 
 <https://github.com/iamkun/dayjs>
 
