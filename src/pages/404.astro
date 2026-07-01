@@ -1,11 +1,14 @@
 ---
 //css
-import '../style/404.css';
+import "../style/404.css";
 //astro
-import IndexPage from './index.astro';
+import IndexPage from "./index.astro";
 ---
+
 <IndexPage title="404" childpage={true}>
-<h1 class="colorado" style="font-size:60px">404 Not Found</h1>
-<p class="colorado" style="font-size:18px">Lo siento, has llegado al Tapón del Darién.</p>
-<a href="/" class="calor">GO HOME</a>
+  <h1 class="colorado" style="font-size:60px">404 Not Found</h1>
+  <p class="colorado" style="font-size:18px">
+    Lo siento, has llegado al Tapón del Darién.
+  </p>
+  <a href="/" class="calor">GO HOME</a>
 </IndexPage>

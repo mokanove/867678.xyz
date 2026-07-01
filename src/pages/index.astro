@@ -1,24 +1,23 @@
 ---
 //pagecss
-import '../style/global.css';
-import '../style/page.css';
+import "../style/global.css";
+import "../style/page.css";
 //components
-import Sidebar from '../components/sidebar.astro';
+import Sidebar from "../components/sidebar.astro";
 // buildtime
-import pkg from '../../package.json';
-import dayjs from 'dayjs';
+import pkg from "../../package.json";
+import dayjs from "dayjs";
 const { version } = pkg;
-const buildtime = dayjs().format('YYYY-MM-DD HH:mm:ss ([UTC]ZZ)');
+const buildtime = dayjs().format("YYYY-MM-DD HH:mm:ss ([UTC]ZZ)");
 //markdown
-import { marked } from 'marked';
-import 'github-markdown-css/github-markdown.css';
-const { 
-  title = "Welcome",
-  childpage = false
-} = Astro.props;
+import { marked } from "marked";
+import "github-markdown-css/github-markdown.css";
+const { title = "Welcome", childpage = false } = Astro.props;
 let content = "";
 if (!childpage) {
-  const res = await fetch('https://github.com/mokanove/mokanove/raw/refs/heads/main/README.md');
+  const res = await fetch(
+    "https://github.com/mokanove/mokanove/raw/refs/heads/main/README.md",
+  );
   content = await marked.parse(await res.text());
 }
 ---
@@ -30,7 +29,7 @@ if (!childpage) {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} | MoKanove</title>
-    <script define:vars={{ version , buildtime}}>
+    <script define:vars={{ version, buildtime }}>
       console.log(`V${version} ${buildtime}`);
     </script>
   </head>
@@ -40,11 +39,13 @@ if (!childpage) {
       <main class="pages-wrapper">
         <section class="page-entry active">
           <div class="content-viewport">
-            {childpage ? (
-              <slot />
-            ) : (
-              <article class="markdown-body" set:html={content} />
-            )}
+            {
+              childpage ? (
+                <slot />
+              ) : (
+                <article class="markdown-body" set:html={content} />
+              )
+            }
           </div>
         </section>
       </main>

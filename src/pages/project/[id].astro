@@ -1,18 +1,43 @@
 ---
 //css
-import { marked } from 'marked';
-import IndexPage from '../index.astro';
+import { marked } from "marked";
+import IndexPage from "../index.astro";
 //md
 const { url, title } = Astro.props;
 const res = await fetch(url);
 const content = await marked.parse(await res.text());
 export async function getStaticPaths() {
   const projects = [
-    {id:'Contento24',title:'Contento24',url:'https://raw.githubusercontent.com/mokanove/contento24/refs/heads/main/README.md'},
-    {id:'fancyindex-theme',title:'Fancyindex Theme',url:'https://raw.githubusercontent.com/mokanove/fancyindex-theme/refs/heads/main/README.md'},
-    {id:'luci-app-ezsgx',title:'LuCI APP EZSgX',url:'https://raw.githubusercontent.com/mokanove/luci-app-ezsgx/main/README.md'},
-    {id:'luci-app-oplist',title:'LuCI APP OPLIST',url:'https://raw.githubusercontent.com/mokanove/luci-app-oplist/main/README.md'},
-    {id:'luci-app-pm',title:'LuCI APP PM',url:'https://raw.githubusercontent.com/mokanove/luci-app-pm/main/README.md'},
+    {
+      id: "mineradio",
+      title: "Mineradio",
+      url: "https://raw.githubusercontent.com/mokanove/mineradio/refs/heads/main/README.md",
+    },
+    {
+      id: "fancyindex-theme",
+      title: "Fancyindex Theme",
+      url: "https://raw.githubusercontent.com/mokanove/fancyindex-theme/refs/heads/main/README.md",
+    },
+    {
+      id: "Contento24",
+      title: "Contento24",
+      url: "https://raw.githubusercontent.com/mokanove/contento24/refs/heads/main/README.md",
+    },
+    {
+      id: "luci-app-ezsgx",
+      title: "LuCI APP EZSgX",
+      url: "https://raw.githubusercontent.com/mokanove/luci-app-ezsgx/main/README.md",
+    },
+    {
+      id: "luci-app-oplist",
+      title: "LuCI APP OPLIST",
+      url: "https://raw.githubusercontent.com/mokanove/luci-app-oplist/main/README.md",
+    },
+    {
+      id: "luci-app-pm",
+      title: "LuCI APP PM",
+      url: "https://raw.githubusercontent.com/mokanove/luci-app-pm/main/README.md",
+    },
   ];
   return projects.map(({ id, ...props }) => ({
     params: { id },
@@ -20,6 +45,7 @@ export async function getStaticPaths() {
   }));
 }
 ---
+
 <IndexPage title={title} childpage={true}>
   <article class="markdown-body" set:html={content} />
 </IndexPage>
