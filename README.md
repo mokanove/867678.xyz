@@ -47,4 +47,4 @@ pnpm run format
 
 <https://github.com/sindresorhus/github-markdown-css>
 
-<>
+<https://github.com/prettier/prettier>
