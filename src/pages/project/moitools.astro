@@ -155,7 +155,7 @@ import IndexPage from "../index.astro";
       let protocol = "";
 
       for (let attempt = 0; attempt < 2; attempt++) {
-        const probeUrl = `/favicon.svg?h3-probe=${Date.now()}-${attempt}`;
+        const probeUrl = `https://867678.xyz/favicon.svg`;
         await fetch(probeUrl, { cache: "no-store" });
         const entry = performance
           .getEntriesByName(new URL(probeUrl, location.href).href, "resource")
