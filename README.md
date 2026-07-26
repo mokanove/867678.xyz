@@ -44,9 +44,9 @@ pnpm format
 
 <https://github.com>
 
-<https://marked.js.org>
-
 <https://github.com/withastro/astro>
+
+<https://marked.js.org>
 
 <https://github.com/iamkun/dayjs>
 
@@ -56,6 +56,6 @@ pnpm format
 
 ## ⚖️ License
 
-This website is licensed under the [MoPL](https://867678.xyz/doc/MoPL)
+This website was licensed under the [MoPL](https://867678.xyz/doc/MoPL)
 
 MoPL not applicable and use the imported projects own protocol

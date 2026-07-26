@@ -1,7 +1,3 @@
-body {
-  color: #1f2937;
-}
-
 .tools-page {
   margin: 0 auto;
   box-sizing: border-box;
@@ -15,11 +11,9 @@ body {
 .card-kicker {
   margin: 0 0 7px;
   color: #64748b;
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-size: 0.8rem;
   letter-spacing: 0.1em;
   line-height: 1.4;
-  text-transform: uppercase;
 }
 
 .title-row {
@@ -29,14 +23,11 @@ body {
 }
 
 .title-row h1 {
-  color: #111827;
   font-size: clamp(2rem, 4vw, 2.8rem);
   letter-spacing: -0.04em;
   line-height: 1.1;
 }
 
-.beta-badge,
-.status-badge,
 .coming-soon {
   display: inline-flex;
   align-items: center;
@@ -48,10 +39,6 @@ body {
   font-weight: 650;
   line-height: 1;
   white-space: nowrap;
-}
-
-.beta-badge {
-  padding: 6px 9px;
 }
 
 .tools-summary {
@@ -104,26 +91,39 @@ body {
 .privacy-note h2 {
   margin: 0;
   color: #172033;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.4;
 }
 
-.status-badge {
-  padding: 6px 9px;
-  border-color: #cdebd9;
-  background: #f2fbf5;
-  color: #277a48;
+.ip-sources {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 20px 0 18px;
 }
 
-.ip-result {
-  min-height: 76px;
-  margin: 24px 0 18px;
-  color: #111827;
+.ip-source {
+  min-width: 0;
+  padding: 13px;
+  border-radius: 8px;
+  background: #f7f9fb;
+}
+
+.ip-source h3 {
+  margin: 0 0 10px;
+  color: #172033;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.ip-source p {
+  margin: 5px 0 0;
+  color: #344054;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.9rem;
-  line-height: 1.75;
+  font-size: 0.75rem;
+  line-height: 1.5;
   overflow-wrap: anywhere;
 }
 
