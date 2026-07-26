@@ -71,11 +71,7 @@ import IndexPage from "../index.astro";
           At the same time: you will be simultaneously request the following
           sites.
         </p>
-        <p>
-          speed.cloudflare.com cachefly.cachefly.net lax-ca-us-ping.vultr.com
-          mirrors.jlu.edu.cn
-        </p>
-        <p>Speedtest will stay 5 seconds.</p>
+        <p>Speedtest will stay 10 seconds.</p>
       </article>
 
       <article class="tool-card client-card">
@@ -179,7 +175,7 @@ import IndexPage from "../index.astro";
     }
   };
 
-  const fetchIps = async (): Promise<void> => {
+  const fetchIps = (): void => {
     const fetchJson = async (url: string): Promise<IpJson> => {
       const response = await fetch(url);
       if (!response.ok)
@@ -197,35 +193,55 @@ import IndexPage from "../index.astro";
       return { ip: match[1], location: match[2].trim() };
     };
 
-    const [v4Result, v6Result, ipifyResult, ipipResult] =
-      await Promise.allSettled([
-        fetchJson("https://ipinfo.io/json"),
-        fetchJson("https://v6.ipinfo.io/json"),
-        fetchJson("https://api64.ipify.org/?format=json"),
-        fetchIpip(),
-      ]);
+    let hasLocation = false;
+    const setFirstLocation = (region?: string): void => {
+      if (!hasLocation && region) {
+        hasLocation = true;
+        setText("ipinfo-location", `Location: ${region}`);
+      }
+    };
 
-    const v4 = v4Result.status === "fulfilled" ? v4Result.value : {};
-    const v6 = v6Result.status === "fulfilled" ? v6Result.value : {};
-    const ipify = ipifyResult.status === "fulfilled" ? ipifyResult.value : {};
-    const ipip =
-      ipipResult.status === "fulfilled" ? ipipResult.value : undefined;
+    const v4Request = fetchJson("https://ipinfo.io/json");
+    const v6Request = fetchJson("https://v6.ipinfo.io/json");
 
-    setText("ipinfo-v4", `IPv4: ${v4.ip || "Unavailable"}`);
-    setText("ipinfo-v6", `IPv6: ${v6.ip || "Unavailable"}`);
-    setText(
-      "ipinfo-location",
-      `Location: ${v4.region || v6.region || "Unavailable"}`,
-    );
-    setText("ipip-ip", `IP: ${ipip?.ip || "Unavailable"}`);
-    setText("ipip-location", `Location: ${ipip?.location || "Unavailable"}`);
+    void v4Request
+      .then((data) => {
+        setText("ipinfo-v4", `IPv4: ${data.ip || "Unavailable"}`);
+        setFirstLocation(data.region);
+      })
+      .catch(() => setText("ipinfo-v4", "IPv4: Unavailable"));
 
-    const preferred = ipify.ip?.includes(":")
-      ? "IPv6"
-      : ipify.ip
-        ? "IPv4"
-        : "Unavailable";
-    setText("ipify-preferred", `Preferred: ${preferred}`);
+    void v6Request
+      .then((data) => {
+        setText("ipinfo-v6", `IPv6: ${data.ip || "Unavailable"}`);
+        setFirstLocation(data.region);
+      })
+      .catch(() => setText("ipinfo-v6", "IPv6: Unavailable"));
+
+    void Promise.allSettled([v4Request, v6Request]).then(() => {
+      if (!hasLocation) setText("ipinfo-location", "Location: Unavailable");
+    });
+
+    void fetchIpip()
+      .then((data) => {
+        setText("ipip-ip", `IP: ${data.ip}`);
+        setText("ipip-location", `Location: ${data.location}`);
+      })
+      .catch(() => {
+        setText("ipip-ip", "IP: Unavailable");
+        setText("ipip-location", "Location: Unavailable");
+      });
+
+    void fetchJson("https://api64.ipify.org/?format=json")
+      .then((data) => {
+        const preferred = data.ip
+          ? data.ip.includes(":")
+            ? "IPv6"
+            : "IPv4"
+          : "Unavailable";
+        setText("ipify-preferred", `Preferred: ${preferred}`);
+      })
+      .catch(() => setText("ipify-preferred", "Preferred: Unavailable"));
   };
 
   const latencyEl = document.getElementById("latency") as HTMLElement;
@@ -234,24 +250,23 @@ import IndexPage from "../index.astro";
     latencyEl.textContent = "Testing latency...";
     const targets = [
       "https://www.gstatic.com/generate_204",
-      "https://i0.hdslb.com/",
       "https://www.apple.com/library/test/success.html",
+      "https://www.miwifi.com/statics/img/wf_btn_off.png",
     ];
-    const samples: number[] = [];
-
-    for (let i = 0; i < 10; i++) {
-      const round = await Promise.allSettled(
+    const runRound = (): Promise<PromiseSettledResult<number>[]> =>
+      Promise.allSettled(
         targets.map(async (url) => {
           const start = performance.now();
           await fetch(url, { mode: "no-cors", cache: "no-store" });
           return performance.now() - start;
         }),
       );
-      round.forEach((result) => {
-        if (result.status === "fulfilled") samples.push(result.value);
-      });
-      await new Promise((r) => setTimeout(r, 50));
-    }
+
+    await runRound();
+    const secondRound = await runRound();
+    const samples = secondRound.flatMap((result) =>
+      result.status === "fulfilled" ? [result.value] : [],
+    );
 
     if (samples.length) {
       latencyEl.textContent = `${Math.min(...samples).toFixed(1)} ms`;
@@ -268,12 +283,11 @@ import IndexPage from "../index.astro";
     downloadEl.textContent = "Connecting...";
 
     const ctrl = new AbortController();
-    const DURATION = 5000;
+    const DURATION = 10000;
     const sources = [
       "https://speed.cloudflare.com/__down?bytes=1000000000",
       "https://cachefly.cachefly.net/100mb.test",
-      "https://mirrors.jlu.edu.cn/ubuntu-releases/26.04/ubuntu-26.04-desktop-amd64.iso",
-      "https://lax-ca-us-ping.vultr.com/vultr.com.1000MB.bin",
+      "https://l.867678.xyz/speedtest",
     ];
     const startTime = performance.now();
     let totalBytes = 0;
@@ -286,19 +300,17 @@ import IndexPage from "../index.astro";
     }, 150);
 
     const task = async (url: string): Promise<void> => {
-      while (!ctrl.signal.aborted && performance.now() - startTime < DURATION) {
-        const res = await fetch(url, {
-          signal: ctrl.signal,
-          cache: "no-store",
-        });
-        if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-        const reader = res.body?.getReader();
-        if (!reader) throw new Error("Response body is unavailable");
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          if (value) totalBytes += value.length;
-        }
+      const res = await fetch(url, {
+        signal: ctrl.signal,
+        cache: "no-store",
+      });
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+      const reader = res.body?.getReader();
+      if (!reader) throw new Error("Response body is unavailable");
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        if (value) totalBytes += value.length;
       }
     };
 
