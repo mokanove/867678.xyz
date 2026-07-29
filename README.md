@@ -6,28 +6,32 @@ Source code for <https://867678.xyz>
 
 ### ⚠️ Prerequisites
 
-Make sure you can visit GitHub, else maybe cannot compile
+> Make sure you can visit GitHub, else maybe cannot compile
 
-Example for arch(pacman):
+Example for archlinux(pacman):
+
+Init environment
 
 ```bash
 sudo pacman -Syu --needed nodejs corepack git
 sudo corepack enable
 corepack use pnpm@latest
-```
-
-### 📦 Deployment
-
-```bash
 git clone git@github.com:moaeiou/867678.xyz.git
 cd 867678.xyz/
 pnpm install
+```
+
+Depoly
+
+```bash
 pnpm build
 ```
 
-### ⚙️ Extended functionality
+### 🖥 Development
 
-Output on `dist/`
+> Make sure you are now at `867678.xyz/`
+
+Default output on `dist/`
 
 ```bash
 # TEST

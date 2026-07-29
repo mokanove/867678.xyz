@@ -2,7 +2,7 @@
 //css
 import { marked } from "marked";
 import IndexPage from "../index.astro";
-import { fetchRemoteMarkdown } from "../../lib/remote-markdown";
+import { fetchRemoteMarkdown } from "../../ts/remote-markdown";
 //md
 const { content, title } = Astro.props;
 export async function getStaticPaths() {

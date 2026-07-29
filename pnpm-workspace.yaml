@@ -2,21 +2,26 @@ allowBuilds:
   esbuild: true
   sharp: true
   workerd: true
+overrides:
+  "@bruits/satteri-wasm32-wasi>@emnapi/core": 2.0.0-alpha.3
+  "@bruits/satteri-wasm32-wasi>@emnapi/runtime": 2.0.0-alpha.3
+  "@rolldown/binding-wasm32-wasi>@emnapi/core": 2.0.0-alpha.3
+  "@rolldown/binding-wasm32-wasi>@emnapi/runtime": 2.0.0-alpha.3
 minimumReleaseAgeExclude:
   - prettier@3.9.6
-  - astro@7.1.5
+  - astro@7.1.6
   - "@astrojs/markdown-satteri@0.3.5"
-  - "@astrojs/compiler-binding-darwin-arm64@0.3.0"
-  - "@astrojs/compiler-binding-darwin-x64@0.3.0"
-  - "@astrojs/compiler-binding-linux-arm64-gnu@0.3.0"
-  - "@astrojs/compiler-binding-linux-arm64-musl@0.3.0"
-  - "@astrojs/compiler-binding-linux-x64-gnu@0.3.0"
-  - "@astrojs/compiler-binding-linux-x64-musl@0.3.0"
-  - "@astrojs/compiler-binding-wasm32-wasi@0.3.0"
-  - "@astrojs/compiler-binding-win32-arm64-msvc@0.3.0"
-  - "@astrojs/compiler-binding-win32-x64-msvc@0.3.0"
-  - "@astrojs/compiler-binding@0.3.0"
-  - "@astrojs/compiler-rs@0.3.0"
+  - "@astrojs/compiler-binding-darwin-arm64@0.3.2"
+  - "@astrojs/compiler-binding-darwin-x64@0.3.2"
+  - "@astrojs/compiler-binding-linux-arm64-gnu@0.3.2"
+  - "@astrojs/compiler-binding-linux-arm64-musl@0.3.2"
+  - "@astrojs/compiler-binding-linux-x64-gnu@0.3.2"
+  - "@astrojs/compiler-binding-linux-x64-musl@0.3.2"
+  - "@astrojs/compiler-binding-wasm32-wasi@0.3.2"
+  - "@astrojs/compiler-binding-win32-arm64-msvc@0.3.2"
+  - "@astrojs/compiler-binding-win32-x64-msvc@0.3.2"
+  - "@astrojs/compiler-binding@0.3.2"
+  - "@astrojs/compiler-rs@0.3.2"
   - "@astrojs/internal-helpers@0.10.2"
   - "@astrojs/telemetry@3.3.3"
   - miniflare@4.20260722.1
