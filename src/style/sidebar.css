@@ -54,11 +54,7 @@
 .section-label {
   margin: 0 10px 7px;
   color: #8a94a3;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  line-height: 1.4;
-  text-transform: uppercase;
+  font-size: 0.8rem;
 }
 
 .nav-list {
@@ -102,11 +98,11 @@
 }
 
 .sidebar-footer {
-  margin: auto 22px 0;
-  padding: 18px 0;
+  margin: auto 20px 0;
+  padding: 12px 0;
   border-top: 1px solid #f1f3f5;
   color: #8a94a3;
-  font-size: 0.72rem;
+  font-size: 15px;
 }
 
 .nav-trigger,

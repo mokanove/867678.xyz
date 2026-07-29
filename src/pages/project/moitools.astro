@@ -1,6 +1,6 @@
 ---
 //css
-import "../../style/moitools.css";
+import "../../style/project/moitools.css";
 //components
 import IndexPage from "../index.astro";
 ---
@@ -12,10 +12,7 @@ import IndexPage from "../index.astro";
       <div class="title-row">
         <h1>MoITools</h1>
       </div>
-      <p class="tools-summary">
-        A lightweight set of browser-based diagnostics for your current
-        connection and device.
-      </p>
+      <p class="tools-summary">A general-purpose network diagnostic tool.</p>
     </header>
 
     <section class="tools-grid" aria-label="Network diagnostics">
@@ -129,7 +126,7 @@ import IndexPage from "../index.astro";
 <script>
   interface IpJson {
     ip?: string;
-    region?: string;
+    city?: string;
   }
 
   const setText = (id: string, value: string): void => {
@@ -194,10 +191,10 @@ import IndexPage from "../index.astro";
     };
 
     let hasLocation = false;
-    const setFirstLocation = (region?: string): void => {
-      if (!hasLocation && region) {
+    const setFirstLocation = (city?: string): void => {
+      if (!hasLocation && city) {
         hasLocation = true;
-        setText("ipinfo-location", `Location: ${region}`);
+        setText("ipinfo-location", `Location: ${city}`);
       }
     };
 
@@ -207,14 +204,14 @@ import IndexPage from "../index.astro";
     void v4Request
       .then((data) => {
         setText("ipinfo-v4", `IPv4: ${data.ip || "Unavailable"}`);
-        setFirstLocation(data.region);
+        setFirstLocation(data.city);
       })
       .catch(() => setText("ipinfo-v4", "IPv4: Unavailable"));
 
     void v6Request
       .then((data) => {
         setText("ipinfo-v6", `IPv6: ${data.ip || "Unavailable"}`);
-        setFirstLocation(data.region);
+        setFirstLocation(data.city);
       })
       .catch(() => setText("ipinfo-v6", "IPv6: Unavailable"));
 
