@@ -26,19 +26,6 @@
   line-height: 1.1;
 }
 
-.coming-soon {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid #dbe4f0;
-  border-radius: 999px;
-  background: #fff;
-  color: #526174;
-  font-size: 0.7rem;
-  font-weight: 650;
-  line-height: 1;
-  white-space: nowrap;
-}
-
 .tools-summary {
   margin: 13px 0 0;
   color: #64748b;
@@ -226,11 +213,6 @@
 .secondary-section {
   margin-top: 16px;
   padding: 22px;
-}
-
-.coming-soon {
-  padding: 7px 10px;
-  background: #f8fafc;
 }
 
 .leak-grid {
