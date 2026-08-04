@@ -6,7 +6,7 @@ Source code for <https://867678.xyz>
 
 ### ⚠️ Prerequisites
 
-> Make sure you can visit GitHub, else maybe cannot compile
+Make sure you can visit GitHub, else maybe cannot compile.
 
 Example for archlinux(pacman):
 
@@ -14,30 +14,26 @@ Init environment
 
 ```bash
 sudo pacman -Syu --needed nodejs corepack git
-sudo corepack enable
-corepack use pnpm@latest
 git clone git@github.com:moaeiou/867678.xyz.git
 cd 867678.xyz/
+sudo corepack enable
+corepack use pnpm@latest
 pnpm install
-```
-
-Depoly
-
-```bash
-pnpm build
 ```
 
 ### 🖥 Development
 
-> Make sure you are now at `867678.xyz/`
+Make sure you are now at `867678.xyz/`
 
 Default output on `dist/`
 
 ```bash
-# TEST
+# Test
 pnpm dev
-# FORMAT
+# Format
 pnpm format
+# Depoly
+pnpm build
 ```
 
 ## 🙏 Acknowledgements
