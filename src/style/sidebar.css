@@ -98,7 +98,7 @@
 }
 
 .sidebar-footer {
-  margin: auto 20px 0;
+  margin: 0 10px 0;
   padding: 12px 0;
   border-top: 1px solid #f1f3f5;
   color: #8a94a3;
@@ -196,7 +196,7 @@
   .sidebar-content {
     width: min(100%, 520px);
     margin: 0 auto;
-    padding: 24px 20px 32px;
+    padding: 20px auto 2px;
     box-sizing: border-box;
   }
 

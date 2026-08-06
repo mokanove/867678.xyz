@@ -9,7 +9,7 @@ overrides:
   "@rolldown/binding-wasm32-wasi>@emnapi/runtime": 2.0.0-alpha.3
 minimumReleaseAgeExclude:
   - prettier@3.9.6
-  - astro@7.1.6
+  - astro@7.2.0
   - "@astrojs/markdown-satteri@0.3.5"
   - "@astrojs/compiler-binding-darwin-arm64@0.3.2"
   - "@astrojs/compiler-binding-darwin-x64@0.3.2"
