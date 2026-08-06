@@ -12,14 +12,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@main
-
-      - name: Set up pnpm
-        uses: pnpm/action-setup@master
-
+      
       - name: Set up Node.js
         uses: actions/setup-node@main
         with:
           node-version: latest
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@master
 
       - name: Build!
         shell: bash
