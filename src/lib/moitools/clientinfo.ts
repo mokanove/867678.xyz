@@ -1,10 +1,10 @@
-import { setText } from "./dom";
+import { set } from "./dom";
 
-const testHttp3 = async (): Promise<void> => {
-  setText("h3", "Testing...");
+const testH3 = async (): Promise<void> => {
+  set("h3", "Testing...");
 
   if (typeof performance.getEntriesByName !== "function") {
-    setText("h3", "Not available");
+    set("h3", "Not available");
     return;
   }
 
@@ -21,23 +21,23 @@ const testHttp3 = async (): Promise<void> => {
     }
 
     if (protocol === "h3" || protocol.startsWith("h3-")) {
-      setText("h3", "Supported (HTTP/3)");
+      set("h3", "Supported (HTTP/3)");
     } else if (protocol) {
-      setText("h3", `Not negotiated (${protocol})`);
+      set("h3", `Not negotiated (${protocol})`);
     } else {
-      setText("h3", "Not available");
+      set("h3", "Not available");
     }
   } catch {
-    setText("h3", "Test failed");
+    set("h3", "Test failed");
   }
 };
 
-export const initClientInfo = (): void => {
-  setText("user-agent", navigator.userAgent);
-  setText("language", navigator.language);
-  setText(
+export const initInfo = (): void => {
+  set("user-agent", navigator.userAgent);
+  set("language", navigator.language);
+  set(
     "timezone",
     Intl.DateTimeFormat().resolvedOptions().timeZone || "Unknown",
   );
-  void testHttp3();
+  void testH3();
 };

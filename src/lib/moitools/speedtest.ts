@@ -2,31 +2,34 @@ const LATENCY_TARGETS = [
   "https://www.gstatic.com/generate_204",
   "https://cp.cloudflare.com/generate_204",
   "https://www.apple.com/library/test/success.html",
+  "https://www.qualcomm.cn/cdn-cgi/trace",
   "https://www.miwifi.com/statics/img/wf_btn_off.png",
   "https://necaptcha.nosdn.127.net/ab7f4275c1744aa28e0a8f3a1c58c532.png",
   "https://perfops.byte-test.com/500b-bench.jpg",
-  "https://www.qualcomm.cn/cdn-cgi/trace",
-  "https://1785339748974-2i01sflm4t307ou2.dns-detect.alicdn.com/api/detect/DescribeDNSLookup?cb=window.__foxact_jsonp_callbacks__SECRET_INTERNAL_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.__1785339748974_08451156999932685__",
+  "https://img.alicdn.com/imgextra/i1/O1CN01xA4P9S1JsW2WEg0e1_!!6000000001084-2-tps-2880-560.png?0.47177139890326214",
 ];
 
 const DOWNLOAD_SOURCES = [
   "https://speed.cloudflare.com/__down?bytes=1000000000",
   "https://cachefly.cachefly.net/100mb.test",
+  "https://db.laomoe.com/data-waster-dummy?1",
   "https://l.867678.xyz/speedtest",
+  "https://s.867678.xyz/speedtest",
+  "https://o.867678.xyz/speedtest",
 ];
 
 const TEST_DURATION = 10_000;
 
-const requireElement = <T extends HTMLElement>(id: string): T => {
+const need = <T extends HTMLElement>(id: string): T => {
   const element = document.getElementById(id);
   if (!element) throw new Error(`Missing #${id}`);
   return element as T;
 };
 
-const testLatency = async (element: HTMLElement): Promise<void> => {
+const testPing = async (element: HTMLElement): Promise<void> => {
   element.textContent = "Testing latency...";
 
-  const runRound = (): Promise<PromiseSettledResult<number>[]> =>
+  const round = (): Promise<PromiseSettledResult<number>[]> =>
     Promise.allSettled(
       LATENCY_TARGETS.map(async (url) => {
         const start = performance.now();
@@ -35,8 +38,8 @@ const testLatency = async (element: HTMLElement): Promise<void> => {
       }),
     );
 
-  await runRound();
-  const secondRound = await runRound();
+  await round();
+  const secondRound = await round();
   const samples = secondRound.flatMap((result) =>
     result.status === "fulfilled" ? [result.value] : [],
   );
@@ -46,7 +49,7 @@ const testLatency = async (element: HTMLElement): Promise<void> => {
     : "Error";
 };
 
-const testDownload = async (element: HTMLElement): Promise<void> => {
+const testDown = async (element: HTMLElement): Promise<void> => {
   element.textContent = "Connecting...";
 
   const controller = new AbortController();
@@ -60,7 +63,7 @@ const testDownload = async (element: HTMLElement): Promise<void> => {
     }
   }, 150);
 
-  const download = async (url: string): Promise<void> => {
+  const pull = async (url: string): Promise<void> => {
     const response = await fetch(url, {
       signal: controller.signal,
       cache: "no-store",
@@ -82,7 +85,7 @@ const testDownload = async (element: HTMLElement): Promise<void> => {
   const abortTimer = setTimeout(() => controller.abort(), TEST_DURATION);
 
   try {
-    await Promise.allSettled(DOWNLOAD_SOURCES.map(download));
+    await Promise.allSettled(DOWNLOAD_SOURCES.map(pull));
   } finally {
     clearTimeout(abortTimer);
     clearInterval(timer);
@@ -94,10 +97,10 @@ const testDownload = async (element: HTMLElement): Promise<void> => {
   }
 };
 
-export const initSpeedtest = (): void => {
-  const button = requireElement<HTMLButtonElement>("sis");
-  const latency = requireElement<HTMLElement>("latency");
-  const download = requireElement<HTMLElement>("download-speed");
+export const initSpeed = (): void => {
+  const button = need<HTMLButtonElement>("sis");
+  const latency = need<HTMLElement>("latency");
+  const download = need<HTMLElement>("download-speed");
   let isTesting = false;
 
   button.addEventListener("click", async () => {
@@ -106,8 +109,8 @@ export const initSpeedtest = (): void => {
     isTesting = true;
     button.disabled = true;
     try {
-      await testLatency(latency);
-      await testDownload(download);
+      await testPing(latency);
+      await testDown(download);
     } catch (error) {
       console.error("Something went wrong:", error);
     } finally {

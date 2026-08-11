@@ -1,7 +1,7 @@
-import { initClientInfo } from "./clientinfo";
-import { initIpChecker } from "./ipchecker";
-import { initSpeedtest } from "./speedtest";
+import { initInfo } from "./clientinfo";
+import { initIp } from "./ipchecker";
+import { initSpeed } from "./speedtest";
 
-initClientInfo();
-initIpChecker();
-initSpeedtest();
+initInfo();
+initIp();
+initSpeed();

@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
+import { getCollection, render } from "astro:content";
+import "github-markdown-css/github-markdown.css";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs");
+  return docs.map((doc) => ({
+    params: { id: doc.id },
+    props: { doc },
+  }));
+}
+
+const { doc } = Astro.props;
+const { Content, headings } = await render(doc);
+const sections = headings.filter((heading) => heading.depth > 1);
+---
+
+<BaseLayout title={doc.data.title}>
+  <div class:list={["page-layout", { "has-toc": sections.length > 1 }]}>
+    <article class="markdown-body">
+      <Content />
+    </article>
+    {sections.length > 1 && <TableOfContents headings={sections} />}
+  </div>
+</BaseLayout>

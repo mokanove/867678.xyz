@@ -1,31 +1,15 @@
 ---
-//css
-//import "modern-normalize";
-//import "github-markdown-css/github-markdown.css";
-import "../styles/global.css";
-//import "../styles/index.css";
-//components
-//import Sidebar from "../components/sidebar.astro";
-// buildtime
-import { buildTime, version } from "../lib/version";
-//markdown
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getEntry, render } from "astro:content";
+import "github-markdown-css/github-markdown.css";
 
-const title = "Home";
-let content = "";
+const home = await getEntry("home", "home");
+if (!home) throw new Error("home entry not found");
+const { Content } = await render(home);
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title} | MoAEIOU</title>
-    <script define:vars={{ version, buildTime }}>
-      console.info(`V${version} ${buildTime}`);
-    </script>
-  </head>
-  <body>
-    <h1>这个占位符标志着迁移成功</h1>
-  </body>
-</html>
+<BaseLayout title="Home">
+  <article class="markdown-body">
+    <Content />
+  </article>
+</BaseLayout>

@@ -1,6 +1,6 @@
 const requests = new Map<string, Promise<string>>();
 
-async function download(url: string): Promise<string> {
+async function load(url: string): Promise<string> {
   let lastError: unknown;
 
   for (let attempt = 1; attempt <= 3; attempt++) {
@@ -22,13 +22,13 @@ async function download(url: string): Promise<string> {
     }
   }
 
-  throw new Error(`Failed to download Markdown from ${url}`, {
+  throw new Error(`Failed to load Markdown from ${url}`, {
     cause: lastError,
   });
 }
 
-export function fetchRemoteMarkdown(url: string): Promise<string> {
-  const pending = requests.get(url) ?? download(url);
+export function getMd(url: string): Promise<string> {
+  const pending = requests.get(url) ?? load(url);
   requests.set(url, pending);
   return pending;
 }

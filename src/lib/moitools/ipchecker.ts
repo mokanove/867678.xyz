@@ -1,4 +1,4 @@
-import { setText } from "./dom";
+import { set } from "./dom";
 
 interface IpJson {
   ip?: string;
@@ -6,7 +6,7 @@ interface IpJson {
   asn?: string;
 }
 
-const fetchJson = async (url: string): Promise<IpJson> => {
+const getJson = async (url: string): Promise<IpJson> => {
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`${response.status} ${response.statusText}`);
@@ -14,7 +14,7 @@ const fetchJson = async (url: string): Promise<IpJson> => {
   return response.json();
 };
 
-const fetchIpip = async (): Promise<{ ip: string; location: string }> => {
+const getIpip = async (): Promise<{ ip: string; location: string }> => {
   const response = await fetch("https://myip.ipip.net/");
   if (!response.ok) {
     throw new Error(`${response.status} ${response.statusText}`);
@@ -27,60 +27,60 @@ const fetchIpip = async (): Promise<{ ip: string; location: string }> => {
   return { ip: match[1], location: match[2].trim() };
 };
 
-export const initIpChecker = (): void => {
+export const initIp = (): void => {
   let hasLocation = false;
-  const setFirstLocation = (city?: string): void => {
+  const setCity = (city?: string): void => {
     if (!hasLocation && city) {
       hasLocation = true;
-      setText("ipinfo-location", `Location: ${city}`);
+      set("ipinfo-location", `Location: ${city}`);
     }
   };
 
-  const v4Request = fetchJson(
+  const v4Request = getJson(
     "https://api.ipinfo.io/lite/me?token=eee846770ad167",
   );
-  const v6Request = fetchJson("https://v6.ipinfo.io/json");
+  const v6Request = getJson("https://v6.ipinfo.io/json");
 
   void v4Request
     .then((data) => {
-      setText("ipinfo-v4", `IPv4: ${data.ip || "Unavailable"}`);
-      setText("ipinfo-asn", `ASN: ${data.asn || "Unavailable"}`);
-      setFirstLocation(data.city);
+      set("ipinfo-v4", `IPv4: ${data.ip || "Unavailable"}`);
+      set("ipinfo-asn", `ASN: ${data.asn || "Unavailable"}`);
+      setCity(data.city);
     })
     .catch(() => {
-      setText("ipinfo-v4", "IPv4: Unavailable");
-      setText("ipinfo-asn", "ASN: Unavailable");
+      set("ipinfo-v4", "IPv4: Unavailable");
+      set("ipinfo-asn", "ASN: Unavailable");
     });
 
   void v6Request
     .then((data) => {
-      setText("ipinfo-v6", `IPv6: ${data.ip || "Unavailable"}`);
-      setFirstLocation(data.city);
+      set("ipinfo-v6", `IPv6: ${data.ip || "Unavailable"}`);
+      setCity(data.city);
     })
-    .catch(() => setText("ipinfo-v6", "IPv6: Unavailable"));
+    .catch(() => set("ipinfo-v6", "IPv6: Unavailable"));
 
   void Promise.allSettled([v4Request, v6Request]).then(() => {
-    if (!hasLocation) setText("ipinfo-location", "Location: Unavailable");
+    if (!hasLocation) set("ipinfo-location", "Location: Unavailable");
   });
 
-  void fetchIpip()
+  void getIpip()
     .then((data) => {
-      setText("ipip-ip", `IP: ${data.ip}`);
-      setText("ipip-location", `Location: ${data.location}`);
+      set("ipip-ip", `IP: ${data.ip}`);
+      set("ipip-location", `Location: ${data.location}`);
     })
     .catch(() => {
-      setText("ipip-ip", "IP: Unavailable");
-      setText("ipip-location", "Location: Unavailable");
+      set("ipip-ip", "IP: Unavailable");
+      set("ipip-location", "Location: Unavailable");
     });
 
-  void fetchJson("https://api64.ipify.org/?format=json")
+  void getJson("https://api64.ipify.org/?format=json")
     .then((data) => {
       const preferred = data.ip
         ? data.ip.includes(":")
           ? "IPv6"
           : "IPv4"
         : "Unavailable";
-      setText("ipify-preferred", `Preferred: ${preferred}`);
+      set("ipify-preferred", `Preferred: ${preferred}`);
     })
-    .catch(() => setText("ipify-preferred", "Preferred: Unavailable"));
+    .catch(() => set("ipify-preferred", "Preferred: Unavailable"));
 };

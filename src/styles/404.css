@@ -1,5 +1,5 @@
 body {
-  color: #1f2937;
+  color: var(--color-text);
 }
 
 .content-viewport {
@@ -29,7 +29,7 @@ body {
   position: absolute;
   top: -42px;
   right: -8px;
-  color: #f1f5f9;
+  color: var(--color-watermark);
   font-size: clamp(9rem, 26vw, 15rem);
   font-weight: 800;
   letter-spacing: -0.09em;
@@ -45,7 +45,7 @@ body {
 
 .eyebrow {
   margin: 0 0 12px;
-  color: #2563eb;
+  color: var(--color-accent);
   font-size: 0.7rem;
   font-weight: 750;
   letter-spacing: 0.1em;
@@ -56,7 +56,7 @@ body {
 .error-content h1 {
   max-width: 520px;
   margin: 0;
-  color: #111827;
+  color: var(--color-text-strong);
   font-size: clamp(2rem, 6vw, 3.4rem);
   font-weight: 750;
   letter-spacing: -0.045em;
@@ -65,7 +65,7 @@ body {
 
 .darien {
   margin: 24px 0 0;
-  color: #344054;
+  color: var(--color-text);
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.6;
@@ -73,7 +73,7 @@ body {
 
 .description {
   margin: 6px 0 0;
-  color: #7c8999;
+  color: var(--color-text-muted);
   font-size: 0.9rem;
   line-height: 1.65;
 }
@@ -106,29 +106,29 @@ body {
 }
 
 .primary-action {
-  border: 1px solid #1d4ed8;
-  background: #2563eb;
+  border: 1px solid var(--color-accent-hover);
+  background: var(--color-accent);
   color: #fff;
 }
 
 .primary-action:hover {
-  background: #1d4ed8;
+  background: var(--color-accent-hover);
 }
 
 .secondary-action {
-  border: 1px solid #dce2e9;
-  background: #fff;
-  color: #344054;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
 .secondary-action:hover {
-  border-color: #c9d1dc;
-  background: #f7f8fa;
+  border-color: var(--color-text-muted);
+  background: var(--color-bg-hover);
 }
 
 .primary-action:focus-visible,
 .secondary-action:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
 

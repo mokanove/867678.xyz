@@ -1,0 +1,125 @@
+import { defineCollection, z } from "astro:content";
+import type { Loader, LoaderContext } from "astro/loaders";
+import { getMd } from "./lib/get-markdown";
+
+interface RemoteEntry {
+  id: string;
+  title: string;
+  url: string;
+}
+
+const docs: RemoteEntry[] = [
+  {
+    id: "mirrors",
+    title: "Resources mirrors",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/moaeiou@main/docs/mirrors.md",
+  },
+  {
+    id: "openwrt",
+    title: "Anything about OpenWrt",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/moaeiou@main/docs/openwrt.md",
+  },
+  {
+    id: "mopl",
+    title: "Mo Pubilc License",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/moaeiou@main/LICENSE.md",
+  },
+  {
+    id: "thissite",
+    title: "This site",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/867678.xyz@main/README.md",
+  },
+];
+
+const PROJECTS: RemoteEntry[] = [
+  {
+    id: "mio",
+    title: "mio protocol POC by Golang",
+    url: "https://cdn.jsdelivr.net/gh/orgmio/mio@main/README.md",
+  },
+  {
+    id: "mcry",
+    title: "Mcry",
+    url: "https://cdn.jsdelivr.net/gh/orgmio/mcry@main/README.md",
+  },
+  {
+    id: "qcsh",
+    title: "QuickShell",
+    url: "https://cdn.jsdelivr.net/gh/orgmio/qcsh@main/README.md",
+  },
+  {
+    id: "cv",
+    title: "CV",
+    url: "https://cdn.jsdelivr.net/gh/orgmio/cv@main/README.md",
+  },
+  {
+    id: "mineradio",
+    title: "Mineradio",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/mineradio@main/README.md",
+  },
+  {
+    id: "fancyindex-theme",
+    title: "Fancyindex-Theme",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/fancyindex-theme@main/README.md",
+  },
+  {
+    id: "contento24",
+    title: "Contento24",
+    url: "https://cdn.jsdelivr.net/gh/contento24/contento24@main/README.md",
+  },
+  {
+    id: "luci-app-oplist",
+    title: "LuCI-APP-OpenList",
+    url: "https://cdn.jsdelivr.net/gh/morouter/luci-app-oplist@main/README.md",
+  },
+  {
+    id: "luci-app-rsop",
+    title: "LuCI-APP-Rustdesk for OpenWrt",
+    url: "https://cdn.jsdelivr.net/gh/morouter/luci-app-rsop@main/README.md",
+  },
+  {
+    id: "luci-app-pm",
+    title: "LuCI-APP-PowerManager",
+    url: "https://cdn.jsdelivr.net/gh/morouter/luci-app-pm@main/README.md",
+  },
+];
+
+const HOME: RemoteEntry[] = [
+  {
+    id: "home",
+    title: "Home",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/moaeiou@main/README.md",
+  },
+];
+
+const mdLoader = (entries: RemoteEntry[]): Loader => ({
+  name: "get-markdown",
+  load: async (context: LoaderContext) => {
+    for (const entry of entries) {
+      const markdown = await getMd(entry.url);
+      const rendered = await context.renderMarkdown(markdown);
+      const data = await context.parseData({
+        id: entry.id,
+        data: { title: entry.title },
+      });
+      context.store.set({ id: entry.id, data, rendered });
+    }
+  },
+});
+
+const entrySchema = z.object({ title: z.string() });
+
+export const collections = {
+  docs: defineCollection({
+    loader: mdLoader(docs),
+    schema: entrySchema,
+  }),
+  projects: defineCollection({
+    loader: mdLoader(PROJECTS),
+    schema: entrySchema,
+  }),
+  home: defineCollection({
+    loader: mdLoader(HOME),
+    schema: entrySchema,
+  }),
+};

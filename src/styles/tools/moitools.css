@@ -10,7 +10,7 @@
 .eyebrow,
 .card-kicker {
   margin: 0 0 7px;
-  color: #64748b;
+  color: var(--color-text-muted);
   font-size: 0.9rem;
 }
 
@@ -28,7 +28,7 @@
 
 .tools-summary {
   margin: 13px 0 0;
-  color: #64748b;
+  color: var(--color-text-muted);
   font-size: 1rem;
   line-height: 1.7;
 }
@@ -42,10 +42,10 @@
 .tool-card,
 .secondary-section,
 .privacy-note {
-  border: 1px solid #e3e8ef;
+  border: 1px solid var(--color-border);
   border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.025);
+  background: var(--color-bg);
+  box-shadow: var(--shadow-card);
 }
 
 .tool-card {
@@ -75,7 +75,7 @@
 .section-heading h2,
 .privacy-note h2 {
   margin: 0;
-  color: #172033;
+  color: var(--color-text-strong);
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -93,19 +93,19 @@
   min-width: 0;
   padding: 13px;
   border-radius: 8px;
-  background: #f7f9fb;
+  background: var(--color-bg-subtle);
 }
 
 .ip-source h3 {
   margin: 0 0 10px;
-  color: #172033;
+  color: var(--color-text-strong);
   font-size: 0.82rem;
   font-weight: 700;
 }
 
 .ip-source p {
   margin: 5px 0 0;
-  color: #344054;
+  color: var(--color-text);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.75rem;
   line-height: 1.5;
@@ -114,7 +114,7 @@
 
 .card-note {
   margin: 0;
-  color: #94a0af;
+  color: var(--color-text-muted);
   font-size: 0.76rem;
 }
 
@@ -133,19 +133,19 @@
   min-width: 0;
   padding: 13px;
   border-radius: 8px;
-  background: #f7f9fb;
+  background: var(--color-bg-subtle);
 }
 
 .metric-list dt,
 .detail-list dt {
-  color: #7c8999;
+  color: var(--color-text-muted);
   font-size: 0.72rem;
   line-height: 1.4;
 }
 
 .metric-list dd {
   margin: 5px 0 0;
-  color: #172033;
+  color: var(--color-text-strong);
   font-size: 0.9rem;
   font-weight: 650;
   overflow-wrap: anywhere;
@@ -155,31 +155,34 @@
   width: 100%;
   margin: 20px auto;
   padding: 9px 16px;
-  border: 1px solid #1d4ed8;
+  border: 1px solid var(--color-accent);
   border-radius: 8px;
-  background: #2563eb;
-  color: #fff;
+  background: transparent;
+  color: var(--color-accent);
   font: inherit;
   font-size: 0.875rem;
   font-weight: 650;
   cursor: pointer;
   transition:
     background-color 150ms ease,
-    box-shadow 150ms ease;
+    border-color 150ms ease,
+    color 150ms ease;
 }
 
 #sis:hover {
-  background: #1d4ed8;
+  border-color: var(--color-accent-hover);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-hover);
 }
 
 #sis:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
 
 #sis:disabled {
   cursor: wait;
-  opacity: 0.65;
+  opacity: 0.55;
 }
 
 .detail-list {
@@ -190,7 +193,7 @@
 .detail-list > div {
   min-width: 0;
   padding: 14px 0;
-  border-top: 1px solid #edf0f4;
+  border-top: 1px solid var(--color-border-soft);
 }
 
 .detail-list > div:nth-child(odd) {
@@ -199,12 +202,12 @@
 
 .detail-list > div:nth-child(even) {
   padding-left: 24px;
-  border-left: 1px solid #edf0f4;
+  border-left: 1px solid var(--color-border-soft);
 }
 
 .detail-list dd {
   margin: 5px 0 0;
-  color: #344054;
+  color: var(--color-text);
   font-size: 0.84rem;
   line-height: 1.55;
   overflow-wrap: anywhere;
@@ -224,19 +227,19 @@
 
 .leak-item {
   padding: 17px;
-  border: 1px solid #edf0f4;
+  border: 1px solid var(--color-border-soft);
   border-radius: 9px;
-  background: #fafbfc;
+  background: var(--color-bg-raised);
 }
 
 .leak-item h3 {
-  color: #253044;
+  color: var(--color-text-strong);
   font-size: 0.9rem;
 }
 
 .leak-item p {
   margin: 7px 0 0;
-  color: #7c8999;
+  color: var(--color-text-muted);
   font-size: 0.8rem;
   line-height: 1.55;
 }
@@ -247,8 +250,8 @@
   display: flex;
   align-items: flex-start;
   gap: 13px;
-  border-color: #dbe5f1;
-  background: #f8fbff;
+  border-color: var(--color-note-border);
+  background: var(--color-note-bg);
 }
 
 .privacy-icon {
@@ -258,15 +261,15 @@
   place-items: center;
   flex: 0 0 auto;
   border-radius: 50%;
-  background: #e4f0ff;
-  color: #2563eb;
+  background: var(--color-accent-soft-2);
+  color: var(--color-accent);
   font-size: 0.75rem;
   font-weight: 800;
 }
 
 .privacy-note p {
   margin: 5px 0 0;
-  color: #6f7d8f;
+  color: var(--color-text-muted);
   font-size: 0.8rem;
   line-height: 1.6;
 }

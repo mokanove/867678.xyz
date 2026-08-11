@@ -1,6 +1,9 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/404.css";
 ---
+
+<BaseLayout title="404">
   <div class="not-found-page">
     <main class="not-found-card">
       <div class="error-code" aria-hidden="true">404</div>
@@ -22,6 +25,7 @@ import "../styles/404.css";
       </div>
     </main>
   </div>
+</BaseLayout>
 
 <script>
   document.querySelector("[data-go-back]")?.addEventListener("click", () => {

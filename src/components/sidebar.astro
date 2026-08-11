@@ -1,5 +1,5 @@
 ---
-import "../style/sidebar.css";
+import "../styles/components/sidebar.css";
 
 const pathname = Astro.url.pathname;
 const isActive = (href: string) =>
@@ -8,42 +8,48 @@ const isActive = (href: string) =>
 const sections = [
   {
     id: "web-tool",
-    label: "Web Tool",
+    label: "Web Tools",
     links: [
-      { href: "/project/moitools", label: "MoITools" },
-      { href: "/project/cyaks", label: "CyAks" },
+      { href: "/tools/moitools", label: "MoITools" },
+      { href: "/tools/cyaks", label: "CyAks" },
     ],
   },
   {
     id: "software",
-    label: "Software",
+    label: "Softwares",
     links: [
-      { href: "/project/mio", label: "mio-proxy" },
-      { href: "/project/mcry", label: "Mcry" },
-      { href: "/project/qcsh", label: "QuickShell" },
-      { href: "/project/mineradio", label: "Mineradio" },
-      { href: "/project/fancyindex-theme", label: "FancyIndex Theme" },
-      { href: "/project/contento24", label: "Contento24" },
+      { href: "/projects/mineradio", label: "Mineradio" },
+      { href: "/projects/fancyindex-theme", label: "FancyIndex Theme" },
+      { href: "/projects/contento24", label: "Contento24" },
     ],
   },
   {
-    id: "luci",
-    label: "LuCI-APP",
+    id: "orgmio",
+    label: "mio Family",
     links: [
-      { href: "/project/luci-app-ezsgx", label: "Easy sing-box" },
-      { href: "/project/luci-app-oplist", label: "OpenList" },
-      { href: "/project/luci-app-rsop", label: "Rustdesk for OpenWrt" },
-      { href: "/project/luci-app-pm", label: "PowerManager" },
+      { href: "/projects/mio", label: "mio-proxy" },
+      { href: "/projects/mcry", label: "Mcry" },
+      { href: "/projects/qcsh", label: "QuickShell" },
+      { href: "/projects/cv", label: "CV" },
+    ],
+  },
+  {
+    id: "mlga",
+    label: "Make LuCI Great Again",
+    links: [
+      { href: "/projects/luci-app-oplist", label: "OpenList" },
+      { href: "/projects/luci-app-rsop", label: "Rustdesk for OpenWrt" },
+      { href: "/projects/luci-app-pm", label: "PowerManager" },
     ],
   },
   {
     id: "document",
-    label: "Document",
+    label: "Documents",
     links: [
-      { href: "/doc/OpenWrt", label: "OpenWrt" },
-      { href: "/doc/Mirror", label: "Mirror" },
-      { href: "/doc/MoPL", label: "Mo Public License" },
-      { href: "/doc/bts", label: "Build This Site" },
+      { href: "/docs/openwrt", label: "OpenWrt" },
+      { href: "/docs/mirrors", label: "Mirror" },
+      { href: "/docs/mopl", label: "Mo Public License" },
+      { href: "/docs/thissite", label: "This Site" },
     ],
   },
 ];
@@ -56,7 +62,20 @@ const sections = [
   aria-controls="site-navigation"
   aria-expanded="false"
 >
-  <span></span><span></span><span></span>
+  <svg
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    aria-hidden="true"
+  >
+    <line x1="4" y1="7" x2="20" y2="7"></line>
+    <line x1="4" y1="12" x2="20" y2="12"></line>
+    <line x1="4" y1="17" x2="20" y2="17"></line>
+  </svg>
 </button>
 
 <aside class="sidebar" id="site-navigation" aria-label="Site navigation">
@@ -65,17 +84,42 @@ const sections = [
       <img src="/favicon.svg" alt="Logo" />
       <span>Mo AEIOU</span>
     </a>
-    <button
-      class="nav-close"
-      type="button"
-      aria-label="Close navigation"
-      data-nav-close
-    >
-      <span></span><span></span>
-    </button>
+    <div class="sidebar-actions">
+      <button
+        class="nav-close"
+        type="button"
+        aria-label="Close navigation"
+        data-nav-close
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="18"
+          height="18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+        </svg>
+      </button>
+    </div>
   </div>
 
   <div class="sidebar-content">
+    <button
+      class="nav-item theme-toggle"
+      type="button"
+      data-theme-toggle
+      aria-label="Switch between auto, light and dark theme"
+    >
+      <span class="mode-auto">◐ Auto</span>
+      <span class="mode-light">☀️ Light</span>
+      <span class="mode-dark">🌙 Dark</span>
+    </button>
+
     {
       sections.map((section) => (
         <nav class="section" aria-labelledby={`nav-${section.id}`}>
@@ -106,6 +150,9 @@ const sections = [
   const trigger = document.querySelector<HTMLButtonElement>(".nav-trigger");
   const closeButtons =
     document.querySelectorAll<HTMLElement>("[data-nav-close]");
+  const themeToggle = document.querySelector<HTMLButtonElement>(
+    "[data-theme-toggle]",
+  );
 
   const setOpen = (open: boolean) => {
     document.documentElement.classList.toggle("nav-open", open);
@@ -130,5 +177,19 @@ const sections = [
     ) {
       setOpen(false);
     }
+  });
+
+  const themeModes = ["auto", "light", "dark"] as const;
+  themeToggle?.addEventListener("click", () => {
+    const current = (document.documentElement.dataset.themeMode ??
+      "auto") as (typeof themeModes)[number];
+    const next =
+      themeModes[(themeModes.indexOf(current) + 1) % themeModes.length];
+    document.documentElement.dataset.themeMode = next;
+    localStorage.setItem("theme", next);
+    const dark =
+      next === "dark" ||
+      (next === "auto" && matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
   });
 </script>

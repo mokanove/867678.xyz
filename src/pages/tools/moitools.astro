@@ -1,11 +1,11 @@
 ---
 //css
-import "../../style/project/moitools.css";
+import "../../styles/tools/moitools.css";
 //components
-import IndexPage from "../index.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
-<IndexPage title="MoITools" childpage={true}>
+<BaseLayout title="MoITools">
   <div class="tools-page">
     <header class="tools-header">
       <p class="eyebrow">Mo Internet Test Tools</p>
@@ -121,8 +121,8 @@ import IndexPage from "../index.astro";
       </div>
     </aside>
   </div>
-</IndexPage>
+</BaseLayout>
 
 <script>
-  import "../../ts/project/moitools/index";
+  import "../../lib/moitools/index";
 </script>
