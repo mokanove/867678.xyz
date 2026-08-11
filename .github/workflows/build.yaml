@@ -21,6 +21,21 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@master
 
+      - name: Refresh jsDelivr cache
+        shell: bash
+        run: |
+          urls=$(grep -oE 'https://[^" ]*jsdelivr\.net/gh/[^" ]+' src/content.config.ts | sort -u)
+          if [ -z "$urls" ]; then
+            echo "No jsDelivr URLs found."
+            exit 0
+          fi
+          for url in $urls; do
+            purge="${url/cdn./purge.}"
+            echo "Purging $purge"
+            curl -fsS --max-time 30 "$purge" >/dev/null \
+              || exit 1
+          done
+
       - name: Build!
         shell: bash
         run: |
