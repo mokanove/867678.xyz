@@ -1,9 +1,6 @@
 ---
-import IndexPage from "./index.astro";
-import "../style/404.css";
+import "../styles/404.css";
 ---
-
-<IndexPage title="404" childpage={true}>
   <div class="not-found-page">
     <main class="not-found-card">
       <div class="error-code" aria-hidden="true">404</div>
@@ -25,7 +22,6 @@ import "../style/404.css";
       </div>
     </main>
   </div>
-</IndexPage>
 
 <script>
   document.querySelector("[data-go-back]")?.addEventListener("click", () => {
