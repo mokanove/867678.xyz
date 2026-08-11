@@ -54,6 +54,6 @@ All commands are run from the root of the project, from a terminal:
 
 ## ⚖️ LICENSE
 
-This web site and the 2rd project (moitools and cyaks) aslo licensed under the [MoPL](https://867678.xyz/doc/mopubliclicense)
+This web site and the 2rd project (moitools and cyaks) aslo licensed under the [MoPL](https://867678.xyz/docs/mopl)
 
 Some included depends use theme-self license.
