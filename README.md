@@ -2,6 +2,8 @@
 
 Source code for 867678.xyz, MoITools and CyAks.
 
+Fuck git
+
 ## 🚀 How to init
 
 Example using ArchLinux
