@@ -2,3 +2,7 @@ allowBuilds:
   esbuild: true
   sharp: true
   workerd: false
+minimumReleaseAgeExclude:
+  - miniflare@5.20260804.1-alpha
+  - wrangler@4.121.0
+  - astro@7.2.1
