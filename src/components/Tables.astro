@@ -12,14 +12,13 @@ interface Props {
 }
 
 const { headings } = Astro.props;
-const sections = headings.filter((heading) => heading.depth > 1);
 ---
 
-<nav class="toc" aria-label="Table of contents">
-  <p class="toc-title">Table of contents</p>
+<nav class="toc" aria-label="Tables">
+  <p class="toc-title">Tables</p>
   <ol class="toc-list">
     {
-      sections.map((heading) => (
+      headings.map((heading) => (
         <li class:list={["toc-item", `toc-depth-${heading.depth}`]}>
           <a href={`#${heading.slug}`}>{heading.text}</a>
         </li>
