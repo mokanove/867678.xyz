@@ -2,7 +2,7 @@ name: Can't keep up with you mind
 
 on:
   schedule:
-    - cron: "0 */2 * * *"
+    - cron: "0 */4 * * *"
   push:
   workflow_dispatch:
 jobs:
