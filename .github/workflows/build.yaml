@@ -21,6 +21,11 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@master
 
+      - name: Refresh jsDelivr cache
+        shell: bash
+        run: |
+          pnpm refresh
+
       - name: Build!
         shell: bash
         run: |
