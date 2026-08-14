@@ -7,8 +7,8 @@
   },
   "scripts": {
     "refresh": "./refresh-remote.sh",
-    "dev": "./refresh-remote.sh && astro dev",
-    "build": "./refresh-remote.sh && astro build",
+    "dev": "astro dev",
+    "build": "astro build",
     "astro": "astro",
     "format": "prettier . --write",
     "check": "prettier . --check",

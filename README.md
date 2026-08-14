@@ -33,17 +33,15 @@ All commands are run from the root of the project, from a terminal:
 
 ## ⚠️ Warning
 
-This website has some problem that:
+If you internet is not good, you may cannot be run `pnpm dev`.
 
-If you internet maybe not good, you may cannot be run `pnpm dev` or error.
+To solve this problem, we used `cdn.jsdelivr.net`.
 
-So to solve this problem, we used `cdn.jsdelivr.net`
+But it has include a new problem, for speed, it have cache, and refresh every 24 hours.
 
-But it has include a new problem, for speed, it has cache, and refresh at every 24 hours.
+To solve this problem, we created a simple script.
 
-To solve thie problem, we created a simple script.
-
-It will be runs at `pnpm dev` and `pnpm build`
+Run `pnpm refresh` to run this script and refresh CDN cache let CDN get latest file.
 
 ## 🙏 Acknowledgements
 
