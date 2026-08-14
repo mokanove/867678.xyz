@@ -24,7 +24,6 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm install`                               | Installs dependencies                            |
 | `pnpm dev`                                   | Starts local dev server at `localhost:4321`      |
 | `pnpm build`                                 | Build your production site to `./dist/`          |
-| `pnpm preview`                               | Preview your build locally, before deploying     |
 | `pnpm astro ...`                             | Run CLI commands like `astro add`, `astro check` |
 | `pnpm astro -- --help`                       | Get help using the Astro CLI                     |
 | `pnpm astro preferences *action* devToolbar` | enable or disable devToolbar                     |
@@ -32,13 +31,27 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm check`                                 | Using prettier check files format                |
 | `pnpm prittier`                              | Run prittier                                     |
 
+## ⚠️ Warning
+
+This website has some problem that:
+
+If you internet maybe not good, you may cannot be run `pnpm dev` or error.
+
+So to solve this problem, we used `cdn.jsdelivr.net`
+
+But it has include a new problem, for speed, it has cache, and refresh at every 24 hours.
+
+To solve thie problem, we created a simple script.
+
+It will be runs at `pnpm dev` and `pnpm build`
+
 ## 🙏 Acknowledgements
 
 <https://cloudflare.com>
 
 <https://spaceship.com>
 
-<https://cdn.jsdelivr.com/>
+<https://cdn.jsdelivr.net/>
 
 <https://chatgpt.com>(Codex)
 
