@@ -6,8 +6,9 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "sh ./refresh-remote.sh && astro dev",
-    "build": "sh ./refresh-remote.sh && astro build",
+    "refresh": "./refresh-remote.sh",
+    "dev": "./refresh-remote.sh && astro dev",
+    "build": "./refresh-remote.sh && astro build",
     "astro": "astro",
     "format": "prettier . --write",
     "check": "prettier . --check",
