@@ -3,6 +3,6 @@ allowBuilds:
   sharp: true
   workerd: false
 minimumReleaseAgeExclude:
-  - miniflare@5.20260811.0-alpha || 5.20260811.1-alpha
-  - wrangler@4.122.0 || 4.123.0
-  - astro@7.2.1 || 7.2.2
+  - miniflare@5.20260811.1-alpha
+  - wrangler@4.123.0
+  - astro@7.2.2

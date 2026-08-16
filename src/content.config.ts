@@ -34,7 +34,7 @@ const docs: RemoteEntry[] = [
 const PROJECTS: RemoteEntry[] = [
   {
     id: "mio",
-    title: "mio protocol POC by Golang",
+    title: "MIO Protocol",
     url: "https://cdn.jsdelivr.net/gh/orgmio/mio@main/README.md",
   },
   {

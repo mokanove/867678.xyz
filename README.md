@@ -53,7 +53,7 @@ Run `pnpm refresh` to run this script and refresh CDN cache let CDN get latest f
 
 <https://chatgpt.com>(Codex)
 
-<https://deepseek.com>(It is really cheapest)
+<https://deepseek.com>
 
 <https://github.com>
 

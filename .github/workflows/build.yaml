@@ -2,7 +2,7 @@ name: Can't keep up with you mind
 
 on:
   schedule:
-    - cron: "0 */4 * * *"
+    - cron: "0 */12 * * *"
   push:
   workflow_dispatch:
 jobs:
@@ -32,8 +32,8 @@ jobs:
           pnpm install
           pnpm build
 
-      - name: Deploy to Cloudflare Pages
+      - name: Sent to Cloudflare Pages
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: pages deploy dist --project-name=867678-xyz
+          command: pages deploy dist --project-name=ws-867678
