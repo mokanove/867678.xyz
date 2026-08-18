@@ -1,9 +1,9 @@
 {
   "name": "867678.xyz",
   "type": "module",
-  "version": "5.0.6",
+  "version": "5.0.7",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "refresh": "./refresh-remote.sh",
@@ -19,7 +19,7 @@
     "modern-normalize": "^3.0.1"
   },
   "devDependencies": {
-    "astro": "^7.2.2",
+    "astro": "^7.2.3",
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
     "wrangler": "^4.124.0"
