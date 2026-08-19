@@ -67,4 +67,4 @@ Run `pnpm refresh` to run this script and refresh CDN cache let CDN get latest f
 
 This web site and the 2rd project (moitools and cyaks) aslo licensed under the [MoPL](https://867678.xyz/docs/mopl)
 
-Some included depends use theme-self license.
+Some included depends use theme self license.

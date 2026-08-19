@@ -28,8 +28,10 @@ import "../styles/404.css";
 </BaseLayout>
 
 <script>
-  document.querySelector("[data-go-back]")?.addEventListener("click", () => {
-    if (history.length > 1) history.back();
-    else location.href = "/";
+  document.addEventListener("astro:page-load", () => {
+    document.querySelector("[data-go-back]")?.addEventListener("click", () => {
+      if (history.length > 1) history.back();
+      else location.href = "/";
+    });
   });
 </script>

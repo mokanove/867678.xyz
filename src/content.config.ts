@@ -8,26 +8,11 @@ interface RemoteEntry {
   url: string;
 }
 
-const docs: RemoteEntry[] = [
+const HOME: RemoteEntry[] = [
   {
-    id: "mirrors",
-    title: "Resources mirrors",
-    url: "https://cdn.jsdelivr.net/gh/moaeiou/moaeiou@main/docs/mirrors.md",
-  },
-  {
-    id: "openwrt",
-    title: "Anything about OpenWrt",
-    url: "https://cdn.jsdelivr.net/gh/moaeiou/moaeiou@main/docs/openwrt.md",
-  },
-  {
-    id: "mopl",
-    title: "Mo Pubilc License",
-    url: "https://cdn.jsdelivr.net/gh/moaeiou/moaeiou@main/LICENSE.md",
-  },
-  {
-    id: "thissite",
-    title: "This site",
-    url: "https://cdn.jsdelivr.net/gh/moaeiou/867678.xyz@main/README.md",
+    id: "home",
+    title: "Home",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/moaeiou@main/README.md",
   },
 ];
 
@@ -58,6 +43,11 @@ const PROJECTS: RemoteEntry[] = [
     url: "https://cdn.jsdelivr.net/gh/moaeiou/mineradio@main/README.md",
   },
   {
+    id: "go-rustdesk-server",
+    title: "Go Rustdesk Server",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/go-rustdesk-server@main/README.md",
+  },
+  {
     id: "fancyindex-theme",
     title: "Fancyindex-Theme",
     url: "https://cdn.jsdelivr.net/gh/moaeiou/fancyindex-theme@main/README.md",
@@ -84,11 +74,26 @@ const PROJECTS: RemoteEntry[] = [
   },
 ];
 
-const HOME: RemoteEntry[] = [
+const docs: RemoteEntry[] = [
   {
-    id: "home",
-    title: "Home",
-    url: "https://cdn.jsdelivr.net/gh/moaeiou/moaeiou@main/README.md",
+    id: "mirrors",
+    title: "Resources mirrors",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/moaeiou@main/docs/mirrors.md",
+  },
+  {
+    id: "openwrt",
+    title: "Anything about OpenWrt",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/moaeiou@main/docs/openwrt.md",
+  },
+  {
+    id: "mopl",
+    title: "Mo Pubilc License",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/moaeiou@main/LICENSE.md",
+  },
+  {
+    id: "thissite",
+    title: "This site",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/867678.xyz@main/README.md",
   },
 ];
 

@@ -1,3 +1,8 @@
+.nav-shell {
+  flex: 0 0 180px;
+  width: 180px;
+}
+
 .sidebar {
   position: sticky;
   top: 0;
@@ -56,6 +61,11 @@
   font: inherit;
   cursor: pointer;
   border: 0;
+  color: var(--color-text-strong);
+}
+
+[data-theme="dark"] .theme-toggle {
+  color: #eceef0;
 }
 
 [data-theme-mode="auto"] .mode-light,
@@ -137,6 +147,12 @@
 }
 
 @media (max-width: 640px) {
+  .nav-shell {
+    flex: 0 0 0;
+    width: 0;
+    overflow: visible;
+  }
+
   .nav-trigger {
     position: fixed;
     z-index: 40;

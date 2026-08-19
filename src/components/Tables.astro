@@ -28,31 +28,5 @@ const { headings } = Astro.props;
 </nav>
 
 <script>
-  const links = Array.from(
-    document.querySelectorAll<HTMLAnchorElement>(".toc-item a"),
-  );
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          links.forEach((link) =>
-            link.classList.toggle(
-              "active",
-              link.getAttribute("href") === `#${id}`,
-            ),
-          );
-        }
-      }
-    },
-    { rootMargin: "-80px 0px -70% 0px" },
-  );
-
-  links.forEach((link) => {
-    const target = document.getElementById(
-      link.getAttribute("href")?.slice(1) ?? "",
-    );
-    if (target) observer.observe(target);
-  });
+  import "../lib/tables";
 </script>

@@ -2,6 +2,11 @@ import { initInfo } from "./clientinfo";
 import { initIp } from "./ipchecker";
 import { initSpeed } from "./speedtest";
 
-initInfo();
-initIp();
-initSpeed();
+const boot = () => {
+  if (!document.getElementById("run-speedtest")) return;
+  initInfo();
+  initIp();
+  initSpeed();
+};
+
+document.addEventListener("astro:page-load", boot);

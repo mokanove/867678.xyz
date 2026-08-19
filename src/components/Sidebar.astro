@@ -7,25 +7,8 @@ const isActive = (href: string) =>
 
 const sections = [
   {
-    id: "web-tool",
-    label: "Web Tools",
-    links: [
-      { href: "/tools/moitools", label: "MoITools" },
-      { href: "/tools/cyaks", label: "CyAks" },
-    ],
-  },
-  {
-    id: "software",
-    label: "Softwares",
-    links: [
-      { href: "/projects/mineradio", label: "Mineradio" },
-      { href: "/projects/fancyindex-theme", label: "FancyIndex Theme" },
-      { href: "/projects/contento24", label: "Contento24" },
-    ],
-  },
-  {
     id: "orgmio",
-    label: "mio Family",
+    label: "MIO Family",
     links: [
       { href: "/projects/mio", label: "mio-proxy" },
       { href: "/projects/mcry", label: "Mcry" },
@@ -43,7 +26,25 @@ const sections = [
     ],
   },
   {
-    id: "document",
+    id: "softwares",
+    label: "Softwares",
+    links: [
+      { href: "/projects/mineradio", label: "Mineradio" },
+      { href: "/projects/go-rustdesk-server", label: "Go Rustdesk Server" },
+      { href: "/projects/fancyindex-theme", label: "FancyIndex Theme" },
+      { href: "/projects/contento24", label: "Contento24" },
+    ],
+  },
+  {
+    id: "web-tools",
+    label: "Web Tools",
+    links: [
+      { href: "/tools/moitools", label: "MoITools" },
+      { href: "/tools/cyaks", label: "CyAks" },
+    ],
+  },
+  {
+    id: "documents",
     label: "Documents",
     links: [
       { href: "/docs/openwrt", label: "OpenWrt" },
@@ -55,6 +56,7 @@ const sections = [
 ];
 ---
 
+<div class="nav-shell" transition:persist="site-nav">
 <button
   class="nav-trigger"
   type="button"
@@ -116,8 +118,8 @@ const sections = [
       aria-label="Switch between auto, light and dark theme"
     >
       <span class="mode-auto">◐ Auto</span>
-      <span class="mode-light">☀️ Light</span>
-      <span class="mode-dark">🌙 Dark</span>
+      <span class="mode-light">☀ Light</span>
+      <span class="mode-dark">☾ Dark</span>
     </button>
 
     {
@@ -144,52 +146,8 @@ const sections = [
 
   <p class="sidebar-footer">&copy; 2026 MoAEIOU</p>
 </aside>
+</div>
 
 <script>
-  const sidebar = document.querySelector<HTMLElement>(".sidebar");
-  const trigger = document.querySelector<HTMLButtonElement>(".nav-trigger");
-  const closeButtons =
-    document.querySelectorAll<HTMLElement>("[data-nav-close]");
-  const themeToggle = document.querySelector<HTMLButtonElement>(
-    "[data-theme-toggle]",
-  );
-
-  const setOpen = (open: boolean) => {
-    document.documentElement.classList.toggle("nav-open", open);
-    trigger?.setAttribute("aria-expanded", String(open));
-    if (open) sidebar?.querySelector<HTMLElement>("a, button")?.focus();
-    else trigger?.focus();
-  };
-
-  trigger?.addEventListener("click", () => setOpen(true));
-  closeButtons.forEach((button) =>
-    button.addEventListener("click", () => setOpen(false)),
-  );
-  sidebar?.querySelectorAll("a").forEach((link) =>
-    link.addEventListener("click", () => {
-      if (matchMedia("(max-width: 640px)").matches) setOpen(false);
-    }),
-  );
-  document.addEventListener("keydown", (event) => {
-    if (
-      event.key === "Escape" &&
-      document.documentElement.classList.contains("nav-open")
-    ) {
-      setOpen(false);
-    }
-  });
-
-  const themeModes = ["auto", "light", "dark"] as const;
-  themeToggle?.addEventListener("click", () => {
-    const current = (document.documentElement.dataset.themeMode ??
-      "auto") as (typeof themeModes)[number];
-    const next =
-      themeModes[(themeModes.indexOf(current) + 1) % themeModes.length];
-    document.documentElement.dataset.themeMode = next;
-    localStorage.setItem("theme", next);
-    const dark =
-      next === "dark" ||
-      (next === "auto" && matchMedia("(prefers-color-scheme: dark)").matches);
-    document.documentElement.dataset.theme = dark ? "dark" : "light";
-  });
+  import '../lib/sidebar.ts';
 </script>

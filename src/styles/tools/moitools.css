@@ -1,15 +1,9 @@
-.tools-page {
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
 .tools-header {
   margin-bottom: 32px;
 }
 
 .eyebrow,
 .card-kicker {
-  margin: 0 0 7px;
   color: var(--color-text-muted);
   font-size: 0.9rem;
 }
@@ -17,13 +11,12 @@
 .title-row {
   display: flex;
   align-items: center;
-  gap: 12px;
 }
 
 .title-row h1 {
-  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin: 0rem;
+  font-size: 2.8rem;
   letter-spacing: -0.04em;
-  line-height: 1.1;
 }
 
 .tools-summary {
@@ -151,7 +144,7 @@
   overflow-wrap: anywhere;
 }
 
-#sis {
+#run-speedtest {
   width: 100%;
   margin: 20px auto;
   padding: 9px 16px;
@@ -169,18 +162,18 @@
     color 150ms ease;
 }
 
-#sis:hover {
+#run-speedtest:hover {
   border-color: var(--color-accent-hover);
   background: var(--color-accent-soft);
   color: var(--color-accent-hover);
 }
 
-#sis:focus-visible {
+#run-speedtest:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
 
-#sis:disabled {
+#run-speedtest:disabled {
   cursor: wait;
   opacity: 0.55;
 }
@@ -233,15 +226,12 @@
 }
 
 .leak-item h3 {
+  font-size: 1.1rem;
   color: var(--color-text-strong);
-  font-size: 0.9rem;
 }
 
 .leak-item p {
-  margin: 7px 0 0;
   color: var(--color-text-muted);
-  font-size: 0.8rem;
-  line-height: 1.55;
 }
 
 .privacy-note {
@@ -324,7 +314,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #sis {
+  #run-speedtest {
     transition: none;
   }
 }

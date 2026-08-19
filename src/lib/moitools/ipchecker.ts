@@ -1,86 +1,97 @@
-import { set } from "./dom";
+import { setText } from "./dom";
 
-interface IpJson {
+const IPINFO_TOKEN = "eee846770ad167";
+const IPINFO_LITE = `https://api.ipinfo.io/lite/me?token=${IPINFO_TOKEN}`;
+const IPINFO_LITE_V6 = `https://v6.api.ipinfo.io/lite/me?token=${IPINFO_TOKEN}`;
+
+interface IpinfoLite {
   ip?: string;
-  city?: string;
   asn?: string;
+  as_name?: string;
+  asname?: string;
+  country?: string;
+  city?: string;
 }
 
-const getJson = async (url: string): Promise<IpJson> => {
+const json = async <T>(url: string): Promise<T> => {
   const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`${response.status} ${response.statusText}`);
-  }
-  return response.json();
+  if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+  return response.json() as Promise<T>;
 };
 
-const getIpip = async (): Promise<{ ip: string; location: string }> => {
-  const response = await fetch("https://myip.ipip.net/");
-  if (!response.ok) {
-    throw new Error(`${response.status} ${response.statusText}`);
+const asNameOf = (data: IpinfoLite): string =>
+  data.as_name || data.asname || "Unavailable";
+
+const loadIpinfo = async (
+  url: string,
+  ids: { ip: string; asn: string; asname: string },
+  label: { ip: string; asn: string; asname: string },
+): Promise<string | undefined> => {
+  try {
+    const data = await json<IpinfoLite>(url);
+    setText(ids.ip, `${label.ip}: ${data.ip ?? "Unavailable"}`);
+    setText(ids.asn, `${label.asn}: ${data.asn ?? "Unavailable"}`);
+    setText(ids.asname, `${label.asname}: ${asNameOf(data)}`);
+    return data.city || data.country;
+  } catch {
+    setText(ids.ip, `${label.ip}: Unavailable`);
+    setText(ids.asn, `${label.asn}: Unavailable`);
+    setText(ids.asname, `${label.asname}: Unavailable`);
+    return undefined;
   }
+};
 
-  const text = await response.text();
-  const match = text.match(/当前 IP：\s*(\S+).*?来自于：\s*(.+)/);
-  if (!match) throw new Error("Unexpected ipip.net response");
+const loadIpip = async (): Promise<void> => {
+  try {
+    const response = await fetch("https://myip.ipip.net/");
+    if (!response.ok) throw new Error(String(response.status));
+    const text = await response.text();
+    const match = text.match(/当前 IP：\s*(\S+).*?来自于：\s*(.+)/);
+    if (!match) throw new Error("Unexpected ipip.net response");
+    setText("ipip-ip", `IP: ${match[1]}`);
+    setText("ipip-location", `Location: ${match[2].trim()}`);
+  } catch {
+    setText("ipip-ip", "IP: Unavailable");
+    setText("ipip-location", "Location: Unavailable");
+  }
+};
 
-  return { ip: match[1], location: match[2].trim() };
+const loadIpify = async (): Promise<void> => {
+  try {
+    const data = await json<{ ip?: string }>(
+      "https://api64.ipify.org/?format=json",
+    );
+    if (!data.ip) {
+      setText("ipify-preferred", "Preferred: Unavailable");
+      return;
+    }
+    const family = data.ip.includes(":") ? "IPv6" : "IPv4";
+    setText("ipify-preferred", `Preferred: ${family}`);
+  } catch {
+    setText("ipify-preferred", "Preferred: Unavailable");
+  }
 };
 
 export const initIp = (): void => {
-  let hasLocation = false;
-  const setCity = (city?: string): void => {
-    if (!hasLocation && city) {
-      hasLocation = true;
-      set("ipinfo-location", `Location: ${city}`);
-    }
-  };
+  void (async () => {
+    const [v4Place, v6Place] = await Promise.all([
+      loadIpinfo(
+        IPINFO_LITE,
+        { ip: "ipinfo-v4", asn: "ipinfo-asn4", asname: "ipinfo-asname4" },
+        { ip: "IPv4", asn: "v4ASN", asname: "v4ASName" },
+      ),
+      loadIpinfo(
+        IPINFO_LITE_V6,
+        { ip: "ipinfo-v6", asn: "ipinfo-asn6", asname: "ipinfo-asname6" },
+        { ip: "IPv6", asn: "v6ASN", asname: "v6ASName" },
+      ),
+    ]);
+    setText(
+      "ipinfo-location",
+      `Location: ${v4Place || v6Place || "Unavailable"}`,
+    );
+  })();
 
-  const v4Request = getJson(
-    "https://api.ipinfo.io/lite/me?token=eee846770ad167",
-  );
-  const v6Request = getJson("https://v6.ipinfo.io/json");
-
-  void v4Request
-    .then((data) => {
-      set("ipinfo-v4", `IPv4: ${data.ip || "Unavailable"}`);
-      set("ipinfo-asn", `ASN: ${data.asn || "Unavailable"}`);
-      setCity(data.city);
-    })
-    .catch(() => {
-      set("ipinfo-v4", "IPv4: Unavailable");
-      set("ipinfo-asn", "ASN: Unavailable");
-    });
-
-  void v6Request
-    .then((data) => {
-      set("ipinfo-v6", `IPv6: ${data.ip || "Unavailable"}`);
-      setCity(data.city);
-    })
-    .catch(() => set("ipinfo-v6", "IPv6: Unavailable"));
-
-  void Promise.allSettled([v4Request, v6Request]).then(() => {
-    if (!hasLocation) set("ipinfo-location", "Location: Unavailable");
-  });
-
-  void getIpip()
-    .then((data) => {
-      set("ipip-ip", `IP: ${data.ip}`);
-      set("ipip-location", `Location: ${data.location}`);
-    })
-    .catch(() => {
-      set("ipip-ip", "IP: Unavailable");
-      set("ipip-location", "Location: Unavailable");
-    });
-
-  void getJson("https://api64.ipify.org/?format=json")
-    .then((data) => {
-      const preferred = data.ip
-        ? data.ip.includes(":")
-          ? "IPv6"
-          : "IPv4"
-        : "Unavailable";
-      set("ipify-preferred", `Preferred: ${preferred}`);
-    })
-    .catch(() => set("ipify-preferred", "Preferred: Unavailable"));
+  void loadIpip();
+  void loadIpify();
 };
