@@ -36,9 +36,7 @@ const probeProtocol = async (url: string): Promise<string> => {
   });
 
   await fetch(href, { cache: "no-store" });
-  const fallback = hop(
-    performance.getEntriesByName(href, "resource").at(-1),
-  );
+  const fallback = hop(performance.getEntriesByName(href, "resource").at(-1));
   return Promise.race([
     fromObserver.then((protocol) => protocol || fallback),
     new Promise<string>((resolve) => setTimeout(() => resolve(fallback), 400)),

@@ -90,11 +90,6 @@ const docs: RemoteEntry[] = [
     title: "Mo Pubilc License",
     url: "https://cdn.jsdelivr.net/gh/moaeiou/moaeiou@main/LICENSE.md",
   },
-  {
-    id: "thissite",
-    title: "This site",
-    url: "https://cdn.jsdelivr.net/gh/moaeiou/867678.xyz@main/README.md",
-  },
 ];
 
 const mdLoader = (entries: RemoteEntry[]): Loader => ({

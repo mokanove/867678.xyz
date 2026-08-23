@@ -133,6 +133,10 @@ body {
 }
 
 @media (max-width: 640px) {
+  .content-viewport {
+    padding: 0;
+  }
+
   .not-found-page {
     min-height: 100dvh;
     padding: 76px 16px 16px;

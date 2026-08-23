@@ -1,20 +1,49 @@
+.site-shell {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-height: 100dvh;
+}
+
 .pages-wrapper {
-  flex: 1;
+  flex: 1 1 auto;
   min-width: 0;
+  height: 100dvh;
+  overflow-x: auto;
   overflow-y: auto;
   scroll-behavior: smooth;
 }
 
 .page-entry {
+  box-sizing: border-box;
   width: 100%;
-  height: 100vh;
+  min-height: 100%;
 }
 
 .content-viewport {
   box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
   min-width: 0;
-  margin: auto;
+  margin: 0 auto;
   padding: clamp(0rem, 5vw, 1rem);
+  container-type: inline-size;
+  container-name: page;
+}
+
+.markdown-body {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.markdown-body img {
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .content-viewport {
+    padding: 72px 16px 24px;
+  }
 }
 
 @keyframes fadeIn {

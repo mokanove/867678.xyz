@@ -6,118 +6,240 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="MoITools">
+  <div class="tools-page">
     <header class="tools-header">
       <p class="eyebrow">Mo Internet Test Tools</p>
-      <div class="title-row">
-        <h1>MoITools</h1>
-      </div>
+      <h1>MoITools</h1>
       <p class="tools-summary">A general-purpose network diagnostic tool.</p>
     </header>
 
     <section class="tools-grid" aria-label="Network diagnostics">
       <article class="tool-card ip-card">
         <div class="card-heading">
-          <div>
-            <p class="card-kicker">Connection</p>
-            <h2>IP information</h2>
-          </div>
+          <p class="card-kicker">Connection</p>
+          <h2>IP information</h2>
         </div>
         <div class="ip-sources" aria-live="polite">
-          <section class="ip-source">
+          <section class="ip-source ipinfo-source">
             <h3>ipinfo.io</h3>
-            <p id="ipinfo-v4">IPv4: Getting data...</p>
-            <p id="ipinfo-v6">IPv6: Getting data...</p>
-            <p id="ipinfo-asn4">v4ASN: Getting data...</p>
-            <p id="ipinfo-asname4">v4ASName: Getting data...</p>
-            <p id="ipinfo-asn6">v6ASN: Getting data...</p>
-            <p id="ipinfo-asname6">v6ASName: Getting data...</p>
-            <p id="ipinfo-location">Location: Getting data...</p>
+            <dl class="ipinfo-grid">
+              <div>
+                <dt>IPv4</dt>
+                <dd id="ipinfo-v4">Getting data...</dd>
+                <dt>ASN</dt>
+                <dd id="ipinfo-asn4">Getting data...</dd>
+                <dt>AS Name</dt>
+                <dd id="ipinfo-asname4">Getting data...</dd>
+              </div>
+              <div>
+                <dt>IPv6</dt>
+                <dd id="ipinfo-v6">Getting data...</dd>
+                <dt>ASN</dt>
+                <dd id="ipinfo-asn6">Getting data...</dd>
+                <dt>AS Name</dt>
+                <dd id="ipinfo-asname6">Getting data...</dd>
+              </div>
+              <div class="ip-location">
+                <dt>Location</dt>
+                <dd id="ipinfo-location">Getting data...</dd>
+              </div>
+            </dl>
           </section>
-          <section class="ip-source">
-            <h3>ipip.net</h3>
-            <p id="ipip-ip">IP: Getting data...</p>
-            <p id="ipip-location">Location: Getting data...</p>
-          </section>
-          <section class="ip-source">
-            <h3>ipify.org</h3>
-            <p id="ipify-preferred">Preferred: Getting data...</p>
-          </section>
+          <div class="ip-aux">
+            <section class="ip-source">
+              <h3>ipip.net</h3>
+              <dl>
+                <div>
+                  <dt>IP</dt>
+                  <dd id="ipip-ip">Getting data...</dd>
+                </div>
+                <div>
+                  <dt>Location</dt>
+                  <dd id="ipip-location">Getting data...</dd>
+                </div>
+              </dl>
+            </section>
+            <section class="ip-source">
+              <h3>ipify.org</h3>
+              <dl>
+                <div>
+                  <dt>Preferred</dt>
+                  <dd id="ipify-preferred">Getting data...</dd>
+                </div>
+              </dl>
+            </section>
+          </div>
         </div>
       </article>
 
       <article class="tool-card speed-card">
         <div class="card-heading">
-          <div>
-            <p class="card-kicker">Performance</p>
-            <h2>Internet speedtest</h2>
-          </div>
+          <p class="card-kicker">Performance</p>
+          <h2>Internet speedtest</h2>
         </div>
         <dl class="metric-list">
           <div>
             <dt>Latency</dt>
-            <dd id="latency" aria-live="polite">Not Start</dd>
+            <dd id="latency" aria-live="polite">Not start</dd>
           </div>
           <div>
             <dt>Upload</dt>
-            <dd id="upload-speed" aria-live="polite">Not Start</dd>
+            <dd id="upload-speed" aria-live="polite">Not start</dd>
           </div>
           <div>
             <dt>Download</dt>
-            <dd id="download-speed" aria-live="polite">Not Start</dd>
+            <dd id="download-speed" aria-live="polite">Not start</dd>
           </div>
         </dl>
-        <button id="run-speedtest" type="button">Run speedtest</button>
-        <p>Speedtest will download 8 seconds and upload 8 seconds.</p>
-        <p>If you are using a metered connection, please be mindful of data usage.</p>
+        <div class="speed-chart">
+          <canvas
+            id="speed-chart"
+            aria-label="Download and upload speed over time"></canvas>
+          <div class="speed-legend">
+            <span class="legend-down">Download</span>
+            <span class="legend-up">Upload</span>
+          </div>
+        </div>
+        <div class="speed-actions">
+          <button id="run-speedtest" type="button">Run speedtest</button>
+          <p class="card-note">
+            Download 8 seconds, then upload 8 seconds (16 seconds total). On a
+            metered connection, this will use data.
+          </p>
+        </div>
       </article>
 
       <article class="tool-card client-card">
         <div class="card-heading">
-          <div>
-            <p class="card-kicker">Browser</p>
-            <h2>Client information</h2>
-          </div>
+          <p class="card-kicker">Browser</p>
+          <h2>Client information</h2>
         </div>
         <dl class="detail-list">
-          <div><dt>User Agent</dt><dd id="user-agent">Getting data...</dd></div>
-          <div>
-            <dt>System Language</dt><dd id="language">Getting data...</dd>
+          <div class="detail-wide">
+            <dt>User Agent</dt>
+            <dd id="user-agent">Getting data...</dd>
           </div>
-          <div><dt>Timezone</dt><dd id="timezone">Getting data...</dd></div>
-          <div><dt>HTTP/3 support</dt><dd id="h3">Getting data...</dd></div>
+          <div>
+            <dt>Language</dt>
+            <dd id="language">Getting data...</dd>
+          </div>
+          <div>
+            <dt>Timezone</dt>
+            <dd id="timezone">Getting data...</dd>
+          </div>
+          <div>
+            <dt>HTTP/3</dt>
+            <dd id="h3">Getting data...</dd>
+          </div>
         </dl>
       </article>
     </section>
 
-    <section class="secondary-section" aria-labelledby="privacy-tests-title">
+    <section class="leak-section" aria-labelledby="privacy-tests-title">
       <div class="section-heading">
-        <div>
-          <p class="eyebrow">Privacy</p>
-          <h2 id="privacy-tests-title">Leak tests</h2>
-        </div>
+        <p class="card-kicker">Privacy</p>
+        <h2 id="privacy-tests-title">Leak tests</h2>
       </div>
       <div class="leak-grid">
-        <div class="leak-item">
-          <h3>WebRTC leak</h3>
-          <p>Check whether your browser exposes an additional IP address.</p>
+        <div class="leak-item webrtc-item">
+          <h3>WebRTC</h3>
+          <div class="stun-grid" id="webrtc-results" aria-live="polite">
+            <section class="stun-row" id="stun-miwifi" data-state="wait">
+              <h4>stun.miwifi.com</h4>
+              <dl>
+                <div>
+                  <dt>Status</dt>
+                  <dd id="stun-miwifi-status">Testing...</dd>
+                </div>
+                <div>
+                  <dt>Host</dt>
+                  <dd id="stun-miwifi-host">—</dd>
+                </div>
+                <div>
+                  <dt>Result</dt>
+                  <dd id="stun-miwifi-srflx">—</dd>
+                </div>
+              </dl>
+            </section>
+            <section class="stun-row" id="stun-cloudflare" data-state="wait">
+              <h4>stun.cloudflare.com</h4>
+              <dl>
+                <div>
+                  <dt>Status</dt>
+                  <dd id="stun-cloudflare-status">Testing...</dd>
+                </div>
+                <div>
+                  <dt>Host</dt>
+                  <dd id="stun-cloudflare-host">—</dd>
+                </div>
+                <div>
+                  <dt>Result</dt>
+                  <dd id="stun-cloudflare-srflx">—</dd>
+                </div>
+              </dl>
+            </section>
+            <section class="stun-row" id="stun-google" data-state="wait">
+              <h4>stun.google.com</h4>
+              <dl>
+                <div>
+                  <dt>Status</dt>
+                  <dd id="stun-google-status">Testing...</dd>
+                </div>
+                <div>
+                  <dt>Host</dt>
+                  <dd id="stun-google-host">—</dd>
+                </div>
+                <div>
+                  <dt>Result</dt>
+                  <dd id="stun-google-srflx">—</dd>
+                </div>
+              </dl>
+            </section>
+            <section class="stun-row" id="stun-nextcloud" data-state="wait">
+              <h4>stun.nextcloud.com</h4>
+              <dl>
+                <div>
+                  <dt>Status</dt>
+                  <dd id="stun-nextcloud-status">Testing...</dd>
+                </div>
+                <div>
+                  <dt>Host</dt>
+                  <dd id="stun-nextcloud-host">—</dd>
+                </div>
+                <div>
+                  <dt>Result</dt>
+                  <dd id="stun-nextcloud-srflx">—</dd>
+                </div>
+              </dl>
+            </section>
+          </div>
         </div>
-        <div class="leak-item">
-          <h3>DNS leak</h3>
-          <p>Inspect which DNS resolvers your connection is currently using.</p>
+        <div class="leak-item dns-item">
+          <h3>DNS</h3>
+          <div
+            id="dns-results"
+            class="dns-results"
+            data-state="wait"
+            aria-live="polite"
+          >
+            <ul id="dns-resolvers" class="dns-resolvers">
+              <li class="dns-empty">Testing...</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
     <aside class="privacy-note">
-      <div class="privacy-icon" aria-hidden="true">✓</div>
       <div>
-        <h2>Test run in your browser</h2>
+        <h2>Tests run in your browser</h2>
         <p>
-          MoITools is an open source project does not store your test results.
-          But measurements are provided for reference.
+          MoITools is an open source project so we not be save any results.
+          Figures are for reference only.
         </p>
       </div>
     </aside>
+  </div>
 </BaseLayout>
 
 <script>

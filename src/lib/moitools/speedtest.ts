@@ -1,4 +1,5 @@
 import { el } from "./dom";
+import { createSpeedChart, type SpeedPhase } from "./speedchart";
 
 const LATENCY_TARGETS = [
   "https://www.gstatic.com/generate_204",
@@ -16,15 +17,19 @@ const DOWNLOAD_SOURCES = [
   "https://cachefly.cachefly.net/100mb.test",
   "https://db.laomoe.com/data-waster-dummy?1",
   "https://l.867678.xyz/speedtest",
-  "https://s.867678.xyz/speedtest",
   "https://o.867678.xyz/speedtest",
 ];
 
 const UPLOAD_URL = "https://speed.cloudflare.com/__up";
 const UPLOAD_STREAMS = 4;
 
-const TEST_MS = 8_000;
+const PING_MS = 1_000;
+const DOWN_MS = 8_000;
+const UP_MS = 8_000;
 const UPLOAD_CHUNK = 512 * 1024;
+
+const wait = (ms: number): Promise<void> =>
+  new Promise((resolve) => window.setTimeout(resolve, ms));
 
 const isAbort = (error: unknown): boolean =>
   error instanceof DOMException
@@ -41,39 +46,61 @@ const liveSpeed = (
   element: HTMLElement,
   bytes: () => number,
   started: number,
-): number =>
-  window.setInterval(() => {
-    const elapsed = performance.now() - started;
-    if (elapsed > 500) element.textContent = mbps(bytes(), elapsed);
+  phase: SpeedPhase,
+  chart: ReturnType<typeof createSpeedChart>,
+): number => {
+  let lastBytes = 0;
+  let lastAt = started;
+  return window.setInterval(() => {
+    const now = performance.now();
+    const elapsed = now - started;
+    const total = bytes();
+    const windowS = (now - lastAt) / 1000;
+    if (windowS > 0) {
+      chart.add(phase, ((total - lastBytes) * 8) / 1e6 / windowS);
+    }
+    lastBytes = total;
+    lastAt = now;
+    if (elapsed > 200) element.textContent = mbps(total, elapsed);
   }, 150);
+};
 
 const pingRound = () =>
   Promise.allSettled(
     LATENCY_TARGETS.map(async (url) => {
       const start = performance.now();
-      await fetch(url, { mode: "no-cors", cache: "no-store" });
+      await fetch(url, {
+        mode: "no-cors",
+        cache: "no-store",
+        signal: AbortSignal.timeout(PING_MS),
+      });
       return performance.now() - start;
     }),
   );
 
-const testPing = async (element: HTMLElement): Promise<void> => {
+const testPing = async (element: HTMLElement): Promise<boolean> => {
   element.textContent = "Testing latency...";
-  await pingRound();
   const samples = (await pingRound()).flatMap((result) =>
     result.status === "fulfilled" ? [result.value] : [],
   );
-  element.textContent = samples.length
-    ? `${Math.min(...samples).toFixed(1)} ms`
-    : "Error";
+  if (!samples.length) {
+    element.textContent = "Timedout";
+    return false;
+  }
+  element.textContent = `${Math.min(...samples).toFixed(1)} ms`;
+  return true;
 };
 
-const testDownload = async (element: HTMLElement): Promise<void> => {
+const testDownload = async (
+  element: HTMLElement,
+  chart: ReturnType<typeof createSpeedChart>,
+): Promise<void> => {
   element.textContent = "Connecting...";
   const controller = new AbortController();
   const started = performance.now();
   let totalBytes = 0;
-  const timer = liveSpeed(element, () => totalBytes, started);
-  const stop = window.setTimeout(() => controller.abort(), TEST_MS);
+  const timer = liveSpeed(element, () => totalBytes, started, "down", chart);
+  const stop = window.setTimeout(() => controller.abort(), DOWN_MS);
 
   const pull = async (url: string): Promise<void> => {
     const response = await fetch(url, {
@@ -90,24 +117,34 @@ const testDownload = async (element: HTMLElement): Promise<void> => {
   };
 
   try {
-    await Promise.allSettled(DOWNLOAD_SOURCES.map(pull));
+    await Promise.all([
+      Promise.allSettled(DOWNLOAD_SOURCES.map(pull)),
+      wait(DOWN_MS),
+    ]);
   } catch (error) {
     if (!isAbort(error)) throw error;
   } finally {
+    controller.abort();
     clearTimeout(stop);
     clearInterval(timer);
-    element.textContent = mbps(totalBytes, performance.now() - started);
+    element.textContent = mbps(
+      totalBytes,
+      Math.min(DOWN_MS, performance.now() - started),
+    );
   }
 };
 
-const testUpload = async (element: HTMLElement): Promise<void> => {
+const testUpload = async (
+  element: HTMLElement,
+  chart: ReturnType<typeof createSpeedChart>,
+): Promise<void> => {
   element.textContent = "Connecting...";
   const controller = new AbortController();
   const started = performance.now();
   let totalBytes = 0;
   const chunk = new Uint8Array(UPLOAD_CHUNK);
-  const timer = liveSpeed(element, () => totalBytes, started);
-  const stop = window.setTimeout(() => controller.abort(), TEST_MS);
+  const timer = liveSpeed(element, () => totalBytes, started, "up", chart);
+  const stop = window.setTimeout(() => controller.abort(), UP_MS);
 
   const push = async (): Promise<void> => {
     while (!controller.signal.aborted) {
@@ -123,15 +160,20 @@ const testUpload = async (element: HTMLElement): Promise<void> => {
   };
 
   try {
-    await Promise.allSettled(
-      Array.from({ length: UPLOAD_STREAMS }, () => push()),
-    );
+    await Promise.all([
+      Promise.allSettled(Array.from({ length: UPLOAD_STREAMS }, () => push())),
+      wait(UP_MS),
+    ]);
   } catch (error) {
     if (!isAbort(error)) throw error;
   } finally {
+    controller.abort();
     clearTimeout(stop);
     clearInterval(timer);
-    element.textContent = mbps(totalBytes, performance.now() - started);
+    element.textContent = mbps(
+      totalBytes,
+      Math.min(UP_MS, performance.now() - started),
+    );
   }
 };
 
@@ -140,17 +182,22 @@ export const initSpeed = (): void => {
   const latency = el("latency");
   const download = el("download-speed");
   const upload = el("upload-speed");
-  if (!button || !latency || !download || !upload) return;
+  const canvas = el<HTMLCanvasElement>("speed-chart");
+  if (!button || !latency || !download || !upload || !canvas) return;
   if (button.dataset.bound === "true") return;
   button.dataset.bound = "true";
+
+  const chart = createSpeedChart(canvas);
 
   button.addEventListener("click", async () => {
     if (button.disabled) return;
     button.disabled = true;
     try {
-      await testPing(latency);
-      await testDownload(download);
-      await testUpload(upload);
+      const reachable = await testPing(latency);
+      if (!reachable) return;
+      chart.start();
+      await testDownload(download, chart);
+      await testUpload(upload, chart);
     } catch (error) {
       console.error("Speedtest failed:", error);
     } finally {

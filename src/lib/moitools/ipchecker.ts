@@ -15,7 +15,8 @@ interface IpinfoLite {
 
 const json = async <T>(url: string): Promise<T> => {
   const response = await fetch(url);
-  if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+  if (!response.ok)
+    throw new Error(`${response.status} ${response.statusText}`);
   return response.json() as Promise<T>;
 };
 
@@ -25,18 +26,17 @@ const asNameOf = (data: IpinfoLite): string =>
 const loadIpinfo = async (
   url: string,
   ids: { ip: string; asn: string; asname: string },
-  label: { ip: string; asn: string; asname: string },
 ): Promise<string | undefined> => {
   try {
     const data = await json<IpinfoLite>(url);
-    setText(ids.ip, `${label.ip}: ${data.ip ?? "Unavailable"}`);
-    setText(ids.asn, `${label.asn}: ${data.asn ?? "Unavailable"}`);
-    setText(ids.asname, `${label.asname}: ${asNameOf(data)}`);
+    setText(ids.ip, data.ip ?? "Unavailable");
+    setText(ids.asn, data.asn ?? "Unavailable");
+    setText(ids.asname, asNameOf(data));
     return data.city || data.country;
   } catch {
-    setText(ids.ip, `${label.ip}: Unavailable`);
-    setText(ids.asn, `${label.asn}: Unavailable`);
-    setText(ids.asname, `${label.asname}: Unavailable`);
+    setText(ids.ip, "Unavailable");
+    setText(ids.asn, "Unavailable");
+    setText(ids.asname, "Unavailable");
     return undefined;
   }
 };
@@ -48,11 +48,11 @@ const loadIpip = async (): Promise<void> => {
     const text = await response.text();
     const match = text.match(/当前 IP：\s*(\S+).*?来自于：\s*(.+)/);
     if (!match) throw new Error("Unexpected ipip.net response");
-    setText("ipip-ip", `IP: ${match[1]}`);
-    setText("ipip-location", `Location: ${match[2].trim()}`);
+    setText("ipip-ip", match[1]);
+    setText("ipip-location", match[2].trim());
   } catch {
-    setText("ipip-ip", "IP: Unavailable");
-    setText("ipip-location", "Location: Unavailable");
+    setText("ipip-ip", "Unavailable");
+    setText("ipip-location", "Unavailable");
   }
 };
 
@@ -62,36 +62,41 @@ const loadIpify = async (): Promise<void> => {
       "https://api64.ipify.org/?format=json",
     );
     if (!data.ip) {
-      setText("ipify-preferred", "Preferred: Unavailable");
+      setText("ipify-preferred", "Unavailable");
       return;
     }
-    const family = data.ip.includes(":") ? "IPv6" : "IPv4";
-    setText("ipify-preferred", `Preferred: ${family}`);
+    setText("ipify-preferred", data.ip.includes(":") ? "IPv6" : "IPv4");
   } catch {
-    setText("ipify-preferred", "Preferred: Unavailable");
+    setText("ipify-preferred", "Unavailable");
   }
 };
 
 export const initIp = (): void => {
-  void (async () => {
-    const [v4Place, v6Place] = await Promise.all([
-      loadIpinfo(
-        IPINFO_LITE,
-        { ip: "ipinfo-v4", asn: "ipinfo-asn4", asname: "ipinfo-asname4" },
-        { ip: "IPv4", asn: "v4ASN", asname: "v4ASName" },
-      ),
-      loadIpinfo(
-        IPINFO_LITE_V6,
-        { ip: "ipinfo-v6", asn: "ipinfo-asn6", asname: "ipinfo-asname6" },
-        { ip: "IPv6", asn: "v6ASN", asname: "v6ASName" },
-      ),
-    ]);
-    setText(
-      "ipinfo-location",
-      `Location: ${v4Place || v6Place || "Unavailable"}`,
-    );
-  })();
+  let geo = "";
+  let pending = 2;
 
-  void loadIpip();
-  void loadIpify();
+  const applyLocation = (place?: string): void => {
+    if (!geo && place) geo = place;
+    pending -= 1;
+    if (geo) {
+      setText("ipinfo-location", geo);
+      return;
+    }
+    if (pending === 0) setText("ipinfo-location", "Unavailable");
+  };
+
+  void Promise.all([
+    loadIpinfo(IPINFO_LITE, {
+      ip: "ipinfo-v4",
+      asn: "ipinfo-asn4",
+      asname: "ipinfo-asname4",
+    }).then(applyLocation),
+    loadIpinfo(IPINFO_LITE_V6, {
+      ip: "ipinfo-v6",
+      asn: "ipinfo-asn6",
+      asname: "ipinfo-asname6",
+    }).then(applyLocation),
+    loadIpip(),
+    loadIpify(),
+  ]);
 };

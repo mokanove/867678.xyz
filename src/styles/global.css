@@ -4,6 +4,7 @@
 
 :root {
   color-scheme: light;
+  --sidebar-width: 200px;
 
   --color-bg: #ffffff;
   --color-bg-subtle: #f5f6f8;

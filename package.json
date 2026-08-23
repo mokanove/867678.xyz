@@ -1,7 +1,7 @@
 {
   "name": "867678.xyz",
   "type": "module",
-  "version": "5.0.8",
+  "version": "5.0.9",
   "engines": {
     "node": ">=24.19.0"
   },
@@ -22,7 +22,7 @@
     "astro": "^7.2.4",
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
-    "wrangler": "^4.124.0"
+    "wrangler": "^4.125.0"
   },
   "packageManager": "pnpm@11.22.0+sha512.1ff870c4c6133dfd88fb2afc46dd13d47f09c9794b438c6fdb47ca98caf3bc16381ee0be93a091b8e3824cf01f889f46d7d9e20910fb0be1ab0fb5baa80dd621"
 }
