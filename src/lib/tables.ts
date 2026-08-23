@@ -45,8 +45,7 @@ const initTables = (): void => {
     }
 
     const atBottom =
-      scroller.scrollTop + scroller.clientHeight >=
-      scroller.scrollHeight - 24;
+      scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 24;
     if (atBottom) {
       setActive(headings[headings.length - 1].id);
       return;
