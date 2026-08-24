@@ -38,6 +38,16 @@ const PROJECTS: RemoteEntry[] = [
     url: "https://cdn.jsdelivr.net/gh/orgmio/cv@main/README.md",
   },
   {
+    id: "fancyindex-theme",
+    title: "Fancyindex-Theme",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/fancyindex-theme@main/README.md",
+  },
+  {
+    id: "contento24",
+    title: "Contento24",
+    url: "https://cdn.jsdelivr.net/gh/contento24/contento24@main/README.md",
+  },
+  {
     id: "mineradio",
     title: "Mineradio",
     url: "https://cdn.jsdelivr.net/gh/moaeiou/mineradio@main/README.md",
@@ -48,14 +58,9 @@ const PROJECTS: RemoteEntry[] = [
     url: "https://cdn.jsdelivr.net/gh/moaeiou/go-rustdesk-server@main/README.md",
   },
   {
-    id: "fancyindex-theme",
-    title: "Fancyindex-Theme",
-    url: "https://cdn.jsdelivr.net/gh/moaeiou/fancyindex-theme@main/README.md",
-  },
-  {
-    id: "contento24",
-    title: "Contento24",
-    url: "https://cdn.jsdelivr.net/gh/contento24/contento24@main/README.md",
+    id: "xavatarwall",
+    title: "X(Twitter) Avatar Wall",
+    url: "https://cdn.jsdelivr.net/gh/moaeiou/xavatarwall@main/README.md",
   },
   {
     id: "luci-app-oplist",
