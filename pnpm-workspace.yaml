@@ -5,9 +5,9 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - miniflare@5.20260815.0-alpha
   - wrangler@4.125.0
-  - astro@7.2.4
+  - astro@7.2.6
   - "@astrojs/internal-helpers@0.10.4"
-  - "@astrojs/markdown-satteri@0.3.7"
+  - "@astrojs/markdown-satteri@0.3.8"
   - "@bruits/satteri-darwin-arm64@0.10.3"
   - "@bruits/satteri-darwin-x64@0.10.3"
   - "@bruits/satteri-linux-arm64-gnu@0.10.3"

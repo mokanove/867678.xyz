@@ -40,12 +40,6 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 640px) {
-  .content-viewport {
-    padding: 72px 16px 24px;
-  }
-}
-
 @keyframes fadeIn {
   from {
     opacity: 0;
