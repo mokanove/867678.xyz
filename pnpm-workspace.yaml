@@ -3,8 +3,8 @@ allowBuilds:
   sharp: true
   workerd: false
 minimumReleaseAgeExclude:
-  - miniflare@5.20260825.0-alpha
-  - wrangler@4.126.0
+  - miniflare@5.20260826.0-alpha
+  - wrangler@4.127.0
   - astro@7.2.7
   - "@astrojs/internal-helpers@0.10.4"
   - "@astrojs/markdown-satteri@0.3.8"
