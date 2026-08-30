@@ -41,7 +41,7 @@ But it has include a new problem, for speed, it have cache, and refresh every 24
 
 To solve this problem, we created a simple script.
 
-Run `pnpm refresh` to run this script and refresh CDN cache let CDN get latest file.
+Run `pnpm fresh` to run this script and refresh CDN cache let CDN get latest file.
 
 ## 🙏 Acknowledgements
 
@@ -55,7 +55,7 @@ Run `pnpm refresh` to run this script and refresh CDN cache let CDN get latest f
 
 <https://deepseek.com>
 
-<https://grok.como>
+<https://grok.com>
 
 <https://github.com>
 

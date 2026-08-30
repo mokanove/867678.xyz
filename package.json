@@ -1,12 +1,12 @@
 {
   "name": "867678.xyz",
   "type": "module",
-  "version": "5.1.9",
+  "version": "5.2.0",
   "engines": {
     "node": ">=24.20.0"
   },
   "scripts": {
-    "refresh": "./refresh-remote.sh",
+    "fresh": "./fresh.sh",
     "dev": "astro dev",
     "build": "astro build",
     "astro": "astro",

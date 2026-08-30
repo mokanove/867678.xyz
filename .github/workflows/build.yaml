@@ -24,7 +24,7 @@ jobs:
       - name: Build!
         shell: bash
         run: |
-          pnpm refresh
+          pnpm fresh
           pnpm install
           pnpm build
 

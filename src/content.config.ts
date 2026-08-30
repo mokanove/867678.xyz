@@ -19,23 +19,43 @@ const HOME: RemoteEntry[] = [
 const PROJECTS: RemoteEntry[] = [
   {
     id: "mio",
-    title: "MIO Protocol",
+    title: "mio protocol",
     url: "https://cdn.jsdelivr.net/gh/orgmio/mio@main/README.md",
   },
   {
     id: "mcry",
-    title: "Mcry",
+    title: "MCRY",
     url: "https://cdn.jsdelivr.net/gh/orgmio/mcry@main/README.md",
   },
   {
     id: "qcsh",
-    title: "QuickShell",
+    title: "QUICShell",
     url: "https://cdn.jsdelivr.net/gh/orgmio/qcsh@main/README.md",
   },
   {
     id: "cv",
     title: "CV",
     url: "https://cdn.jsdelivr.net/gh/orgmio/cv@main/README.md",
+  },
+  {
+    id: "omio",
+    title: "older mio protocol",
+    url: "https://cdn.jsdelivr.net/gh/orgmio/omio@main/README.md",
+  },
+  {
+    id: "luci-app-oplist",
+    title: "LuCI-APP-OpenList",
+    url: "https://cdn.jsdelivr.net/gh/morouter/luci-app-oplist@main/README.md",
+  },
+  {
+    id: "luci-app-rsop",
+    title: "LuCI-APP-Rustdesk for OpenWrt",
+    url: "https://cdn.jsdelivr.net/gh/morouter/luci-app-rsop@main/README.md",
+  },
+  {
+    id: "luci-app-pm",
+    title: "LuCI-APP-PowerManager",
+    url: "https://cdn.jsdelivr.net/gh/morouter/luci-app-pm@main/README.md",
   },
   {
     id: "0fi",
@@ -61,21 +81,6 @@ const PROJECTS: RemoteEntry[] = [
     id: "xavatarwall",
     title: "X(Twitter) Avatar Wall",
     url: "https://cdn.jsdelivr.net/gh/moaeiou/xavatarwall@main/README.md",
-  },
-  {
-    id: "luci-app-oplist",
-    title: "LuCI-APP-OpenList",
-    url: "https://cdn.jsdelivr.net/gh/morouter/luci-app-oplist@main/README.md",
-  },
-  {
-    id: "luci-app-rsop",
-    title: "LuCI-APP-Rustdesk for OpenWrt",
-    url: "https://cdn.jsdelivr.net/gh/morouter/luci-app-rsop@main/README.md",
-  },
-  {
-    id: "luci-app-pm",
-    title: "LuCI-APP-PowerManager",
-    url: "https://cdn.jsdelivr.net/gh/morouter/luci-app-pm@main/README.md",
   },
 ];
 
