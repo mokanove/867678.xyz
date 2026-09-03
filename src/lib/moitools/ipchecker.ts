@@ -2,7 +2,7 @@ import { setText } from "./dom";
 import { fetchWithTimeout } from "./network";
 
 const IPINFO_TOKEN = "eee846770ad167";
-const IPINFO_LITE = `https://api.ipinfo.io/lite/me?token=${IPINFO_TOKEN}`;
+const IPINFO_LITE = `https://v4.api.ipinfo.io/lite/me?token=${IPINFO_TOKEN}`;
 const IPINFO_LITE_V6 = `https://v6.api.ipinfo.io/lite/me?token=${IPINFO_TOKEN}`;
 
 interface IpinfoLite {
@@ -59,18 +59,47 @@ const loadIpip = async (): Promise<void> => {
   }
 };
 
-const loadIpify = async (): Promise<void> => {
+const loadIp138 = async (): Promise<void> => {
+  try {
+    const response = await fetchWithTimeout("https://2026.ip138.com/", {
+      cache: "no-store",
+    });
+    if (!response.ok) throw new Error(String(response.status));
+
+    const document = new DOMParser().parseFromString(
+      await response.text(),
+      "text/html",
+    );
+    const content =
+      document.body.textContent?.replace(/\s+/g, " ").trim() ?? "";
+    const ip = content.match(
+      /您的\s*IP地址是：\s*[\[【]?(\d{1,3}(?:\.\d{1,3}){3}|[\da-f:]+)/i,
+    )?.[1];
+    const location = content.match(
+      /来自：\s*(.+?)(?=\s*ip查询api接口|\s*安卓SDK|$)/i,
+    )?.[1];
+    if (!ip) throw new Error("Unexpected ip138.com response");
+
+    setText("ip138-ip", ip);
+    setText("ip138-location", location || "Unavailable");
+  } catch {
+    setText("ip138-ip", "Unavailable");
+    setText("ip138-location", "Unavailable");
+  }
+};
+
+const loadPreferredIp = async (): Promise<void> => {
   try {
     const data = await json<{ ip?: string }>(
-      "https://api64.ipify.org/?format=json",
+      "https://api.ipinfo.io/lite/me?token=eee846770ad167",
     );
     if (!data.ip) {
-      setText("ipify-preferred", "Unavailable");
+      setText("ipinfo-preferred", "Unavailable");
       return;
     }
-    setText("ipify-preferred", data.ip.includes(":") ? "IPv6" : "IPv4");
+    setText("ipinfo-preferred", data.ip.includes(":") ? "IPv6" : "IPv4");
   } catch {
-    setText("ipify-preferred", "Unavailable");
+    setText("ipinfo-preferred", "Unavailable");
   }
 };
 
@@ -100,6 +129,7 @@ export const initIp = async (): Promise<void> => {
       asname: "ipinfo-asname6",
     }).then(applyLocation),
     loadIpip(),
-    loadIpify(),
+    loadIp138(),
+    loadPreferredIp(),
   ]);
 };

@@ -16,7 +16,6 @@ const LATENCY_TARGETS = [
 const DOWNLOAD_SOURCES = [
   "https://speed.cloudflare.com/__down?bytes=1000000000",
   "https://cachefly.cachefly.net/100mb.test",
-  "https://db.laomoe.com/data-waster-dummy?1",
   "https://l.867678.xyz/speedtest",
   "https://o.867678.xyz/speedtest",
 ];

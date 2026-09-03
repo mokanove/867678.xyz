@@ -128,8 +128,7 @@
 }
 
 .ip-source dl,
-.ipinfo-grid,
-.ip-aux {
+.ipinfo-grid {
   margin: 0;
 }
 
@@ -139,16 +138,16 @@
   gap: 12px 20px;
 }
 
-.ip-location {
-  grid-column: 1 / -1;
-  padding-top: 10px;
-  border-top: 1px solid var(--color-border);
-}
-
-.ip-aux {
+.ip-secondary {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
+}
+
+.ip-location,
+.ip-preferred {
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border);
 }
 
 .ip-source dt,
@@ -496,7 +495,7 @@
 
 @container page (max-width: 560px) {
   .ipinfo-grid,
-  .ip-aux,
+  .ip-secondary,
   .metric-list,
   .detail-list,
   .leak-grid,
@@ -504,7 +503,8 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .ip-location {
+  .ip-location,
+  .ip-preferred {
     padding-top: 0;
     border-top: 0;
   }
