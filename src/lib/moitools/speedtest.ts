@@ -1,5 +1,6 @@
 import { el } from "./dom";
 import { createSpeedChart, type SpeedPhase } from "./speedchart";
+import { fetchWithTimeout, pauseBackgroundNetworkTasks } from "./network";
 
 const LATENCY_TARGETS = [
   "https://www.gstatic.com/generate_204",
@@ -69,11 +70,16 @@ const pingRound = () =>
   Promise.allSettled(
     LATENCY_TARGETS.map(async (url) => {
       const start = performance.now();
-      await fetch(url, {
-        mode: "no-cors",
-        cache: "no-store",
-        signal: AbortSignal.timeout(PING_MS),
-      });
+      await fetchWithTimeout(
+        url,
+        {
+          mode: "no-cors",
+          cache: "no-store",
+          signal: AbortSignal.timeout(PING_MS),
+        },
+        undefined,
+        true,
+      );
       return performance.now() - start;
     }),
   );
@@ -103,10 +109,15 @@ const testDownload = async (
   const stop = window.setTimeout(() => controller.abort(), DOWN_MS);
 
   const pull = async (url: string): Promise<void> => {
-    const response = await fetch(url, {
-      signal: controller.signal,
-      cache: "no-store",
-    });
+    const response = await fetchWithTimeout(
+      url,
+      {
+        signal: controller.signal,
+        cache: "no-store",
+      },
+      0,
+      true,
+    );
     if (!response.ok || !response.body) return;
     const reader = response.body.getReader();
     while (true) {
@@ -148,12 +159,17 @@ const testUpload = async (
 
   const push = async (): Promise<void> => {
     while (!controller.signal.aborted) {
-      const response = await fetch(UPLOAD_URL, {
-        method: "POST",
-        body: chunk,
-        signal: controller.signal,
-        cache: "no-store",
-      });
+      const response = await fetchWithTimeout(
+        UPLOAD_URL,
+        {
+          method: "POST",
+          body: chunk,
+          signal: controller.signal,
+          cache: "no-store",
+        },
+        0,
+        true,
+      );
       if (!response.ok) return;
       totalBytes += chunk.byteLength;
     }
@@ -192,6 +208,7 @@ export const initSpeed = (): void => {
   button.addEventListener("click", async () => {
     if (button.disabled) return;
     button.disabled = true;
+    const resumeBackground = pauseBackgroundNetworkTasks();
     try {
       const reachable = await testPing(latency);
       if (!reachable) return;
@@ -201,6 +218,7 @@ export const initSpeed = (): void => {
     } catch (error) {
       console.error("Speedtest failed:", error);
     } finally {
+      resumeBackground();
       button.disabled = false;
     }
   });

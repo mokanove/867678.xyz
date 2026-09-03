@@ -1,4 +1,5 @@
 import { setText } from "./dom";
+import { fetchWithTimeout } from "./network";
 
 const IPINFO_TOKEN = "eee846770ad167";
 const IPINFO_LITE = `https://api.ipinfo.io/lite/me?token=${IPINFO_TOKEN}`;
@@ -14,7 +15,7 @@ interface IpinfoLite {
 }
 
 const json = async <T>(url: string): Promise<T> => {
-  const response = await fetch(url);
+  const response = await fetchWithTimeout(url, { cache: "no-store" });
   if (!response.ok)
     throw new Error(`${response.status} ${response.statusText}`);
   return response.json() as Promise<T>;
@@ -43,7 +44,9 @@ const loadIpinfo = async (
 
 const loadIpip = async (): Promise<void> => {
   try {
-    const response = await fetch("https://myip.ipip.net/");
+    const response = await fetchWithTimeout("https://myip.ipip.net/", {
+      cache: "no-store",
+    });
     if (!response.ok) throw new Error(String(response.status));
     const text = await response.text();
     const match = text.match(/当前 IP：\s*(\S+).*?来自于：\s*(.+)/);
@@ -71,7 +74,7 @@ const loadIpify = async (): Promise<void> => {
   }
 };
 
-export const initIp = (): void => {
+export const initIp = async (): Promise<void> => {
   let geo = "";
   let pending = 2;
 
@@ -85,7 +88,7 @@ export const initIp = (): void => {
     if (pending === 0) setText("ipinfo-location", "Unavailable");
   };
 
-  void Promise.all([
+  await Promise.all([
     loadIpinfo(IPINFO_LITE, {
       ip: "ipinfo-v4",
       asn: "ipinfo-asn4",

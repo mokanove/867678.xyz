@@ -1,3 +1,5 @@
+export {};
+
 let stop: (() => void) | undefined;
 
 const initTables = (): void => {

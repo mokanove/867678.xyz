@@ -1,5 +1,5 @@
 ---
-import "modern-normalize";
+import "modern-normalize/modern-normalize.css";
 import "../styles/global.css";
 import "../styles/pages.css";
 import Sidebar from "../components/Sidebar.astro";
@@ -53,7 +53,7 @@ const { title = "Home" } = Astro.props;
         document.addEventListener("astro:after-swap", playPageEnter);
       })();
     </script>
-    <script define:vars={{ version, buildTime }}>
+    <script is:inline define:vars={{ version, buildTime }}>
       console.info(`V${version} ${buildTime}`);
     </script>
   </head>

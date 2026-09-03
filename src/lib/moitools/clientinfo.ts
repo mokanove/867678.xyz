@@ -1,4 +1,5 @@
 import { setText } from "./dom";
+import { fetchWithTimeout } from "./network";
 
 const hop = (entry?: PerformanceEntry): string =>
   (
@@ -35,7 +36,7 @@ const probeProtocol = async (url: string): Promise<string> => {
     }
   });
 
-  await fetch(href, { cache: "no-store" });
+  await fetchWithTimeout(href, { cache: "no-store" });
   const fallback = hop(performance.getEntriesByName(href, "resource").at(-1));
   return Promise.race([
     fromObserver.then((protocol) => protocol || fallback),

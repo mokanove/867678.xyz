@@ -62,6 +62,7 @@ const gather = (
   Peer: RtcCtor,
   iceServers: RTCIceServer[],
   timeoutMs: number,
+  signal?: AbortSignal,
 ): Promise<{ host: string[]; srflx: string[]; error?: string }> =>
   new Promise((resolve) => {
     let pc: RTCPeerConnection;
@@ -82,6 +83,7 @@ const gather = (
       window.clearTimeout(timer);
       pc.onicecandidate = null;
       pc.onicegatheringstatechange = null;
+      signal?.removeEventListener("abort", onAbort);
       pc.close();
       resolve({ host: unique(host), srflx: unique(srflx), error });
     };
@@ -98,11 +100,14 @@ const gather = (
     };
 
     const timer = window.setTimeout(() => finish("STUN timeout"), timeoutMs);
+    const onAbort = () => finish("Interrupted");
 
     pc.onicecandidate = (event) => take(event.candidate);
     pc.onicegatheringstatechange = () => {
       if (pc.iceGatheringState === "complete") take(null);
     };
+    if (signal?.aborted) onAbort();
+    else signal?.addEventListener("abort", onAbort, { once: true });
 
     try {
       pc.createDataChannel("leak");
@@ -115,8 +120,12 @@ const gather = (
     }
   });
 
-const probeStun = async (Peer: RtcCtor, url: string): Promise<ProbeResult> => {
-  const gathered = await gather(Peer, [{ urls: url }], 6000);
+const probeStun = async (
+  Peer: RtcCtor,
+  url: string,
+  signal: AbortSignal,
+): Promise<ProbeResult> => {
+  const gathered = await gather(Peer, [{ urls: url }], 6000, signal);
   if (gathered.srflx.length) {
     return {
       status: "Connected",
@@ -147,33 +156,35 @@ const render = (id: StunId, result: ProbeResult): void => {
   setText(`stun-${id}-srflx`, formatIps(result.srflx).join(", ") || "—");
 };
 
-export const initWebrtc = (): void => {
+export const initWebrtc = async (signal: AbortSignal): Promise<void> => {
   const root = document.getElementById("webrtc-results");
   if (!root || root.dataset.bound === "true") return;
-  root.dataset.bound = "true";
 
   const Peer = rtcCtor();
   if (!Peer) {
     for (const server of STUN_SERVERS)
       render(server.id, fail("WebRTC unsupported"));
+    root.dataset.bound = "true";
     return;
   }
 
-  void (async () => {
-    const preflight = await gather(Peer, [], 2500);
-    if (!preflight.host.length && !preflight.srflx.length) {
-      const reason =
-        preflight.error === "STUN timeout"
-          ? "WebRTC disabled"
-          : preflight.error || "WebRTC disabled";
-      for (const server of STUN_SERVERS) render(server.id, fail(reason));
-      return;
-    }
+  const preflight = await gather(Peer, [], 2500, signal);
+  if (signal.aborted) throw signal.reason;
+  if (!preflight.host.length && !preflight.srflx.length) {
+    const reason =
+      preflight.error === "STUN timeout"
+        ? "WebRTC disabled"
+        : preflight.error || "WebRTC disabled";
+    for (const server of STUN_SERVERS) render(server.id, fail(reason));
+    root.dataset.bound = "true";
+    return;
+  }
 
-    await Promise.all(
-      STUN_SERVERS.map(async (server) => {
-        render(server.id, await probeStun(Peer, server.url));
-      }),
-    );
-  })();
+  await Promise.all(
+    STUN_SERVERS.map(async (server) => {
+      render(server.id, await probeStun(Peer, server.url, signal));
+    }),
+  );
+  if (signal.aborted) throw signal.reason;
+  root.dataset.bound = "true";
 };

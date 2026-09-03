@@ -1,3 +1,5 @@
+import { fetchWithTimeout } from "./network";
+
 interface LeakRow {
   ip?: string;
   type?: string;
@@ -22,15 +24,15 @@ const BASH = "https://bash.ws";
 const IPINFO_TOKEN = "eee846770ad167";
 const PROBES = 10;
 
-const json = async <T>(url: string): Promise<T> => {
-  const response = await fetch(url, { cache: "no-store" });
+const json = async <T>(url: string, signal?: AbortSignal): Promise<T> => {
+  const response = await fetchWithTimeout(url, { cache: "no-store", signal });
   if (!response.ok)
     throw new Error(`${response.status} ${response.statusText}`);
   return response.json() as Promise<T>;
 };
 
-const text = async (url: string): Promise<string> => {
-  const response = await fetch(url, { cache: "no-store" });
+const text = async (url: string, signal?: AbortSignal): Promise<string> => {
+  const response = await fetchWithTimeout(url, { cache: "no-store", signal });
   if (!response.ok)
     throw new Error(`${response.status} ${response.statusText}`);
   return (await response.text()).trim();
@@ -44,29 +46,47 @@ const flagOf = (code: string): string => {
   );
 };
 
-const lookup = async (ip: string): Promise<IpinfoLite> => {
+const lookup = async (
+  ip: string,
+  signal?: AbortSignal,
+): Promise<IpinfoLite> => {
   try {
     return await json<IpinfoLite>(
       `https://api.ipinfo.io/lite/${encodeURIComponent(ip)}?token=${IPINFO_TOKEN}`,
+      signal,
     );
   } catch {
     return {};
   }
 };
 
-const triggerLookups = async (id: string): Promise<void> => {
+const triggerLookups = async (
+  id: string,
+  signal: AbortSignal,
+): Promise<void> => {
   await Promise.allSettled(
     Array.from({ length: PROBES }, (_, index) =>
-      fetch(`https://${index}.${id}.bash.ws/?t=${Date.now()}`, {
+      fetchWithTimeout(`https://${index}.${id}.bash.ws/?t=${Date.now()}`, {
         mode: "no-cors",
         cache: "no-store",
+        signal,
       }),
     ),
   );
 };
 
-const wait = (ms: number): Promise<void> =>
-  new Promise((resolve) => window.setTimeout(resolve, ms));
+const wait = (ms: number, signal: AbortSignal): Promise<void> =>
+  new Promise((resolve, reject) => {
+    const timeout = window.setTimeout(resolve, ms);
+    signal.addEventListener(
+      "abort",
+      () => {
+        window.clearTimeout(timeout);
+        reject(signal.reason);
+      },
+      { once: true },
+    );
+  });
 
 const setState = (state: "wait" | "ok" | "fail"): void => {
   document.getElementById("dns-results")?.setAttribute("data-state", state);
@@ -105,8 +125,11 @@ const resolverItem = (view: ResolverView): HTMLLIElement => {
   return item;
 };
 
-const enrich = async (ip: string): Promise<ResolverView> => {
-  const info = await lookup(ip);
+const enrich = async (
+  ip: string,
+  signal: AbortSignal,
+): Promise<ResolverView> => {
+  const info = await lookup(ip, signal);
   const code = info.country_code || "";
   return {
     ip,
@@ -118,23 +141,23 @@ const enrich = async (ip: string): Promise<ResolverView> => {
   };
 };
 
-const run = async (): Promise<void> => {
+const run = async (signal: AbortSignal): Promise<void> => {
   setState("wait");
   setList([emptyItem("Testing...")]);
 
   try {
-    const id = await text(`${BASH}/id`);
+    const id = await text(`${BASH}/id`, signal);
     if (!id) throw new Error("Missing test id");
-    await triggerLookups(id);
+    await triggerLookups(id, signal);
 
     let rows: LeakRow[] = [];
     for (let attempt = 0; attempt < 4; attempt += 1) {
-      if (attempt) await wait(800 * attempt);
-      rows = await json<LeakRow[]>(`${BASH}/dnsleak/test/${id}?json`);
+      if (attempt) await wait(800 * attempt, signal);
+      rows = await json<LeakRow[]>(`${BASH}/dnsleak/test/${id}?json`, signal);
       const resolvers = rows.filter((row) => row.type === "dns" && row.ip);
       if (resolvers.length) {
         const views = await Promise.all(
-          resolvers.map((row) => enrich(row.ip as string)),
+          resolvers.map((row) => enrich(row.ip as string, signal)),
         );
         setList(views.map(resolverItem));
         setState("ok");
@@ -144,15 +167,16 @@ const run = async (): Promise<void> => {
 
     setList([emptyItem("No resolvers reported")]);
     setState("fail");
-  } catch {
+  } catch (error) {
+    if (signal.aborted) throw error;
     setList([emptyItem("Failed")]);
     setState("fail");
   }
 };
 
-export const initDns = (): void => {
+export const initDns = async (signal: AbortSignal): Promise<void> => {
   const root = document.getElementById("dns-results");
   if (!root || root.dataset.bound === "true") return;
+  await run(signal);
   root.dataset.bound = "true";
-  void run();
 };
