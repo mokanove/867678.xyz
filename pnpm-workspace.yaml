@@ -24,3 +24,5 @@ minimumReleaseAgeExclude:
   - "@cloudflare/workerd-linux-arm64@1.20260828.1"
   - "@cloudflare/workerd-windows-64@1.20260828.1"
   - workerd@1.20260828.1
+patchedDependencies:
+  astro@7.3.0: patches/astro@7.3.0.patch
