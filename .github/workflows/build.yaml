@@ -28,7 +28,7 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm build
 
-      - name: Sent to Cloudflare Pages
+      - name: Send to Cloudflare Pages
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
