@@ -1,13 +1,21 @@
 import { setText } from "./dom";
 
 const STUN_SERVERS = [
-  { id: "miwifi", host: "stun.miwifi.com", url: "stun:stun.miwifi.com:3478" },
+  {
+    id: "miwifi",
+    host: "stun.miwifi.com",
+    url: "stun:stun.miwifi.com:3478"
+  },
   {
     id: "cloudflare",
     host: "stun.cloudflare.com",
     url: "stun:stun.cloudflare.com:3478",
   },
-  { id: "google", host: "stun.google.com", url: "stun:stun.google.com:19302" },
+  {
+    id: "google",
+    host: "stun.l.google.com",
+    url: "stun:stun.l.google.com:19302"
+  },
   {
     id: "nextcloud",
     host: "stun.nextcloud.com",
