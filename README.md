@@ -1,6 +1,6 @@
 # 867678.xyz
 
-Source code of 867678.xyz, ChanterX, MoITools , CyAks.
+Source code of 867678.xyz, FuckXter, MoITools , CyAks.
 
 ## 🚀 How to init
 

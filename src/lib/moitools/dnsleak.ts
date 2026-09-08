@@ -22,7 +22,7 @@ interface ResolverView {
 
 const BASH = "https://bash.ws";
 const IPINFO_TOKEN = "eee846770ad167";
-const PROBES = 10;
+const PROBES = 5;
 
 const json = async <T>(url: string, signal?: AbortSignal): Promise<T> => {
   const response = await fetchWithTimeout(url, { cache: "no-store", signal });
