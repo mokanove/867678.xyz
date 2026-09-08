@@ -19,29 +19,28 @@ pnpm install
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                                      | Action                                           |
-| :------------------------------------------- | :----------------------------------------------- |
-| `pnpm install`                               | Installs dependencies                            |
-| `pnpm dev`                                   | Starts local dev server at `localhost:4321`      |
-| `pnpm build`                                 | Build your production site to `./dist/`          |
-| `pnpm astro ...`                             | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help`                       | Get help using the Astro CLI                     |
-| `pnpm astro preferences *action* devToolbar` | enable or disable devToolbar                     |
-| `pnpm format`                                | Using prettier format files                      |
-| `pnpm check`                                 | Using prettier check files format                |
-| `pnpm prittier`                              | Run prittier                                     |
+| Command                                      | Action                                               |
+| :------------------------------------------- | :--------------------------------------------------- |
+| `pnpm install`                               | Installs dependencies                                |
+| `pnpm dev`                                   | Starts local dev server at `localhost:4321`          |
+| `pnpm build`                                 | Build your production site to `./dist/`              |
+| `pnpm astro ...`                             | Run CLI commands like `astro add`, `astro check`     |
+| `pnpm astro -- --help`                       | Get help using the Astro CLI                         |
+| `pnpm astro preferences *action* devToolbar` | enable or disable devToolbar                         |
+| `pnpm format`                                | Format files with Prettier                           |
+| `pnpm check`                                 | Run `astro check` and check formatting with Prettier |
 
 ## ⚠️ Warning
 
-If you internet is not good, you may cannot be run `pnpm dev`.
+If your internet is not good, you may not be able to run `pnpm dev`.
 
-To solve this problem, we used `cdn.jsdelivr.net`.
+To solve this problem, we use `cdn.jsdelivr.net`.
 
-But it has include a new problem, for speed, it have cache, and refresh every 24 hours.
+But it introduces a new problem: for speed, jsDelivr caches files and only refreshes them every 24 hours.
 
 To solve this problem, we created a simple script.
 
-Run `pnpm fresh` to run this script and refresh CDN cache let CDN get latest file.
+Run `pnpm fresh` to run this script and refresh the CDN cache, so that the CDN gets the latest files.
 
 ## 🙏 Acknowledgements
 

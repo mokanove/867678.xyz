@@ -35,6 +35,7 @@ const { title = "Home" } = Astro.props;
           const entry = document.querySelector(".page-entry");
           wrapper?.scrollTo(0, 0);
           if (!entry || typeof entry.animate !== "function") return;
+          if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
           entry.animate(
             [
               { opacity: 0, transform: "translateY(10px)" },

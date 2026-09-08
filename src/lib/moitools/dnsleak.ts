@@ -22,7 +22,8 @@ interface ResolverView {
 
 const BASH = "https://bash.ws";
 const IPINFO_TOKEN = "eee846770ad167";
-const PROBES = 5;
+// The official bash.ws test fires 10 probe subdomains; fewer can miss resolvers.
+const PROBES = 10;
 
 const json = async <T>(url: string, signal?: AbortSignal): Promise<T> => {
   const response = await fetchWithTimeout(url, { cache: "no-store", signal });
@@ -150,11 +151,16 @@ const run = async (signal: AbortSignal): Promise<void> => {
     if (!id) throw new Error("Missing test id");
     await triggerLookups(id, signal);
 
-    let rows: LeakRow[] = [];
+    // Resolver results are not ready right after the probes; poll with
+    // increasing delays before giving up.
+    let results: LeakRow[] = [];
     for (let attempt = 0; attempt < 4; attempt += 1) {
       if (attempt) await wait(800 * attempt, signal);
-      rows = await json<LeakRow[]>(`${BASH}/dnsleak/test/${id}?json`, signal);
-      const resolvers = rows.filter((row) => row.type === "dns" && row.ip);
+      results = await json<LeakRow[]>(
+        `${BASH}/dnsleak/test/${id}?json`,
+        signal,
+      );
+      const resolvers = results.filter((row) => row.type === "dns" && row.ip);
       if (resolvers.length) {
         const views = await Promise.all(
           resolvers.map((row) => enrich(row.ip as string, signal)),

@@ -25,7 +25,7 @@ jobs:
         shell: bash
         run: |
           pnpm fresh
-          pnpm install --frozen-lockfile
+          pnpm install
           pnpm build
 
       - name: Send to Cloudflare Pages

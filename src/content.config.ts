@@ -98,7 +98,7 @@ const docs: RemoteEntry[] = [
   },
   {
     id: "mopl",
-    title: "Mo Pubilc License",
+    title: "Mo Public License",
     url: "https://cdn.jsdelivr.net/gh/moaeiou/moaeiou@main/LICENSE.md",
   },
 ];

@@ -89,7 +89,7 @@ const testPing = async (element: HTMLElement): Promise<boolean> => {
     result.status === "fulfilled" ? [result.value] : [],
   );
   if (!samples.length) {
-    element.textContent = "Timedout";
+    element.textContent = "Timed out";
     return false;
   }
   element.textContent = `${Math.min(...samples).toFixed(1)} ms`;
@@ -127,6 +127,8 @@ const testDownload = async (
   };
 
   try {
+    // Hold the test open for the whole window even if every source finishes
+    // early; controller.abort() is the real cutoff.
     await Promise.all([
       Promise.allSettled(DOWNLOAD_SOURCES.map(pull)),
       wait(DOWN_MS),
@@ -175,6 +177,7 @@ const testUpload = async (
   };
 
   try {
+    // Same as the download phase: wait the whole window, abort at the end.
     await Promise.all([
       Promise.allSettled(Array.from({ length: UPLOAD_STREAMS }, () => push())),
       wait(UP_MS),

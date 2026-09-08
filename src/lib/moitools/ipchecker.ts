@@ -91,7 +91,7 @@ const loadIp138 = async (): Promise<void> => {
 const loadPreferredIp = async (): Promise<void> => {
   try {
     const data = await json<{ ip?: string }>(
-      "https://api.ipinfo.io/lite/me?token=eee846770ad167",
+      `https://api.ipinfo.io/lite/me?token=${IPINFO_TOKEN}`,
     );
     if (!data.ip) {
       setText("ipinfo-preferred", "Unavailable");
@@ -104,17 +104,16 @@ const loadPreferredIp = async (): Promise<void> => {
 };
 
 export const initIp = async (): Promise<void> => {
-  let geo = "";
-  let pending = 2;
+  // Either lookup may report a location: use the first one that does, and
+  // only show "Unavailable" after both have failed.
+  let found: string | undefined;
+  let remaining = 2;
 
   const applyLocation = (place?: string): void => {
-    if (!geo && place) geo = place;
-    pending -= 1;
-    if (geo) {
-      setText("ipinfo-location", geo);
-      return;
-    }
-    if (pending === 0) setText("ipinfo-location", "Unavailable");
+    found ??= place;
+    remaining -= 1;
+    if (found) setText("ipinfo-location", found);
+    else if (remaining === 0) setText("ipinfo-location", "Unavailable");
   };
 
   await Promise.all([
