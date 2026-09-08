@@ -14,10 +14,10 @@ const LATENCY_TARGETS = [
 ];
 
 const DOWNLOAD_SOURCES = [
-  "https://speed.cloudflare.com/__down?bytes=1000000000",
-  "https://cachefly.cachefly.net/100mb.test",
-  "https://l.867678.xyz/speedtest",
-  "https://o.867678.xyz/speedtest",
+  "https://speed.cloudflare.com/__down?bytes=9999999",
+  "https://cachefly.cachefly.net/50mb.test",
+  "https://la.mirrors.867678.xyz/speedtest",
+  "https://sg.mirrors.867678.xyz/speedtest",
 ];
 
 const UPLOAD_URL = "https://speed.cloudflare.com/__up";
