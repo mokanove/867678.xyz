@@ -1,5 +1,5 @@
 {
-  "name": "asi",
+  "name": "867678-xyz",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -12,6 +12,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.2.0"
+    "astro": "^7.3.2"
+  },
+  "allowScripts": {
+    "esbuild": true
   }
 }
