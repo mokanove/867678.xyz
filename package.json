@@ -1,7 +1,7 @@
 {
   "name": "867678.xyz",
   "type": "module",
-  "version": "5.3.3",
+  "version": "5.3.4",
   "engines": {
     "node": ">=24.21.0"
   },
@@ -9,6 +9,7 @@
     "fresh": "./fresh.sh",
     "dev": "astro dev",
     "build": "astro build",
+    "preview": "astro preview",
     "astro": "astro",
     "format": "prettier . --write",
     "check": "astro check && prettier . --check"

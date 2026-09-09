@@ -1,12 +1,133 @@
 ---
-//components
-import BaseLayout from "../../layouts/BaseLayout.astro";
+//css
+import "../../styles/fuckxter/style.css";
+//layouts
+import FuckxterLayout from "../../layouts/FuckxterLayout.astro";
 ---
 
-<BaseLayout title="FuckXter">
-  <div>
-    <h1>FuckXter</h1>
+<FuckxterLayout title="FuckXter">
+  <div class="fk-app" data-fuckxter>
+    <header class="fk-topbar">
+      <a class="fk-brand" href="/fuckxter" aria-label="FuckXter 首页">
+        <span class="fk-logo" aria-hidden="true">✕</span>
+        <span class="fk-brand-name">FuckXter</span>
+      </a>
+
+      <div class="fk-search">
+        <svg
+          class="fk-search-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input
+          class="fk-search-input"
+          type="search"
+          placeholder="搜索 FuckXter"
+          aria-label="搜索 FuckXter"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="fk-settings">
+        <button
+          type="button"
+          class="fk-icon-btn"
+          data-role="settings-btn"
+          aria-label="设置"
+          aria-expanded="false"
+          aria-haspopup="menu"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="19"
+            height="19"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="3"></circle>
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+            ></path>
+          </svg>
+        </button>
+        <div class="fk-menu" data-role="settings-menu" role="menu" hidden>
+          <p class="fk-menu-title">主题外观</p>
+          <button
+            type="button"
+            class="fk-menu-item"
+            role="menuitemradio"
+            data-theme-choice="auto"
+          >
+            <span class="fk-menu-check">✓</span>跟随系统
+          </button>
+          <button
+            type="button"
+            class="fk-menu-item"
+            role="menuitemradio"
+            data-theme-choice="light"
+          >
+            <span class="fk-menu-check">✓</span>浅色
+          </button>
+          <button
+            type="button"
+            class="fk-menu-item"
+            role="menuitemradio"
+            data-theme-choice="dark"
+          >
+            <span class="fk-menu-check">✓</span>深色
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="fk-tabsbar" aria-label="时间线">
+      <button type="button" class="fk-tab is-active" data-tab="foryou">
+        推荐
+      </button>
+      <button type="button" class="fk-tab" data-tab="following"> 关注 </button>
+    </nav>
+
+    <div class="fk-main">
+      <section class="fk-composer" aria-label="发帖">
+        <div class="fk-avatar"></div>
+        <div class="fk-composer-body">
+          <textarea
+            class="fk-composer-input"
+            rows="2"
+            placeholder="有什么新鲜事？"
+            aria-label="发帖内容"></textarea>
+          <div class="fk-composer-foot">
+            <span class="fk-char-count">0 / 280</span>
+            <button type="button" class="fk-post-btn" disabled>发帖</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="fk-feed" aria-label="信息流"></section>
+
+      <div class="fk-sentinel">
+        <span class="fk-spinner" aria-hidden="true"></span>
+      </div>
+    </div>
   </div>
-  <p>Next-gen social media platform for freedom.</p>
-  <p>Coming soon...</p>
-</BaseLayout>
+</FuckxterLayout>
+
+<script>
+  import { mountFuckxterBySelector } from "../../lib/fuckxter/client";
+
+  document.addEventListener("astro:page-load", () => {
+    mountFuckxterBySelector("[data-fuckxter]");
+  });
+</script>

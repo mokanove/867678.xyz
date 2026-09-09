@@ -42,30 +42,8 @@ To solve this problem, we created a simple script.
 
 Run `pnpm fresh` to run this script and refresh the CDN cache, so that the CDN gets the latest files.
 
-## 🙏 Acknowledgements
-
-<https://cloudflare.com>
-
-<https://spaceship.com>
-
-<https://cdn.jsdelivr.net/>
-
-<https://chatgpt.com>(Codex)
-
-<https://deepseek.com>
-
-<https://grok.com>
-
-<https://github.com>
-
-<https://github.com/withastro/astro>
-
-<https://github.com/sindresorhus/github-markdown-css>
-
-<https://github.com/prettier/prettier>
-
 ## ⚖️ LICENSE
 
-This web site and the 2rd project (moitools and cyaks) aslo licensed under the [MoPL](https://867678.xyz/docs/mopl)
+This web site and the 2rd project (moitools fuckxter and cyaks) aslo licensed under the [MoPL](https://867678.xyz/docs/mopl)
 
-Some included depends use theme self license.
+Included depends use theme license.

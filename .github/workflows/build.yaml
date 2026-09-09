@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    name: Build this site
+    name: I'm leaving on a roundabout
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
