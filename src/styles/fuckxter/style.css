@@ -39,31 +39,31 @@
   background: var(--color-bg-hover);
 }
 
-.fk-logo {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 9px;
-  background: var(--color-text-strong);
-  color: var(--color-bg);
-  font-size: 1rem;
-  font-weight: 800;
-  line-height: 1;
+/* 左上角字标 logo：浅色主题用白底版，深色主题用透明底白字版 */
+.fk-logo-img {
+  display: block;
+  height: 26px;
+  width: auto;
 }
 
-.fk-brand-name {
-  font-size: 1.15rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
+.fk-logo-dark {
+  display: none;
+}
+
+[data-theme="dark"] .fk-logo-light {
+  display: none;
+}
+
+[data-theme="dark"] .fk-logo-dark {
+  display: block;
 }
 
 /* ---------- 搜索 ---------- */
 
 .fk-search {
   position: relative;
-  flex: 1 1 auto;
+  /* basis 归零：行内空间全部分配完后再撑开，避免小屏把账号按钮挤下线 */
+  flex: 1 1 0;
   max-width: 640px;
   margin-inline: auto;
   min-width: 0;
@@ -104,14 +104,14 @@
   background: var(--color-bg);
 }
 
-/* ---------- 设置菜单 ---------- */
+/* ---------- 账号按钮（右上角） ---------- */
 
-.fk-settings {
+.fk-account {
   position: relative;
   flex: none;
 }
 
-.fk-icon-btn {
+.fk-account-btn {
   display: grid;
   place-items: center;
   width: 38px;
@@ -126,10 +126,490 @@
     color 150ms ease;
 }
 
-.fk-icon-btn:hover,
-.fk-icon-btn[aria-expanded="true"] {
+.fk-account-btn:hover,
+.fk-account-btn[aria-expanded="true"] {
   background: var(--color-bg-hover);
   color: var(--color-accent);
+}
+
+.fk-account-avatar {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  user-select: none;
+}
+
+.fk-account-avatar[hidden] {
+  display: none;
+}
+
+/* ---------- 账号菜单（一级）与级联子菜单 ---------- */
+
+.fk-account-menu {
+  min-width: 236px;
+}
+
+.fk-menu-user {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem 0.65rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.fk-menu-user-avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  user-select: none;
+}
+
+.fk-menu-user-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.fk-menu-user-meta strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text-strong);
+  font-size: 0.92rem;
+}
+
+.fk-menu-user-meta small {
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+}
+
+.fk-menu-row {
+  position: relative;
+}
+
+.fk-menu-expandable {
+  justify-content: space-between;
+}
+
+.fk-menu-arrow {
+  margin-left: auto;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  transition: translate 150ms ease;
+}
+
+.fk-menu-expandable[aria-expanded="true"] {
+  color: var(--color-accent);
+}
+
+.fk-menu-expandable[aria-expanded="true"] .fk-menu-arrow {
+  translate: 3px 0;
+  color: var(--color-accent);
+}
+
+/* 二级/三级菜单：账号菜单位于屏幕右缘，向左弹出 */
+.fk-submenu {
+  position: absolute;
+  right: calc(100% + 8px);
+  top: -0.4rem;
+  z-index: 61;
+  min-width: 176px;
+  padding: 0.4rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-bg-raised);
+  box-shadow: var(--shadow-trigger);
+}
+
+.fk-submenu[hidden] {
+  display: none;
+}
+
+.fk-menu-sep {
+  margin: 0.3rem 0.4rem;
+  border: 0;
+  border-top: 1px solid var(--color-border-soft);
+}
+
+/* ---------- 弹窗（登录注册 / 账号设置） ---------- */
+
+.fk-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.fk-modal[hidden] {
+  display: none;
+}
+
+.fk-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, #000 45%, transparent);
+  backdrop-filter: blur(2px);
+}
+
+.fk-dialog {
+  position: relative;
+  width: min(420px, 100%);
+  max-height: 92dvh;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  background: var(--color-bg-raised);
+  box-shadow: var(--shadow-trigger);
+}
+
+.fk-dialog-wide {
+  display: flex;
+  width: min(760px, 100%);
+  padding: 0;
+  overflow: hidden;
+}
+
+.fk-dialog-brand {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.1rem;
+}
+
+.fk-dialog-logo {
+  height: 30px;
+  width: auto;
+}
+
+.fk-dialog-tabs {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1.1rem;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.fk-dialog-tab {
+  flex: 1;
+  margin-bottom: -1px;
+  border: 0;
+  border-bottom: 2.5px solid transparent;
+  background: none;
+  cursor: pointer;
+  padding: 0.6rem 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: color 150ms ease;
+}
+
+.fk-dialog-tab:hover {
+  color: var(--color-text-strong);
+}
+
+.fk-dialog-tab.is-active {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.fk-dialog-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-bg-hover);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.fk-dialog-close:hover {
+  color: var(--color-text-strong);
+}
+
+/* 设置弹窗：左侧分类导航 + 右侧内容 */
+.fk-settings-nav {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 132px;
+  padding: 1rem 0.75rem;
+  border-right: 1px solid var(--color-border-soft);
+  background: var(--color-bg-subtle);
+}
+
+.fk-settings-nav-btn {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  text-align: left;
+  transition:
+    background 150ms ease,
+    color 150ms ease;
+}
+
+.fk-settings-nav-btn:hover {
+  background: var(--color-bg-hover);
+  color: var(--color-text-strong);
+}
+
+.fk-settings-nav-btn.is-active {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.fk-settings-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-height: min(86dvh, 640px);
+  overflow-y: auto;
+  padding: 1.5rem 1.5rem 1.75rem;
+}
+
+.fk-settings-title {
+  margin: 0 0 1rem;
+  color: var(--color-text-strong);
+  font-size: 1.05rem;
+}
+
+.fk-profile-head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.1rem;
+}
+
+.fk-profile-avatar {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  user-select: none;
+}
+
+/* ---------- 表单 ---------- */
+
+.fk-field {
+  display: block;
+  margin-bottom: 0.85rem;
+}
+
+.fk-field-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.fk-field input,
+.fk-field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-bg);
+  color: var(--color-text-strong);
+  font-family: inherit;
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 150ms ease;
+}
+
+.fk-field input:focus,
+.fk-field textarea:focus {
+  border-color: var(--color-accent);
+}
+
+.fk-field input:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  background: var(--color-bg-subtle);
+}
+
+.fk-field textarea {
+  resize: vertical;
+  min-height: 84px;
+}
+
+.fk-field .fk-char-count {
+  display: block;
+  margin-top: 0.25rem;
+  text-align: right;
+}
+
+.fk-form-status {
+  min-height: 1.2em;
+  margin: 0.2rem 0 0.6rem;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+}
+
+.fk-form-hint {
+  margin: 0.35rem 0 0.8rem;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.fk-primary-btn {
+  border: 0;
+  cursor: pointer;
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition:
+    background 150ms ease,
+    opacity 150ms ease;
+}
+
+.fk-primary-btn:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+}
+
+.fk-primary-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.fk-ghost-btn {
+  border: 1px solid var(--color-border-strong);
+  background: none;
+  cursor: pointer;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  color: var(--color-text);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition:
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.fk-ghost-btn:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.fk-ghost-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.fk-fieldset {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border-soft);
+  border-radius: 14px;
+}
+
+.fk-fieldset-title {
+  margin: 0 0 0.75rem;
+  color: var(--color-text-strong);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.fk-inline-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.fk-check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.25rem 0 0.85rem;
+  color: var(--color-text);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.fk-check-row input {
+  accent-color: var(--color-accent);
+}
+
+.fk-tfa-secret {
+  display: block;
+  margin-bottom: 0.6rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: 8px;
+  background: var(--color-bg-subtle);
+  color: var(--color-text-strong);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  user-select: all;
+}
+
+.fk-tfa-code {
+  box-sizing: border-box;
+  width: 8.5em;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-bg);
+  color: var(--color-text-strong);
+  font-size: 1.05rem;
+  letter-spacing: 0.3em;
+  text-align: center;
+  outline: none;
+}
+
+.fk-tfa-code:focus {
+  border-color: var(--color-accent);
+}
+
+.fk-recovery-list {
+  columns: 2;
+  gap: 1.2rem;
+  margin: 0.4rem 0 0.6rem;
+  padding: 0.8rem 0.8rem 0.8rem 2rem;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: 10px;
+  background: var(--color-bg-subtle);
+  color: var(--color-text-strong);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.88rem;
+  user-select: all;
+}
+
+.fk-recovery-list li {
+  break-inside: avoid;
+  margin-bottom: 0.25rem;
 }
 
 .fk-menu {
@@ -192,16 +672,14 @@
   visibility: visible;
 }
 
-/* ---------- 推荐关注页签行 ---------- */
+/* ---------- 推荐关注页签（位于顶栏，搜索框右侧） ---------- */
 
-.fk-tabsbar {
+.fk-tabs {
   flex: none;
   display: flex;
   align-items: stretch;
+  align-self: stretch;
   gap: 0.25rem;
-  padding: 0 1rem;
-  border-bottom: 1px solid var(--color-border);
-  background: var(--color-bg);
 }
 
 .fk-tab {
@@ -353,10 +831,43 @@
   cursor: not-allowed;
 }
 
-/* ---------- 信息流 ---------- */
+/* ---------- 信息流（多列瀑布流） ---------- */
 
 .fk-feed {
   min-height: 40vh;
+}
+
+.fk-feed-columns {
+  display: flex;
+  align-items: flex-start;
+}
+
+.fk-feed-col {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 多列时帖子变为卡片，竖向按内容自然展开（长帖最高 500 字） */
+.fk-feed-columns.is-masonry {
+  gap: 0.9rem;
+  padding: 1rem 1.25rem 0.25rem;
+}
+
+.fk-feed-columns.is-masonry .fk-post {
+  margin-bottom: 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-bg);
+  box-shadow: var(--shadow-card);
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.fk-feed-columns.is-masonry .fk-post:hover {
+  border-color: var(--color-border-strong);
 }
 
 .fk-post {
@@ -577,22 +1088,68 @@
 }
 
 @media (max-width: 640px) {
+  /* 顶栏折成两行：第一行品牌 + 搜索 + 设置，第二行推荐/关注 */
   .fk-topbar {
+    flex-wrap: wrap;
     gap: 0.6rem;
+    row-gap: 0.15rem;
     padding: 0 0.6rem;
   }
 
-  .fk-brand-name {
-    display: none;
+  .fk-brand {
+    padding: 0.25rem 0.35rem;
   }
 
-  .fk-tabsbar {
-    padding: 0 0.6rem;
+  .fk-logo-img {
+    height: 22px;
+  }
+
+  .fk-tabs {
+    order: 3;
+    flex: 1 1 100%;
   }
 
   .fk-tab {
     flex: 1 1 0;
     text-align: center;
+  }
+
+  /* 小屏：子菜单改为在菜单内部向下展开，避免横向溢出 */
+  .fk-submenu {
+    right: 0.4rem;
+    left: 0.4rem;
+    top: calc(100% + 4px);
+  }
+
+  .fk-dialog {
+    padding: 1.1rem;
+  }
+
+  /* 小屏：设置弹窗改为上下布局，分类横向滚动 */
+  .fk-dialog-wide {
+    flex-direction: column;
+  }
+
+  .fk-settings-nav {
+    flex-direction: row;
+    min-width: 0;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+
+  .fk-settings-nav-btn {
+    flex: none;
+  }
+
+  .fk-settings-body {
+    max-height: none;
+    overflow: visible;
+    padding: 1.1rem;
+  }
+
+  .fk-recovery-list {
+    columns: 1;
   }
 
   .fk-composer {

@@ -3,15 +3,47 @@
  */
 import {
   createPost,
-  getCurrentUser,
   getTimeline,
   searchPosts,
   toggleLike,
   toggleRepost,
 } from "./api";
+import {
+  beginTwoFactor,
+  changeEmail,
+  changePassword,
+  confirmTwoFactor,
+  generateRecoveryCodes,
+  getAccount,
+  getS3Config,
+  saveS3Config,
+  signIn,
+  signOut,
+  signUp,
+  testS3Connection,
+  toFeedUser,
+  updateProfile,
+  type Account,
+  type S3Config,
+} from "./auth";
 import type { FeedTab, Post, SearchResult } from "./types";
 
-const MAX_CHARS = 280;
+const MAX_CHARS = 500;
+
+/** 与 style.css 的断点保持一致：大屏 3~5 列，中屏 2 列，小屏 1 列 */
+const COLUMN_QUERIES: [string, number][] = [
+  ["(min-width: 1920px)", 5],
+  ["(min-width: 1440px)", 4],
+  ["(min-width: 1024px)", 3],
+  ["(min-width: 700px)", 2],
+];
+
+const columnCount = (): number => {
+  for (const [query, count] of COLUMN_QUERIES) {
+    if (matchMedia(query).matches) return count;
+  }
+  return 1;
+};
 
 const ICONS = {
   reply:
@@ -193,13 +225,17 @@ function mountFuckxter(container: HTMLElement): void {
   const searchInput =
     container.querySelector<HTMLInputElement>(".fk-search-input")!;
 
-  const me = getCurrentUser();
+  // 发帖框头像跟随登录态：登录 / 登出后由 renderAccountUI 刷新
   const composerAvatar = container.querySelector<HTMLElement>(
     ".fk-composer .fk-avatar",
   )!;
-  composerAvatar.setAttribute("style", avatarGradient(me.handle));
-  composerAvatar.textContent = [...me.name][0] ?? "?";
-  composerAvatar.title = `@${me.handle}`;
+  const syncComposerUser = () => {
+    const me = toFeedUser(getAccount());
+    composerAvatar.setAttribute("style", avatarGradient(me.handle));
+    composerAvatar.textContent = [...me.name][0] ?? "?";
+    composerAvatar.title = `@${me.handle}`;
+  };
+  syncComposerUser();
 
   const state: FeedState = {
     tab: "foryou",
@@ -210,9 +246,76 @@ function mountFuckxter(container: HTMLElement): void {
     search: null,
   };
 
+  // ---------- 多列瀑布流布局 ----------
+  // 帖子按「当前最矮列」分配，实现瀑布流；断点变化时整体重新分配。
+  let columnsRoot: HTMLElement | null = null;
+  let columns: HTMLElement[] = [];
+  let activeColumnCount = 0;
+  const orderedPosts: HTMLElement[] = [];
+
+  const shortestColumn = (): HTMLElement => {
+    let target = columns[0];
+    for (const col of columns) {
+      if (col.offsetHeight < target.offsetHeight) target = col;
+    }
+    return target;
+  };
+
+  const buildColumns = (count: number): HTMLElement => {
+    const root = el("div", "fk-feed-columns");
+    if (count > 1) root.classList.add("is-masonry");
+    columns = Array.from({ length: count }, () => {
+      const col = el("div", "fk-feed-col");
+      root.append(col);
+      return col;
+    });
+    activeColumnCount = count;
+    return root;
+  };
+
+  const ensureLayout = (): void => {
+    const count = columnCount();
+    if (columnsRoot && count === activeColumnCount) return;
+    const root = buildColumns(count);
+    if (columnsRoot) columnsRoot.replaceWith(root);
+    else feed.append(root);
+    columnsRoot = root;
+    for (const post of orderedPosts) shortestColumn().append(post);
+  };
+
+  const onMediaChange = () => ensureLayout();
+  for (const [query] of COLUMN_QUERIES) {
+    matchMedia(query).addEventListener("change", onMediaChange);
+  }
+
+  const resetFeed = (head?: HTMLElement): void => {
+    orderedPosts.length = 0;
+    feed.replaceChildren();
+    if (head) feed.append(head);
+    columnsRoot = null;
+    activeColumnCount = 0;
+    ensureLayout();
+  };
+
+  const addPost = (post: Post): HTMLElement => {
+    ensureLayout();
+    const node = renderPost(post);
+    orderedPosts.push(node);
+    shortestColumn().append(node);
+    return node;
+  };
+
   const setSentinelBusy = (busy: boolean) => {
     sentinel.classList.toggle("is-done", state.done && !busy);
     spinner.style.visibility = busy ? "visible" : "hidden";
+  };
+
+  // 哨兵仍处在触发区（rootMargin 与 IntersectionObserver 一致）就继续补页，
+  // 否则首屏内容不满一屏时不会再收到交叉事件，信息流会停在第一页。
+  const sentinelReached = (): boolean => {
+    const rect = sentinel.getBoundingClientRect();
+    const view = scroller.getBoundingClientRect();
+    return rect.top - view.bottom < 360;
   };
 
   const renderError = (retry: () => void) => {
@@ -230,19 +333,27 @@ function mountFuckxter(container: HTMLElement): void {
   };
 
   const loadPage = async (replace: boolean) => {
-    if (state.loading || state.search !== null) return;
-    if (state.done && !replace) return;
+    if (state.search !== null) return;
+    // 整页替换（切页签/搜索返回/重载）允许打断在途请求：递增 seq 使其过期，
+    // 旧响应到达时会被丢弃。否则加载中切页签会被 early-return 挡住，
+    // 渲染出旧页签的数据（或让新页签永远等不到内容）。
+    if (!replace && (state.loading || state.done)) return;
     const seq = ++state.seq;
     state.loading = true;
     setSentinelBusy(true);
     try {
       const page = await getTimeline(state.tab, replace ? null : state.cursor);
       if (seq !== state.seq) return; // 用户已切换视图，丢弃过期响应
-      if (replace) feed.replaceChildren();
-      for (const post of page.posts) feed.append(renderPost(post));
+      if (replace) resetFeed();
+      for (const post of page.posts) addPost(post);
       state.cursor = page.nextCursor;
       state.done = page.nextCursor === null;
       if (state.done) feed.append(statusRow("你已看完全部内容 🎉"));
+      else if (sentinelReached()) {
+        window.setTimeout(() => {
+          if (seq === state.seq) loadPage(false);
+        }, 0);
+      }
     } catch {
       if (seq === state.seq) renderError(() => loadPage(replace));
     } finally {
@@ -278,10 +389,9 @@ function mountFuckxter(container: HTMLElement): void {
     try {
       const result = await searchPosts(query);
       if (seq !== state.seq) return;
-      feed.replaceChildren();
-      feed.append(searchHead(result, exitSearch));
+      resetFeed(searchHead(result, exitSearch));
       if (result.posts.length === 0) feed.append(statusRow("没有找到相关内容"));
-      for (const post of result.posts) feed.append(renderPost(post));
+      for (const post of result.posts) addPost(post);
     } catch {
       if (seq === state.seq) renderError(() => doSearch(query));
     } finally {
@@ -420,6 +530,10 @@ function mountFuckxter(container: HTMLElement): void {
     composerBtn.disabled = len === 0 || len > MAX_CHARS;
   };
   composerInput.addEventListener("input", syncComposer);
+  composerInput.addEventListener("input", () => {
+    composerInput.style.height = "auto";
+    composerInput.style.height = `${composerInput.scrollHeight}px`;
+  });
   syncComposer();
 
   composerBtn.addEventListener("click", async () => {
@@ -429,21 +543,20 @@ function mountFuckxter(container: HTMLElement): void {
     const label = composerBtn.textContent;
     composerBtn.textContent = "发送中…";
     try {
-      const post = await createPost(text);
+      await createPost(text);
       if (state.search !== null) {
         searchInput.value = "";
         state.search = null;
-        composer.hidden = false;
       }
-      feed
-        .querySelectorAll(".fk-status, .fk-search-head")
-        .forEach((n) => n.remove());
-      feed.prepend(renderPost(post));
+      composer.hidden = false;
       state.cursor = null;
       state.done = false;
       composerInput.value = "";
+      composerInput.style.height = "";
       syncComposer();
-      scroller.scrollTo({ top: 0, behavior: "smooth" });
+      // 新帖会出现在池顶，直接整页重拉，避免光标错位导致的重复渲染
+      scroller.scrollTo({ top: 0 });
+      loadPage(true);
     } catch {
       composerBtn.textContent = "发送失败";
       setTimeout(() => {
@@ -455,14 +568,48 @@ function mountFuckxter(container: HTMLElement): void {
     composerBtn.textContent = label;
   });
 
-  // ---------- 设置菜单（主题切换） ----------
-  const settingsWrap = container.querySelector<HTMLElement>(".fk-settings")!;
-  const settingsBtn = settingsWrap.querySelector<HTMLButtonElement>(
-    "[data-role=settings-btn]",
+  // ---------- 账号菜单（登录态 / 三级主题菜单 / 弹窗入口） ----------
+  const accountWrap = container.querySelector<HTMLElement>(".fk-account")!;
+  const accountBtn = accountWrap.querySelector<HTMLButtonElement>(
+    "[data-role=account-btn]",
   )!;
-  const settingsMenu = settingsWrap.querySelector<HTMLElement>(
-    "[data-role=settings-menu]",
+  const accountMenu = accountWrap.querySelector<HTMLElement>(
+    "[data-role=account-menu]",
   )!;
+  const authItems = accountMenu.querySelector<HTMLElement>(
+    "[data-role=auth-items]",
+  )!;
+  const userItems = accountMenu.querySelector<HTMLElement>(
+    "[data-role=user-items]",
+  )!;
+  const signoutItems = accountMenu.querySelector<HTMLElement>(
+    "[data-role=signout-items]",
+  )!;
+  const menuAvatar = accountMenu.querySelector<HTMLElement>(
+    "[data-role=menu-avatar]",
+  )!;
+  const menuName = accountMenu.querySelector<HTMLElement>(
+    "[data-role=menu-name]",
+  )!;
+  const menuHandle = accountMenu.querySelector<HTMLElement>(
+    "[data-role=menu-handle]",
+  )!;
+  const themeTrigger = accountMenu.querySelector<HTMLButtonElement>(
+    "[data-account-open=theme]",
+  )!;
+  const themeSubmenu = accountMenu.querySelector<HTMLElement>(
+    "[data-role=theme-submenu]",
+  )!;
+
+  // 弹窗标记在 .fk-app 之外，从 document 取
+  const authModal = document.querySelector<HTMLElement>(
+    "[data-role=auth-modal]",
+  )!;
+  const settingsModal = document.querySelector<HTMLElement>(
+    "[data-role=settings-modal]",
+  )!;
+
+  let account: Account | null = getAccount();
 
   const applyThemeChoice = (mode: string) => {
     localStorage.setItem("theme", mode);
@@ -475,7 +622,7 @@ function mountFuckxter(container: HTMLElement): void {
 
   const syncThemeMenu = () => {
     const current = localStorage.getItem("theme") ?? "auto";
-    for (const item of settingsMenu.querySelectorAll<HTMLButtonElement>(
+    for (const item of themeSubmenu.querySelectorAll<HTMLButtonElement>(
       "[data-theme-choice]",
     )) {
       item.setAttribute(
@@ -485,40 +632,622 @@ function mountFuckxter(container: HTMLElement): void {
     }
   };
 
-  const closeMenu = () => {
-    settingsMenu.hidden = true;
-    settingsBtn.setAttribute("aria-expanded", "false");
-    document.removeEventListener("click", onDocClick, true);
-    document.removeEventListener("keydown", onKeydown, true);
-  };
-  const onDocClick = (event: MouseEvent) => {
-    if (!settingsWrap.contains(event.target as Node)) closeMenu();
-  };
-  const onKeydown = (event: KeyboardEvent) => {
-    if (event.key === "Escape") closeMenu();
+  const renderAccountUI = () => {
+    const btnAvatar = container.querySelector<HTMLElement>(
+      "[data-role=account-avatar]",
+    )!;
+    const btnIcon = container.querySelector<SVGElement>(
+      "[data-role=account-icon]",
+    )!;
+    if (account) {
+      const initial = [...account.profile.name][0] ?? "?";
+      btnAvatar.hidden = false;
+      btnIcon.setAttribute("style", "display:none");
+      btnAvatar.setAttribute("style", avatarGradient(account.profile.handle));
+      btnAvatar.textContent = initial;
+      menuAvatar.setAttribute("style", avatarGradient(account.profile.handle));
+      menuAvatar.textContent = initial;
+      menuName.textContent = account.profile.name;
+      menuHandle.textContent = `@${account.profile.handle}`;
+      authItems.hidden = true;
+      userItems.hidden = false;
+      signoutItems.hidden = false;
+    } else {
+      btnAvatar.hidden = true;
+      btnIcon.removeAttribute("style");
+      authItems.hidden = false;
+      userItems.hidden = true;
+      signoutItems.hidden = true;
+    }
+    syncComposerUser();
+    syncThemeMenu();
   };
 
-  settingsBtn.addEventListener("click", () => {
-    if (settingsMenu.hidden) {
-      syncThemeMenu();
-      settingsMenu.hidden = false;
-      settingsBtn.setAttribute("aria-expanded", "true");
+  const closeSubmenu = () => {
+    themeSubmenu.hidden = true;
+    themeTrigger.setAttribute("aria-expanded", "false");
+  };
+
+  const closeAccountMenu = () => {
+    accountMenu.hidden = true;
+    accountBtn.setAttribute("aria-expanded", "false");
+    closeSubmenu();
+    document.removeEventListener("click", onDocClick, true);
+    document.removeEventListener("keydown", onMenuKeydown, true);
+  };
+  const onDocClick = (event: MouseEvent) => {
+    if (!accountWrap.contains(event.target as Node)) closeAccountMenu();
+  };
+  const onMenuKeydown = (event: KeyboardEvent) => {
+    if (event.key === "Escape") closeAccountMenu();
+  };
+
+  accountBtn.addEventListener("click", () => {
+    if (accountMenu.hidden) {
+      renderAccountUI();
+      accountMenu.hidden = false;
+      accountBtn.setAttribute("aria-expanded", "true");
       document.addEventListener("click", onDocClick, true);
-      document.addEventListener("keydown", onKeydown, true);
+      document.addEventListener("keydown", onMenuKeydown, true);
     } else {
-      closeMenu();
+      closeAccountMenu();
     }
   });
 
-  settingsMenu.addEventListener("click", (event) => {
+  // 第三级：主题外观子菜单
+  themeTrigger.addEventListener("click", () => {
+    const willOpen = themeSubmenu.hidden;
+    themeSubmenu.hidden = !willOpen;
+    themeTrigger.setAttribute("aria-expanded", String(willOpen));
+  });
+
+  themeSubmenu.addEventListener("click", (event) => {
     const item = (event.target as HTMLElement).closest<HTMLButtonElement>(
       "[data-theme-choice]",
     );
     if (!item) return;
     applyThemeChoice(item.dataset.themeChoice!);
     syncThemeMenu();
-    closeMenu();
+    closeAccountMenu();
   });
+
+  accountMenu.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+    const authOpen = target.closest<HTMLButtonElement>("[data-auth-open]");
+    if (authOpen) {
+      closeAccountMenu();
+      openAuthModal(authOpen.dataset.authOpen as "signin" | "signup");
+      return;
+    }
+    const open = target.closest<HTMLButtonElement>("[data-account-open]");
+    if (open) {
+      const action = open.dataset.accountOpen;
+      if (action === "settings") {
+        closeAccountMenu();
+        openSettingsModal("profile");
+      } else if (action === "s3") {
+        closeAccountMenu();
+        openSettingsModal("storage");
+      }
+      return; // theme 由上面的子菜单处理器处理，不关闭菜单
+    }
+    const action = target.closest<HTMLButtonElement>("[data-account-action]")
+      ?.dataset.accountAction;
+    if (action === "signout") {
+      void signOut().then(() => {
+        account = null;
+        closeAccountMenu();
+        renderAccountUI();
+      });
+    }
+  });
+
+  // ---------- 弹窗通用 ----------
+  const onModalKeydown = (event: KeyboardEvent) => {
+    if (event.key !== "Escape") return;
+    if (!settingsModal.hidden) closeModal(settingsModal);
+    else if (!authModal.hidden) closeModal(authModal);
+  };
+  let modalKeysBound = false;
+  const bindModalKeys = () => {
+    if (modalKeysBound) return;
+    modalKeysBound = true;
+    document.addEventListener("keydown", onModalKeydown, true);
+  };
+  const unbindModalKeys = () => {
+    if (!modalKeysBound || !authModal.hidden || !settingsModal.hidden) return;
+    modalKeysBound = false;
+    document.removeEventListener("keydown", onModalKeydown, true);
+  };
+  const openModal = (modal: HTMLElement) => {
+    modal.hidden = false;
+    bindModalKeys();
+  };
+  const closeModal = (modal: HTMLElement) => {
+    modal.hidden = true;
+    unbindModalKeys();
+  };
+  const setStatus = (el: HTMLElement | null, message: string) => {
+    if (el) el.textContent = message;
+  };
+
+  // ---------- 登录 / 注册弹窗 ----------
+  const signinForm = authModal.querySelector<HTMLFormElement>(
+    "[data-role=signin-form]",
+  )!;
+  const signupForm = authModal.querySelector<HTMLFormElement>(
+    "[data-role=signup-form]",
+  )!;
+  const signinStatus = authModal.querySelector<HTMLElement>(
+    "[data-role=signin-status]",
+  )!;
+  const signupStatus = authModal.querySelector<HTMLElement>(
+    "[data-role=signup-status]",
+  )!;
+
+  const setAuthTab = (tab: "signin" | "signup") => {
+    for (const t of authModal.querySelectorAll<HTMLButtonElement>(
+      "[data-auth-tab]",
+    )) {
+      const active = t.dataset.authTab === tab;
+      t.classList.toggle("is-active", active);
+      t.setAttribute("aria-selected", String(active));
+    }
+    signinForm.hidden = tab !== "signin";
+    signupForm.hidden = tab !== "signup";
+    setStatus(signinStatus, "");
+    setStatus(signupStatus, "");
+  };
+
+  const openAuthModal = (tab: "signin" | "signup") => {
+    setAuthTab(tab);
+    signinForm.reset();
+    signupForm.reset();
+    openModal(authModal);
+  };
+
+  for (const t of authModal.querySelectorAll<HTMLButtonElement>(
+    "[data-auth-tab]",
+  )) {
+    t.addEventListener("click", () =>
+      setAuthTab(t.dataset.authTab as "signin" | "signup"),
+    );
+  }
+  authModal
+    .querySelector<HTMLButtonElement>("[data-role=auth-close]")!
+    .addEventListener("click", () => closeModal(authModal));
+  authModal
+    .querySelector<HTMLElement>("[data-role=auth-backdrop]")!
+    .addEventListener("click", () => closeModal(authModal));
+
+  signinForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const data = new FormData(signinForm);
+    const btn = signinForm.querySelector<HTMLButtonElement>(".fk-primary-btn")!;
+    btn.disabled = true;
+    setStatus(signinStatus, "登录中…");
+    try {
+      account = await signIn({
+        email: String(data.get("email") ?? ""),
+        password: String(data.get("password") ?? ""),
+      });
+      renderAccountUI();
+      closeModal(authModal);
+    } catch (error) {
+      setStatus(
+        signinStatus,
+        error instanceof Error ? error.message : "登录失败",
+      );
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  signupForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const data = new FormData(signupForm);
+    const btn = signupForm.querySelector<HTMLButtonElement>(".fk-primary-btn")!;
+    btn.disabled = true;
+    setStatus(signupStatus, "创建中…");
+    try {
+      account = await signUp({
+        name: String(data.get("name") ?? ""),
+        email: String(data.get("email") ?? ""),
+        password: String(data.get("password") ?? ""),
+      });
+      renderAccountUI();
+      closeModal(authModal);
+    } catch (error) {
+      setStatus(
+        signupStatus,
+        error instanceof Error ? error.message : "注册失败",
+      );
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  // ---------- 账号设置弹窗（个人资料 / 安全 / S3） ----------
+  const settingsPanes = [
+    ...settingsModal.querySelectorAll<HTMLElement>("[data-settings-pane]"),
+  ];
+  const settingsNavBtns = [
+    ...settingsModal.querySelectorAll<HTMLButtonElement>("[data-settings-tab]"),
+  ];
+
+  const setSettingsTab = (tab: "profile" | "security" | "storage") => {
+    for (const btn of settingsNavBtns) {
+      btn.classList.toggle("is-active", btn.dataset.settingsTab === tab);
+    }
+    for (const pane of settingsPanes) {
+      pane.hidden = pane.dataset.settingsPane !== tab;
+    }
+  };
+
+  const openSettingsModal = (tab: "profile" | "security" | "storage") => {
+    if (!account) return;
+    setSettingsTab(tab);
+    fillProfileForm();
+    fillEmailHint();
+    renderTfa();
+    fillS3Form();
+    openModal(settingsModal);
+  };
+
+  for (const btn of settingsNavBtns) {
+    btn.addEventListener("click", () =>
+      setSettingsTab(
+        btn.dataset.settingsTab as "profile" | "security" | "storage",
+      ),
+    );
+  }
+  settingsModal
+    .querySelector<HTMLButtonElement>("[data-role=settings-close]")!
+    .addEventListener("click", () => closeModal(settingsModal));
+  settingsModal
+    .querySelector<HTMLElement>("[data-role=settings-backdrop]")!
+    .addEventListener("click", () => closeModal(settingsModal));
+
+  // 个人资料
+  const profileForm = settingsModal.querySelector<HTMLFormElement>(
+    "[data-role=profile-form]",
+  )!;
+  const bioInput =
+    profileForm.querySelector<HTMLTextAreaElement>("[name=bio]")!;
+  const bioCount = settingsModal.querySelector<HTMLElement>(
+    "[data-role=bio-count]",
+  )!;
+  const profileStatus =
+    profileForm.querySelector<HTMLElement>(".fk-form-status")!;
+
+  const fillProfileForm = () => {
+    if (!account) return;
+    profileForm.querySelector<HTMLInputElement>("[name=name]")!.value =
+      account.profile.name;
+    profileForm.querySelector<HTMLInputElement>("[name=handle]")!.value =
+      account.profile.handle;
+    bioInput.value = account.profile.bio;
+    bioCount.textContent = `${[...account.profile.bio].length} / 200`;
+    setStatus(profileStatus, "");
+    const avatar = settingsModal.querySelector<HTMLElement>(
+      "[data-role=profile-avatar]",
+    )!;
+    avatar.setAttribute("style", avatarGradient(account.profile.handle));
+    avatar.textContent = [...account.profile.name][0] ?? "?";
+  };
+
+  bioInput.addEventListener("input", () => {
+    bioCount.textContent = `${[...bioInput.value].length} / 200`;
+  });
+
+  profileForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!account) return;
+    const data = new FormData(profileForm);
+    const btn =
+      profileForm.querySelector<HTMLButtonElement>(".fk-primary-btn")!;
+    btn.disabled = true;
+    try {
+      account = await updateProfile({
+        name: String(data.get("name") ?? ""),
+        bio: String(data.get("bio") ?? ""),
+      });
+      renderAccountUI();
+      fillProfileForm();
+      setStatus(profileStatus, "已保存 ✓");
+      setTimeout(() => setStatus(profileStatus, ""), 1500);
+    } catch (error) {
+      setStatus(
+        profileStatus,
+        error instanceof Error ? error.message : "保存失败",
+      );
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  // 更改邮箱
+  const emailForm = settingsModal.querySelector<HTMLFormElement>(
+    "[data-role=email-form]",
+  )!;
+  const emailStatus = emailForm.querySelector<HTMLElement>(".fk-form-status")!;
+
+  const fillEmailHint = () => {
+    const el = settingsModal.querySelector<HTMLElement>(
+      "[data-role=current-email]",
+    )!;
+    if (account) el.textContent = account.profile.email;
+  };
+
+  emailForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!account) return;
+    const data = new FormData(emailForm);
+    const btn = emailForm.querySelector<HTMLButtonElement>(".fk-primary-btn")!;
+    btn.disabled = true;
+    try {
+      account = await changeEmail({
+        email: String(data.get("email") ?? ""),
+        password: String(data.get("password") ?? ""),
+      });
+      emailForm.reset();
+      renderAccountUI();
+      fillEmailHint();
+      setStatus(emailStatus, "邮箱已更新 ✓");
+      setTimeout(() => setStatus(emailStatus, ""), 1500);
+    } catch (error) {
+      setStatus(
+        emailStatus,
+        error instanceof Error ? error.message : "更新失败",
+      );
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  // 更改密码
+  const passwordForm = settingsModal.querySelector<HTMLFormElement>(
+    "[data-role=password-form]",
+  )!;
+  const passwordStatus =
+    passwordForm.querySelector<HTMLElement>(".fk-form-status")!;
+
+  passwordForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!account) return;
+    const data = new FormData(passwordForm);
+    const next = String(data.get("next") ?? "");
+    if (next !== String(data.get("confirm") ?? "")) {
+      setStatus(passwordStatus, "两次输入的新密码不一致");
+      return;
+    }
+    const btn =
+      passwordForm.querySelector<HTMLButtonElement>(".fk-primary-btn")!;
+    btn.disabled = true;
+    try {
+      await changePassword({
+        current: String(data.get("current") ?? ""),
+        next,
+      });
+      passwordForm.reset();
+      setStatus(passwordStatus, "密码已更新 ✓");
+      setTimeout(() => setStatus(passwordStatus, ""), 1500);
+    } catch (error) {
+      setStatus(
+        passwordStatus,
+        error instanceof Error ? error.message : "更新失败",
+      );
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  // 两步验证 + 恢复密钥
+  const tfaStatus = settingsModal.querySelector<HTMLElement>(
+    "[data-role=tfa-status]",
+  )!;
+  const tfaOff = settingsModal.querySelector<HTMLElement>(
+    "[data-role=tfa-off]",
+  )!;
+  const tfaSetup = settingsModal.querySelector<HTMLElement>(
+    "[data-role=tfa-setup]",
+  )!;
+  const tfaOn = settingsModal.querySelector<HTMLElement>("[data-role=tfa-on]")!;
+  const recoveryBox = settingsModal.querySelector<HTMLElement>(
+    "[data-role=recovery-box]",
+  )!;
+
+  const renderTfa = () => {
+    if (!account) return;
+    tfaStatus.textContent = account.twoFactorEnabled
+      ? "两步验证已开启 ✓"
+      : "未开启。开启后登录时需要验证器 App 的动态验证码。";
+    tfaOff.hidden = Boolean(account.twoFactorEnabled);
+    tfaSetup.hidden = true;
+    tfaOn.hidden = !account.twoFactorEnabled;
+    recoveryBox.hidden = true;
+  };
+
+  settingsModal
+    .querySelector<HTMLButtonElement>("[data-role=tfa-start]")!
+    .addEventListener("click", async () => {
+      try {
+        const { secret } = await beginTwoFactor();
+        setStatus(
+          settingsModal.querySelector<HTMLElement>("[data-role=tfa-secret]"),
+          secret,
+        );
+        tfaOff.hidden = true;
+        tfaSetup.hidden = false;
+        setStatus(
+          settingsModal.querySelector<HTMLElement>(
+            "[data-role=tfa-setup-status]",
+          ),
+          "",
+        );
+      } catch (error) {
+        tfaStatus.textContent =
+          error instanceof Error ? error.message : "初始化失败";
+      }
+    });
+
+  settingsModal
+    .querySelector<HTMLButtonElement>("[data-role=tfa-cancel]")!
+    .addEventListener("click", () => {
+      tfaSetup.hidden = true;
+      tfaOff.hidden = false;
+    });
+
+  settingsModal
+    .querySelector<HTMLButtonElement>("[data-role=tfa-confirm]")!
+    .addEventListener("click", async () => {
+      const code = settingsModal
+        .querySelector<HTMLInputElement>("[data-role=tfa-code]")!
+        .value.trim();
+      const setupStatus = settingsModal.querySelector<HTMLElement>(
+        "[data-role=tfa-setup-status]",
+      )!;
+      try {
+        account = await confirmTwoFactor(code);
+        renderTfa();
+      } catch (error) {
+        setStatus(
+          setupStatus,
+          error instanceof Error ? error.message : "验证失败",
+        );
+      }
+    });
+
+  settingsModal
+    .querySelector<HTMLButtonElement>("[data-role=recovery-generate]")!
+    .addEventListener("click", async () => {
+      const btn = settingsModal.querySelector<HTMLButtonElement>(
+        "[data-role=recovery-generate]",
+      )!;
+      btn.disabled = true;
+      try {
+        const codes = await generateRecoveryCodes();
+        const list = settingsModal.querySelector<HTMLElement>(
+          "[data-role=recovery-list]",
+        )!;
+        list.replaceChildren(
+          ...codes.map((code) => {
+            const li = document.createElement("li");
+            li.textContent = code;
+            return li;
+          }),
+        );
+        recoveryBox.hidden = false;
+      } catch (error) {
+        tfaStatus.textContent =
+          error instanceof Error ? error.message : "生成失败";
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+  settingsModal
+    .querySelector<HTMLButtonElement>("[data-role=recovery-copy]")!
+    .addEventListener("click", async (event) => {
+      const codes = [
+        ...settingsModal.querySelectorAll<HTMLElement>(
+          "[data-role=recovery-list] li",
+        ),
+      ].map((li) => li.textContent ?? "");
+      try {
+        await navigator.clipboard.writeText(codes.join("\n"));
+        const btn = event.currentTarget as HTMLButtonElement;
+        btn.textContent = "已复制 ✓";
+        setTimeout(() => {
+          btn.textContent = "复制全部";
+        }, 1500);
+      } catch {
+        /* 剪贴板不可用时静默忽略 */
+      }
+    });
+
+  // S3 兼容存储
+  const s3Form = settingsModal.querySelector<HTMLFormElement>(
+    "[data-role=s3-form]",
+  )!;
+  const s3Status = s3Form.querySelector<HTMLElement>(".fk-form-status")!;
+
+  const s3ConfigFromForm = (): S3Config => {
+    const data = new FormData(s3Form);
+    return {
+      endpoint: String(data.get("endpoint") ?? "").trim(),
+      region: String(data.get("region") ?? "").trim(),
+      bucket: String(data.get("bucket") ?? "").trim(),
+      accessKeyId: String(data.get("accessKeyId") ?? "").trim(),
+      secretAccessKey: String(data.get("secretAccessKey") ?? ""),
+      pathStyle: data.get("pathStyle") === "on",
+    };
+  };
+
+  const fillS3Form = () => {
+    const config = getS3Config();
+    if (!config) return;
+    for (const [key, value] of Object.entries(config)) {
+      const field = s3Form.querySelector<HTMLInputElement | HTMLInputElement>(
+        `[name=${key}]`,
+      );
+      if (!field) continue;
+      if (field.type === "checkbox") field.checked = Boolean(value);
+      else field.value = String(value);
+    }
+    setStatus(s3Status, "");
+  };
+
+  settingsModal
+    .querySelector<HTMLButtonElement>("[data-role=s3-test]")!
+    .addEventListener("click", async () => {
+      const btn = settingsModal.querySelector<HTMLButtonElement>(
+        "[data-role=s3-test]",
+      )!;
+      btn.disabled = true;
+      setStatus(s3Status, "测试中…");
+      try {
+        setStatus(s3Status, await testS3Connection(s3ConfigFromForm()));
+      } catch (error) {
+        setStatus(
+          s3Status,
+          error instanceof Error ? error.message : "连接失败",
+        );
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+  s3Form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const btn = s3Form.querySelector<HTMLButtonElement>(".fk-primary-btn")!;
+    btn.disabled = true;
+    try {
+      await saveS3Config(s3ConfigFromForm());
+      setStatus(s3Status, "已保存 ✓");
+      setTimeout(() => setStatus(s3Status, ""), 1500);
+    } catch (error) {
+      setStatus(s3Status, error instanceof Error ? error.message : "保存失败");
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  renderAccountUI();
+
+  // 离开页面（客户端路由）时释放观察器与断点监听，避免僵尸回调
+  document.addEventListener(
+    "astro:before-swap",
+    () => {
+      observer.disconnect();
+      for (const [query] of COLUMN_QUERIES) {
+        matchMedia(query).removeEventListener("change", onMediaChange);
+      }
+      document.removeEventListener("keydown", onModalKeydown, true);
+      modalKeysBound = false;
+    },
+    { once: true },
+  );
 
   loadPage(true);
 }

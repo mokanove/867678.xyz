@@ -14,8 +14,15 @@ interface IpinfoLite {
   city?: string;
 }
 
+// 页面信息类请求只有几 KB，不值得为测速让路：keepDuringSpeedtest=true，
+// 避免被测速窗口阻塞（一直 Getting data...）或被中途 abort（永久 Unavailable）。
 const json = async <T>(url: string): Promise<T> => {
-  const response = await fetchWithTimeout(url, { cache: "no-store" });
+  const response = await fetchWithTimeout(
+    url,
+    { cache: "no-store" },
+    undefined,
+    true,
+  );
   if (!response.ok)
     throw new Error(`${response.status} ${response.statusText}`);
   return response.json() as Promise<T>;
@@ -44,9 +51,12 @@ const loadIpinfo = async (
 
 const loadIpip = async (): Promise<void> => {
   try {
-    const response = await fetchWithTimeout("https://myip.ipip.net/", {
-      cache: "no-store",
-    });
+    const response = await fetchWithTimeout(
+      "https://myip.ipip.net/",
+      { cache: "no-store" },
+      undefined,
+      true,
+    );
     if (!response.ok) throw new Error(String(response.status));
     const text = await response.text();
     const match = text.match(/当前 IP：\s*(\S+).*?来自于：\s*(.+)/);
@@ -61,9 +71,12 @@ const loadIpip = async (): Promise<void> => {
 
 const loadIp138 = async (): Promise<void> => {
   try {
-    const response = await fetchWithTimeout("https://2026.ip138.com/", {
-      cache: "no-store",
-    });
+    const response = await fetchWithTimeout(
+      "https://2026.ip138.com/",
+      { cache: "no-store" },
+      undefined,
+      true,
+    );
     if (!response.ok) throw new Error(String(response.status));
 
     const document = new DOMParser().parseFromString(

@@ -28,13 +28,42 @@ const DOWN_MS = 8_000;
 const UP_MS = 8_000;
 const UPLOAD_CHUNK = 512 * 1024;
 
-const wait = (ms: number): Promise<void> =>
-  new Promise((resolve) => window.setTimeout(resolve, ms));
+/** 与 wait 相同，但外部信号中止时立刻拒绝，用于离开页面时终止整个测速 */
+const abortableWait = (ms: number, external: AbortSignal): Promise<void> =>
+  new Promise((resolve, reject) => {
+    if (external.aborted) {
+      reject(external.reason);
+      return;
+    }
+    const timer = window.setTimeout(resolve, ms);
+    external.addEventListener(
+      "abort",
+      () => {
+        window.clearTimeout(timer);
+        reject(external.reason);
+      },
+      { once: true },
+    );
+  });
+
+/** 合并运行期信号与阶段内超时/截止信号 */
+const withExternal = (
+  signal: AbortSignal,
+  external: AbortSignal,
+): AbortSignal => AbortSignal.any([signal, external]);
 
 const isAbort = (error: unknown): boolean =>
   error instanceof DOMException
     ? error.name === "AbortError"
     : error instanceof Error && error.name === "AbortError";
+
+/** 当前测速的运行期控制器；离开页面时由 astro:before-swap 调用中止 */
+let activeRun: AbortController | null = null;
+
+export const cancelActiveSpeedtest = (): void => {
+  activeRun?.abort();
+  activeRun = null;
+};
 
 const mbps = (bytes: number, elapsedMs: number): string => {
   const seconds = elapsedMs / 1000;
@@ -65,7 +94,7 @@ const liveSpeed = (
   }, 150);
 };
 
-const pingRound = () =>
+const pingRound = (external: AbortSignal) =>
   Promise.allSettled(
     LATENCY_TARGETS.map(async (url) => {
       const start = performance.now();
@@ -74,7 +103,7 @@ const pingRound = () =>
         {
           mode: "no-cors",
           cache: "no-store",
-          signal: AbortSignal.timeout(PING_MS),
+          signal: withExternal(AbortSignal.timeout(PING_MS), external),
         },
         undefined,
         true,
@@ -83,9 +112,12 @@ const pingRound = () =>
     }),
   );
 
-const testPing = async (element: HTMLElement): Promise<boolean> => {
+const testPing = async (
+  element: HTMLElement,
+  external: AbortSignal,
+): Promise<boolean> => {
   element.textContent = "Testing latency...";
-  const samples = (await pingRound()).flatMap((result) =>
+  const samples = (await pingRound(external)).flatMap((result) =>
     result.status === "fulfilled" ? [result.value] : [],
   );
   if (!samples.length) {
@@ -99,6 +131,7 @@ const testPing = async (element: HTMLElement): Promise<boolean> => {
 const testDownload = async (
   element: HTMLElement,
   chart: ReturnType<typeof createSpeedChart>,
+  external: AbortSignal,
 ): Promise<void> => {
   element.textContent = "Connecting...";
   const controller = new AbortController();
@@ -111,7 +144,7 @@ const testDownload = async (
     const response = await fetchWithTimeout(
       url,
       {
-        signal: controller.signal,
+        signal: withExternal(controller.signal, external),
         cache: "no-store",
       },
       0,
@@ -128,10 +161,11 @@ const testDownload = async (
 
   try {
     // Hold the test open for the whole window even if every source finishes
-    // early; controller.abort() is the real cutoff.
+    // early; controller.abort() is the real cutoff. Leaving the page aborts
+    // the whole window via `external`.
     await Promise.all([
       Promise.allSettled(DOWNLOAD_SOURCES.map(pull)),
-      wait(DOWN_MS),
+      abortableWait(DOWN_MS, external),
     ]);
   } catch (error) {
     if (!isAbort(error)) throw error;
@@ -149,6 +183,7 @@ const testDownload = async (
 const testUpload = async (
   element: HTMLElement,
   chart: ReturnType<typeof createSpeedChart>,
+  external: AbortSignal,
 ): Promise<void> => {
   element.textContent = "Connecting...";
   const controller = new AbortController();
@@ -159,13 +194,13 @@ const testUpload = async (
   const stop = window.setTimeout(() => controller.abort(), UP_MS);
 
   const push = async (): Promise<void> => {
-    while (!controller.signal.aborted) {
+    while (!controller.signal.aborted && !external.aborted) {
       const response = await fetchWithTimeout(
         UPLOAD_URL,
         {
           method: "POST",
           body: chunk,
-          signal: controller.signal,
+          signal: withExternal(controller.signal, external),
           cache: "no-store",
         },
         0,
@@ -180,7 +215,7 @@ const testUpload = async (
     // Same as the download phase: wait the whole window, abort at the end.
     await Promise.all([
       Promise.allSettled(Array.from({ length: UPLOAD_STREAMS }, () => push())),
-      wait(UP_MS),
+      abortableWait(UP_MS, external),
     ]);
   } catch (error) {
     if (!isAbort(error)) throw error;
@@ -211,15 +246,18 @@ export const initSpeed = (): void => {
     if (button.disabled) return;
     button.disabled = true;
     const resumeBackground = pauseBackgroundNetworkTasks();
+    const run = new AbortController();
+    activeRun = run;
     try {
-      const reachable = await testPing(latency);
+      const reachable = await testPing(latency, run.signal);
       if (!reachable) return;
       chart.start();
-      await testDownload(download, chart);
-      await testUpload(upload, chart);
+      await testDownload(download, chart, run.signal);
+      await testUpload(upload, chart, run.signal);
     } catch (error) {
-      console.error("Speedtest failed:", error);
+      if (!isAbort(error)) console.error("Speedtest failed:", error);
     } finally {
+      if (activeRun === run) activeRun = null;
       resumeBackground();
       button.disabled = false;
     }

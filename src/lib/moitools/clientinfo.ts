@@ -36,7 +36,8 @@ const probeProtocol = async (url: string): Promise<string> => {
     }
   });
 
-  await fetchWithTimeout(href, { cache: "no-store" });
+  // 探测请求同样不参与测速让路，理由同 ipchecker.ts
+  await fetchWithTimeout(href, { cache: "no-store" }, undefined, true);
   const fallback = hop(performance.getEntriesByName(href, "resource").at(-1));
   return Promise.race([
     fromObserver.then((protocol) => protocol || fallback),
